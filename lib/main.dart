@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'config/Theme/theme_manager.dart';
 import 'features/layout/main_layout.dart';
 
 void main() {
@@ -17,7 +18,9 @@ class Akhbarna extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Akhbarna',
+        theme: ThemeManager.light,
+        darkTheme: ThemeManager.dark,
+        themeMode: ThemeMode.dark,
         home: MainLayout(),
       ),
     );
