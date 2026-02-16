@@ -1,7 +1,7 @@
+import 'package:akhbarna/core/resources/routes_managers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'config/Theme/theme_manager.dart';
-import 'features/layout/main_layout.dart';
 
 void main() {
   runApp(const Akhbarna());
@@ -21,7 +21,8 @@ class Akhbarna extends StatelessWidget {
         theme: ThemeManager.light,
         darkTheme: ThemeManager.dark,
         themeMode: ThemeMode.dark,
-        home: MainLayout(),
+        initialRoute: RoutesManager.splash,
+        routes: RoutesManager.routes,
       ),
     );
   }

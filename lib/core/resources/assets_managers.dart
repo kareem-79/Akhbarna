@@ -1,4 +1,7 @@
 class AssetsManagers{
+  static const String base="assets/images";
+  static const String akhbarna_icon="$base/akhbarna_icon.png";
+  static const String akhbarna_text="$base/اخبارنا.png";
 
 }
 class IconsManagers{
