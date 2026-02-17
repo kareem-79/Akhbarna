@@ -1,5 +1,6 @@
 import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SvgWidget extends StatelessWidget {
@@ -19,8 +20,8 @@ class SvgWidget extends StatelessWidget {
       scale: isSelected ? 1.2 : 1,
       child: SvgPicture.asset(
         image,
-        width: 24,
-        height: 24,
+        width: 24.w,
+        height: 24.h,
         colorFilter: ColorFilter.mode(
           isSelected
               ? ColorsManagers.blue

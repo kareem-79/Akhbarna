@@ -18,9 +18,6 @@ class _SplashScreenState extends State<SplashScreen>
   late AnimationController _logoController;
   late AnimationController _textController;
 
-  late Animation<Offset> _leftLine;
-  late Animation<Offset> _rightLine;
-
   late Animation<double> _logoScale;
   late Animation<double> _fadeText;
 
@@ -28,28 +25,17 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
 
-    /// الخطوط
     _linesController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1200),
     );
-
-    _leftLine = Tween(
-      begin: const Offset(-1, 0),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(parent: _linesController, curve: Curves.easeOut));
-
-    _rightLine = Tween(
-      begin: const Offset(1, 0),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(parent: _linesController, curve: Curves.easeOut));
 
     _logoController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 600),
     );
 
-    _logoScale = Tween(begin: 0.6, end: 1.0).animate(
+    _logoScale = Tween(begin: 0.8, end: 1.0).animate(
       CurvedAnimation(parent: _logoController, curve: Curves.easeOutBack),
     );
 
@@ -73,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     await Future.delayed(const Duration(seconds: 1));
 
-    Navigator.pushReplacementNamed(context, RoutesManager.mainLayout);
+    Navigator.pushReplacementNamed(context, RoutesManager.onBoarding);
   }
 
   @override
@@ -104,7 +90,7 @@ class _SplashScreenState extends State<SplashScreen>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(right: 110.0.sp),
+                  padding: EdgeInsets.only(right: 100.0.sp),
                   child: FadeTransition(
                     opacity: _fadeText,
                     child: Image.asset(

@@ -1,10 +1,10 @@
 import 'package:akhbarna/core/resources/assets_managers.dart';
 import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/widget/svg_widget.dart';
-import 'package:akhbarna/features/layout/bookMarket/presentation/bookmarket_tab.dart';
-import 'package:akhbarna/features/layout/category/presentation/category_tab.dart';
-import 'package:akhbarna/features/layout/home/presentation/home_tap.dart';
-import 'package:akhbarna/features/layout/profile/presentation/profile_tab.dart';
+import 'package:akhbarna/features/layout/bookMarket/presentation/screens/bookmarket_tab.dart';
+import 'package:akhbarna/features/layout/category/presentation/screens/category_tab.dart';
+import 'package:akhbarna/features/layout/home/presentation/screens/home_tap.dart';
+import 'package:akhbarna/features/layout/profile/presentation/screens/profile_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -32,7 +32,6 @@ class _MainLayoutState extends State<MainLayout> {
       body: tabs[selectedIndex],
       bottomNavigationBar: Padding(
         padding: EdgeInsets.all(16.sp),
-
         child: ClipRRect(
           clipBehavior: Clip.antiAlias,
           borderRadius: BorderRadiusGeometry.circular(60.r),
@@ -46,7 +45,6 @@ class _MainLayoutState extends State<MainLayout> {
             child: BottomNavigationBar(
               currentIndex: selectedIndex,
               onTap: _onTab,
-
               items: [
                 BottomNavigationBarItem(
                   icon: SvgWidget(
