@@ -84,7 +84,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                   SizedBox(width: 8.w),
                   CustomTextButton(
                     onPress: () {
-                      Navigator.pushNamed(context, RoutesManager.login);
+                      Navigator.pushNamed(context, RoutesManager.register);
                     },
                     text: "إنشاء حساب",
                     color: ColorsManagers.red,

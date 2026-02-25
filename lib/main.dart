@@ -23,7 +23,7 @@ class Akhbarna extends StatelessWidget {
         darkTheme: ThemeManager.dark,
         themeMode: ThemeMode.dark,
         onGenerateRoute: RoutesManager.routes,
-        initialRoute: RoutesManager.startUp,
+        initialRoute: RoutesManager.splash,
       ),
     );
   }

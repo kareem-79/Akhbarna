@@ -96,7 +96,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     ),
                     child: TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, RoutesManager.mainLayout);
+                        Navigator.pushNamed(context, RoutesManager.startUp);
                       },
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,
@@ -224,7 +224,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                   } else {
                                     Navigator.pushReplacementNamed(
                                       context,
-                                      RoutesManager.mainLayout,
+                                      RoutesManager.startUp,
                                     );
                                   }
                                 },
