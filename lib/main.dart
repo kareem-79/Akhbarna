@@ -18,11 +18,12 @@ class Akhbarna extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
+        locale: const Locale('ar'),
         theme: ThemeManager.light,
         darkTheme: ThemeManager.dark,
         themeMode: ThemeMode.dark,
-        initialRoute: RoutesManager.splash,
-        routes: RoutesManager.routes,
+        onGenerateRoute: RoutesManager.routes,
+        initialRoute: RoutesManager.startUp,
       ),
     );
   }

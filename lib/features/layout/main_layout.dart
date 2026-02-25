@@ -28,7 +28,7 @@ class _MainLayoutState extends State<MainLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsManagers.black,
+      backgroundColor: ColorsManagers.darkNavy,
       body: tabs[selectedIndex],
       bottomNavigationBar: Padding(
         padding: EdgeInsets.all(16.sp),
