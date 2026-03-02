@@ -30,7 +30,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                 alignment: Alignment.center,
                 children: [
                   Image.asset(
-                    AssetsManagers.startUp_news,
+                    ImageManagers.startUpNews,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),

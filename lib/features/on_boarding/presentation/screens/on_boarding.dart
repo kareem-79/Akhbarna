@@ -20,22 +20,22 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   final List<OnBoardingWidget> pages = [
     OnBoardingWidget(
-      image: AssetsManagers.on_boarding1,
+      image: ImageManagers.onBoarding1,
       title: "بقَ على اتصال بالعالم من قلب بلدك.احصل على آخرالأخبار من ",
       description: ". مصادر موثوقة ",
     ),
     OnBoardingWidget(
-      image: AssetsManagers.on_boarding2,
+      image: ImageManagers.onBoarding2,
       title: ". خبر بيهمّك في مجالك،بنقدّمه ليك بسرعة",
       description: ". كل التفاصيل بين إيديك",
     ),
     OnBoardingWidget(
-      image: AssetsManagers.on_boarding3,
+      image: ImageManagers.onBoarding3,
       title: ". عيش التجربة الإخبارية بطابع عربي أصيل",
       description: ". الأخبار من قلب الشارع بصورة حقيقية",
     ),
     OnBoardingWidget(
-      image: AssetsManagers.on_boarding4,
+      image: ImageManagers.onBoarding4,
       title: "من الفن إلى السياسة، أي شيء في",
       description: ". «أخبارنا»",
     ),
@@ -43,6 +43,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -75,11 +76,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       ),
                       child: Text(
                         "English",
-                        style: GoogleFonts.tajawal(
-                          fontSize: 15.sp,
-                          color: ColorsManagers.white,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: textTheme.labelSmall
                       ),
                     ),
                   ),
@@ -105,11 +102,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       ),
                       child: Text(
                         "تخطي",
-                        style: GoogleFonts.tajawal(
-                          fontSize: 15.sp,
-                          color: ColorsManagers.white,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: textTheme.labelSmall
                       ),
                     ),
                   ),

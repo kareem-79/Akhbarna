@@ -1,3 +1,4 @@
+import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -29,6 +30,7 @@ class CustomTextFormFiled extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.sp),
       child: TextFormField(
+        cursorColor: ColorsManagers.blue,
         style: Theme.of(context).textTheme.labelSmall,
         textAlign: TextAlign.start,
         maxLines: maxLine,

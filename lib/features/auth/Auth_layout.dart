@@ -1,5 +1,6 @@
 import 'package:akhbarna/core/resources/assets_managers.dart';
 import 'package:akhbarna/core/resources/colors_managers.dart';
+import 'package:akhbarna/core/resources/routes_managers.dart';
 import 'package:akhbarna/features/auth/widget/auth_switch_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +11,8 @@ class AuthLayout extends StatefulWidget {
     required this.child,
     required this.title,
     required this.switchText,
-    required this.onSwitch, required this.isLogin,
+    required this.onSwitch,
+    required this.isLogin,
   });
 
   final Widget child;
@@ -47,22 +49,25 @@ class _AuthLayoutState extends State<AuthLayout> {
                     ),
                     child: IconButton(
                       icon: const Icon(Icons.arrow_back),
-                      onPressed: () => Navigator.pop(context),
+                      onPressed: () => Navigator.pushReplacementNamed(
+                        context,
+                        RoutesManager.startUp,
+                      ),
                     ),
                   ),
                   Image.asset(
-                    AssetsManagers.akhbarna_text,
+                    ImageManagers.akhbarnaText,
                     width: 100.w,
                     height: 50.h,
                   ),
                   Image.asset(
-                    AssetsManagers.akhbarna_icon,
+                    ImageManagers.akhbarnaIcon,
                     width: 70.w,
                     height: 70.h,
                   ),
                 ],
               ),
-              SizedBox(height: 35.h,),
+              SizedBox(height: 35.h),
               AuthSwitch(
                 isLogin: widget.isLogin,
                 onSwitch: widget.onSwitch,

@@ -45,7 +45,9 @@ class _LoginScreenState extends State<LoginScreen> {
             Align(
               alignment: Alignment.centerRight,
               child: CustomTextButton(
-                onPress: () {},
+                onPress: () {
+                  Navigator.pushNamed(context, RoutesManager.forgetPassword);
+                },
                 text: "نسيت كلمة المرور؟",
                 color: ColorsManagers.white,
               ),

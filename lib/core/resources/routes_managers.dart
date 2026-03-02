@@ -1,5 +1,8 @@
 import 'package:akhbarna/features/on_boarding/presentation/screens/on_boarding.dart';
 import 'package:flutter/material.dart';
+import '../../features/auth/forget_password/presentation/screens/change_password.dart';
+import '../../features/auth/forget_password/presentation/screens/forget_password.dart';
+import '../../features/auth/forget_password/presentation/screens/login_with_OTP.dart';
 import '../../features/auth/login/presentation/screens/login_screen.dart';
 import '../../features/auth/register/presentation/screens/register_screen.dart';
 import '../../features/auth/start_up/presentation/screens/start_up_screen.dart';
@@ -12,6 +15,9 @@ class RoutesManager {
   static const String register = "/register";
   static const String login = "/Login";
   static const String onBoarding = "OnBoarding";
+  static const String forgetPassword = "ForgetPassword";
+  static const String loginWithOtp = "LoginWithOtp";
+  static const String changePassword = "ChangePassword";
   static const String mainLayout = "MainLayout";
 
   static Route<dynamic> routes(RouteSettings settings) {
@@ -26,7 +32,12 @@ class RoutesManager {
         return MaterialPageRoute(builder: (_) => RegisterScreen());
       case login:
         return MaterialPageRoute(builder: (_) => LoginScreen());
-
+      case forgetPassword:
+        return MaterialPageRoute(builder: (_) => ForgetPassword());
+      case loginWithOtp:
+        return MaterialPageRoute(builder: (_) => LoginWithOtp());
+      case changePassword:
+        return MaterialPageRoute(builder: (_) => ChangePassword());
       case mainLayout:
         return MaterialPageRoute(builder: (_) => MainLayout());
       default:

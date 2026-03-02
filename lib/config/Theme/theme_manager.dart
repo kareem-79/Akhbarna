@@ -32,26 +32,26 @@ class ThemeManager{
     ),
       inputDecorationTheme: InputDecorationTheme(
         labelStyle: GoogleFonts.inter(
-          fontSize: 16.sp,
+          fontSize: 18.sp,
           color: ColorsManagers.white,
           fontWeight: FontWeight.w400,
         ),
         prefixIconColor: ColorsManagers.blue,
         suffixIconColor: ColorsManagers.blue,
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.circular(20.r),
           borderSide: BorderSide(color: ColorsManagers.white),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.circular(20.r),
           borderSide: BorderSide(color: ColorsManagers.blue),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.circular(20.r),
           borderSide: BorderSide(color: ColorsManagers.red),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.circular(20.r),
           borderSide: BorderSide(color: ColorsManagers.red),
         ),
       ),

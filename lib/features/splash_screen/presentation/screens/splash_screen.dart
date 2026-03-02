@@ -84,7 +84,7 @@ class _SplashScreenState extends State<SplashScreen>
                 ScaleTransition(
                   scale: _logoScale,
                   child: Image.asset(
-                    AssetsManagers.akhbarna_icon,
+                    ImageManagers.akhbarnaIcon,
                     width: 150.w,
                     height: 160.h,
                   ),
@@ -94,7 +94,7 @@ class _SplashScreenState extends State<SplashScreen>
                   child: FadeTransition(
                     opacity: _fadeText,
                     child: Image.asset(
-                      AssetsManagers.akhbarna_text,
+                      ImageManagers.akhbarnaText,
                       width: 140.w,
                       height: 85.h,
                     ),
