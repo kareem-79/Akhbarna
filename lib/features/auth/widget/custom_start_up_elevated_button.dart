@@ -8,7 +8,7 @@ class CustomStartUpElevatedButton extends StatelessWidget {
     required this.onPress,
     required this.text,
     this.backgroundColor,
-    required this.path, this.foregroundColor,
+    required this.path, this.foregroundColor, this.mainAxisAlignment,
   });
 
   final VoidCallback onPress;
@@ -16,6 +16,7 @@ class CustomStartUpElevatedButton extends StatelessWidget {
   final String path;
   final Color? backgroundColor;
   final Color? foregroundColor;
+  final MainAxisAlignment? mainAxisAlignment;
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +29,12 @@ class CustomStartUpElevatedButton extends StatelessWidget {
           foregroundColor: foregroundColor,
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment:mainAxisAlignment?? MainAxisAlignment.center,
+
           children: [
-            SvgPicture.asset(path, width: 24.w, height: 24.h, fit: BoxFit.contain),
-            SizedBox(width: 8.w),
             Text(text),
+            SizedBox(width: 8.w),
+            SvgPicture.asset(path, width: 24.w, height: 24.h, fit: BoxFit.contain),
           ],
         ),
       ),

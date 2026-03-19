@@ -28,6 +28,7 @@ class _MainLayoutState extends State<MainLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       backgroundColor: ColorsManagers.darkNavy,
       body: tabs[selectedIndex],
       bottomNavigationBar: Padding(
@@ -48,28 +49,28 @@ class _MainLayoutState extends State<MainLayout> {
               items: [
                 BottomNavigationBarItem(
                   icon: SvgWidget(
-                    image: IconsManagers.home,
+                    image: IconManagers.home,
                     isSelected: selectedIndex == 0,
                   ),
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
                   icon: SvgWidget(
-                    image: IconsManagers.category,
+                    image: IconManagers.category,
                     isSelected: selectedIndex == 1,
                   ),
                   label: 'Category',
                 ),
                 BottomNavigationBarItem(
                   icon: SvgWidget(
-                    image: IconsManagers.bookmark,
+                    image: IconManagers.bookmark,
                     isSelected: selectedIndex == 2,
                   ),
                   label: 'Bookmark',
                 ),
                 BottomNavigationBarItem(
                   icon: SvgWidget(
-                    image: IconsManagers.profile,
+                    image: IconManagers.profile,
                     isSelected: selectedIndex == 3,
                   ),
                   label: 'Profile',

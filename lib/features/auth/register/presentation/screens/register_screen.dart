@@ -1,7 +1,6 @@
 import 'package:akhbarna/core/resources/routes_managers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../core/resources/assets_managers.dart';
 import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../core/widget/custom_elevated_button.dart';
@@ -24,7 +23,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       title: "سجّل حساب\nجديد",
       switchText: "تسجيل الدخول",
       onSwitch: () {
-        Navigator.pushNamed(context,RoutesManager.login);
+        Navigator.pushNamed(context, RoutesManager.login);
       },
       isLogin: false,
       child: SingleChildScrollView(
@@ -43,14 +42,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
               label: 'كلمة المرور',
               suffixIcon: Icon(Icons.visibility),
             ),
-            SizedBox(height: 8.h),
             Align(
               alignment: Alignment.centerRight,
-              child: Text("الحد الأدنى: حرف كبير واحد، رقم واحد، رمز واحد، 8 أحرف",style:textTheme.bodySmall?.copyWith(fontSize: 11.sp),)
+              child: Text(
+                "الحد الأدنى: حرف كبير واحد، رقم واحد، رمز واحد، 8 أحرف",
+                style: textTheme.bodySmall?.copyWith(fontSize: 11.sp),
+              ),
             ),
             SizedBox(height: 40.h),
             CustomElevatedButton(
-              onPress: () {},
+              onPress: () {
+                Navigator.pushNamed(context, RoutesManager.login);
+              },
               text: "تسجيل الدخول",
               backgroundColor: ColorsManagers.red,
               foregroundColor: ColorsManagers.white,
@@ -58,10 +61,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             SizedBox(height: 20.h),
             Align(
               alignment: Alignment.center,
-              child: Text(
-                "أو ادخل باستخدام",
-                style: textTheme.bodySmall,
-              ),
+              child: Text("أو ادخل باستخدام", style: textTheme.bodySmall),
             ),
             SizedBox(height: 20.h),
             Row(
@@ -70,20 +70,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Expanded(
                   child: CustomStartUpElevatedButton(
                     onPress: () {},
-                    text: "Google ",
-                    path: IconsManagers.google,
+                    text: "جوجل ",
+                    path: IconManagers.google,
                   ),
                 ),
                 SizedBox(width: 10.w),
                 Expanded(
                   child: CustomStartUpElevatedButton(
                     onPress: () {},
-                    text: "Facebook ",
-                    path: IconsManagers.facebook,
+                    text: "فيسبوك ",
+                    path: IconManagers.facebook,
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

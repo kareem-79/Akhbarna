@@ -43,7 +43,6 @@ class _StartUpScreenState extends State<StartUpScreen> {
                     bottom: 20.h,
                     right: 20.w,
                     child: Row(
-                      textDirection: TextDirection.rtl,
                       children: [
                         Text(" تسجيل", style: textTheme.bodyMedium),
                         Text(
@@ -63,22 +62,21 @@ class _StartUpScreenState extends State<StartUpScreen> {
                 text: "متابعة مع البريد الإلكتروني",
                 foregroundColor: ColorsManagers.white,
                 backgroundColor: ColorsManagers.red,
-                path: IconsManagers.email,
+                path: IconManagers.email,
               ),
               CustomStartUpElevatedButton(
                 onPress: () {},
-                text: "Google تسجيل باستخدام ",
-                path: IconsManagers.google,
+                text: " تسجيل باستخدام جوجل ",
+                path: IconManagers.google,
               ),
               CustomStartUpElevatedButton(
                 onPress: () {},
-                text: "Facebook تسجيل باستخدام ",
-                path: IconsManagers.facebook,
+                text: "تسجيل باستخدام فيسبوك ",
+                path: IconManagers.facebook,
               ),
               SizedBox(height: 20.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                textDirection: TextDirection.rtl,
                 children: [
                   Text("ليس لديك حساب؟", style: textTheme.bodySmall),
                   SizedBox(width: 8.w),

@@ -9,4 +9,5 @@ class ColorsManagers{
   static Color blue=Color(0xff386BF6);
   static Color white=Color(0xffffffff);
   static Color red=Color(0xffFF3F4C);
+  static Color cyan=Color(0xff00BBCA);
 }

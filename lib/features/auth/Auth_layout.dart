@@ -77,8 +77,6 @@ class _AuthLayoutState extends State<AuthLayout> {
               SizedBox(height: 32.h),
               Text(
                 widget.title,
-                textAlign: TextAlign.right,
-                textDirection: TextDirection.rtl,
                 style: textTheme.bodyLarge,
               ),
               SizedBox(height: 24.h),

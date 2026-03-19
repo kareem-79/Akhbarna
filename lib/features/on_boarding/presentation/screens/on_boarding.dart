@@ -93,7 +93,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     ),
                     child: TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, RoutesManager.startUp);
+                        Navigator.pushNamed(context, RoutesManager.selectLocation);
                       },
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,
@@ -217,7 +217,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                   } else {
                                     Navigator.pushReplacementNamed(
                                       context,
-                                      RoutesManager.startUp,
+                                      RoutesManager.selectLocation,
                                     );
                                   }
                                 },
@@ -233,7 +233,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   child: const Icon(
-                                    Icons.double_arrow_outlined,
+                                    Icons.double_arrow_rounded,
                                     color: Colors.white,
                                     size: 18,
                                   ),

@@ -25,7 +25,7 @@ class Akhbarna extends StatelessWidget {
         darkTheme: ThemeManager.dark,
         themeMode: ThemeMode.dark,
         onGenerateRoute: RoutesManager.routes,
-        initialRoute: RoutesManager.login,
+        initialRoute: RoutesManager.selectLocation,
         localizationsDelegates: [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,

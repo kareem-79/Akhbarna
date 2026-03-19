@@ -7,6 +7,11 @@ import '../../features/auth/login/presentation/screens/login_screen.dart';
 import '../../features/auth/register/presentation/screens/register_screen.dart';
 import '../../features/auth/start_up/presentation/screens/start_up_screen.dart';
 import '../../features/layout/main_layout.dart';
+import '../../features/setup/category_select/presentation/screens/select_category.dart';
+import '../../features/setup/language_select/presentation/screens/select_language.dart';
+import '../../features/setup/locations_select/presentation/screens/select_location.dart';
+import '../../features/setup/sources_select/presentation/screens/select_sources.dart';
+import '../../features/setup/start/presentation/screens/start_screen.dart';
 import '../../features/splash_screen/presentation/screens/splash_screen.dart';
 
 class RoutesManager {
@@ -18,6 +23,11 @@ class RoutesManager {
   static const String forgetPassword = "ForgetPassword";
   static const String loginWithOtp = "LoginWithOtp";
   static const String changePassword = "ChangePassword";
+  static const String selectLocation = "SelectLocation";
+  static const String selectCategory = "SelectCategory";
+  static const String selectLanguage = "SelectLanguage";
+  static const String selectSources = "SelectSources";
+  static const String start = "Start";
   static const String mainLayout = "MainLayout";
 
   static Route<dynamic> routes(RouteSettings settings) {
@@ -38,6 +48,16 @@ class RoutesManager {
         return MaterialPageRoute(builder: (_) => LoginWithOtp());
       case changePassword:
         return MaterialPageRoute(builder: (_) => ChangePassword());
+      case selectLocation:
+        return MaterialPageRoute(builder: (_) => SelectLocation());
+      case selectCategory:
+        return MaterialPageRoute(builder: (_) => SelectCategory());
+      case selectLanguage:
+        return MaterialPageRoute(builder: (_) => SelectLanguage());
+      case selectSources:
+        return MaterialPageRoute(builder: (_) => SelectSources());
+      case start:
+        return MaterialPageRoute(builder: (_) => StartScreen());
       case mainLayout:
         return MaterialPageRoute(builder: (_) => MainLayout());
       default:

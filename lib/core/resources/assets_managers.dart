@@ -10,10 +10,12 @@ class ImageManagers{
   static const String forgetPassword="$base/forget_password.png";
   static const String changePassword="$base/change_password.png";
   static const String selectCountry="$base/select_country.png";
-
+  static const String location="$base/location.png";
+  static const String argentina="$base/Argentina.png";
+  static const String arabic="$base/arabic.png";
 
 }
-class IconsManagers{
+class IconManagers{
   static const String base="assets/images";
   static const String home="$base/home.svg";
   static const String category="$base/category.svg";
@@ -22,4 +24,34 @@ class IconsManagers{
   static const String email="$base/email.svg";
   static const String google="$base/Google.svg";
   static const String facebook="$base/facebook.svg";
+  static const String arrowRight="$base/arrow_forward.png";
+}
+class CategoryImageManagers{
+  static const String base="assets/images";
+  static const String local="$base/local.png";
+  static const String sports="$base/sports.png";
+  static const String education="$base/education.png";
+  static const String policy="$base/policy.png";
+  static const String technology="$base/technology.png";
+  static const String health="$base/health.png";
+  static const String economy="$base/economy.png";
+  static const String art="$base/art.png";
+}
+class SourceImageManagers{
+  static const String base="assets/images";
+  static const String bbc="$base/bbc.png";
+  static const String elgzira="$base/elgzira.png";
+  static const String elarabia="$base/elarabia.png";
+  static const String sky="$base/sky.png";
+  static const String euro="$base/euro.png";
+  static const String cnn="$base/cnn.png";
+  static const String elShark="$base/el_shark.png";
+  static const String rt="$base/rt.png";
+  static const String elAhram="$base/el_ahram.png";
+  static const String elHadas="$base/el_hadas.png";
+  static const String elFagr="$base/el_fagr.png";
+  static const String elYoumElSab3="$base/el_youm_el_sab3.png";
+  static const String akhbarElYoum="$base/akhbar_el_youm.png";
+  static const String elMasry="$base/el_masry.png";
+  static const String elShrouk="$base/el_shrouk.png";
 }

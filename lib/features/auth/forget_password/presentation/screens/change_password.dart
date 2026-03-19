@@ -1,3 +1,4 @@
+import 'package:akhbarna/core/widget/app_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -28,9 +29,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: 30.h),
-                Row(children: [ArrowBackWidget()]),
-                SizedBox(height: 20.h),
+                AppBarWidget(title: "", height: 20),
                 Image.asset(
                   ImageManagers.changePassword,
                   width: 210.w,
@@ -39,7 +38,6 @@ class _ChangePasswordState extends State<ChangePassword> {
                 Text(
                   "تغيير كلمة السر",
                   style: textTheme.bodyLarge,
-                  textDirection: TextDirection.rtl,
                 ),
                 SizedBox(height: 20.h),
                 CustomTextFormFiled(

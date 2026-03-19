@@ -30,7 +30,6 @@ class AuthSwitchItem extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: mainAxisAlignment,
-        textDirection: TextDirection.rtl,
         children: [
           if (isActive)
             Container(

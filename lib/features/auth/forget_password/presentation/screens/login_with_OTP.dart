@@ -1,4 +1,5 @@
 import 'package:akhbarna/core/resources/colors_managers.dart';
+import 'package:akhbarna/core/widget/app_bar_widget.dart';
 import 'package:akhbarna/core/widget/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -47,25 +48,11 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: 30.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ArrowBackWidget(),
-                    Text(
-                      "التحقق من الحساب",
-                      style: textTheme.bodyMedium?.copyWith(
-                        color: ColorsManagers.red,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 140.h),
+                AppBarWidget(title: "التحقق من الحساب",height: 140,),
                 Text(
                   "أدخل رمز التحقق المكون من 6 أرقام والذي تم إرساله إلى بريدك الألكتروني",
                   style: textTheme.bodySmall,
                   textAlign: TextAlign.center,
-                  textDirection: TextDirection.rtl,
                 ),
                 SizedBox(height: 40.h),
                 Row(

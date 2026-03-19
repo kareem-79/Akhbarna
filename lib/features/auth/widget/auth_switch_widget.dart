@@ -30,7 +30,6 @@ class AuthSwitch extends StatelessWidget {
             borderRadius: BorderRadius.circular(50.r),
           ),
           child: Row(
-            textDirection: TextDirection.rtl,
             children: [
               AuthSwitchItem(
                 isActive: isLogin,

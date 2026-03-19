@@ -74,16 +74,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 Expanded(
                   child: CustomStartUpElevatedButton(
                     onPress: () {},
-                    text: "Google ",
-                    path: IconsManagers.google,
+                    text: "جوجل",
+                    path: IconManagers.google,
                   ),
                 ),
                 SizedBox(width: 10.w),
                 Expanded(
                   child: CustomStartUpElevatedButton(
                     onPress: () {},
-                    text: "Facebook ",
-                    path: IconsManagers.facebook,
+                    text: "فيسبوك",
+                    path: IconManagers.facebook,
                   ),
                 ),
               ],

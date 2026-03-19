@@ -1,6 +1,7 @@
 import 'package:akhbarna/core/resources/assets_managers.dart';
 import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/resources/routes_managers.dart';
+import 'package:akhbarna/core/widget/app_bar_widget.dart';
 import 'package:akhbarna/core/widget/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,9 +23,7 @@ class ForgetPassword extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: 30.h),
-                Row(children: [ArrowBackWidget()]),
-                SizedBox(height: 20.h),
+                AppBarWidget(title: "",height: 40,),
                 Image.asset(
                   ImageManagers.forgetPassword,
                   width: 210.w,
@@ -34,7 +33,6 @@ class ForgetPassword extends StatelessWidget {
                 Text(
                   "هل نسيت كلمة\nالسر ؟",
                   style: textTheme.bodyLarge,
-                  textDirection: TextDirection.rtl,
                 ),
                 SizedBox(height: 30.h),
                 Text(
@@ -42,7 +40,6 @@ class ForgetPassword extends StatelessWidget {
                   style: textTheme.bodySmall?.copyWith(
                     color: ColorsManagers.lightGray,
                   ),
-                  textDirection: TextDirection.rtl,
                 ),
                 SizedBox(height: 10.h),
                 CustomTextFormFiled(
@@ -54,7 +51,6 @@ class ForgetPassword extends StatelessWidget {
                   "إذا كان هذا البريد الإلكتروني مسجلاً لدينا،\n فستصلك رسالة لإعادة تعيين كلمة المرور خلال دقائق",
                   style: textTheme.bodySmall,
                   textAlign: TextAlign.center,
-                  textDirection: TextDirection.rtl,
                 ),
                 SizedBox(height: 80.h),
               ],
