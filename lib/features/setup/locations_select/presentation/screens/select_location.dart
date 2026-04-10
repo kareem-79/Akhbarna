@@ -16,13 +16,11 @@ class SelectLocation extends StatefulWidget {
   @override
   State<SelectLocation> createState() => _SelectLocationState();
 }
-
 class _SelectLocationState extends State<SelectLocation> {
   int selectedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       extendBody: true,
@@ -33,10 +31,8 @@ class _SelectLocationState extends State<SelectLocation> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const AppBarWidget(title: "", height: 10),
-                SizedBox(height: 10.h),
+                 AppBarWidget(title: "اختر بلدك", height: 10,color:ColorsManagers.white),
                 ImageLocationWidget(),
-                Text("اختر بلدك",style: textTheme.bodyLarge,textAlign: TextAlign.center,),
                 const CustomTextFormFiled(
                   label: "ابحث عن بلدك",
                   suffixIcon: Icon(Icons.search_rounded),

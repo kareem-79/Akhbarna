@@ -19,7 +19,6 @@ class _SelectCategoryState extends State<SelectCategory> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
-
     return Scaffold(
       extendBody: true,
       resizeToAvoidBottomInset: true,
@@ -29,7 +28,11 @@ class _SelectCategoryState extends State<SelectCategory> {
             padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: Column(
               children: [
-                const AppBarWidget(title: "اختر اهتماماتك", height: 30),
+                AppBarWidget(
+                  title: "اختر اهتماماتك",
+                  height: 30,
+                  color: ColorsManagers.white,
+                ),
                 Text(
                   "اختر المواضيع التي تحبها ودع أخبارنا يقدم لك الأخبار الأكثر أهمية. اختر 3 على الأقل",
                   style: textTheme.labelSmall?.copyWith(
@@ -55,6 +58,7 @@ class _SelectCategoryState extends State<SelectCategory> {
       ),
     );
   }
+
   void toggleCategory(int index) {
     setState(() {
       CategoryModel.categories[index].isSelected =
@@ -67,7 +71,12 @@ class _SelectCategoryState extends State<SelectCategory> {
 
     if (selected < 3) {
       ScaffoldMessenger.of(context).showSnackBar(
-         SnackBar(content: Text("اختار 3 اهتمامات على الأقل",style:Theme.of(context).textTheme.bodySmall )),
+        SnackBar(
+          content: Text(
+            "اختار 3 اهتمامات على الأقل",
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ),
       );
       return;
     }

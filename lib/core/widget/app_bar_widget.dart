@@ -4,9 +4,16 @@ import '../resources/colors_managers.dart';
 import 'arrow_back_widget.dart';
 
 class AppBarWidget extends StatelessWidget {
-  const AppBarWidget({super.key, required this.title, required this.height});
+  const AppBarWidget({
+    super.key,
+    required this.title,
+    required this.height,
+    this.color, 
+  });
+
   final String title;
-  final double height ;
+  final double height;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -17,18 +24,17 @@ class AppBarWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ArrowBackWidget(),
+            const ArrowBackWidget(),
             Text(
               title,
               style: textTheme.bodyMedium?.copyWith(
-                color: ColorsManagers.red,
+                color: color ?? ColorsManagers.red,
               ),
             ),
           ],
         ),
         SizedBox(height: height.h),
       ],
-
     );
   }
 }

@@ -7,6 +7,7 @@ import '../../features/auth/login/presentation/screens/login_screen.dart';
 import '../../features/auth/register/presentation/screens/register_screen.dart';
 import '../../features/auth/start_up/presentation/screens/start_up_screen.dart';
 import '../../features/layout/main_layout.dart';
+import '../../features/layout/profile/presentation/screens/profile_tab.dart';
 import '../../features/setup/category_select/presentation/screens/select_category.dart';
 import '../../features/setup/language_select/presentation/screens/select_language.dart';
 import '../../features/setup/locations_select/presentation/screens/select_location.dart';
@@ -29,6 +30,7 @@ class RoutesManager {
   static const String selectSources = "SelectSources";
   static const String start = "Start";
   static const String mainLayout = "MainLayout";
+  static const String profile = "ProfileTab";
 
   static Route<dynamic> routes(RouteSettings settings) {
     switch (settings.name) {
@@ -60,6 +62,8 @@ class RoutesManager {
         return MaterialPageRoute(builder: (_) => StartScreen());
       case mainLayout:
         return MaterialPageRoute(builder: (_) => MainLayout());
+      case profile:
+        return MaterialPageRoute(builder: (_) => ProfileTab());
       default:
         return unDefinedRoute();
     }

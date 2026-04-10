@@ -8,6 +8,8 @@ import 'package:akhbarna/features/layout/profile/presentation/screens/profile_ta
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../core/resources/routes_managers.dart';
+
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
 
@@ -22,7 +24,6 @@ class _MainLayoutState extends State<MainLayout> {
     HomeTap(),
     CategoryTab(),
     BookMarketTab(),
-    ProfileTab(),
   ];
 
   @override
@@ -83,9 +84,13 @@ class _MainLayoutState extends State<MainLayout> {
     );
   }
 
-  void _onTab(newIndex) {
-    setState(() {
-      selectedIndex = newIndex;
-    });
+  void _onTab(int newIndex) {
+    if (newIndex == 3) {
+      Navigator.pushNamed(context, RoutesManager.profile);
+    } else {
+      setState(() {
+        selectedIndex = newIndex;
+      });
+    }
   }
 }

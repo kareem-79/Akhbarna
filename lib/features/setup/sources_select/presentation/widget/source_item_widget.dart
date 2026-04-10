@@ -20,11 +20,11 @@ class SourceItemWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(12.sp),
+        padding: EdgeInsets.all(14.sp),
         decoration: BoxDecoration(
           color: ColorsManagers.darkNavy,
           borderRadius: BorderRadius.circular(35.r),
-          border: Border.all(color: Colors.white24),
+          border:source.isSelected? Border.all(color: ColorsManagers.red):Border.all(color: ColorsManagers.white),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,28 +33,29 @@ class SourceItemWidget extends StatelessWidget {
               alignment: Alignment.topRight,
               child:
                 Container(
-                  width: 20,
-                  height: 20,
+                  width: 20.w,
+                  height: 20.h,
                   decoration: BoxDecoration(
                     border: Border.all(color: ColorsManagers.red, width: 2),
-                    borderRadius: BorderRadius.circular(4),
+                    borderRadius: BorderRadius.circular(4.r),
                     color: source.isSelected
                         ? ColorsManagers.red
                         : Colors.transparent,
                   ),
                   child: source.isSelected
-                      ?  Icon(Icons.check, size: 14, color: ColorsManagers.white)
+                      ?  Icon(Icons.check, size: 14.sp, color: ColorsManagers.white)
                       : null,
                 ),
             ),
-            const SizedBox(height: 10),
+             SizedBox(height: 10.h),
             Expanded(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16.r),
                 child: Image.asset(
                   source.imagePath,
-                  fit: BoxFit.cover,
-                  width: double.infinity,
+                  width: 150.w,
+                  height: 150.h,
+
                 ),
               ),
             ),

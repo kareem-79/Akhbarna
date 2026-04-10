@@ -44,6 +44,7 @@ class CustomTextFormFiled extends StatelessWidget {
           suffixIcon: suffixIcon,
 
         ),
+        onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
       ),
     );
   }

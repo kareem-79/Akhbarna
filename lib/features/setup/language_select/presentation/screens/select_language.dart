@@ -5,7 +5,6 @@ import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../core/resources/routes_managers.dart';
 import '../../../../../core/widget/app_bar_widget.dart';
 import '../../../../../core/widget/custom_buttom_navigation_bar.dart';
-import '../../../../../core/widget/custom_elevated_button.dart';
 import '../../../../../model/language_model.dart';
 import '../widget/language_tile_widget.dart';
 
@@ -33,11 +32,11 @@ class _SelectLanguageState extends State<SelectLanguage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const AppBarWidget(title: "", height: 30),
-                Text("اختر اللغة", style: textTheme.bodyMedium),
-
-                SizedBox(height: 8.h),
-
+                AppBarWidget(
+                  title: "اختر اللغة",
+                  height: 30,
+                  color: ColorsManagers.white,
+                ),
                 Text(
                   "حدد لغتك المفضلة أدناه. هذا يساعدنا على خدمتك بشكل أفضل.",
                   style: textTheme.bodySmall?.copyWith(
@@ -58,9 +57,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
                 LanguageTile(
                   lang: LanguageModel.languages[selectedIndex],
                   isSelected: true,
-                  onTap: () {
-
-                  },
+                  onTap: () {},
                 ),
                 SizedBox(height: 24.h),
                 Text(
@@ -94,7 +91,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
         ),
       ),
 
-      bottomNavigationBar:CustomButtomNavigationBar(
+      bottomNavigationBar: CustomButtomNavigationBar(
         onPress: () {
           Navigator.pushNamed(context, RoutesManager.selectSources);
         },

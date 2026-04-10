@@ -18,7 +18,6 @@ class SelectSources extends StatefulWidget {
 class _SelectSourcesState extends State<SelectSources> {
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
       extendBody: true,
       resizeToAvoidBottomInset: true,
@@ -29,9 +28,7 @@ class _SelectSourcesState extends State<SelectSources> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const AppBarWidget(title: "", height: 30),
-                Text("اختر مصادر الاخبار", style: textTheme.bodyLarge),
-                SizedBox(height: 10.h),
+                 AppBarWidget(title: "اختر مصادر الاخبار", height: 30,color: ColorsManagers.white,),
                 const CustomTextFormFiled(
                   label: "ابحث عن مصدر اخباري",
                   suffixIcon: Icon(Icons.search_rounded),
@@ -70,6 +67,6 @@ class _SelectSourcesState extends State<SelectSources> {
       );
       return;
     }
-    Navigator.pushNamed(context, RoutesManager.start);
+    Navigator.pushNamed(context, RoutesManager.selectCategory);
   }
 }
