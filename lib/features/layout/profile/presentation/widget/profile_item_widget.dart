@@ -28,7 +28,7 @@ class ProfileItemWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Center(child: Icon(icon,size: 40.sp,color: ColorsManagers.darkNavy,)),
+            Center(child: Icon(icon,size: 40.sp,color: ColorsManagers.darkNavy)),
             SizedBox(height: 10.h),
             Center(
               child: Text(

@@ -16,7 +16,7 @@ class ArrowBackWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: IconButton(
-        icon: const Icon(Icons.arrow_back),
+        icon:  Icon(Icons.arrow_back,color:ColorsManagers.darkNavy),
         onPressed: () => Navigator.pop(context),
       ),
     );

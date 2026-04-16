@@ -2,6 +2,9 @@ import 'package:akhbarna/core/resources/assets_managers.dart';
 import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/resources/routes_managers.dart';
 import 'package:akhbarna/core/widget/app_bar_widget.dart';
+import 'package:akhbarna/features/setup/start/presentation/screens/terms_screen.dart';
+import 'package:akhbarna/l10n/app_localizations.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,6 +21,7 @@ class _StartScreenState extends State<StartScreen> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
       body: Stack(
         children: [
@@ -55,38 +59,60 @@ class _StartScreenState extends State<StartScreen> {
                   Center(
                     child: Column(
                       children: [
-                        Text("حسابك جاهز،", style: textTheme.bodyMedium),
-                        Text("يلا نبدأ!", style: textTheme.bodyMedium),
+                        Text(
+                          appLocalizations.account_ready,
+                          style: textTheme.bodyMedium,
+                        ),
+                        Text(
+                          appLocalizations.lets_start,
+                          style: textTheme.bodyMedium,
+                        ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 100.h,),
+                  SizedBox(height: 100.h),
                   Row(
                     children: [
                       Checkbox(
-                        shape: CircleBorder(),
+                        shape: const CircleBorder(),
                         value: isChecked,
-                        onChanged: (val) {
-                          setState(() {
-                            isChecked = val!;
-                          });
+                        onChanged: (val) async {
+                          if (isChecked) {
+                            setState(() {
+                              isChecked = false;
+                            });
+                            return;
+                          }
+                          final result = await showTermsBottomSheet(context);
+                          if (result == true) {
+                            setState(() {
+                              isChecked = true;
+                            });
+                          }
                         },
                         activeColor: ColorsManagers.red,
                       ),
                       Flexible(
                         child: RichText(
                           text: TextSpan(
-                            text: "أوافق على ",
+                            text: appLocalizations.agree_to,
                             style: textTheme.bodySmall,
                             children: [
                               TextSpan(
-                                text: "الشروط والأحكام",
+                                text: appLocalizations.terms_and_conditions,
                                 style: textTheme.bodySmall?.copyWith(
                                   color: ColorsManagers.red,
                                   decoration: TextDecoration.underline,
                                 ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    showTermsBottomSheet(context);
+                                  },
                               ),
-                              TextSpan(text: " وبيان الخصوصية والأسعار"),
+                              TextSpan(
+                                text:
+                                    appLocalizations.privacy_policy_and_pricing,
+                              ),
                             ],
                           ),
                         ),
@@ -127,14 +153,30 @@ class _StartScreenState extends State<StartScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("اكتشف الأخبار"),
+                Text(appLocalizations.discover_news),
                 SizedBox(width: 8.w),
-                Image.asset(IconManagers.arrowRight,width: 30.w, height: 30.h, fit: BoxFit.contain)
+                Image.asset(
+                  IconManagers.arrowRight,
+                  width: 30.w,
+                  height: 30.h,
+                  fit: BoxFit.contain,
+                ),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Future<bool?> showTermsBottomSheet(BuildContext context) {
+    return showModalBottomSheet<bool>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return const TermsBottomSheet();
+      },
     );
   }
 }

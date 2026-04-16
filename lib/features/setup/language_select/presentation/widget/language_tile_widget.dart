@@ -5,7 +5,7 @@ import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../model/language_model.dart';
 
 class LanguageTile extends StatelessWidget {
-  final LanguageModel lang;
+  final AppLanguage lang;
   final bool isSelected;
   final VoidCallback onTap;
 
@@ -46,9 +46,7 @@ class LanguageTile extends StatelessWidget {
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
             ),
-
             const Spacer(),
-
             Icon(
               isSelected ? Icons.check_circle : Icons.circle_outlined,
               color: isSelected ? ColorsManagers.blue : ColorsManagers.white,

@@ -2,13 +2,12 @@ import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/resources/routes_managers.dart';
 import 'package:akhbarna/core/widget/custom_elevated_button.dart';
 import 'package:akhbarna/core/widget/custom_text_form_field.dart';
-import 'package:akhbarna/core/widget/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../core/resources/assets_managers.dart';
 import '../../../../../core/widget/custom_text_button.dart';
-import '../../../Auth_layout.dart';
+import '../../../../../l10n/app_localizations.dart';
+import '../../../auth_layout.dart';
 import '../../../widget/custom_start_up_elevated_button.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -22,11 +21,12 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return AuthLayout(
-      title: "مرحباً،\nسجل دخولك",
-      switchText: "سجل الآن",
+      title: appLocalizations.welcome_back,
+      switchText: appLocalizations.register_now,
       onSwitch: () {
-        Navigator.pushNamed(context,RoutesManager.register);
+        Navigator.pushNamed(context, RoutesManager.register);
       },
       isLogin: true,
       child: SingleChildScrollView(
@@ -34,11 +34,11 @@ class _LoginScreenState extends State<LoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             CustomTextFormFiled(
-              label: 'البريد الالكتروني',
+              label: appLocalizations.email,
               suffixIcon: Icon(Icons.email_outlined),
             ),
             CustomTextFormFiled(
-              label: 'كلمة المرور',
+              label: appLocalizations.password,
               suffixIcon: Icon(Icons.visibility),
             ),
             SizedBox(height: 8.h),
@@ -48,14 +48,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPress: () {
                   Navigator.pushNamed(context, RoutesManager.forgetPassword);
                 },
-                text: "نسيت كلمة المرور؟",
+                text: appLocalizations.forgot_password,
                 color: ColorsManagers.white,
               ),
             ),
             SizedBox(height: 40.h),
             CustomElevatedButton(
-              onPress: () {},
-              text: "تسجيل الدخول",
+              onPress: () {
+                Navigator.pushNamed(context, RoutesManager.selectLocation);
+              },
+              text: appLocalizations.login,
               backgroundColor: ColorsManagers.red,
               foregroundColor: ColorsManagers.white,
             ),
@@ -63,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Align(
               alignment: Alignment.center,
               child: Text(
-                "أو ادخل باستخدام",
+                appLocalizations.or_login_with,
                 style: textTheme.bodySmall,
               ),
             ),
@@ -74,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Expanded(
                   child: CustomStartUpElevatedButton(
                     onPress: () {},
-                    text: "جوجل",
+                    text: appLocalizations.google,
                     path: IconManagers.google,
                   ),
                 ),
@@ -82,12 +84,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 Expanded(
                   child: CustomStartUpElevatedButton(
                     onPress: () {},
-                    text: "فيسبوك",
+                    text: appLocalizations.facebook,
                     path: IconManagers.facebook,
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

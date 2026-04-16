@@ -1,5 +1,7 @@
 import 'package:akhbarna/core/resources/routes_managers.dart';
+import 'package:akhbarna/core/utils/ui_utils.dart';
 import 'package:akhbarna/core/widget/custom_buttom_navigation_bar.dart';
+import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -19,6 +21,8 @@ class _SelectCategoryState extends State<SelectCategory> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
+    Color shadowColor = Theme.of(context).shadowColor;
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
       extendBody: true,
       resizeToAvoidBottomInset: true,
@@ -29,12 +33,12 @@ class _SelectCategoryState extends State<SelectCategory> {
             child: Column(
               children: [
                 AppBarWidget(
-                  title: "اختر اهتماماتك",
+                  title: appLocalizations.choose_interests,
                   height: 30,
-                  color: ColorsManagers.white,
+                    color: shadowColor
                 ),
                 Text(
-                  "اختر المواضيع التي تحبها ودع أخبارنا يقدم لك الأخبار الأكثر أهمية. اختر 3 على الأقل",
+                  appLocalizations.choose_interests_desc,
                   style: textTheme.labelSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -52,7 +56,7 @@ class _SelectCategoryState extends State<SelectCategory> {
 
       bottomNavigationBar: CustomButtomNavigationBar(
         onPress: onNext,
-        text: "التالي",
+        text: appLocalizations.next,
         backgroundColor: ColorsManagers.red,
         foregroundColor: ColorsManagers.white,
       ),
@@ -70,14 +74,7 @@ class _SelectCategoryState extends State<SelectCategory> {
     final selected = CategoryModel.categories.where((e) => e.isSelected).length;
 
     if (selected < 3) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            "اختار 3 اهتمامات على الأقل",
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-        ),
-      );
+      UiUtils.showToast(context, AppLocalizations.of(context)!.select_min_3_interests, ColorsManagers.red);
       return;
     }
     Navigator.pushNamed(context, RoutesManager.start);

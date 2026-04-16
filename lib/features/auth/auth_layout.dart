@@ -1,9 +1,8 @@
 import 'package:akhbarna/core/resources/assets_managers.dart';
-import 'package:akhbarna/core/resources/colors_managers.dart';
-import 'package:akhbarna/core/resources/routes_managers.dart';
 import 'package:akhbarna/features/auth/widget/auth_switch_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../core/widget/arrow_back_widget.dart';
 
 class AuthLayout extends StatefulWidget {
   const AuthLayout({
@@ -40,21 +39,7 @@ class _AuthLayoutState extends State<AuthLayout> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    width: 45.w,
-                    height: 45.h,
-                    decoration: BoxDecoration(
-                      color: ColorsManagers.white,
-                      borderRadius: BorderRadius.circular(12.r),
-                    ),
-                    child: IconButton(
-                      icon: const Icon(Icons.arrow_back),
-                      onPressed: () => Navigator.pushReplacementNamed(
-                        context,
-                        RoutesManager.startUp,
-                      ),
-                    ),
-                  ),
+                  ArrowBackWidget(),
                   Image.asset(
                     ImageManagers.akhbarnaText,
                     width: 100.w,

@@ -1,15 +1,20 @@
+import 'package:akhbarna/core/utils/ui_utils.dart';
 import 'package:akhbarna/core/widget/custom_buttom_navigation_bar.dart';
 import 'package:akhbarna/features/setup/sources_select/presentation/widget/source_grid_widget.dart';
 import 'package:akhbarna/model/source_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../core/resources/routes_managers.dart';
 import '../../../../../core/widget/app_bar_widget.dart';
 import '../../../../../core/widget/custom_text_form_field.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class SelectSources extends StatefulWidget {
-  const SelectSources({super.key});
+  final bool isFromEdit;
+
+  const SelectSources({super.key, this.isFromEdit = false});
 
   @override
   State<SelectSources> createState() => _SelectSourcesState();
@@ -18,6 +23,9 @@ class SelectSources extends StatefulWidget {
 class _SelectSourcesState extends State<SelectSources> {
   @override
   Widget build(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    Color shadowColor = Theme.of(context).shadowColor;
+
     return Scaffold(
       extendBody: true,
       resizeToAvoidBottomInset: true,
@@ -28,10 +36,14 @@ class _SelectSourcesState extends State<SelectSources> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                 AppBarWidget(title: "اختر مصادر الاخبار", height: 30,color: ColorsManagers.white,),
-                const CustomTextFormFiled(
-                  label: "ابحث عن مصدر اخباري",
-                  suffixIcon: Icon(Icons.search_rounded),
+                AppBarWidget(
+                  title: appLocalizations.choose_sources,
+                  height: 30,
+                  color: shadowColor,
+                ),
+                CustomTextFormFiled(
+                  label: appLocalizations.search_sources,
+                  suffixIcon: const Icon(Icons.search_rounded),
                 ),
                 SizedBox(height: 20.h),
                 SourceGridWidget(
@@ -44,29 +56,36 @@ class _SelectSourcesState extends State<SelectSources> {
         ),
       ),
       bottomNavigationBar: CustomButtomNavigationBar(
-        onPress: onNext,
-        text: "التالي",
+        onPress: () => onNext(appLocalizations),
+        text: appLocalizations.next,
         backgroundColor: ColorsManagers.red,
         foregroundColor: ColorsManagers.white,
       ),
     );
   }
+
   void toggleSources(int index) {
     setState(() {
       SourceModel.sources[index].isSelected =
-      !SourceModel.sources[index].isSelected;
+          !SourceModel.sources[index].isSelected;
     });
   }
 
-  void onNext() {
+  void onNext(AppLocalizations appLocalizations) {
     final selected = SourceModel.sources.where((e) => e.isSelected).length;
 
     if (selected < 1) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("اختار 1 اهتمامات على الأقل",style:Theme.of(context).textTheme.bodySmall )),
+      UiUtils.showToast(
+        context,
+        appLocalizations.select_min_interests,
+        ColorsManagers.red,
       );
       return;
     }
-    Navigator.pushNamed(context, RoutesManager.selectCategory);
+    if (widget.isFromEdit) {
+      Navigator.pop(context);
+    } else {
+      Navigator.pushNamed(context, RoutesManager.selectCategory);
+    }
   }
 }

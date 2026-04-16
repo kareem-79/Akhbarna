@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/resources/colors_managers.dart';
+import '../../../l10n/app_localizations.dart';
 import 'auth_switch_item_widget.dart';
 
 class AuthSwitch extends StatelessWidget {
@@ -18,6 +19,7 @@ class AuthSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Align(
       alignment: Alignment.centerRight,
       child: GestureDetector(
@@ -33,7 +35,7 @@ class AuthSwitch extends StatelessWidget {
             children: [
               AuthSwitchItem(
                 isActive: isLogin,
-                text: 'سجّل الآن',
+                text: appLocalizations.register_now,
                 icon: Icons.person_outlined,
                 textTheme: textTheme,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,7 +43,7 @@ class AuthSwitch extends StatelessWidget {
               SizedBox(width: 6.w),
               AuthSwitchItem(
                 isActive: !isLogin,
-                text: 'إنشاء حساب',
+                text: appLocalizations.create_account,
                 icon: Icons.person_add_alt_1_outlined,
                 textTheme: textTheme,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

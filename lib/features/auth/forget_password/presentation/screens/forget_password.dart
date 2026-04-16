@@ -5,15 +5,15 @@ import 'package:akhbarna/core/widget/app_bar_widget.dart';
 import 'package:akhbarna/core/widget/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../core/widget/arrow_back_widget.dart';
 import '../../../../../core/widget/custom_text_form_field.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class ForgetPassword extends StatelessWidget {
   const ForgetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
       body: SingleChildScrollView(
@@ -31,24 +31,24 @@ class ForgetPassword extends StatelessWidget {
                 ),
                 SizedBox(height: 10.h),
                 Text(
-                  "هل نسيت كلمة\nالسر ؟",
+                  appLocalizations.forgot_password,
                   style: textTheme.bodyLarge,
                 ),
                 SizedBox(height: 30.h),
                 Text(
-                  "أدخل عنوان بريدك الإلكتروني لإعادة\nتعيين كلمة المرور.",
+                  appLocalizations.reset_password_instruction,
                   style: textTheme.bodySmall?.copyWith(
                     color: ColorsManagers.lightGray,
                   ),
                 ),
                 SizedBox(height: 10.h),
                 CustomTextFormFiled(
-                  label: 'البريد الالكتروني',
+                  label: appLocalizations.email,
                   suffixIcon: Icon(Icons.email_outlined),
                 ),
                 SizedBox(height: 20.h),
                 Text(
-                  "إذا كان هذا البريد الإلكتروني مسجلاً لدينا،\n فستصلك رسالة لإعادة تعيين كلمة المرور خلال دقائق",
+                  appLocalizations.reset_password_note,
                   style: textTheme.bodySmall,
                   textAlign: TextAlign.center,
                 ),
@@ -69,7 +69,7 @@ class ForgetPassword extends StatelessWidget {
           onPress: () {
             Navigator.pushNamed(context, RoutesManager.loginWithOtp);
           },
-          text: "التالي",
+          text: appLocalizations.next,
           backgroundColor: ColorsManagers.red,
           foregroundColor: ColorsManagers.white,
         ),

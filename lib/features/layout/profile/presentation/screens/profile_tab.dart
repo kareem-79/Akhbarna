@@ -1,8 +1,10 @@
+import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/resources/colors_managers.dart';
+import '../../../../../core/resources/routes_managers.dart';
 import '../../../../../core/widget/app_bar_widget.dart';
-import '../widget/general_setting_bottom_sheet.dart';
+import 'general_settings/presentation/general_setting_bottom_sheet.dart';
 import '../widget/profile_item_widget.dart';
 
 class ProfileTab extends StatefulWidget {
@@ -16,7 +18,8 @@ class _ProfileTabState extends State<ProfileTab> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
-
+    Color shadowColor = Theme.of(context).shadowColor;
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -25,11 +28,10 @@ class _ProfileTabState extends State<ProfileTab> {
             child: Column(
               children: [
                 AppBarWidget(
-                  title: "ادارة الحساب",
+                  title: appLocalizations.account_management,
                   height: 30,
-                  color: ColorsManagers.white,
+                  color: shadowColor,
                 ),
-
                 Row(
                   children: [
                     CircleAvatar(
@@ -39,24 +41,26 @@ class _ProfileTabState extends State<ProfileTab> {
                       ),
                     ),
                     SizedBox(width: 12.w),
-
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Kareem Mohamed",
-                          style: textTheme.bodyMedium,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        SizedBox(height: 4.h),
-                        Text(
-                          "Egypt",
-                          style: textTheme.bodySmall?.copyWith(
-                            color: ColorsManagers.lightGray,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Kareem Mohamed",
+                            style: textTheme.bodyMedium,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                        ),
-                      ],
+                          SizedBox(height: 4.h),
+                          Text(
+                            "Egypt",
+                            maxLines: 2,
+                            style: textTheme.bodySmall?.copyWith(
+                              color: ColorsManagers.lightGray,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -73,42 +77,44 @@ class _ProfileTabState extends State<ProfileTab> {
                   children: [
                     ProfileItemWidget(
                       icon: Icons.person_outline_outlined,
-                      title: "معلومات الحساب",
+                      title: appLocalizations.account_information,
                       onTap: () {},
                     ),
                     ProfileItemWidget(
                       icon: Icons.tune_outlined,
-                      title: "الإعدادات العامة",
+                      title: appLocalizations.general_settings,
                       onTap: () => _showGeneralSettings(context),
                     ),
                     ProfileItemWidget(
                       icon: Icons.notifications_none_outlined,
-                      title: "الإشعارات",
+                      title: appLocalizations.notifications,
                       onTap: () {},
                     ),
                     ProfileItemWidget(
                       icon: Icons.security_outlined,
-                      title: "الأمان",
+                      title: appLocalizations.security_settings,
                       onTap: () {},
                     ),
                     ProfileItemWidget(
                       icon: Icons.language_outlined,
-                      title: "اللغة",
-                      onTap: () {},
+                      title: appLocalizations.language,
+                      onTap: () {
+                        Navigator.pushNamed(context, RoutesManager.selectLanguage, arguments: true);
+                      },
                     ),
                     ProfileItemWidget(
                       icon: Icons.help_outline,
-                      title: "المساعدة",
+                      title: appLocalizations.help_center,
                       onTap: () {},
                     ),
                     ProfileItemWidget(
                       icon: Icons.info_outline,
-                      title: "عن Akhbarna",
+                      title: appLocalizations.about_us,
                       onTap: () {},
                     ),
                     ProfileItemWidget(
                       icon: Icons.logout_outlined,
-                      title: "تسجيل الخروج",
+                      title: appLocalizations.logout,
                       onTap: () {},
                     ),
                   ],

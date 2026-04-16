@@ -1,10 +1,9 @@
 import 'package:akhbarna/core/resources/assets_managers.dart';
 import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/resources/routes_managers.dart';
+import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -72,6 +71,8 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
+    TextTheme textTheme = Theme.of(context).textTheme;
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: ColorsManagers.darkNavy,
       body: Stack(
@@ -89,15 +90,12 @@ class _SplashScreenState extends State<SplashScreen>
                     height: 160.h,
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(right: 100.0.sp),
-                  child: FadeTransition(
-                    opacity: _fadeText,
-                    child: Image.asset(
-                      ImageManagers.akhbarnaText,
-                      width: 140.w,
-                      height: 85.h,
-                    ),
+                FadeTransition(
+                  opacity: _fadeText,
+                  child: Image.asset(
+                    ImageManagers.akhbarnaText,
+                    width: 140.w,
+                    height: 85.h,
                   ),
                 ),
 
@@ -108,11 +106,8 @@ class _SplashScreenState extends State<SplashScreen>
                   child: FadeTransition(
                     opacity: _fadeText,
                     child: Text(
-                      "الدنيا في خبر",
-                      style: GoogleFonts.cairo(
-                        color: Colors.white70,
-                        fontSize: 32,
-                      ),
+                      appLocalizations.welcome_title,
+                      style: textTheme.bodyLarge,
                     ),
                   ),
                 ),

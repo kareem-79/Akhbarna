@@ -25,10 +25,15 @@ class AppBarWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const ArrowBackWidget(),
-            Text(
-              title,
-              style: textTheme.bodyMedium?.copyWith(
-                color: color ?? ColorsManagers.red,
+            Flexible(
+              child: Text(
+                title,
+                textAlign: TextAlign.end,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: textTheme.bodyMedium?.copyWith(
+                  color: color ?? ColorsManagers.red,
+                ),
               ),
             ),
           ],

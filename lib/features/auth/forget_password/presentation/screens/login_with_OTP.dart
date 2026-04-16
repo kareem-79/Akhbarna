@@ -3,9 +3,8 @@ import 'package:akhbarna/core/widget/app_bar_widget.dart';
 import 'package:akhbarna/core/widget/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../core/resources/routes_managers.dart';
-import '../../../../../core/widget/arrow_back_widget.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class LoginWithOtp extends StatefulWidget {
   const LoginWithOtp({super.key});
@@ -39,6 +38,7 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
@@ -48,64 +48,71 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                AppBarWidget(title: "التحقق من الحساب",height: 140,),
+                AppBarWidget(
+                  title: appLocalizations.verify_account,
+                  height: 140,
+                ),
                 Text(
-                  "أدخل رمز التحقق المكون من 6 أرقام والذي تم إرساله إلى بريدك الألكتروني",
+                  appLocalizations.enter_code,
                   style: textTheme.bodySmall,
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 40.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(6, (index) {
-                    return SizedBox(
-                      width: 50.w,
-                      height: 50.h,
-                      child: TextFormField(
-                        cursorColor: ColorsManagers.blue,
-                        controller: controllers[index],
-                        keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-                        maxLength: 1,
-                        style: textTheme.bodyMedium,
-                        decoration: InputDecoration(
-                          counterText: "",
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.r),
-                            borderSide: BorderSide(
-                              color: ColorsManagers.lightGray,
+                Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(6, (index) {
+                      return SizedBox(
+                        width: 50.w,
+                        height: 50.h,
+                        child: TextFormField(
+                          cursorColor: ColorsManagers.blue,
+                          controller: controllers[index],
+                          keyboardType: TextInputType.number,
+                          textAlign: TextAlign.center,
+                          textDirection: TextDirection.ltr,
+                          maxLength: 1,
+                          style: textTheme.bodyMedium,
+                          decoration: InputDecoration(
+                            counterText: "",
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.r),
+                              borderSide: BorderSide(
+                                color: ColorsManagers.lightGray,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.r),
+                              borderSide: BorderSide(
+                                color: ColorsManagers.blue,
+                                width: 2,
+                              ),
                             ),
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.r),
-                            borderSide: BorderSide(
-                              color: ColorsManagers.blue,
-                              width: 2,
-                            ),
-                          ),
+                          onChanged: (value) {
+                            if (value.isNotEmpty && index < 5) {
+                              FocusScope.of(context).nextFocus();
+                            }
+                            if (value.isEmpty && index > 0) {
+                              FocusScope.of(context).previousFocus();
+                            }
+                          },
                         ),
-                        onChanged: (value) {
-                          if (value.isNotEmpty && index < 5) {
-                            FocusScope.of(context).nextFocus();
-                          }
-                          if (value.isEmpty && index > 0) {
-                            FocusScope.of(context).previousFocus();
-                          }
-                        },
-                      ),
-                    );
-                  }),
+                      );
+                    }),
+                  ),
                 ),
                 SizedBox(height: 20.h),
                 Center(
                   child: seconds > 0
                       ? RichText(
                           text: TextSpan(
-                            text: "إعادة إرسال الرمز في ",
+                            text: appLocalizations.resend_code_in,
                             style: textTheme.bodySmall,
                             children: [
                               TextSpan(
-                                text: "$seconds ث",
+                                text: " $seconds ${appLocalizations.seconds}",
                                 style: textTheme.bodySmall?.copyWith(
                                   color: ColorsManagers.red,
                                 ),
@@ -121,7 +128,7 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
                             _startTimer();
                           },
                           child: Text(
-                            "إعادة إرسال الرمز",
+                            appLocalizations.resend_code,
                             style: textTheme.bodySmall?.copyWith(
                               color: ColorsManagers.red,
                             ),
@@ -144,7 +151,7 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
           onPress: () {
             Navigator.pushNamed(context, RoutesManager.changePassword);
           },
-          text: "تأكيد",
+          text: appLocalizations.confirm,
           backgroundColor: ColorsManagers.red,
           foregroundColor: ColorsManagers.white,
         ),

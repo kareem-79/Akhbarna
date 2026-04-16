@@ -30,7 +30,7 @@ class Akhbarna extends StatelessWidget {
           builder: (context, configProvider, child) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              locale: const Locale('ar'),
+              locale: configProvider.currentLocale,
               theme: ThemeManager.light,
               darkTheme: ThemeManager.dark,
               themeMode: configProvider.currentTheme,
@@ -45,14 +45,25 @@ class Akhbarna extends StatelessWidget {
                 );
               },
               onGenerateRoute: RoutesManager.routes,
-              initialRoute: RoutesManager.mainLayout,
+              initialRoute: RoutesManager.onBoarding,
               localizationsDelegates: const [
                 AppLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
               ],
-              supportedLocales: const [Locale('en'), Locale('ar')],
+              supportedLocales: const [
+                Locale('en'),
+                Locale('ar'),
+                Locale('fr'),
+                Locale('de'),
+                Locale('it'),
+                Locale('es'),
+                Locale('zh'),
+                Locale('ja'),
+                Locale('ru'),
+                Locale('pt'),
+              ],
             );
           },
         ),

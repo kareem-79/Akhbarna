@@ -1,4 +1,3 @@
-import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextButton extends StatelessWidget {

@@ -6,6 +6,9 @@ import 'package:google_fonts/google_fonts.dart';
 class ThemeManager{
   static final ThemeData dark =ThemeData(
     scaffoldBackgroundColor: ColorsManagers.darkNavy,
+    shadowColor: ColorsManagers.white,
+    primaryColor: ColorsManagers.darkNavy,
+    iconTheme: IconThemeData(color: ColorsManagers.white),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: ColorsManagers.gray,
       elevation: 0,
@@ -80,8 +83,11 @@ class ThemeManager{
   );
   static final ThemeData light =ThemeData(
       scaffoldBackgroundColor: ColorsManagers.white,
+      shadowColor: ColorsManagers.black,
+      primaryColor: ColorsManagers.white,
+      iconTheme: IconThemeData(color: ColorsManagers.black),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: ColorsManagers.gray,
+        backgroundColor: ColorsManagers.red,
         elevation: 0,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: ColorsManagers.blue,
@@ -132,23 +138,23 @@ class ThemeManager{
       textTheme: TextTheme(
         bodySmall: GoogleFonts.cairo(
           fontSize: 16.sp,
-          color: ColorsManagers.white,
+          color: ColorsManagers.black,
           fontWeight: FontWeight.w500,
         ),
         bodyMedium: GoogleFonts.tajawal(
           fontSize: 24.sp,
-          color: ColorsManagers.white,
+          color: ColorsManagers.black,
           fontWeight: FontWeight.bold,
         ),
         bodyLarge: GoogleFonts.cairo(
           fontSize: 32.sp,
-          color: ColorsManagers.white,
+          color: ColorsManagers.black,
           fontWeight: FontWeight.bold,
         ),
         labelSmall: GoogleFonts.inter(
           fontSize: 16,
           fontWeight: FontWeight.w500,
-          color: ColorsManagers.white,
+          color: ColorsManagers.black,
         ),
       )
   );

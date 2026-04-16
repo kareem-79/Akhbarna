@@ -13,6 +13,7 @@ class CustomTextFormFiled extends StatelessWidget {
     this.validator,
     this.controller,
     this.maxLine = 1,
+    this.onChange,
   });
 
   final String label;
@@ -20,10 +21,10 @@ class CustomTextFormFiled extends StatelessWidget {
   final Widget? suffixIcon;
   final TextInputType? keyboardType;
   final bool secure;
+  final String? Function(String?)? onChange;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
   final int maxLine;
-
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +39,11 @@ class CustomTextFormFiled extends StatelessWidget {
         validator: validator,
         obscureText: secure,
         keyboardType: keyboardType,
+        onChanged: onChange,
         decoration: InputDecoration(
           labelText: label,
           prefixIcon: prefixIcon == null ? null : Icon(prefixIcon),
           suffixIcon: suffixIcon,
-
         ),
         onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
       ),

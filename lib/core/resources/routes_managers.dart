@@ -55,9 +55,15 @@ class RoutesManager {
       case selectCategory:
         return MaterialPageRoute(builder: (_) => SelectCategory());
       case selectLanguage:
-        return MaterialPageRoute(builder: (_) => SelectLanguage());
+        final bool isFromEdit = settings.arguments as bool? ?? false;
+        return MaterialPageRoute(
+          builder: (_) => SelectLanguage(isFromEdit: isFromEdit),
+        );
       case selectSources:
-        return MaterialPageRoute(builder: (_) => SelectSources());
+        final bool isFromEdit = settings.arguments as bool? ?? false;
+        return MaterialPageRoute(
+          builder: (_) => SelectSources(isFromEdit: isFromEdit),
+        );
       case start:
         return MaterialPageRoute(builder: (_) => StartScreen());
       case mainLayout:
