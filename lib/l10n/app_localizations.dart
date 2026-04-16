@@ -6,7 +6,15 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_ar.dart';
+import 'app_localizations_de.dart';
 import 'app_localizations_en.dart';
+import 'app_localizations_es.dart';
+import 'app_localizations_fr.dart';
+import 'app_localizations_it.dart';
+import 'app_localizations_ja.dart';
+import 'app_localizations_pt.dart';
+import 'app_localizations_ru.dart';
+import 'app_localizations_zh.dart';
 
 // ignore_for_file: type=lint
 
@@ -95,31 +103,51 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
+    Locale('de'),
     Locale('en'),
+    Locale('es'),
+    Locale('fr'),
+    Locale('it'),
+    Locale('ja'),
+    Locale('pt'),
+    Locale('ru'),
+    Locale('zh'),
   ];
 
-  /// No description provided for @register.
+  /// No description provided for @welcome_title.
   ///
   /// In en, this message translates to:
-  /// **'Register'**
-  String get register;
+  /// **'News World'**
+  String get welcome_title;
 
-  /// No description provided for @en.
+  /// No description provided for @welcome_back.
   ///
   /// In en, this message translates to:
-  /// **'En'**
-  String get en;
+  /// **'Welcome back, please sign in'**
+  String get welcome_back;
+
+  /// No description provided for @signup.
+  ///
+  /// In en, this message translates to:
+  /// **'Create new account'**
+  String get signup;
+
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
 
   /// No description provided for @name.
   ///
   /// In en, this message translates to:
-  /// **'Name'**
+  /// **'User name'**
   String get name;
 
   /// No description provided for @email.
   ///
   /// In en, this message translates to:
-  /// **'E_mail'**
+  /// **'Email'**
   String get email;
 
   /// No description provided for @password.
@@ -128,161 +156,215 @@ abstract class AppLocalizations {
   /// **'Password'**
   String get password;
 
+  /// No description provided for @forgot_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get forgot_password;
+
+  /// No description provided for @verify_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify account'**
+  String get verify_account;
+
+  /// No description provided for @option.
+  ///
+  /// In en, this message translates to:
+  /// **'Option'**
+  String get option;
+
+  /// No description provided for @register.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up'**
+  String get register;
+
+  /// No description provided for @login_simple.
+  ///
+  /// In en, this message translates to:
+  /// **' Login'**
+  String get login_simple;
+
+  /// No description provided for @register_now.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up now'**
+  String get register_now;
+
+  /// No description provided for @or_login_with.
+  ///
+  /// In en, this message translates to:
+  /// **'Or continue with'**
+  String get or_login_with;
+
+  /// No description provided for @google.
+  ///
+  /// In en, this message translates to:
+  /// **'Google'**
+  String get google;
+
+  /// No description provided for @facebook.
+  ///
+  /// In en, this message translates to:
+  /// **'Facebook'**
+  String get facebook;
+
+  /// No description provided for @login_with_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Email'**
+  String get login_with_email;
+
+  /// No description provided for @login_with_google.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Google'**
+  String get login_with_google;
+
+  /// No description provided for @login_with_facebook.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Facebook'**
+  String get login_with_facebook;
+
+  /// No description provided for @no_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account?'**
+  String get no_account;
+
   /// No description provided for @create_account.
   ///
   /// In en, this message translates to:
   /// **'Create Account'**
   String get create_account;
 
-  /// No description provided for @already_have_account.
+  /// No description provided for @enter_code.
   ///
   /// In en, this message translates to:
-  /// **'Already Have Account ?'**
-  String get already_have_account;
+  /// **'Enter the 6-digit verification code sent to your email'**
+  String get enter_code;
 
-  /// No description provided for @forget_password.
+  /// No description provided for @resend_code_in.
   ///
   /// In en, this message translates to:
-  /// **'Forget Password?'**
-  String get forget_password;
+  /// **'Resend code in'**
+  String get resend_code_in;
 
-  /// No description provided for @do_not_have_account.
+  /// No description provided for @seconds.
   ///
   /// In en, this message translates to:
-  /// **' Don’t Have Account'**
-  String get do_not_have_account;
+  /// **'s'**
+  String get seconds;
 
-  /// No description provided for @or.
+  /// No description provided for @resend_code.
   ///
   /// In en, this message translates to:
-  /// **'Or'**
-  String get or;
+  /// **'Resend Code'**
+  String get resend_code;
 
-  /// No description provided for @login_with_google.
+  /// No description provided for @password_rule.
   ///
   /// In en, this message translates to:
-  /// **'Login With Google'**
-  String get login_with_google;
+  /// **'Minimum: 1 uppercase letter, 1 number, 1 special character, 8 characters'**
+  String get password_rule;
 
-  /// No description provided for @reset_password.
+  /// No description provided for @reset_password_instruction.
   ///
   /// In en, this message translates to:
-  /// **'Reset Password'**
-  String get reset_password;
+  /// **'Enter your email address to reset your password.'**
+  String get reset_password_instruction;
 
-  /// No description provided for @welcome.
+  /// No description provided for @reset_password_note.
   ///
   /// In en, this message translates to:
-  /// **'Welcome Back ✨'**
-  String get welcome;
+  /// **'If this email is registered with us, you will receive a password reset message within minutes.'**
+  String get reset_password_note;
 
-  /// No description provided for @home.
+  /// No description provided for @confirm.
   ///
   /// In en, this message translates to:
-  /// **'Home'**
-  String get home;
+  /// **'Confirm'**
+  String get confirm;
 
-  /// No description provided for @map.
+  /// No description provided for @change_password.
   ///
   /// In en, this message translates to:
-  /// **'Map'**
-  String get map;
+  /// **'Change password'**
+  String get change_password;
 
-  /// No description provided for @favorite.
+  /// No description provided for @new_password.
   ///
   /// In en, this message translates to:
-  /// **'Favorite'**
-  String get favorite;
+  /// **'New password'**
+  String get new_password;
 
-  /// No description provided for @profile.
+  /// No description provided for @confirm_new_password.
   ///
   /// In en, this message translates to:
-  /// **'Profile'**
-  String get profile;
+  /// **'Confirm new password'**
+  String get confirm_new_password;
 
-  /// No description provided for @all.
+  /// No description provided for @general_settings.
   ///
   /// In en, this message translates to:
-  /// **'All'**
-  String get all;
+  /// **'General Settings'**
+  String get general_settings;
 
-  /// No description provided for @sports.
+  /// No description provided for @account_management.
   ///
   /// In en, this message translates to:
-  /// **'Sports'**
-  String get sports;
+  /// **'Account management'**
+  String get account_management;
 
-  /// No description provided for @birthday.
+  /// No description provided for @account_information.
   ///
   /// In en, this message translates to:
-  /// **'Birthday'**
-  String get birthday;
+  /// **'Account Information'**
+  String get account_information;
 
-  /// No description provided for @meeting.
+  /// No description provided for @security_settings.
   ///
   /// In en, this message translates to:
-  /// **'Meeting'**
-  String get meeting;
+  /// **'Security'**
+  String get security_settings;
 
-  /// No description provided for @gaming.
+  /// No description provided for @help_center.
   ///
   /// In en, this message translates to:
-  /// **'Gaming'**
-  String get gaming;
+  /// **'Help Center'**
+  String get help_center;
 
-  /// No description provided for @eating.
+  /// No description provided for @about_us.
   ///
   /// In en, this message translates to:
-  /// **'Eating'**
-  String get eating;
+  /// **'About Akhbarna'**
+  String get about_us;
 
-  /// No description provided for @holiday.
+  /// No description provided for @lang_english.
   ///
   /// In en, this message translates to:
-  /// **'Holiday'**
-  String get holiday;
+  /// **'English'**
+  String get lang_english;
 
-  /// No description provided for @exhibition.
+  /// No description provided for @lang_arabic.
   ///
   /// In en, this message translates to:
-  /// **'Exhibition'**
-  String get exhibition;
+  /// **'العربيه'**
+  String get lang_arabic;
 
-  /// No description provided for @work_shop.
+  /// No description provided for @notifications.
   ///
   /// In en, this message translates to:
-  /// **'WorkShop'**
-  String get work_shop;
+  /// **'Notifications'**
+  String get notifications;
 
-  /// No description provided for @book_club.
+  /// No description provided for @light_mode.
   ///
   /// In en, this message translates to:
-  /// **'BookClub'**
-  String get book_club;
-
-  /// No description provided for @search_for_event.
-  ///
-  /// In en, this message translates to:
-  /// **'Search For Event'**
-  String get search_for_event;
-
-  /// No description provided for @theme.
-  ///
-  /// In en, this message translates to:
-  /// **'Theme'**
-  String get theme;
-
-  /// No description provided for @light.
-  ///
-  /// In en, this message translates to:
-  /// **'Light'**
-  String get light;
-
-  /// No description provided for @dark.
-  ///
-  /// In en, this message translates to:
-  /// **'Dark'**
-  String get dark;
+  /// **'Light mode'**
+  String get light_mode;
 
   /// No description provided for @language.
   ///
@@ -290,173 +372,11 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get language;
 
-  /// No description provided for @english.
+  /// No description provided for @font_size.
   ///
   /// In en, this message translates to:
-  /// **'English'**
-  String get english;
-
-  /// No description provided for @spanish.
-  ///
-  /// In en, this message translates to:
-  /// **'Spanish'**
-  String get spanish;
-
-  /// No description provided for @arabic.
-  ///
-  /// In en, this message translates to:
-  /// **'Arabic'**
-  String get arabic;
-
-  /// No description provided for @french.
-  ///
-  /// In en, this message translates to:
-  /// **'French'**
-  String get french;
-
-  /// No description provided for @japanese.
-  ///
-  /// In en, this message translates to:
-  /// **'Japanese'**
-  String get japanese;
-
-  /// No description provided for @russian.
-  ///
-  /// In en, this message translates to:
-  /// **'Russian'**
-  String get russian;
-
-  /// No description provided for @chinese.
-  ///
-  /// In en, this message translates to:
-  /// **'Chinese'**
-  String get chinese;
-
-  /// No description provided for @name_required.
-  ///
-  /// In en, this message translates to:
-  /// **'Name is Required'**
-  String get name_required;
-
-  /// No description provided for @name_min.
-  ///
-  /// In en, this message translates to:
-  /// **'Sorry, Name should be at least 6 char'**
-  String get name_min;
-
-  /// No description provided for @email_required.
-  ///
-  /// In en, this message translates to:
-  /// **'E-mail is Required'**
-  String get email_required;
-
-  /// No description provided for @email_invalid.
-  ///
-  /// In en, this message translates to:
-  /// **'E-mail is not valid'**
-  String get email_invalid;
-
-  /// No description provided for @password_required.
-  ///
-  /// In en, this message translates to:
-  /// **'Password is Required'**
-  String get password_required;
-
-  /// No description provided for @password_min.
-  ///
-  /// In en, this message translates to:
-  /// **'Sorry, Password should be at least 8 char'**
-  String get password_min;
-
-  /// No description provided for @login.
-  ///
-  /// In en, this message translates to:
-  /// **' Login '**
-  String get login;
-
-  /// No description provided for @title.
-  ///
-  /// In en, this message translates to:
-  /// **'Title'**
-  String get title;
-
-  /// No description provided for @event_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Event Title'**
-  String get event_title;
-
-  /// No description provided for @title_required.
-  ///
-  /// In en, this message translates to:
-  /// **'Title is Required'**
-  String get title_required;
-
-  /// No description provided for @description.
-  ///
-  /// In en, this message translates to:
-  /// **'Description'**
-  String get description;
-
-  /// No description provided for @event_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Event Description'**
-  String get event_description;
-
-  /// No description provided for @description_required.
-  ///
-  /// In en, this message translates to:
-  /// **'Description is Required'**
-  String get description_required;
-
-  /// No description provided for @event_date.
-  ///
-  /// In en, this message translates to:
-  /// **'Event Date'**
-  String get event_date;
-
-  /// No description provided for @choose_date.
-  ///
-  /// In en, this message translates to:
-  /// **'Choose Date'**
-  String get choose_date;
-
-  /// No description provided for @event_time.
-  ///
-  /// In en, this message translates to:
-  /// **'Event Time'**
-  String get event_time;
-
-  /// No description provided for @choose_time.
-  ///
-  /// In en, this message translates to:
-  /// **'Choose Time'**
-  String get choose_time;
-
-  /// No description provided for @location.
-  ///
-  /// In en, this message translates to:
-  /// **'Location'**
-  String get location;
-
-  /// No description provided for @choose_event_location.
-  ///
-  /// In en, this message translates to:
-  /// **'Choose Event Location'**
-  String get choose_event_location;
-
-  /// No description provided for @add_event.
-  ///
-  /// In en, this message translates to:
-  /// **'Add Event'**
-  String get add_event;
-
-  /// No description provided for @create_event.
-  ///
-  /// In en, this message translates to:
-  /// **'Create Event'**
-  String get create_event;
+  /// **'Font size'**
+  String get font_size;
 
   /// No description provided for @logout.
   ///
@@ -464,137 +384,305 @@ abstract class AppLocalizations {
   /// **'Logout'**
   String get logout;
 
-  /// No description provided for @failed_register.
+  /// No description provided for @edit_profile.
   ///
   /// In en, this message translates to:
-  /// **'Failed to Register.'**
-  String get failed_register;
+  /// **'Edit profile'**
+  String get edit_profile;
 
-  /// No description provided for @account_exists.
+  /// No description provided for @save_changes.
   ///
   /// In en, this message translates to:
-  /// **'The account already exists for that email.'**
-  String get account_exists;
+  /// **'Save changes'**
+  String get save_changes;
 
-  /// No description provided for @weak_password.
+  /// No description provided for @small.
   ///
   /// In en, this message translates to:
-  /// **'The password provided is too weak.'**
-  String get weak_password;
+  /// **'Small'**
+  String get small;
 
-  /// No description provided for @failed_login.
+  /// No description provided for @medium.
   ///
   /// In en, this message translates to:
-  /// **'Failed to Login.'**
-  String get failed_login;
+  /// **'Medium'**
+  String get medium;
 
-  /// No description provided for @incorrect_credentials.
+  /// No description provided for @large.
   ///
   /// In en, this message translates to:
-  /// **'E-mail or Password is Incorrect.'**
-  String get incorrect_credentials;
+  /// **'Large'**
+  String get large;
 
-  /// No description provided for @personalize_title.
+  /// No description provided for @extra_large.
   ///
   /// In en, this message translates to:
-  /// **'Personalize Your Experience'**
-  String get personalize_title;
+  /// **'Extra Large'**
+  String get extra_large;
 
-  /// No description provided for @personalize_description.
+  /// No description provided for @change_sources.
   ///
   /// In en, this message translates to:
-  /// **'Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.'**
-  String get personalize_description;
+  /// **'Edit News Sources'**
+  String get change_sources;
 
-  /// No description provided for @find_events_title.
+  /// No description provided for @auto_simple.
   ///
   /// In en, this message translates to:
-  /// **'Find Events That Inspire You'**
-  String get find_events_title;
+  /// **'Auto'**
+  String get auto_simple;
 
-  /// No description provided for @find_events_description.
+  /// No description provided for @auto_device.
   ///
   /// In en, this message translates to:
-  /// **'Dive into a world of events crafted to fit your unique interests. Whether you\'re into live music, art workshops, professional networking, or simply discovering new experiences, we have something for everyone. Our curated recommendations will help you explore, connect, and make the most of every opportunity around you.'**
-  String get find_events_description;
+  /// **'Automatic (Device Settings)'**
+  String get auto_device;
 
-  /// No description provided for @event_planning_title.
+  /// No description provided for @onboarding_title1.
   ///
   /// In en, this message translates to:
-  /// **'Effortless Event Planning'**
-  String get event_planning_title;
+  /// **'Stay connected to the world from the heart of your country.'**
+  String get onboarding_title1;
 
-  /// No description provided for @event_planning_description.
+  /// No description provided for @onboarding_desc1.
   ///
   /// In en, this message translates to:
-  /// **'Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests.'**
-  String get event_planning_description;
+  /// **'Get the latest news from trusted sources.'**
+  String get onboarding_desc1;
 
-  /// No description provided for @connect_friends_title.
+  /// No description provided for @onboarding_title2.
   ///
   /// In en, this message translates to:
-  /// **'Connect with Friends & Share Moments'**
-  String get connect_friends_title;
+  /// **'Every news that matters to you,delivered quickly.'**
+  String get onboarding_title2;
 
-  /// No description provided for @connect_friends_description.
+  /// No description provided for @onboarding_desc2.
   ///
   /// In en, this message translates to:
-  /// **'Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories.'**
-  String get connect_friends_description;
+  /// **'All details at your fingertips.'**
+  String get onboarding_desc2;
 
-  /// No description provided for @finish.
+  /// No description provided for @onboarding_title3.
   ///
   /// In en, this message translates to:
-  /// **'Finish'**
-  String get finish;
+  /// **'Experience news with an authentic Arabic touch.'**
+  String get onboarding_title3;
 
-  /// No description provided for @login_success.
+  /// No description provided for @onboarding_desc3.
   ///
   /// In en, this message translates to:
-  /// **'Login is successful.'**
-  String get login_success;
+  /// **'Real news from the stree  with true perspective.'**
+  String get onboarding_desc3;
 
-  /// No description provided for @account_created.
+  /// No description provided for @onboarding_title4.
   ///
   /// In en, this message translates to:
-  /// **'The account has been created successfully.'**
-  String get account_created;
+  /// **'From art to politics, everything in “Akhbarna”.'**
+  String get onboarding_title4;
 
-  /// No description provided for @event_added.
+  /// No description provided for @onboarding_skip.
   ///
   /// In en, this message translates to:
-  /// **'The event has been added.'**
-  String get event_added;
+  /// **'Skip'**
+  String get onboarding_skip;
 
-  /// No description provided for @event_details.
+  /// No description provided for @next.
   ///
   /// In en, this message translates to:
-  /// **'Event Details'**
-  String get event_details;
+  /// **'Next'**
+  String get next;
 
-  /// No description provided for @tap_on_location_to_select.
+  /// No description provided for @choose_language.
   ///
   /// In en, this message translates to:
-  /// **'Tap on Location To Select'**
-  String get tap_on_location_to_select;
+  /// **'Choose language'**
+  String get choose_language;
 
-  /// No description provided for @edit_event.
+  /// No description provided for @fav_language.
   ///
   /// In en, this message translates to:
-  /// **'Edit Event'**
-  String get edit_event;
+  /// **'Select your preferred language below. This helps us serve you better.'**
+  String get fav_language;
 
-  /// No description provided for @update_event.
+  /// No description provided for @choose_interests.
   ///
   /// In en, this message translates to:
-  /// **'Update Event'**
-  String get update_event;
+  /// **'Choose your interests'**
+  String get choose_interests;
 
-  /// No description provided for @the_event_has_been_deleted.
+  /// No description provided for @choose_interests_desc.
   ///
   /// In en, this message translates to:
-  /// **'The event has been deleted.'**
-  String get the_event_has_been_deleted;
+  /// **'Select topics you like and let Akhbarna deliver the most relevant news for you. Choose at least 3.'**
+  String get choose_interests_desc;
+
+  /// No description provided for @select_min_3_interests.
+  ///
+  /// In en, this message translates to:
+  /// **'Select at least 3 interests'**
+  String get select_min_3_interests;
+
+  /// No description provided for @account_ready.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is ready,'**
+  String get account_ready;
+
+  /// No description provided for @lets_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s get started!'**
+  String get lets_start;
+
+  /// No description provided for @agree_to.
+  ///
+  /// In en, this message translates to:
+  /// **'I agree to the'**
+  String get agree_to;
+
+  /// No description provided for @terms_and_conditions.
+  ///
+  /// In en, this message translates to:
+  /// **' Terms & Conditions '**
+  String get terms_and_conditions;
+
+  /// No description provided for @privacy_policy_and_pricing.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy and Pricing'**
+  String get privacy_policy_and_pricing;
+
+  /// No description provided for @discover_news.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover news'**
+  String get discover_news;
+
+  /// No description provided for @selected.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get selected;
+
+  /// No description provided for @all_languages.
+  ///
+  /// In en, this message translates to:
+  /// **'All languages'**
+  String get all_languages;
+
+  /// No description provided for @step_continue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get step_continue;
+
+  /// No description provided for @search_country.
+  ///
+  /// In en, this message translates to:
+  /// **'Search your country'**
+  String get search_country;
+
+  /// No description provided for @search_sources.
+  ///
+  /// In en, this message translates to:
+  /// **'Search news sources'**
+  String get search_sources;
+
+  /// No description provided for @choose_sources.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose news sources'**
+  String get choose_sources;
+
+  /// No description provided for @select_min_interests.
+  ///
+  /// In en, this message translates to:
+  /// **'Select at least 1 interest'**
+  String get select_min_interests;
+
+  /// No description provided for @choose_country.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your country'**
+  String get choose_country;
+
+  /// No description provided for @please_select_country.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a country'**
+  String get please_select_country;
+
+  /// No description provided for @terms_1_title.
+  ///
+  /// In en, this message translates to:
+  /// **'App Usage'**
+  String get terms_1_title;
+
+  /// No description provided for @terms_1_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'This application provides news and media content. You agree to use it only for lawful purposes and not to misuse the service.'**
+  String get terms_1_desc;
+
+  /// No description provided for @terms_2_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy'**
+  String get terms_2_title;
+
+  /// No description provided for @terms_2_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'We respect your privacy and are committed to protecting your personal data. Information is used only to improve user experience.'**
+  String get terms_2_desc;
+
+  /// No description provided for @terms_3_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal Data'**
+  String get terms_3_title;
+
+  /// No description provided for @terms_3_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'We may collect limited data such as device information to improve performance. All data is stored securely.'**
+  String get terms_3_desc;
+
+  /// No description provided for @terms_4_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Content'**
+  String get terms_4_title;
+
+  /// No description provided for @terms_4_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'News and articles are collected from different sources. We are not fully responsible for the accuracy of external content.'**
+  String get terms_4_desc;
+
+  /// No description provided for @terms_5_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Updates'**
+  String get terms_5_title;
+
+  /// No description provided for @terms_5_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'We may update these terms from time to time. Important changes will be communicated within the app.'**
+  String get terms_5_desc;
+
+  /// No description provided for @terms_6_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Agreement'**
+  String get terms_6_title;
+
+  /// No description provided for @terms_6_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'By using this application, you agree to all terms and conditions stated above.'**
+  String get terms_6_desc;
 }
 
 class _AppLocalizationsDelegate
@@ -607,8 +695,18 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['ar', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>[
+    'ar',
+    'de',
+    'en',
+    'es',
+    'fr',
+    'it',
+    'ja',
+    'pt',
+    'ru',
+    'zh',
+  ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -619,8 +717,24 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   switch (locale.languageCode) {
     case 'ar':
       return AppLocalizationsAr();
+    case 'de':
+      return AppLocalizationsDe();
     case 'en':
       return AppLocalizationsEn();
+    case 'es':
+      return AppLocalizationsEs();
+    case 'fr':
+      return AppLocalizationsFr();
+    case 'it':
+      return AppLocalizationsIt();
+    case 'ja':
+      return AppLocalizationsJa();
+    case 'pt':
+      return AppLocalizationsPt();
+    case 'ru':
+      return AppLocalizationsRu();
+    case 'zh':
+      return AppLocalizationsZh();
   }
 
   throw FlutterError(

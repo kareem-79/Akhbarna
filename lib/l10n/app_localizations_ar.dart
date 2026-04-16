@@ -9,13 +9,19 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get register => 'تسجيل';
+  String get welcome_title => 'الدنيا في خبر';
 
   @override
-  String get en => 'Ar';
+  String get welcome_back => 'مرحباً، سجل دخولك';
 
   @override
-  String get name => 'الاسم';
+  String get signup => 'سجل حساب جديد';
+
+  @override
+  String get login => 'تسجيل الدخول';
+
+  @override
+  String get name => 'اسم المستخدم';
 
   @override
   String get email => 'البريد الإلكتروني';
@@ -24,242 +30,278 @@ class AppLocalizationsAr extends AppLocalizations {
   String get password => 'كلمة المرور';
 
   @override
+  String get forgot_password => 'هل نسيت كلمة السر؟';
+
+  @override
+  String get verify_account => 'التحقق من الحساب';
+
+  @override
+  String get option => 'خيار';
+
+  @override
+  String get register => ' تسجيل';
+
+  @override
+  String get login_simple => 'الدخول';
+
+  @override
+  String get register_now => 'سجّل الآن';
+
+  @override
+  String get or_login_with => 'أو ادخل باستخدام';
+
+  @override
+  String get google => 'جوجل';
+
+  @override
+  String get facebook => 'فيسبوك';
+
+  @override
+  String get login_with_email => 'متابعة مع البريد الإلكتروني';
+
+  @override
+  String get login_with_google => 'تسجيل باستخدام جوجل';
+
+  @override
+  String get login_with_facebook => 'تسجيل باستخدام فيسبوك';
+
+  @override
+  String get no_account => 'ليس لديك حساب؟';
+
+  @override
   String get create_account => 'إنشاء حساب';
 
   @override
-  String get already_have_account => 'هل لديك حساب بالفعل؟';
+  String get enter_code =>
+      'أدخل رمز التحقق المكون من 6 أرقام والذي تم إرساله إلى بريدك الإلكتروني';
 
   @override
-  String get forget_password => 'هل نسيت كلمة المرور؟';
+  String get resend_code_in => 'إعادة إرسال الرمز خلال';
 
   @override
-  String get do_not_have_account => 'ليس لديك حساب؟';
+  String get seconds => 'ث';
 
   @override
-  String get or => 'أو';
+  String get resend_code => 'إعادة إرسال الرمز';
 
   @override
-  String get login_with_google => 'تسجيل الدخول عبر Google';
+  String get password_rule =>
+      'الحد الأدنى: حرف كبير واحد، رقم واحد، رمز واحد، 8 أحرف';
 
   @override
-  String get reset_password => 'إعادة تعيين كلمة المرور';
+  String get reset_password_instruction =>
+      'أدخل عنوان بريدك الإلكتروني لإعادة تعيين كلمة المرور.';
 
   @override
-  String get welcome => 'مرحباً بعودتك ✨';
+  String get reset_password_note =>
+      'إذا كان هذا البريد الإلكتروني مسجلاً لدينا، فستصلك رسالة لإعادة تعيين كلمة المرور خلال دقائق.';
 
   @override
-  String get home => 'الرئيسية';
+  String get confirm => 'تأكيد';
 
   @override
-  String get map => 'الخريطة';
+  String get change_password => 'تغيير كلمة السر';
 
   @override
-  String get favorite => 'المفضلة';
+  String get new_password => 'كلمة السر الجديدة';
 
   @override
-  String get profile => 'الملف الشخصي';
+  String get confirm_new_password => 'تأكيد كلمة السر الجديدة';
 
   @override
-  String get all => 'الكل';
+  String get general_settings => 'الاعدادات العامة';
 
   @override
-  String get sports => 'رياضة';
+  String get account_management => 'إدارة الحساب';
 
   @override
-  String get birthday => 'عيد ميلاد';
+  String get account_information => 'معلومات الحساب';
 
   @override
-  String get meeting => 'اجتماع';
+  String get security_settings => 'الامان';
 
   @override
-  String get gaming => 'ألعاب';
+  String get help_center => 'المساعدة';
 
   @override
-  String get eating => 'طعام';
+  String get about_us => 'عن أخبارنا';
 
   @override
-  String get holiday => 'عطلة';
+  String get lang_english => 'English';
 
   @override
-  String get exhibition => 'معرض';
+  String get lang_arabic => 'العربية';
 
   @override
-  String get work_shop => 'ورشة عمل';
+  String get notifications => 'الإشعارات';
 
   @override
-  String get book_club => 'نادي الكتاب';
-
-  @override
-  String get search_for_event => 'ابحث عن حدث';
-
-  @override
-  String get theme => 'السمات';
-
-  @override
-  String get light => 'فاتح';
-
-  @override
-  String get dark => 'داكن';
+  String get light_mode => 'الوضع الفاتح';
 
   @override
   String get language => 'اللغة';
 
   @override
-  String get english => 'إنجليزي';
-
-  @override
-  String get spanish => 'Spanish';
-
-  @override
-  String get arabic => 'عربي';
-
-  @override
-  String get french => 'French';
-
-  @override
-  String get japanese => 'Japanese';
-
-  @override
-  String get russian => 'Russian';
-
-  @override
-  String get chinese => 'Chinese';
-
-  @override
-  String get name_required => 'الاسم مطلوب';
-
-  @override
-  String get name_min => 'الاسم يجب أن يكون 6 أحرف على الأقل';
-
-  @override
-  String get email_required => 'البريد الإلكتروني مطلوب';
-
-  @override
-  String get email_invalid => 'البريد الإلكتروني غير صالح';
-
-  @override
-  String get password_required => 'كلمة المرور مطلوبة';
-
-  @override
-  String get password_min =>
-      'الحد الأدنى: حرف كبير واحد، رقم واحد، رمز واحد، 8 أحرف';
-
-  @override
-  String get login => 'تسجيل الدخول';
-
-  @override
-  String get title => 'العنوان';
-
-  @override
-  String get event_title => 'عنوان الحدث';
-
-  @override
-  String get title_required => 'العنوان مطلوب';
-
-  @override
-  String get description => 'الوصف';
-
-  @override
-  String get event_description => 'وصف الحدث';
-
-  @override
-  String get description_required => 'الوصف مطلوب';
-
-  @override
-  String get event_date => 'تاريخ الحدث';
-
-  @override
-  String get choose_date => 'اختر التاريخ';
-
-  @override
-  String get event_time => 'وقت الحدث';
-
-  @override
-  String get choose_time => 'اختر الوقت';
-
-  @override
-  String get location => 'الموقع';
-
-  @override
-  String get choose_event_location => 'اختر موقع الحدث';
-
-  @override
-  String get add_event => 'إضافة حدث';
-
-  @override
-  String get create_event => 'إنشاء حدث';
+  String get font_size => 'حجم الخط';
 
   @override
   String get logout => 'تسجيل الخروج';
 
   @override
-  String get failed_register => 'فشل في التسجيل.';
+  String get edit_profile => 'تعديل الملف الشخصي';
 
   @override
-  String get account_exists => 'الحساب موجود بالفعل لهذا البريد الإلكتروني.';
+  String get save_changes => 'حفظ التعديلات';
 
   @override
-  String get weak_password => 'كلمة المرور المقدمة ضعيفة جدًا.';
+  String get small => 'صغير';
 
   @override
-  String get failed_login => 'فشل في تسجيل الدخول.';
+  String get medium => 'متوسط';
 
   @override
-  String get incorrect_credentials =>
-      'البريد الإلكتروني أو كلمة المرور غير صحيحة.';
+  String get large => 'كبير';
 
   @override
-  String get personalize_title => 'خصص تجربتك';
+  String get extra_large => 'كبير جدًا';
 
   @override
-  String get personalize_description =>
-      'اختر السمة واللغة المفضلة لديك لبدء تجربة مريحة ومخصصة تناسب أسلوبك.';
+  String get change_sources => 'تعديل مصادر الأخبار';
 
   @override
-  String get find_events_title => 'اكتشف فعاليات تلهمك';
+  String get auto_simple => 'تلقائي';
 
   @override
-  String get find_events_description =>
-      'انغمس في عالم من الفعاليات المصممة لتناسب اهتماماتك الفريدة. سواء كنت من محبي الموسيقى الحية، أو ورش الفنون، أو التواصل المهني، أو مجرد اكتشاف تجارب جديدة، لدينا ما يناسب الجميع. توصياتنا المختارة بعناية تساعدك على الاستكشاف والتواصل والاستفادة من كل فرصة حولك.';
+  String get auto_device => 'تلقائي (حسب إعدادات الجهاز)';
 
   @override
-  String get event_planning_title => 'تخطيط فعاليات بسهولة';
+  String get onboarding_title1 => 'ابقَ على اتصال بالعالم من قلب بلدك.';
 
   @override
-  String get event_planning_description =>
-      'تخلص من عناء تنظيم الفعاليات باستخدام أدوات التخطيط الشاملة لدينا. من إعداد الدعوات وإدارة الردود إلى جدولة التذكيرات وتنسيق التفاصيل، نحن نغطي كل ما تحتاجه. خطط بسهولة وركز على الأهم – إنشاء تجربة لا تُنسى لك ولضيوفك.';
+  String get onboarding_desc1 => 'احصل على آخر الأخبار من مصادر موثوقة';
 
   @override
-  String get connect_friends_title => 'تواصل مع الأصدقاء وشارك اللحظات';
+  String get onboarding_title2 => 'كل خبر بيهمّك في مجالك، بنقدّمه ليك بسرعة. ';
 
   @override
-  String get connect_friends_description =>
-      'اجعل كل فعالية ذكرى مميزة من خلال مشاركتها مع الآخرين. منصتنا تتيح لك دعوة الأصدقاء، وإبقائهم على اطلاع، والاحتفال معًا. التقط وشارك اللحظات المميزة مع شبكتك لتعيش التجربة مجددًا وتحتفظ بالذكريات.';
+  String get onboarding_desc2 => 'كل التفاصيل بين إيديك.';
 
   @override
-  String get finish => 'إنهاء';
+  String get onboarding_title3 => 'عيش التجربة الإخبارية بطابع عربي أصيل.';
 
   @override
-  String get login_success => 'تم تسجيل الدخول بنجاح.';
+  String get onboarding_desc3 => 'الأخبار من قلب الشارع بصورة حقيقية.';
 
   @override
-  String get account_created => 'تم إنشاء الحساب بنجاح.';
+  String get onboarding_title4 => 'من الفن إلى السياسة، أي شيء في «أخبارنا».';
 
   @override
-  String get event_added => 'تمت إضافة الحدث بنجاح.';
+  String get onboarding_skip => 'تخطي';
 
   @override
-  String get event_details => 'تفاصيل الحدث';
+  String get next => 'التالي';
 
   @override
-  String get tap_on_location_to_select => 'اضغط على الموقع للاختيار';
+  String get choose_language => 'اختر اللغة';
 
   @override
-  String get edit_event => 'تعديل الحدث';
+  String get fav_language =>
+      'حدد لغتك المفضلة أدناه. هذا يساعدنا على خدمتك بشكل أفضل.';
 
   @override
-  String get update_event => 'تحديث الحدث';
+  String get choose_interests => 'اختر اهتماماتك';
 
   @override
-  String get the_event_has_been_deleted => 'تم حذف الحدث.';
+  String get choose_interests_desc =>
+      'اختر المواضيع التي تحبها ودع أخبارنا يقدم لك الأخبار الأكثر أهمية. اختر 3 على الأقل';
+
+  @override
+  String get select_min_3_interests => 'اختر 3 اهتمامات على الأقل';
+
+  @override
+  String get account_ready => 'حسابك جاهز،';
+
+  @override
+  String get lets_start => 'يلا نبدأ!';
+
+  @override
+  String get agree_to => 'أوافق على';
+
+  @override
+  String get terms_and_conditions => ' الشروط والأحكام ';
+
+  @override
+  String get privacy_policy_and_pricing => 'وبيان الخصوصية والأسعار';
+
+  @override
+  String get discover_news => 'اكتشف الأخبار';
+
+  @override
+  String get selected => 'لقد اخترت';
+
+  @override
+  String get all_languages => 'جميع اللغات';
+
+  @override
+  String get step_continue => 'متابعة';
+
+  @override
+  String get search_country => 'ابحث عن دولتك';
+
+  @override
+  String get search_sources => 'ابحث عن مصادر الأخبار';
+
+  @override
+  String get choose_sources => 'اختر مصادر الأخبار';
+
+  @override
+  String get select_min_interests => 'اختر اهتمامًا واحدًا على الأقل';
+
+  @override
+  String get choose_country => 'اختر بلدك';
+
+  @override
+  String get please_select_country => 'يرجى اختيار البلد';
+
+  @override
+  String get terms_1_title => 'استخدام التطبيق';
+
+  @override
+  String get terms_1_desc =>
+      'يقدم هذا التطبيق محتوى إخباري وإعلامي. باستخدامك للتطبيق فإنك توافق على استخدامه بشكل قانوني وعدم إساءة استخدامه.';
+
+  @override
+  String get terms_2_title => 'الخصوصية';
+
+  @override
+  String get terms_2_desc =>
+      'نحن نحترم خصوصيتك ونلتزم بحماية بياناتك الشخصية. يتم استخدام المعلومات فقط لتحسين تجربة المستخدم.';
+
+  @override
+  String get terms_3_title => 'البيانات الشخصية';
+
+  @override
+  String get terms_3_desc =>
+      'قد نقوم بجمع بيانات محدودة مثل معلومات الجهاز لتحسين الأداء. يتم تخزين جميع البيانات بشكل آمن.';
+
+  @override
+  String get terms_4_title => 'المحتوى';
+
+  @override
+  String get terms_4_desc =>
+      'يتم جمع الأخبار والمقالات من مصادر مختلفة. نحن غير مسؤولين بشكل كامل عن دقة المحتوى الخارجي.';
+
+  @override
+  String get terms_5_title => 'التحديثات';
+
+  @override
+  String get terms_5_desc =>
+      'قد نقوم بتحديث هذه الشروط من وقت لآخر، وسيتم إعلام المستخدمين بالتغييرات المهمة داخل التطبيق.';
+
+  @override
+  String get terms_6_title => 'الموافقة';
+
+  @override
+  String get terms_6_desc =>
+      'باستخدامك للتطبيق فإنك توافق على جميع الشروط والأحكام المذكورة أعلاه.';
 }

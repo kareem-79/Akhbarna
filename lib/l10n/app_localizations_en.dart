@@ -9,255 +9,304 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get register => 'Register';
+  String get welcome_title => 'News World';
 
   @override
-  String get en => 'En';
+  String get welcome_back => 'Welcome back, please sign in';
 
   @override
-  String get name => 'Name';
+  String get signup => 'Create new account';
 
   @override
-  String get email => 'E_mail';
+  String get login => 'Login';
+
+  @override
+  String get name => 'User name';
+
+  @override
+  String get email => 'Email';
 
   @override
   String get password => 'Password';
 
   @override
+  String get forgot_password => 'Forgot password?';
+
+  @override
+  String get verify_account => 'Verify account';
+
+  @override
+  String get option => 'Option';
+
+  @override
+  String get register => 'Sign up';
+
+  @override
+  String get login_simple => ' Login';
+
+  @override
+  String get register_now => 'Sign up now';
+
+  @override
+  String get or_login_with => 'Or continue with';
+
+  @override
+  String get google => 'Google';
+
+  @override
+  String get facebook => 'Facebook';
+
+  @override
+  String get login_with_email => 'Continue with Email';
+
+  @override
+  String get login_with_google => 'Sign in with Google';
+
+  @override
+  String get login_with_facebook => 'Sign in with Facebook';
+
+  @override
+  String get no_account => 'Don\'t have an account?';
+
+  @override
   String get create_account => 'Create Account';
 
   @override
-  String get already_have_account => 'Already Have Account ?';
+  String get enter_code =>
+      'Enter the 6-digit verification code sent to your email';
 
   @override
-  String get forget_password => 'Forget Password?';
+  String get resend_code_in => 'Resend code in';
 
   @override
-  String get do_not_have_account => ' Don’t Have Account';
+  String get seconds => 's';
 
   @override
-  String get or => 'Or';
+  String get resend_code => 'Resend Code';
 
   @override
-  String get login_with_google => 'Login With Google';
+  String get password_rule =>
+      'Minimum: 1 uppercase letter, 1 number, 1 special character, 8 characters';
 
   @override
-  String get reset_password => 'Reset Password';
+  String get reset_password_instruction =>
+      'Enter your email address to reset your password.';
 
   @override
-  String get welcome => 'Welcome Back ✨';
+  String get reset_password_note =>
+      'If this email is registered with us, you will receive a password reset message within minutes.';
 
   @override
-  String get home => 'Home';
+  String get confirm => 'Confirm';
 
   @override
-  String get map => 'Map';
+  String get change_password => 'Change password';
 
   @override
-  String get favorite => 'Favorite';
+  String get new_password => 'New password';
 
   @override
-  String get profile => 'Profile';
+  String get confirm_new_password => 'Confirm new password';
 
   @override
-  String get all => 'All';
+  String get general_settings => 'General Settings';
 
   @override
-  String get sports => 'Sports';
+  String get account_management => 'Account management';
 
   @override
-  String get birthday => 'Birthday';
+  String get account_information => 'Account Information';
 
   @override
-  String get meeting => 'Meeting';
+  String get security_settings => 'Security';
 
   @override
-  String get gaming => 'Gaming';
+  String get help_center => 'Help Center';
 
   @override
-  String get eating => 'Eating';
+  String get about_us => 'About Akhbarna';
 
   @override
-  String get holiday => 'Holiday';
+  String get lang_english => 'English';
 
   @override
-  String get exhibition => 'Exhibition';
+  String get lang_arabic => 'العربيه';
 
   @override
-  String get work_shop => 'WorkShop';
+  String get notifications => 'Notifications';
 
   @override
-  String get book_club => 'BookClub';
-
-  @override
-  String get search_for_event => 'Search For Event';
-
-  @override
-  String get theme => 'Theme';
-
-  @override
-  String get light => 'Light';
-
-  @override
-  String get dark => 'Dark';
+  String get light_mode => 'Light mode';
 
   @override
   String get language => 'Language';
 
   @override
-  String get english => 'English';
-
-  @override
-  String get spanish => 'Spanish';
-
-  @override
-  String get arabic => 'Arabic';
-
-  @override
-  String get french => 'French';
-
-  @override
-  String get japanese => 'Japanese';
-
-  @override
-  String get russian => 'Russian';
-
-  @override
-  String get chinese => 'Chinese';
-
-  @override
-  String get name_required => 'Name is Required';
-
-  @override
-  String get name_min => 'Sorry, Name should be at least 6 char';
-
-  @override
-  String get email_required => 'E-mail is Required';
-
-  @override
-  String get email_invalid => 'E-mail is not valid';
-
-  @override
-  String get password_required => 'Password is Required';
-
-  @override
-  String get password_min => 'Sorry, Password should be at least 8 char';
-
-  @override
-  String get login => ' Login ';
-
-  @override
-  String get title => 'Title';
-
-  @override
-  String get event_title => 'Event Title';
-
-  @override
-  String get title_required => 'Title is Required';
-
-  @override
-  String get description => 'Description';
-
-  @override
-  String get event_description => 'Event Description';
-
-  @override
-  String get description_required => 'Description is Required';
-
-  @override
-  String get event_date => 'Event Date';
-
-  @override
-  String get choose_date => 'Choose Date';
-
-  @override
-  String get event_time => 'Event Time';
-
-  @override
-  String get choose_time => 'Choose Time';
-
-  @override
-  String get location => 'Location';
-
-  @override
-  String get choose_event_location => 'Choose Event Location';
-
-  @override
-  String get add_event => 'Add Event';
-
-  @override
-  String get create_event => 'Create Event';
+  String get font_size => 'Font size';
 
   @override
   String get logout => 'Logout';
 
   @override
-  String get failed_register => 'Failed to Register.';
+  String get edit_profile => 'Edit profile';
 
   @override
-  String get account_exists => 'The account already exists for that email.';
+  String get save_changes => 'Save changes';
 
   @override
-  String get weak_password => 'The password provided is too weak.';
+  String get small => 'Small';
 
   @override
-  String get failed_login => 'Failed to Login.';
+  String get medium => 'Medium';
 
   @override
-  String get incorrect_credentials => 'E-mail or Password is Incorrect.';
+  String get large => 'Large';
 
   @override
-  String get personalize_title => 'Personalize Your Experience';
+  String get extra_large => 'Extra Large';
 
   @override
-  String get personalize_description =>
-      'Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.';
+  String get change_sources => 'Edit News Sources';
 
   @override
-  String get find_events_title => 'Find Events That Inspire You';
+  String get auto_simple => 'Auto';
 
   @override
-  String get find_events_description =>
-      'Dive into a world of events crafted to fit your unique interests. Whether you\'re into live music, art workshops, professional networking, or simply discovering new experiences, we have something for everyone. Our curated recommendations will help you explore, connect, and make the most of every opportunity around you.';
+  String get auto_device => 'Automatic (Device Settings)';
 
   @override
-  String get event_planning_title => 'Effortless Event Planning';
+  String get onboarding_title1 =>
+      'Stay connected to the world from the heart of your country.';
 
   @override
-  String get event_planning_description =>
-      'Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests.';
+  String get onboarding_desc1 => 'Get the latest news from trusted sources.';
 
   @override
-  String get connect_friends_title => 'Connect with Friends & Share Moments';
+  String get onboarding_title2 =>
+      'Every news that matters to you,delivered quickly.';
 
   @override
-  String get connect_friends_description =>
-      'Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories.';
+  String get onboarding_desc2 => 'All details at your fingertips.';
 
   @override
-  String get finish => 'Finish';
+  String get onboarding_title3 =>
+      'Experience news with an authentic Arabic touch.';
 
   @override
-  String get login_success => 'Login is successful.';
+  String get onboarding_desc3 =>
+      'Real news from the stree  with true perspective.';
 
   @override
-  String get account_created => 'The account has been created successfully.';
+  String get onboarding_title4 =>
+      'From art to politics, everything in “Akhbarna”.';
 
   @override
-  String get event_added => 'The event has been added.';
+  String get onboarding_skip => 'Skip';
 
   @override
-  String get event_details => 'Event Details';
+  String get next => 'Next';
 
   @override
-  String get tap_on_location_to_select => 'Tap on Location To Select';
+  String get choose_language => 'Choose language';
 
   @override
-  String get edit_event => 'Edit Event';
+  String get fav_language =>
+      'Select your preferred language below. This helps us serve you better.';
 
   @override
-  String get update_event => 'Update Event';
+  String get choose_interests => 'Choose your interests';
 
   @override
-  String get the_event_has_been_deleted => 'The event has been deleted.';
+  String get choose_interests_desc =>
+      'Select topics you like and let Akhbarna deliver the most relevant news for you. Choose at least 3.';
+
+  @override
+  String get select_min_3_interests => 'Select at least 3 interests';
+
+  @override
+  String get account_ready => 'Your account is ready,';
+
+  @override
+  String get lets_start => 'Let\'s get started!';
+
+  @override
+  String get agree_to => 'I agree to the';
+
+  @override
+  String get terms_and_conditions => ' Terms & Conditions ';
+
+  @override
+  String get privacy_policy_and_pricing => 'Privacy Policy and Pricing';
+
+  @override
+  String get discover_news => 'Discover news';
+
+  @override
+  String get selected => 'Selected';
+
+  @override
+  String get all_languages => 'All languages';
+
+  @override
+  String get step_continue => 'Continue';
+
+  @override
+  String get search_country => 'Search your country';
+
+  @override
+  String get search_sources => 'Search news sources';
+
+  @override
+  String get choose_sources => 'Choose news sources';
+
+  @override
+  String get select_min_interests => 'Select at least 1 interest';
+
+  @override
+  String get choose_country => 'Choose your country';
+
+  @override
+  String get please_select_country => 'Please select a country';
+
+  @override
+  String get terms_1_title => 'App Usage';
+
+  @override
+  String get terms_1_desc =>
+      'This application provides news and media content. You agree to use it only for lawful purposes and not to misuse the service.';
+
+  @override
+  String get terms_2_title => 'Privacy';
+
+  @override
+  String get terms_2_desc =>
+      'We respect your privacy and are committed to protecting your personal data. Information is used only to improve user experience.';
+
+  @override
+  String get terms_3_title => 'Personal Data';
+
+  @override
+  String get terms_3_desc =>
+      'We may collect limited data such as device information to improve performance. All data is stored securely.';
+
+  @override
+  String get terms_4_title => 'Content';
+
+  @override
+  String get terms_4_desc =>
+      'News and articles are collected from different sources. We are not fully responsible for the accuracy of external content.';
+
+  @override
+  String get terms_5_title => 'Updates';
+
+  @override
+  String get terms_5_desc =>
+      'We may update these terms from time to time. Important changes will be communicated within the app.';
+
+  @override
+  String get terms_6_title => 'Agreement';
+
+  @override
+  String get terms_6_desc =>
+      'By using this application, you agree to all terms and conditions stated above.';
 }
