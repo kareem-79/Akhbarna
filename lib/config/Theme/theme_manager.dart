@@ -113,14 +113,14 @@ class ThemeManager{
       inputDecorationTheme: InputDecorationTheme(
         labelStyle: GoogleFonts.inter(
           fontSize: 18.sp,
-          color: ColorsManagers.white,
+          color: ColorsManagers.black,
           fontWeight: FontWeight.w400,
         ),
         prefixIconColor: ColorsManagers.blue,
         suffixIconColor: ColorsManagers.blue,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20.r),
-          borderSide: BorderSide(color: ColorsManagers.white),
+          borderSide: BorderSide(color: ColorsManagers.black),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20.r),

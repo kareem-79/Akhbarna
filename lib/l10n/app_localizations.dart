@@ -270,6 +270,18 @@ abstract class AppLocalizations {
   /// **'Minimum: 1 uppercase letter, 1 number, 1 special character, 8 characters'**
   String get password_rule;
 
+  /// No description provided for @password_rule2.
+  ///
+  /// In en, this message translates to:
+  /// **'Your password must be at least 8 characters long and must include a mix of numbers, letters, and special characters (!\$@%).'**
+  String get password_rule2;
+
+  /// No description provided for @password_changed.
+  ///
+  /// In en, this message translates to:
+  /// **'Password has been changed'**
+  String get password_changed;
+
   /// No description provided for @reset_password_instruction.
   ///
   /// In en, this message translates to:
@@ -683,6 +695,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'By using this application, you agree to all terms and conditions stated above.'**
   String get terms_6_desc;
+
+  /// No description provided for @logout_confirm_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to logout?'**
+  String get logout_confirm_title;
+
+  /// No description provided for @logout_confirm_message.
+  ///
+  /// In en, this message translates to:
+  /// **'You will need to login again.'**
+  String get logout_confirm_message;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @yes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get yes;
+
+  /// No description provided for @location.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get location;
+
+  /// No description provided for @about_app_title.
+  ///
+  /// In en, this message translates to:
+  /// **'About Akhbarna'**
+  String get about_app_title;
+
+  /// No description provided for @about_app_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Akhbarna is a modern news platform that aims to deliver news in a fast, reliable, and easily accessible way.'**
+  String get about_app_description;
+
+  /// No description provided for @about_app_coverage.
+  ///
+  /// In en, this message translates to:
+  /// **'We are committed to covering the most important local and international events across various fields such as politics, economy, sports, and technology.'**
+  String get about_app_coverage;
+
+  /// No description provided for @about_app_experience.
+  ///
+  /// In en, this message translates to:
+  /// **'The app features a simple and smooth user experience that allows users to follow the news anytime and anywhere, with real-time updates on the most important ongoing events.'**
+  String get about_app_experience;
+
+  /// No description provided for @our_goal.
+  ///
+  /// In en, this message translates to:
+  /// **'Our Goal'**
+  String get our_goal;
+
+  /// No description provided for @goal_1.
+  ///
+  /// In en, this message translates to:
+  /// **'Provide accurate and trustworthy news content'**
+  String get goal_1;
+
+  /// No description provided for @goal_2.
+  ///
+  /// In en, this message translates to:
+  /// **'Simplify access to information for users'**
+  String get goal_2;
+
+  /// No description provided for @goal_3.
+  ///
+  /// In en, this message translates to:
+  /// **'Present news in an organized and easy-to-read format'**
+  String get goal_3;
+
+  /// No description provided for @goal_4.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep up with events as they happen, moment by moment'**
+  String get goal_4;
+
+  /// No description provided for @app_features.
+  ///
+  /// In en, this message translates to:
+  /// **'App Features'**
+  String get app_features;
+
+  /// No description provided for @feature_1.
+  ///
+  /// In en, this message translates to:
+  /// **'Continuous news updates'**
+  String get feature_1;
+
+  /// No description provided for @feature_2.
+  ///
+  /// In en, this message translates to:
+  /// **'Diverse news categories'**
+  String get feature_2;
+
+  /// No description provided for @feature_3.
+  ///
+  /// In en, this message translates to:
+  /// **'Fast and easy-to-use interface'**
+  String get feature_3;
+
+  /// No description provided for @feature_4.
+  ///
+  /// In en, this message translates to:
+  /// **'News search capability'**
+  String get feature_4;
+
+  /// No description provided for @feature_5.
+  ///
+  /// In en, this message translates to:
+  /// **'Comfortable reading experience'**
+  String get feature_5;
+
+  /// No description provided for @our_vision.
+  ///
+  /// In en, this message translates to:
+  /// **'Our Vision'**
+  String get our_vision;
+
+  /// No description provided for @vision_description.
+  ///
+  /// In en, this message translates to:
+  /// **'We aspire to become a trusted source for daily news, helping users stay informed about everything happening around them in a simple and effective way.'**
+  String get vision_description;
 }
 
 class _AppLocalizationsDelegate

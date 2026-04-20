@@ -119,7 +119,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
           if (widget.isFromEdit) {
             Navigator.pop(context);
           } else {
-            Navigator.pushNamed(context, RoutesManager.selectCategory);
+            Navigator.pushNamed(context, RoutesManager.selectSources);
           }
         },
         text: appLocalizations.step_continue,

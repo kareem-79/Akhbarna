@@ -89,6 +89,13 @@ class AppLocalizationsFr extends AppLocalizations {
       'Minimum : une majuscule, un chiffre, un symbole, 8 caractères';
 
   @override
+  String get password_rule2 =>
+      'Your password must be at least 8 characters long and must include a mix of numbers, letters, and special characters (!\$@%).';
+
+  @override
+  String get password_changed => 'Password has been changed';
+
+  @override
   String get reset_password_instruction =>
       'Entrez votre adresse e-mail pour réinitialiser votre mot de passe.';
 
@@ -312,4 +319,74 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get terms_6_desc =>
       'En utilisant l\'application, vous acceptez toutes les conditions générales mentionnées ci-dessus.';
+
+  @override
+  String get logout_confirm_title => 'Are you sure you want to logout?';
+
+  @override
+  String get logout_confirm_message => 'You will need to login again.';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get yes => 'Yes';
+
+  @override
+  String get location => 'Location';
+
+  @override
+  String get about_app_title => 'About Akhbarna';
+
+  @override
+  String get about_app_description =>
+      'Akhbarna is a modern news platform that aims to deliver news in a fast, reliable, and easily accessible way.';
+
+  @override
+  String get about_app_coverage =>
+      'We are committed to covering the most important local and international events across various fields such as politics, economy, sports, and technology.';
+
+  @override
+  String get about_app_experience =>
+      'The app features a simple and smooth user experience that allows users to follow the news anytime and anywhere, with real-time updates on the most important ongoing events.';
+
+  @override
+  String get our_goal => 'Our Goal';
+
+  @override
+  String get goal_1 => 'Provide accurate and trustworthy news content';
+
+  @override
+  String get goal_2 => 'Simplify access to information for users';
+
+  @override
+  String get goal_3 => 'Present news in an organized and easy-to-read format';
+
+  @override
+  String get goal_4 => 'Keep up with events as they happen, moment by moment';
+
+  @override
+  String get app_features => 'App Features';
+
+  @override
+  String get feature_1 => 'Continuous news updates';
+
+  @override
+  String get feature_2 => 'Diverse news categories';
+
+  @override
+  String get feature_3 => 'Fast and easy-to-use interface';
+
+  @override
+  String get feature_4 => 'News search capability';
+
+  @override
+  String get feature_5 => 'Comfortable reading experience';
+
+  @override
+  String get our_vision => 'Our Vision';
+
+  @override
+  String get vision_description =>
+      'We aspire to become a trusted source for daily news, helping users stay informed about everything happening around them in a simple and effective way.';
 }

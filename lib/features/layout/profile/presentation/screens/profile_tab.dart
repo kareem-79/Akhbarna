@@ -1,9 +1,14 @@
+import 'dart:ui';
+
+import 'package:akhbarna/features/layout/profile/presentation/screens/logout/presentation/logout_bottom_sheet.dart';
+import 'package:akhbarna/features/layout/profile/presentation/widget/custom_blur_bottom_sheet.dart';
 import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../core/resources/routes_managers.dart';
 import '../../../../../core/widget/app_bar_widget.dart';
+import '../widget/enlargable_profile_avatar.dart';
 import 'general_settings/presentation/general_setting_bottom_sheet.dart';
 import '../widget/profile_item_widget.dart';
 
@@ -34,11 +39,9 @@ class _ProfileTabState extends State<ProfileTab> {
                 ),
                 Row(
                   children: [
-                    CircleAvatar(
+                    EnlargableProfileAvatar(
+                      imageUrl: "https://i.pravatar.cc/300",
                       radius: 40.r,
-                      backgroundImage: const NetworkImage(
-                        "https://i.pravatar.cc/300",
-                      ),
                     ),
                     SizedBox(width: 12.w),
                     Expanded(
@@ -78,7 +81,13 @@ class _ProfileTabState extends State<ProfileTab> {
                     ProfileItemWidget(
                       icon: Icons.person_outline_outlined,
                       title: appLocalizations.account_information,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          RoutesManager.editProfile,
+                          arguments: true,
+                        );
+                      },
                     ),
                     ProfileItemWidget(
                       icon: Icons.tune_outlined,
@@ -93,13 +102,19 @@ class _ProfileTabState extends State<ProfileTab> {
                     ProfileItemWidget(
                       icon: Icons.security_outlined,
                       title: appLocalizations.security_settings,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, RoutesManager.security);
+                      },
                     ),
                     ProfileItemWidget(
                       icon: Icons.language_outlined,
                       title: appLocalizations.language,
                       onTap: () {
-                        Navigator.pushNamed(context, RoutesManager.selectLanguage, arguments: true);
+                        Navigator.pushNamed(
+                          context,
+                          RoutesManager.selectLanguage,
+                          arguments: true,
+                        );
                       },
                     ),
                     ProfileItemWidget(
@@ -110,12 +125,14 @@ class _ProfileTabState extends State<ProfileTab> {
                     ProfileItemWidget(
                       icon: Icons.info_outline,
                       title: appLocalizations.about_us,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, RoutesManager.aboutUs);
+                      },
                     ),
                     ProfileItemWidget(
                       icon: Icons.logout_outlined,
                       title: appLocalizations.logout,
-                      onTap: () {},
+                      onTap: () => _showLogoutBottomSheet(context),
                     ),
                   ],
                 ),
@@ -128,11 +145,20 @@ class _ProfileTabState extends State<ProfileTab> {
   }
 
   void _showGeneralSettings(BuildContext context) {
+    showBlurBottomSheet(context, child: const GeneralSettingsBottomSheet());
+  }
+
+  void _showLogoutBottomSheet(BuildContext context) {
+    showBlurBottomSheet(context, child: const LogoutBottomSheet());
+  }
+
+  void showBlurBottomSheet(BuildContext context, {required Widget child}) {
     showModalBottomSheet(
       context: context,
-      isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (context) => const GeneralSettingsBottomSheet(),
+      isScrollControlled: true,
+      isDismissible: true,
+      builder: (_) => CustomBlurBottomSheet(child: child),
     );
   }
 }

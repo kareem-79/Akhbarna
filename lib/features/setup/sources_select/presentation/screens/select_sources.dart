@@ -78,7 +78,7 @@ class _SelectSourcesState extends State<SelectSources> {
       UiUtils.showToast(
         context,
         appLocalizations.select_min_interests,
-        ColorsManagers.red,
+        ColorsManagers.vividTangerine,
       );
       return;
     }

@@ -1,3 +1,4 @@
+import 'package:akhbarna/features/layout/profile/presentation/screens/security/presentation/security_screen.dart';
 import 'package:akhbarna/features/on_boarding/presentation/screens/on_boarding.dart';
 import 'package:flutter/material.dart';
 import '../../features/auth/forget_password/presentation/screens/change_password.dart';
@@ -7,7 +8,9 @@ import '../../features/auth/login/presentation/screens/login_screen.dart';
 import '../../features/auth/register/presentation/screens/register_screen.dart';
 import '../../features/auth/start_up/presentation/screens/start_up_screen.dart';
 import '../../features/layout/main_layout.dart';
+import '../../features/layout/profile/presentation/screens/about/presentation/about_screen.dart';
 import '../../features/layout/profile/presentation/screens/profile_tab.dart';
+import '../../features/layout/profile/presentation/screens/ِaccount_information/presentation/edit_profile_screen.dart';
 import '../../features/setup/category_select/presentation/screens/select_category.dart';
 import '../../features/setup/language_select/presentation/screens/select_language.dart';
 import '../../features/setup/locations_select/presentation/screens/select_location.dart';
@@ -31,6 +34,9 @@ class RoutesManager {
   static const String start = "Start";
   static const String mainLayout = "MainLayout";
   static const String profile = "ProfileTab";
+  static const String editProfile = "EditProfile";
+  static const String security = "Security";
+  static const String aboutUs = "AboutUs";
 
   static Route<dynamic> routes(RouteSettings settings) {
     switch (settings.name) {
@@ -70,6 +76,12 @@ class RoutesManager {
         return MaterialPageRoute(builder: (_) => MainLayout());
       case profile:
         return MaterialPageRoute(builder: (_) => ProfileTab());
+      case editProfile:
+        return MaterialPageRoute(builder: (_) => EditProfile());
+      case security:
+        return MaterialPageRoute(builder: (_) => SecurityScreen());
+      case aboutUs:
+        return MaterialPageRoute(builder: (_) => AboutUsScreen());
       default:
         return unDefinedRoute();
     }

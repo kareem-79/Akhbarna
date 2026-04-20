@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
 class ColorsManagers{
   static Color darkNavy=Color(0xff111828);
@@ -12,4 +12,6 @@ class ColorsManagers{
   static Color white2=Color(0xffF3F1F1);
   static Color red=Color(0xffFF3F4C);
   static Color cyan=Color(0xff00BBCA);
+  static Color riverBed=Color(0xff4B5563);
+  static Color vividTangerine=Color(0xffFF8080);
 }

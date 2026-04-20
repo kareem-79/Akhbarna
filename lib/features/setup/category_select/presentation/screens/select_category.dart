@@ -74,7 +74,7 @@ class _SelectCategoryState extends State<SelectCategory> {
     final selected = CategoryModel.categories.where((e) => e.isSelected).length;
 
     if (selected < 3) {
-      UiUtils.showToast(context, AppLocalizations.of(context)!.select_min_3_interests, ColorsManagers.red);
+      UiUtils.showToast(context, AppLocalizations.of(context)!.select_min_3_interests, ColorsManagers.vividTangerine);
       return;
     }
     Navigator.pushNamed(context, RoutesManager.start);

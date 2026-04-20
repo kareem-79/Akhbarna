@@ -26,6 +26,8 @@ class IconManagers{
   static const String facebook="$base/facebook.svg";
   static const String arrowRight="$base/arrow_forward.png";
   static const String fontStyle="$base/Font Style Formatting.png";
+  static const String edit="$base/edit.svg";
+  static const String editPng="$base/edit.png";
 }
 class CategoryImageManagers{
   static const String base="assets/images";

@@ -89,6 +89,13 @@ class AppLocalizationsAr extends AppLocalizations {
       'الحد الأدنى: حرف كبير واحد، رقم واحد، رمز واحد، 8 أحرف';
 
   @override
+  String get password_rule2 =>
+      'يجب أن تتكون كلمة مرورك من 8 أحرف على الأقل، ويجب أن تتضمن مزيجًا من الأرقام والحروف والرموز الخاصة (!\$@%)';
+
+  @override
+  String get password_changed => 'تم تغيير كلمة المرور';
+
+  @override
   String get reset_password_instruction =>
       'أدخل عنوان بريدك الإلكتروني لإعادة تعيين كلمة المرور.';
 
@@ -304,4 +311,74 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get terms_6_desc =>
       'باستخدامك للتطبيق فإنك توافق على جميع الشروط والأحكام المذكورة أعلاه.';
+
+  @override
+  String get logout_confirm_title => 'هل أنت متأكد من تسجيل الخروج؟';
+
+  @override
+  String get logout_confirm_message => 'ستحتاج إلى تسجيل الدخول مرة أخرى.';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get yes => 'نعم';
+
+  @override
+  String get location => 'الموقع';
+
+  @override
+  String get about_app_title => 'عن تطبيق أخبارنا';
+
+  @override
+  String get about_app_description =>
+      'تطبيق أخبارنا هو منصة إخبارية حديثة تهدف إلى تقديم الأخبار بشكل سريع، موثوق، وسهل الوصول.';
+
+  @override
+  String get about_app_coverage =>
+      'نحرص على تغطية أهم الأحداث المحلية والعالمية في مختلف المجالات مثل السياسة، الاقتصاد، الرياضة، والتكنولوجيا.';
+
+  @override
+  String get about_app_experience =>
+      'يتميز التطبيق بتجربة استخدام بسيطة وسلسة تتيح للمستخدم متابعة الأخبار في أي وقت ومن أي مكان، مع تحديثات لحظية لأهم الأحداث الجارية.';
+
+  @override
+  String get our_goal => 'هدفنا';
+
+  @override
+  String get goal_1 => 'توفير محتوى إخباري دقيق وموثوق';
+
+  @override
+  String get goal_2 => 'تبسيط الوصول إلى المعلومات للمستخدم';
+
+  @override
+  String get goal_3 => 'عرض الأخبار بشكل منظم وسهل القراءة';
+
+  @override
+  String get goal_4 => 'مواكبة الأحداث أولاً بأول';
+
+  @override
+  String get app_features => 'مميزات التطبيق';
+
+  @override
+  String get feature_1 => 'تحديث الأخبار بشكل مستمر';
+
+  @override
+  String get feature_2 => 'تصنيفات متنوعة للأخبار';
+
+  @override
+  String get feature_3 => 'واجهة استخدام سهلة وسريعة';
+
+  @override
+  String get feature_4 => 'إمكانية البحث عن الأخبار';
+
+  @override
+  String get feature_5 => 'تجربة قراءة مريحة';
+
+  @override
+  String get our_vision => 'رؤيتنا';
+
+  @override
+  String get vision_description =>
+      'نطمح لأن نكون مصدرًا موثوقًا للأخبار اليومية، ونساعد المستخدم على البقاء على اطلاع دائم بكل ما يحدث حوله بطريقة بسيطة وفعالة.';
 }

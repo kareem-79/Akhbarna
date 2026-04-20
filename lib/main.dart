@@ -45,7 +45,7 @@ class Akhbarna extends StatelessWidget {
                 );
               },
               onGenerateRoute: RoutesManager.routes,
-              initialRoute: RoutesManager.onBoarding,
+              initialRoute: RoutesManager.profile,
               localizationsDelegates: const [
                 AppLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,

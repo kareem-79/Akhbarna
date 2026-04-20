@@ -75,7 +75,7 @@ class _SelectLocationState extends State<SelectLocation> {
             UiUtils.showToast(
               context,
               appLocalizations.please_select_country,
-              ColorsManagers.red,
+              ColorsManagers.vividTangerine,
             );
             return;
           }
