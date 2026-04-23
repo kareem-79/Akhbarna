@@ -70,12 +70,16 @@ class LogoutBottomSheet extends StatelessWidget {
                 Expanded(
                   child: CustomElevatedButton(
                     onPress: () {
-                      Navigator.pushNamed(
+                      Navigator.pushNamedAndRemoveUntil(
                         context,
                         RoutesManager.login,
-                        arguments: true,
+                        (route) => false,
                       );
-                      UiUtils.showToast(context, appLocalizations.logout_confirm_message, ColorsManagers.lightGray);
+                      UiUtils.showToast(
+                        context,
+                        appLocalizations.logout_confirm_message,
+                        ColorsManagers.lightGray,
+                      );
                     },
                     text: appLocalizations.yes,
                     foregroundColor: ColorsManagers.white,

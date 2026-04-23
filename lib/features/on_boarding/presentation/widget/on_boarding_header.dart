@@ -16,14 +16,12 @@ class OnBoardingHeader extends StatelessWidget {
     TextTheme textTheme = Theme.of(context).textTheme;
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
 
-    final config = context.watch<ConfigProvider>();
-
     return Padding(
       padding: EdgeInsets.only(
         top: 12.sp,
         right: 20.sp,
         left: 20.sp,
-        bottom: 20.sp,
+        bottom: 10.sp,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

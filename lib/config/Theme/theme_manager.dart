@@ -39,6 +39,11 @@ class ThemeManager{
           color: ColorsManagers.white,
           fontWeight: FontWeight.w400,
         ),
+        errorStyle: GoogleFonts.inter(
+          color: ColorsManagers.red,
+          fontSize: 12.sp,
+          fontWeight: FontWeight.w500,
+        ),
         prefixIconColor: ColorsManagers.blue,
         suffixIconColor: ColorsManagers.blue,
         enabledBorder: OutlineInputBorder(
@@ -115,6 +120,11 @@ class ThemeManager{
           fontSize: 18.sp,
           color: ColorsManagers.black,
           fontWeight: FontWeight.w400,
+        ),
+        errorStyle: GoogleFonts.inter(
+          color: ColorsManagers.red,
+          fontSize: 12.sp,
+          fontWeight: FontWeight.w500,
         ),
         prefixIconColor: ColorsManagers.blue,
         suffixIconColor: ColorsManagers.blue,

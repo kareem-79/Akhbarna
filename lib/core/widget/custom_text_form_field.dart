@@ -32,6 +32,8 @@ class CustomTextFormFiled extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 8.sp),
       child: TextFormField(
         cursorColor: ColorsManagers.blue,
+        autocorrect: true,
+        cursorErrorColor: ColorsManagers.blue,
         style: Theme.of(context).textTheme.labelSmall,
         textAlign: TextAlign.start,
         maxLines: maxLine,

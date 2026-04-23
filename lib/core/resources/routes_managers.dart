@@ -55,7 +55,9 @@ class RoutesManager {
       case loginWithOtp:
         return MaterialPageRoute(builder: (_) => LoginWithOtp());
       case changePassword:
-        return MaterialPageRoute(builder: (_) => ChangePassword());
+        return MaterialPageRoute(
+          builder: (_) => ChangePassword(),
+        );
       case selectLocation:
         return MaterialPageRoute(builder: (_) => SelectLocation());
       case selectCategory:

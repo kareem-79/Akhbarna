@@ -30,7 +30,31 @@ class AppLocalizationsFr extends AppLocalizations {
   String get password => 'Mot de passe';
 
   @override
+  String get name_required => 'Please enter your name';
+
+  @override
+  String get name_min => 'Name must be at least 6 characters long';
+
+  @override
+  String get email_required => 'Please enter your email address';
+
+  @override
+  String get email_invalid => 'Invalid email address';
+
+  @override
+  String get password_required => 'Please enter your password';
+
+  @override
   String get forgot_password => 'Mot de passe oublié ?';
+
+  @override
+  String get otp_required => 'Please enter full OTP code';
+
+  @override
+  String get passwords_not_match => 'Passwords do not match';
+
+  @override
+  String get login_success => 'Logged in successfully';
 
   @override
   String get verify_account => 'Vérifier le compte';

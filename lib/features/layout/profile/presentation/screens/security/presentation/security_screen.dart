@@ -1,5 +1,6 @@
 import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/utils/ui_utils.dart';
+import 'package:akhbarna/core/widget/custom_text_button.dart';
 import 'package:akhbarna/features/layout/profile/presentation/screens/security/widget/security_header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -70,6 +71,18 @@ class SecurityScreen extends StatelessWidget {
                         style: textTheme.bodySmall?.copyWith(fontSize: 11.sp),
                       ),
                     ),
+                    SizedBox(height: 40.h),
+                    CustomTextButton(
+                      onPress: () {
+                        Navigator.pushNamed(
+                          context,
+                          RoutesManager.forgetPassword,
+                          arguments: true,
+                        );
+                      },
+                      text: appLocalizations.forgot_password,
+                      color: ColorsManagers.red,
+                    ),
                   ],
                 ),
               ),
@@ -80,7 +93,11 @@ class SecurityScreen extends StatelessWidget {
       bottomNavigationBar: CustomButtomNavigationBar(
         onPress: () {
           Navigator.pushNamed(context, RoutesManager.profile);
-          UiUtils.showToast(context, appLocalizations.password_changed, ColorsManagers.riverBed);
+          UiUtils.showToast(
+            context,
+            appLocalizations.password_changed,
+            ColorsManagers.riverBed,
+          );
         },
         text: appLocalizations.change_password,
         backgroundColor: ColorsManagers.red,

@@ -156,11 +156,59 @@ abstract class AppLocalizations {
   /// **'Password'**
   String get password;
 
+  /// No description provided for @name_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your name'**
+  String get name_required;
+
+  /// No description provided for @name_min.
+  ///
+  /// In en, this message translates to:
+  /// **'Name must be at least 6 characters long'**
+  String get name_min;
+
+  /// No description provided for @email_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email address'**
+  String get email_required;
+
+  /// No description provided for @email_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid email address'**
+  String get email_invalid;
+
+  /// No description provided for @password_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your password'**
+  String get password_required;
+
   /// No description provided for @forgot_password.
   ///
   /// In en, this message translates to:
   /// **'Forgot password?'**
   String get forgot_password;
+
+  /// No description provided for @otp_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter full OTP code'**
+  String get otp_required;
+
+  /// No description provided for @passwords_not_match.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get passwords_not_match;
+
+  /// No description provided for @login_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Logged in successfully'**
+  String get login_success;
 
   /// No description provided for @verify_account.
   ///

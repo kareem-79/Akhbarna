@@ -5,11 +5,33 @@ import 'package:akhbarna/core/widget/app_bar_widget.dart';
 import 'package:akhbarna/core/widget/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../core/utils/ui_utils.dart';
+import '../../../../../core/utils/validation.dart';
 import '../../../../../core/widget/custom_text_form_field.dart';
 import '../../../../../l10n/app_localizations.dart';
 
-class ForgetPassword extends StatelessWidget {
+class ForgetPassword extends StatefulWidget {
   const ForgetPassword({super.key});
+
+  @override
+  State<ForgetPassword> createState() => _ForgetPasswordState();
+}
+
+class _ForgetPasswordState extends State<ForgetPassword> {
+  var formKey = GlobalKey<FormState>();
+  late TextEditingController emailController;
+
+  @override
+  void initState() {
+    super.initState();
+    emailController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,40 +42,54 @@ class ForgetPassword extends StatelessWidget {
         child: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                AppBarWidget(title: "",height: 40,),
-                Image.asset(
-                  ImageManagers.forgetPassword,
-                  width: 210.w,
-                  height: 210.h,
-                ),
-                SizedBox(height: 10.h),
-                Text(
-                  appLocalizations.forgot_password,
-                  style: textTheme.bodyLarge,
-                ),
-                SizedBox(height: 30.h),
-                Text(
-                  appLocalizations.reset_password_instruction,
-                  style: textTheme.bodySmall?.copyWith(
-                    color: ColorsManagers.lightGray,
+            child: Form(
+              key: formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  AppBarWidget(title: "", height: 40),
+                  Image.asset(
+                    ImageManagers.forgetPassword,
+                    width: 210.w,
+                    height: 210.h,
                   ),
-                ),
-                SizedBox(height: 10.h),
-                CustomTextFormFiled(
-                  label: appLocalizations.email,
-                  suffixIcon: Icon(Icons.email_outlined),
-                ),
-                SizedBox(height: 20.h),
-                Text(
-                  appLocalizations.reset_password_note,
-                  style: textTheme.bodySmall,
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: 80.h),
-              ],
+                  SizedBox(height: 10.h),
+                  Text(
+                    appLocalizations.forgot_password,
+                    style: textTheme.bodyLarge,
+                  ),
+                  SizedBox(height: 30.h),
+                  Text(
+                    appLocalizations.reset_password_instruction,
+                    style: textTheme.bodySmall?.copyWith(
+                      color: ColorsManagers.lightGray,
+                    ),
+                  ),
+                  SizedBox(height: 10.h),
+                  CustomTextFormFiled(
+                    label: appLocalizations.email,
+                    controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    prefixIcon: Icons.email_outlined,
+                    validator: (input) {
+                      if (input == null || input.trim().isEmpty) {
+                        return appLocalizations.email_required;
+                      }
+                      if (!Validation.isValidateEmail(input)) {
+                        return appLocalizations.email_invalid;
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 20.h),
+                  Text(
+                    appLocalizations.reset_password_note,
+                    style: textTheme.bodySmall,
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 80.h),
+                ],
+              ),
             ),
           ),
         ),
@@ -66,14 +102,18 @@ class ForgetPassword extends StatelessWidget {
           top: 10.h,
         ),
         child: CustomElevatedButton(
-          onPress: () {
-            Navigator.pushNamed(context, RoutesManager.loginWithOtp);
-          },
+          onPress: () => _enterEmail(),
           text: appLocalizations.next,
           backgroundColor: ColorsManagers.red,
           foregroundColor: ColorsManagers.white,
         ),
       ),
     );
+  }
+
+  Future<void> _enterEmail() async {
+    if (formKey.currentState?.validate() ?? false) {
+      Navigator.pushNamed(context, RoutesManager.loginWithOtp);
+    }
   }
 }

@@ -30,7 +30,31 @@ class AppLocalizationsAr extends AppLocalizations {
   String get password => 'كلمة المرور';
 
   @override
+  String get name_required => 'من فضلك أدخل اسمك';
+
+  @override
+  String get name_min => ' يجب أن يتكون الاسم من 6 أحرف أو أكثر';
+
+  @override
+  String get email_required => 'من فضلك أدخل البريد الإلكتروني';
+
+  @override
+  String get email_invalid => 'البريد الإلكتروني غير صحيح';
+
+  @override
+  String get password_required => 'من فضلك أدخل كلمة المرور';
+
+  @override
   String get forgot_password => 'هل نسيت كلمة السر؟';
+
+  @override
+  String get otp_required => 'من فضلك أدخل كود التحقق بالكامل';
+
+  @override
+  String get passwords_not_match => 'كلمتا المرور غير متطابقتين';
+
+  @override
+  String get login_success => 'تم تسجيل الدخول بنجاح';
 
   @override
   String get verify_account => 'التحقق من الحساب';

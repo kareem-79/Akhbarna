@@ -1,9 +1,10 @@
-import 'package:akhbarna/core/resources/colors_managers.dart';
-import 'package:akhbarna/core/widget/app_bar_widget.dart';
-import 'package:akhbarna/core/widget/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../core/resources/routes_managers.dart';
+import '../../../../../core/widget/app_bar_widget.dart';
+import '../../../../../core/widget/custom_elevated_button.dart';
 import '../../../../../l10n/app_localizations.dart';
 
 class LoginWithOtp extends StatefulWidget {
@@ -18,7 +19,9 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
     6,
     (_) => TextEditingController(),
   );
+
   int seconds = 60;
+  bool showError = false;
 
   @override
   void initState() {
@@ -35,10 +38,15 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
     });
   }
 
+  bool _isOtpComplete() {
+    return controllers.every((c) => c.text.trim().isNotEmpty);
+  }
+
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
@@ -52,12 +60,15 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
                   title: appLocalizations.verify_account,
                   height: 140,
                 ),
+
                 Text(
                   appLocalizations.enter_code,
                   style: textTheme.bodySmall,
                   textAlign: TextAlign.center,
                 ),
+
                 SizedBox(height: 40.h),
+
                 Directionality(
                   textDirection: TextDirection.ltr,
                   child: Row(
@@ -71,7 +82,6 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
                           controller: controllers[index],
                           keyboardType: TextInputType.number,
                           textAlign: TextAlign.center,
-                          textDirection: TextDirection.ltr,
                           maxLength: 1,
                           style: textTheme.bodyMedium,
                           decoration: InputDecoration(
@@ -91,6 +101,10 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
                             ),
                           ),
                           onChanged: (value) {
+                            setState(() {
+                              showError = false;
+                            });
+
                             if (value.isNotEmpty && index < 5) {
                               FocusScope.of(context).nextFocus();
                             }
@@ -103,7 +117,18 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
                     }),
                   ),
                 ),
+                if (showError)
+                  Padding(
+                    padding: EdgeInsets.only(top: 10.h),
+                    child: Text(
+                      appLocalizations.otp_required,
+                      style: textTheme.bodySmall?.copyWith(color: Colors.red),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+
                 SizedBox(height: 20.h),
+
                 Center(
                   child: seconds > 0
                       ? RichText(
@@ -140,6 +165,7 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
           ),
         ),
       ),
+
       bottomNavigationBar: Padding(
         padding: EdgeInsets.only(
           left: 24.w,
@@ -149,6 +175,12 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
         ),
         child: CustomElevatedButton(
           onPress: () {
+            if (!_isOtpComplete()) {
+              setState(() {
+                showError = true;
+              });
+              return;
+            }
             Navigator.pushNamed(context, RoutesManager.changePassword);
           },
           text: appLocalizations.confirm,
