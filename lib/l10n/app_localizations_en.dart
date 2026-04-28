@@ -54,6 +54,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwords_not_match => 'Passwords do not match';
 
   @override
+  String get location_required => 'Please enter your location';
+
+  @override
+  String get profile_updated_success => 'Profile updated successfully';
+
+  @override
+  String get search => 'Search.....';
+
+  @override
   String get login_success => 'Logged in successfully';
 
   @override

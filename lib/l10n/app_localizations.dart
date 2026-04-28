@@ -10,10 +10,15 @@ import 'app_localizations_de.dart';
 import 'app_localizations_en.dart';
 import 'app_localizations_es.dart';
 import 'app_localizations_fr.dart';
+import 'app_localizations_hi.dart';
 import 'app_localizations_it.dart';
 import 'app_localizations_ja.dart';
+import 'app_localizations_ko.dart';
+import 'app_localizations_nl.dart';
 import 'app_localizations_pt.dart';
 import 'app_localizations_ru.dart';
+import 'app_localizations_sv.dart';
+import 'app_localizations_tr.dart';
 import 'app_localizations_zh.dart';
 
 // ignore_for_file: type=lint
@@ -107,10 +112,15 @@ abstract class AppLocalizations {
     Locale('en'),
     Locale('es'),
     Locale('fr'),
+    Locale('hi'),
     Locale('it'),
     Locale('ja'),
+    Locale('ko'),
+    Locale('nl'),
     Locale('pt'),
     Locale('ru'),
+    Locale('sv'),
+    Locale('tr'),
     Locale('zh'),
   ];
 
@@ -203,6 +213,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Passwords do not match'**
   String get passwords_not_match;
+
+  /// No description provided for @location_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your location'**
+  String get location_required;
+
+  /// No description provided for @profile_updated_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile updated successfully'**
+  String get profile_updated_success;
+
+  /// No description provided for @search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search.....'**
+  String get search;
 
   /// No description provided for @login_success.
   ///
@@ -893,10 +921,15 @@ class _AppLocalizationsDelegate
     'en',
     'es',
     'fr',
+    'hi',
     'it',
     'ja',
+    'ko',
+    'nl',
     'pt',
     'ru',
+    'sv',
+    'tr',
     'zh',
   ].contains(locale.languageCode);
 
@@ -917,14 +950,24 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsEs();
     case 'fr':
       return AppLocalizationsFr();
+    case 'hi':
+      return AppLocalizationsHi();
     case 'it':
       return AppLocalizationsIt();
     case 'ja':
       return AppLocalizationsJa();
+    case 'ko':
+      return AppLocalizationsKo();
+    case 'nl':
+      return AppLocalizationsNl();
     case 'pt':
       return AppLocalizationsPt();
     case 'ru':
       return AppLocalizationsRu();
+    case 'sv':
+      return AppLocalizationsSv();
+    case 'tr':
+      return AppLocalizationsTr();
     case 'zh':
       return AppLocalizationsZh();
   }

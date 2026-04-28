@@ -35,6 +35,7 @@ class LanguageTile extends StatelessWidget {
           ),
         ),
         child: Row(
+          textDirection: TextDirection.ltr,
           children: [
             Text(lang.flag, style: Theme.of(context).textTheme.bodyMedium),
 

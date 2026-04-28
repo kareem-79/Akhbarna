@@ -30,31 +30,40 @@ class AppLocalizationsFr extends AppLocalizations {
   String get password => 'Mot de passe';
 
   @override
-  String get name_required => 'Please enter your name';
+  String get name_required => 'Veuillez entrer votre nom';
 
   @override
-  String get name_min => 'Name must be at least 6 characters long';
+  String get name_min => 'Le nom doit contenir au moins 6 caractères';
 
   @override
-  String get email_required => 'Please enter your email address';
+  String get email_required => 'Veuillez entrer votre adresse e-mail';
 
   @override
-  String get email_invalid => 'Invalid email address';
+  String get email_invalid => 'Adresse e-mail invalide';
 
   @override
-  String get password_required => 'Please enter your password';
+  String get password_required => 'Veuillez entrer votre mot de passe';
 
   @override
   String get forgot_password => 'Mot de passe oublié ?';
 
   @override
-  String get otp_required => 'Please enter full OTP code';
+  String get otp_required => 'Veuillez entrer le code de vérification complet';
 
   @override
-  String get passwords_not_match => 'Passwords do not match';
+  String get passwords_not_match => 'Les mots de passe ne correspondent pas';
 
   @override
-  String get login_success => 'Logged in successfully';
+  String get location_required => 'Veuillez entrer votre localisation';
+
+  @override
+  String get profile_updated_success => 'Profil mis à jour avec succès';
+
+  @override
+  String get search => 'Rechercher...';
+
+  @override
+  String get login_success => 'Connexion réussie';
 
   @override
   String get verify_account => 'Vérifier le compte';
@@ -97,7 +106,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get enter_code =>
-      'Entrez le code de vérification à 6 chiffres envoyé à votre e-mail';
+      'Entrez le code de vérification à 6 chiffres envoyé à votre adresse e-mail';
 
   @override
   String get resend_code_in => 'Renvoyer le code dans';
@@ -114,10 +123,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get password_rule2 =>
-      'Your password must be at least 8 characters long and must include a mix of numbers, letters, and special characters (!\$@%).';
+      'Votre mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, un chiffre et un symbole (!\$@%).';
 
   @override
-  String get password_changed => 'Password has been changed';
+  String get password_changed => 'Mot de passe modifié avec succès';
 
   @override
   String get reset_password_instruction =>
@@ -125,7 +134,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get reset_password_note =>
-      'Si cet e-mail est enregistré, vous recevrez un message pour réinitialiser votre mot de passe dans quelques minutes.';
+      'Si cet e-mail est enregistré chez nous, vous recevrez un message pour réinitialiser votre mot de passe dans quelques minutes.';
 
   @override
   String get confirm => 'Confirmer';
@@ -215,7 +224,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onboarding_title2 =>
-      'Chaque nouvelle qui vous intéresse, nous vous la livrons rapidement.';
+      'Chaque actualité qui vous intéresse, nous vous la livrons rapidement.';
 
   @override
   String get onboarding_desc2 => 'Tous les détails entre vos mains.';
@@ -226,7 +235,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onboarding_desc3 =>
-      'Des actualités du cœur de la rue de manière réelle.';
+      'Des actualités du cœur de la rue, de manière réelle et vivante.';
 
   @override
   String get onboarding_title4 =>
@@ -250,11 +259,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get choose_interests_desc =>
-      'Choisissez les sujets que vous aimez et laissez Akhbarna vous apporter les actualités les plus importantes. Choisissez au moins 3';
+      'Choisissez les sujets qui vous intéressent et laissez Akhbarna vous apporter les actualités les plus importantes. Sélectionnez au moins 3.';
 
   @override
   String get select_min_3_interests =>
-      'Choisissez au moins 3 centres d\'intérêt';
+      'Sélectionnez au moins 3 centres d\'intérêt';
 
   @override
   String get account_ready => 'Votre compte est prêt,';
@@ -266,11 +275,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get agree_to => 'J\'accepte les';
 
   @override
-  String get terms_and_conditions => ' Conditions générales d\'utilisation ';
+  String get terms_and_conditions => 'Conditions générales d\'utilisation';
 
   @override
   String get privacy_policy_and_pricing =>
-      'et la politique de confidentialité et les tarifs';
+      'et la politique de confidentialité ainsi que les tarifs';
 
   @override
   String get discover_news => 'Découvrir les actualités';
@@ -307,14 +316,14 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get terms_1_desc =>
-      'Cette application propose du contenu d\'actualités et d\'information. En utilisant l\'application, vous acceptez de l\'utiliser légalement et de ne pas en abuser.';
+      'Cette application propose du contenu d\'actualités et d\'information. En l\'utilisant, vous acceptez de l\'utiliser de manière légale et sans abus.';
 
   @override
   String get terms_2_title => 'Confidentialité';
 
   @override
   String get terms_2_desc =>
-      'Nous respectons votre vie privée et nous engageons à protéger vos données personnelles. Les informations sont utilisées uniquement pour améliorer l\'expérience utilisateur.';
+      'Nous respectons votre vie privée et nous engageons à protéger vos données personnelles. Les informations sont utilisées uniquement pour améliorer votre expérience.';
 
   @override
   String get terms_3_title => 'Données personnelles';
@@ -335,82 +344,86 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get terms_5_desc =>
-      'Nous pouvons mettre à jour ces conditions de temps à autre et nous informerons les utilisateurs des changements importants dans l\'application.';
+      'Nous pouvons mettre à jour ces conditions de temps à autre et nous vous informerons des changements importants au sein de l\'application.';
 
   @override
   String get terms_6_title => 'Acceptation';
 
   @override
   String get terms_6_desc =>
-      'En utilisant l\'application, vous acceptez toutes les conditions générales mentionnées ci-dessus.';
+      'En utilisant l\'application, vous acceptez toutes les conditions mentionnées ci-dessus.';
 
   @override
-  String get logout_confirm_title => 'Are you sure you want to logout?';
+  String get logout_confirm_title =>
+      'Êtes-vous sûr de vouloir vous déconnecter ?';
 
   @override
-  String get logout_confirm_message => 'You will need to login again.';
+  String get logout_confirm_message =>
+      'Vous devrez vous reconnecter par la suite.';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'Annuler';
 
   @override
-  String get yes => 'Yes';
+  String get yes => 'Oui';
 
   @override
-  String get location => 'Location';
+  String get location => 'Localisation';
 
   @override
-  String get about_app_title => 'About Akhbarna';
+  String get about_app_title => 'À propos d\'Akhbarna';
 
   @override
   String get about_app_description =>
-      'Akhbarna is a modern news platform that aims to deliver news in a fast, reliable, and easily accessible way.';
+      'Akhbarna est une plateforme d\'actualités moderne qui vise à offrir des informations rapides, fiables et faciles d\'accès.';
 
   @override
   String get about_app_coverage =>
-      'We are committed to covering the most important local and international events across various fields such as politics, economy, sports, and technology.';
+      'Nous couvrons les événements les plus importants au niveau local et international dans des domaines tels que la politique, l\'économie, le sport et la technologie.';
 
   @override
   String get about_app_experience =>
-      'The app features a simple and smooth user experience that allows users to follow the news anytime and anywhere, with real-time updates on the most important ongoing events.';
+      'L\'application offre une expérience fluide et intuitive qui vous permet de suivre les actualités à tout moment et n\'importe où, avec des mises à jour en temps réel.';
 
   @override
-  String get our_goal => 'Our Goal';
+  String get our_goal => 'Notre objectif';
 
   @override
-  String get goal_1 => 'Provide accurate and trustworthy news content';
+  String get goal_1 => 'Fournir un contenu d\'actualités précis et fiable';
 
   @override
-  String get goal_2 => 'Simplify access to information for users';
+  String get goal_2 =>
+      'Simplifier l\'accès à l\'information pour l\'utilisateur';
 
   @override
-  String get goal_3 => 'Present news in an organized and easy-to-read format';
+  String get goal_3 =>
+      'Présenter les actualités de manière claire et agréable à lire';
 
   @override
-  String get goal_4 => 'Keep up with events as they happen, moment by moment';
+  String get goal_4 => 'Rester à jour avec les événements en temps réel';
 
   @override
-  String get app_features => 'App Features';
+  String get app_features => 'Fonctionnalités de l\'application';
 
   @override
-  String get feature_1 => 'Continuous news updates';
+  String get feature_1 => 'Mise à jour continue des actualités';
 
   @override
-  String get feature_2 => 'Diverse news categories';
+  String get feature_2 => 'Catégories variées d\'actualités';
 
   @override
-  String get feature_3 => 'Fast and easy-to-use interface';
+  String get feature_3 => 'Interface simple et rapide';
 
   @override
-  String get feature_4 => 'News search capability';
+  String get feature_4 => 'Recherche d\'actualités';
 
   @override
-  String get feature_5 => 'Comfortable reading experience';
+  String get feature_5 => 'Expérience de lecture confortable';
 
   @override
-  String get our_vision => 'Our Vision';
+  String get our_vision => 'Notre vision';
 
   @override
   String get vision_description =>
-      'We aspire to become a trusted source for daily news, helping users stay informed about everything happening around them in a simple and effective way.';
+      'Nous aspirons à devenir une source fiable d\'actualités quotidiennes et à vous aider à rester informé de tout ce qui se passe autour de vous, de manière simple et efficace.';
 }

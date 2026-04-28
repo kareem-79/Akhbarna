@@ -45,7 +45,7 @@ class Akhbarna extends StatelessWidget {
                 );
               },
               onGenerateRoute: RoutesManager.routes,
-              initialRoute: RoutesManager.profile,
+              initialRoute: RoutesManager.mainLayout,
               localizationsDelegates: const [
                 AppLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,
@@ -63,6 +63,11 @@ class Akhbarna extends StatelessWidget {
                 Locale('ja'),
                 Locale('ru'),
                 Locale('pt'),
+                Locale('hi'),
+                Locale('ko'),
+                Locale('nl'),
+                Locale('sv'),
+                Locale('tr'),
               ],
             );
           },

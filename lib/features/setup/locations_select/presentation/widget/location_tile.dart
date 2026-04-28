@@ -37,6 +37,7 @@ class LocationTile extends StatelessWidget {
           ),
         ),
         child: Row(
+          textDirection: TextDirection.ltr,
           children: [
             Text(
               location.flag,

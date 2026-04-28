@@ -54,6 +54,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get passwords_not_match => 'كلمتا المرور غير متطابقتين';
 
   @override
+  String get location_required => 'من فضلك أدخل الموقع';
+
+  @override
+  String get profile_updated_success => 'تم تحديث البروفايل بنجاح';
+
+  @override
+  String get search => 'البحث.....';
+
+  @override
   String get login_success => 'تم تسجيل الدخول بنجاح';
 
   @override

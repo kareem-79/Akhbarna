@@ -14,4 +14,5 @@ class ColorsManagers{
   static Color cyan=Color(0xff00BBCA);
   static Color riverBed=Color(0xff4B5563);
   static Color vividTangerine=Color(0xffFF8080);
+  static Color azureRadiance=Color(0xff137FEC);
 }

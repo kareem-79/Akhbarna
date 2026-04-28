@@ -11,9 +11,7 @@ class ImageManagers{
   static const String changePassword="$base/change_password.png";
   static const String selectCountry="$base/select_country.png";
   static const String location="$base/location.png";
-  static const String argentina="$base/Argentina.png";
-  static const String arabic="$base/arabic.png";
-
+  static const String news1="$base/new1.png";
 }
 class IconManagers{
   static const String base="assets/images";
@@ -28,6 +26,7 @@ class IconManagers{
   static const String fontStyle="$base/Font Style Formatting.png";
   static const String edit="$base/edit.svg";
   static const String editPng="$base/edit.png";
+  static const String notification="$base/notification.svg";
 }
 class CategoryImageManagers{
   static const String base="assets/images";

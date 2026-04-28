@@ -15,7 +15,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get welcome_back => 'おかえりなさい、ログインしてください';
 
   @override
-  String get signup => '新規アカウント登録';
+  String get signup => '新規登録';
 
   @override
   String get login => 'ログイン';
@@ -30,34 +30,43 @@ class AppLocalizationsJa extends AppLocalizations {
   String get password => 'パスワード';
 
   @override
-  String get name_required => 'Please enter your name';
+  String get name_required => 'ユーザー名を入力してください';
 
   @override
-  String get name_min => 'Name must be at least 6 characters long';
+  String get name_min => 'ユーザー名は6文字以上で入力してください';
 
   @override
-  String get email_required => 'Please enter your email address';
+  String get email_required => 'メールアドレスを入力してください';
 
   @override
-  String get email_invalid => 'Invalid email address';
+  String get email_invalid => 'メールアドレスの形式が正しくありません';
 
   @override
-  String get password_required => 'Please enter your password';
+  String get password_required => 'パスワードを入力してください';
 
   @override
   String get forgot_password => 'パスワードをお忘れですか？';
 
   @override
-  String get otp_required => 'Please enter full OTP code';
+  String get otp_required => '6桁の確認コードをすべて入力してください';
 
   @override
-  String get passwords_not_match => 'Passwords do not match';
+  String get passwords_not_match => 'パスワードが一致しません';
 
   @override
-  String get login_success => 'Logged in successfully';
+  String get location_required => '場所を入力してください';
 
   @override
-  String get verify_account => 'アカウント確認';
+  String get profile_updated_success => 'プロフィールが更新されました';
+
+  @override
+  String get search => '検索...';
+
+  @override
+  String get login_success => 'ログインに成功しました';
+
+  @override
+  String get verify_account => 'アカウントを確認';
 
   @override
   String get option => 'オプション';
@@ -72,7 +81,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get register_now => '今すぐ登録';
 
   @override
-  String get or_login_with => 'または次の方法でログイン';
+  String get or_login_with => 'または以下の方法でログイン';
 
   @override
   String get google => 'Google';
@@ -96,7 +105,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get create_account => 'アカウントを作成';
 
   @override
-  String get enter_code => 'メールに送信された6桁の確認コードを入力してください';
+  String get enter_code => 'メールアドレスに送信された6桁の確認コードを入力してください';
 
   @override
   String get resend_code_in => 'コードを再送信するまで';
@@ -108,20 +117,21 @@ class AppLocalizationsJa extends AppLocalizations {
   String get resend_code => 'コードを再送信';
 
   @override
-  String get password_rule => '最低8文字、大文字1つ、数字1つ、記号1つ';
+  String get password_rule => '最低8文字、大文字・数字・記号をそれぞれ1つ以上含む';
 
   @override
   String get password_rule2 =>
-      'Your password must be at least 8 characters long and must include a mix of numbers, letters, and special characters (!\$@%).';
+      'パスワードは8文字以上で、大文字・小文字・数字・記号 (!\$@%) を含める必要があります。';
 
   @override
-  String get password_changed => 'Password has been changed';
+  String get password_changed => 'パスワードを変更しました';
 
   @override
-  String get reset_password_instruction => 'パスワードをリセットするにはメールアドレスを入力してください。';
+  String get reset_password_instruction => 'パスワードをリセットするには、メールアドレスを入力してください。';
 
   @override
-  String get reset_password_note => 'このメールアドレスが登録されている場合、数分以内にリセットメールが届きます。';
+  String get reset_password_note =>
+      'このメールアドレスが登録されている場合、数分以内にリセット用のメールをお送りします。';
 
   @override
   String get confirm => '確認';
@@ -133,7 +143,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get new_password => '新しいパスワード';
 
   @override
-  String get confirm_new_password => '新しいパスワードの確認';
+  String get confirm_new_password => '新しいパスワード（確認）';
 
   @override
   String get general_settings => '一般設定';
@@ -145,13 +155,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get account_information => 'アカウント情報';
 
   @override
-  String get security_settings => 'セキュリティ設定';
+  String get security_settings => 'セキュリティ';
 
   @override
   String get help_center => 'ヘルプセンター';
 
   @override
-  String get about_us => '私たちについて';
+  String get about_us => 'アプリについて';
 
   @override
   String get lang_english => '英語';
@@ -175,7 +185,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get logout => 'ログアウト';
 
   @override
-  String get edit_profile => 'プロフィール編集';
+  String get edit_profile => 'プロフィールを編集';
 
   @override
   String get save_changes => '変更を保存';
@@ -199,28 +209,28 @@ class AppLocalizationsJa extends AppLocalizations {
   String get auto_simple => '自動';
 
   @override
-  String get auto_device => '自動（デバイス設定に従う）';
+  String get auto_device => '自動（端末の設定に従う）';
 
   @override
   String get onboarding_title1 => '母国から世界とつながろう。';
 
   @override
-  String get onboarding_desc1 => '信頼できる情報源から最新ニュースをお届けします';
+  String get onboarding_desc1 => '信頼できる情報源から最新のニュースをお届けします';
 
   @override
-  String get onboarding_title2 => 'あなたの興味分野のニュースを素早くお届け。';
+  String get onboarding_title2 => '興味のあるニュースを素早くお届けします。';
 
   @override
   String get onboarding_desc2 => 'すべての詳細が手元に。';
 
   @override
-  String get onboarding_title3 => '本物のアラブのニュース体験を。';
+  String get onboarding_title3 => '本物のアラブの感性でニュースを体験。';
 
   @override
-  String get onboarding_desc3 => 'ストリートからのリアルなニュース。';
+  String get onboarding_desc3 => 'ストリートから届くリアルなニュースをお届けします。';
 
   @override
-  String get onboarding_title4 => '芸術から政治まで、「أخبارنا」に何でもあります。';
+  String get onboarding_title4 => '芸術から政治まで、「Akhbarna」にすべて揃っています。';
 
   @override
   String get onboarding_skip => 'スキップ';
@@ -232,14 +242,14 @@ class AppLocalizationsJa extends AppLocalizations {
   String get choose_language => '言語を選択';
 
   @override
-  String get fav_language => 'お好みの言語を選択してください。これにより、より良いサービスを提供できます。';
+  String get fav_language => 'お好みの言語を選択してください。より良いサービスを提供するためです。';
 
   @override
-  String get choose_interests => '興味を選択';
+  String get choose_interests => '興味のある分野を選択';
 
   @override
   String get choose_interests_desc =>
-      '好きなトピックを最低3つ選んでください。あなたに合った重要なニュースをお届けします。';
+      '興味のあるトピックを最低3つ選んでください。あなたに合った重要なニュースをお届けします。';
 
   @override
   String get select_min_3_interests => '最低3つの興味を選択してください';
@@ -251,7 +261,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get lets_start => '始めましょう！';
 
   @override
-  String get agree_to => '同意します';
+  String get agree_to => '同意する';
 
   @override
   String get terms_and_conditions => '利用規約';
@@ -281,7 +291,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get choose_sources => 'ニュースソースを選択';
 
   @override
-  String get select_min_interests => '最低1つの興味を選択';
+  String get select_min_interests => '最低1つの興味を選択してください';
 
   @override
   String get choose_country => '国を選択';
@@ -294,106 +304,108 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get terms_1_desc =>
-      'このアプリはニュース・情報コンテンツを提供します。アプリを使用することで、法的に正しく使用し、悪用しないことに同意したものとみなします。';
+      'このアプリはニュースと情報コンテンツを提供します。アプリを利用することで、法的に適切に使用し、悪用しないことに同意したものとみなされます。';
 
   @override
   String get terms_2_title => 'プライバシー';
 
   @override
-  String get terms_2_desc => '私たちはあなたのプライバシーを尊重し、個人データを保護します。';
+  String get terms_2_desc =>
+      '私たちはお客様のプライバシーを尊重し、個人情報の保護に努めます。情報はサービス向上のためにのみ使用されます。';
 
   @override
   String get terms_3_title => '個人データ';
 
   @override
-  String get terms_3_desc => 'デバイス情報など最小限のデータを収集し、サービス向上に使用します。';
+  String get terms_3_desc =>
+      'パフォーマンス向上のため、デバイス情報など最小限のデータを収集する場合があります。すべてのデータは安全に保管されます。';
 
   @override
   String get terms_4_title => 'コンテンツ';
 
   @override
   String get terms_4_desc =>
-      'ニュースはさまざまなソースから収集されます。外部コンテンツの正確性について完全な責任は負いません。';
+      'ニュースや記事はさまざまな情報源から収集されています。外部コンテンツの正確性について、完全な責任を負うものではありません。';
 
   @override
-  String get terms_5_title => '更新';
+  String get terms_5_title => '規約の更新';
 
   @override
-  String get terms_5_desc => '利用規約は随時更新される可能性があります。重要な変更はアプリ内でお知らせします。';
+  String get terms_5_desc => '本利用規約は必要に応じて更新される場合があります。重要な変更はアプリ内でお知らせします。';
 
   @override
   String get terms_6_title => '同意';
 
   @override
-  String get terms_6_desc => 'アプリを使用することで、上記のすべての利用規約に同意したものとみなされます。';
+  String get terms_6_desc => '本アプリを利用することで、上記のすべての利用規約に同意したものとみなされます。';
 
   @override
-  String get logout_confirm_title => 'Are you sure you want to logout?';
+  String get logout_confirm_title => 'ログアウトしますか？';
 
   @override
-  String get logout_confirm_message => 'You will need to login again.';
+  String get logout_confirm_message => '再度ログインする必要があります。';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'キャンセル';
 
   @override
-  String get yes => 'Yes';
+  String get yes => 'はい';
 
   @override
-  String get location => 'Location';
+  String get location => '位置情報';
 
   @override
-  String get about_app_title => 'About Akhbarna';
+  String get about_app_title => 'Akhbarnaについて';
 
   @override
   String get about_app_description =>
-      'Akhbarna is a modern news platform that aims to deliver news in a fast, reliable, and easily accessible way.';
+      'Akhbarnaは、迅速で信頼性が高く、誰でも簡単にアクセスできる現代的なニュースプラットフォームです。';
 
   @override
   String get about_app_coverage =>
-      'We are committed to covering the most important local and international events across various fields such as politics, economy, sports, and technology.';
+      '政治、経済、スポーツ、テクノロジーなど、現地および世界の主要な出来事を幅広くカバーします。';
 
   @override
   String get about_app_experience =>
-      'The app features a simple and smooth user experience that allows users to follow the news anytime and anywhere, with real-time updates on the most important ongoing events.';
+      'シンプルで使いやすいインターフェースにより、いつでもどこでも最新ニュースをリアルタイムでご覧いただけます。';
 
   @override
-  String get our_goal => 'Our Goal';
+  String get our_goal => '私たちの目標';
 
   @override
-  String get goal_1 => 'Provide accurate and trustworthy news content';
+  String get goal_1 => '正確で信頼できるニュースコンテンツを提供すること';
 
   @override
-  String get goal_2 => 'Simplify access to information for users';
+  String get goal_2 => '情報を簡単にアクセスできるようにすること';
 
   @override
-  String get goal_3 => 'Present news in an organized and easy-to-read format';
+  String get goal_3 => 'ニュースを見やすく整理して表示すること';
 
   @override
-  String get goal_4 => 'Keep up with events as they happen, moment by moment';
+  String get goal_4 => '出来事をリアルタイムで追い続けること';
 
   @override
-  String get app_features => 'App Features';
+  String get app_features => 'アプリの特徴';
 
   @override
-  String get feature_1 => 'Continuous news updates';
+  String get feature_1 => 'ニュースの継続的な更新';
 
   @override
-  String get feature_2 => 'Diverse news categories';
+  String get feature_2 => '多彩なニュースカテゴリ';
 
   @override
-  String get feature_3 => 'Fast and easy-to-use interface';
+  String get feature_3 => 'シンプルで高速なユーザーインターフェース';
 
   @override
-  String get feature_4 => 'News search capability';
+  String get feature_4 => 'ニュース検索機能';
 
   @override
-  String get feature_5 => 'Comfortable reading experience';
+  String get feature_5 => '快適な読書体験';
 
   @override
-  String get our_vision => 'Our Vision';
+  String get our_vision => '私たちのビジョン';
 
   @override
   String get vision_description =>
-      'We aspire to become a trusted source for daily news, helping users stay informed about everything happening around them in a simple and effective way.';
+      '日常の信頼できるニュースソースとなり、ユーザーの皆さまが身の回りの出来事をシンプルかつ効果的に把握できるお手伝いをすることです。';
 }

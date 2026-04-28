@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:akhbarna/features/layout/profile/presentation/screens/logout/presentation/logout_bottom_sheet.dart';
 import 'package:akhbarna/features/layout/profile/presentation/widget/custom_blur_bottom_sheet.dart';
 import 'package:akhbarna/l10n/app_localizations.dart';
@@ -20,11 +18,14 @@ class ProfileTab extends StatefulWidget {
 }
 
 class _ProfileTabState extends State<ProfileTab> {
+  String? _profileImagePath;
+
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     Color shadowColor = Theme.of(context).shadowColor;
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -40,8 +41,9 @@ class _ProfileTabState extends State<ProfileTab> {
                 Row(
                   children: [
                     EnlargableProfileAvatar(
-                      imageUrl: "https://i.pravatar.cc/300",
+                      imagePath: _profileImagePath,
                       radius: 40.r,
+                      isEditable: false,
                     ),
                     SizedBox(width: 12.w),
                     Expanded(
@@ -81,12 +83,17 @@ class _ProfileTabState extends State<ProfileTab> {
                     ProfileItemWidget(
                       icon: Icons.person_outline_outlined,
                       title: appLocalizations.account_information,
-                      onTap: () {
-                        Navigator.pushNamed(
+                      onTap: () async {
+                        final result = await Navigator.pushNamed(
                           context,
                           RoutesManager.editProfile,
-                          arguments: true,
+                          arguments: _profileImagePath,
                         );
+                        if (result != null && result is String) {
+                          setState(() {
+                            _profileImagePath = result;
+                          });
+                        }
                       },
                     ),
                     ProfileItemWidget(

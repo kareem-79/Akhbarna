@@ -16,12 +16,6 @@ class AppLanguage {
   static const List<AppLanguage> languages = [
     AppLanguage(
       code: 'ar',
-      name: 'العربية (مصر)',
-      flag: '🇪🇬',
-      locale: Locale('ar', 'EG'),
-    ),
-    AppLanguage(
-      code: 'ar',
       name: 'العربية (السعودية)',
       flag: '🇸🇦',
       locale: Locale('ar', 'SA'),
@@ -31,6 +25,18 @@ class AppLanguage {
       name: 'العربية (الإمارات)',
       flag: '🇦🇪',
       locale: Locale('ar', 'AE'),
+    ),
+    AppLanguage(
+      code: 'ar',
+      name: 'العربية (مصر)',
+      flag: '🇪🇬',
+      locale: Locale('ar', 'EG'),
+    ),
+    AppLanguage(
+      code: 'de',
+      name: 'German',
+      flag: '🇩🇪',
+      locale: Locale('de', 'DE'),
     ),
     AppLanguage(
       code: 'en',
@@ -51,34 +57,16 @@ class AppLanguage {
       locale: Locale('fr', 'FR'),
     ),
     AppLanguage(
-      code: 'de',
-      name: 'German',
-      flag: '🇩🇪',
-      locale: Locale('de', 'DE'),
+      code: 'hi',
+      name: 'Hindi',
+      flag: '🇮🇳',
+      locale: Locale('hi', 'IN'),
     ),
     AppLanguage(
       code: 'it',
       name: 'Italian',
       flag: '🇮🇹',
       locale: Locale('it', 'IT'),
-    ),
-    AppLanguage(
-      code: 'pt',
-      name: 'Portuguese',
-      flag: '🇵🇹',
-      locale: Locale('pt', 'PT'),
-    ),
-    AppLanguage(
-      code: 'ru',
-      name: 'Russian',
-      flag: '🇷🇺',
-      locale: Locale('ru', 'RU'),
-    ),
-    AppLanguage(
-      code: 'zh',
-      name: 'Chinese',
-      flag: '🇨🇳',
-      locale: Locale('zh', 'CN'),
     ),
     AppLanguage(
       code: 'ja',
@@ -93,28 +81,40 @@ class AppLanguage {
       locale: Locale('ko', 'KR'),
     ),
     AppLanguage(
-      code: 'tr',
-      name: 'Turkish',
-      flag: '🇹🇷',
-      locale: Locale('tr', 'TR'),
-    ),
-    AppLanguage(
-      code: 'hi',
-      name: 'Hindi',
-      flag: '🇮🇳',
-      locale: Locale('hi', 'IN'),
-    ),
-    AppLanguage(
       code: 'nl',
       name: 'Dutch',
       flag: '🇳🇱',
       locale: Locale('nl', 'NL'),
     ),
     AppLanguage(
+      code: 'pt',
+      name: 'Portuguese',
+      flag: '🇵🇹',
+      locale: Locale('pt', 'PT'),
+    ),
+    AppLanguage(
+      code: 'ru',
+      name: 'Russian',
+      flag: '🇷🇺',
+      locale: Locale('ru', 'RU'),
+    ),
+    AppLanguage(
       code: 'sv',
       name: 'Swedish',
       flag: '🇸🇪',
       locale: Locale('sv', 'SE'),
+    ),
+    AppLanguage(
+      code: 'tr',
+      name: 'Turkish',
+      flag: '🇹🇷',
+      locale: Locale('tr', 'TR'),
+    ),
+    AppLanguage(
+      code: 'zh',
+      name: 'Chinese',
+      flag: '🇨🇳',
+      locale: Locale('zh', 'CN'),
     ),
   ];
 }

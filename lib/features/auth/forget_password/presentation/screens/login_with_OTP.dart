@@ -181,7 +181,7 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
               });
               return;
             }
-            Navigator.pushNamed(context, RoutesManager.changePassword);
+            Navigator.pushNamed(context, RoutesManager.changePassword,arguments: false);
           },
           text: appLocalizations.confirm,
           backgroundColor: ColorsManagers.red,

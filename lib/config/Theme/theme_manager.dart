@@ -8,6 +8,7 @@ class ThemeManager{
     scaffoldBackgroundColor: ColorsManagers.darkNavy,
     shadowColor: ColorsManagers.white,
     primaryColor: ColorsManagers.darkNavy,
+    cardColor: ColorsManagers.gray2,
     iconTheme: IconThemeData(color: ColorsManagers.white),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: ColorsManagers.gray,
@@ -90,6 +91,7 @@ class ThemeManager{
       scaffoldBackgroundColor: ColorsManagers.white,
       shadowColor: ColorsManagers.black,
       primaryColor: ColorsManagers.white,
+      cardColor: ColorsManagers.gray,
       iconTheme: IconThemeData(color: ColorsManagers.black),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: ColorsManagers.red,
