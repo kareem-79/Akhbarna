@@ -30,7 +30,6 @@ class CustomStartUpElevatedButton extends StatelessWidget {
         ),
         child: Row(
           mainAxisAlignment:mainAxisAlignment?? MainAxisAlignment.center,
-
           children: [
             Text(text),
             SizedBox(width: 8.w),

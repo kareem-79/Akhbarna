@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../../core/resources/assets_managers.dart';
 import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../model/category_model.dart';
 
@@ -35,19 +37,12 @@ class CategoryItemWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
+                SvgPicture.asset(
+                  category.isSelected
+                      ? IconManagers.selected
+                      : IconManagers.unSelected,
                   width: 20.w,
                   height: 20.h,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: ColorsManagers.red, width: 2),
-                    borderRadius: BorderRadius.circular(4.r),
-                    color: category.isSelected
-                        ? ColorsManagers.red
-                        : Colors.transparent,
-                  ),
-                  child: category.isSelected
-                      ? Icon(Icons.check, size: 14.sp, color: ColorsManagers.white)
-                      : null,
                 ),
                 Text(
                   category.name,
@@ -58,7 +53,7 @@ class CategoryItemWidget extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: 10.h),
             Expanded(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16.r),

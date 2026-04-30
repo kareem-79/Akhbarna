@@ -1,8 +1,10 @@
 import 'package:akhbarna/model/source_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:flutter_svg/svg.dart';
+import '../../../../../core/resources/assets_managers.dart';
 import '../../../../../core/resources/colors_managers.dart';
+
 class SourceItemWidget extends StatelessWidget {
   final SourceModel source;
   final VoidCallback onTap;
@@ -24,30 +26,24 @@ class SourceItemWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: ColorsManagers.darkNavy,
           borderRadius: BorderRadius.circular(35.r),
-          border:source.isSelected? Border.all(color: ColorsManagers.red):Border.all(color: ColorsManagers.white),
+          border: source.isSelected
+              ? Border.all(color: ColorsManagers.red)
+              : Border.all(color: ColorsManagers.white),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Align(
               alignment: Alignment.topRight,
-              child:
-                Container(
-                  width: 20.w,
-                  height: 20.h,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: ColorsManagers.red, width: 2),
-                    borderRadius: BorderRadius.circular(4.r),
-                    color: source.isSelected
-                        ? ColorsManagers.red
-                        : Colors.transparent,
-                  ),
-                  child: source.isSelected
-                      ?  Icon(Icons.check, size: 14.sp, color: ColorsManagers.white)
-                      : null,
-                ),
+              child: SvgPicture.asset(
+                source.isSelected
+                    ? IconManagers.selected
+                    : IconManagers.unSelected,
+                width: 20.w,
+                height: 20.h,
+              ),
             ),
-             SizedBox(height: 10.h),
+            SizedBox(height: 10.h),
             Expanded(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16.r),
@@ -55,16 +51,10 @@ class SourceItemWidget extends StatelessWidget {
                   source.imagePath,
                   width: 150.w,
                   height: 150.h,
-
                 ),
               ),
             ),
-            Center(
-              child: Text(
-                source.name,
-                style: textTheme.bodySmall,
-              ),
-            ),
+            Center(child: Text(source.name, style: textTheme.bodySmall)),
           ],
         ),
       ),

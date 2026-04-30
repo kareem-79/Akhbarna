@@ -1,11 +1,10 @@
-import 'package:akhbarna/core/resources/assets_managers.dart';
-import 'package:akhbarna/core/widget/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
-import '../../../../../../../core/resources/colors_managers.dart';
-import '../../../../../../../l10n/app_localizations.dart';
+import 'package:flutter_svg/svg.dart';
+import '../../../../../core/resources/assets_managers.dart';
+import '../../../../../core/resources/colors_managers.dart';
+import '../../../../../core/widget/custom_text_form_field.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class HomeHeaderWidget extends StatefulWidget {
   const HomeHeaderWidget({super.key});
@@ -32,7 +31,6 @@ class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
   @override
   Widget build(BuildContext context) {
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
-
     return Container(
       height: 140.h,
       width: double.infinity,

@@ -12,7 +12,6 @@ class TopNewsWidget extends StatefulWidget {
 }
 
 class _TopNewsWidgetState extends State<TopNewsWidget> {
-
   bool isSelected = false;
 
   @override
@@ -33,7 +32,7 @@ class _TopNewsWidgetState extends State<TopNewsWidget> {
             children: [
               Image.asset(ImageManagers.news1),
               PositionedDirectional(
-                top: 25.sp,
+                top: 20.sp,
                 start: 20.sp,
                 child: GestureDetector(
                   onTap: () {
@@ -85,9 +84,16 @@ class _TopNewsWidgetState extends State<TopNewsWidget> {
           Text(
             "السيسي عن إيران: نبذل جهدا كبيرا لخفض التصعيد",
             style: textTheme.bodyMedium,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
           SizedBox(height: 8.h),
-          Text("منذ دقيقتين", style: textTheme.bodySmall),
+          Text(
+            "منذ دقيقتين",
+            style: textTheme.bodySmall,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
           SizedBox(height: 8.h),
         ],
       ),

@@ -7,6 +7,7 @@ import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({super.key});
@@ -155,7 +156,7 @@ class _StartScreenState extends State<StartScreen> {
               children: [
                 Text(appLocalizations.discover_news),
                 SizedBox(width: 8.w),
-                Image.asset(
+                SvgPicture.asset(
                   IconManagers.arrowRight,
                   width: 30.w,
                   height: 30.h,

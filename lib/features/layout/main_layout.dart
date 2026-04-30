@@ -4,7 +4,6 @@ import 'package:akhbarna/core/widget/svg_widget.dart';
 import 'package:akhbarna/features/layout/bookMarket/presentation/screens/bookmarket_tab.dart';
 import 'package:akhbarna/features/layout/category/presentation/screens/category_tab.dart';
 import 'package:akhbarna/features/layout/home/presentation/screens/home_tap.dart';
-import 'package:akhbarna/features/layout/profile/presentation/screens/profile_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
