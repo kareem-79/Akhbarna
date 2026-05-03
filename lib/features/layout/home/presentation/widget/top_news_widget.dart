@@ -43,13 +43,9 @@ class _TopNewsWidgetState extends State<TopNewsWidget> {
                   child: CircleAvatar(
                     backgroundColor: ColorsManagers.white.withOpacity(.4),
                     child: Icon(
-                      isSelected
-                          ? Icons.bookmark
-                          : Icons.bookmark_border_outlined,
+                      isSelected ? Icons.bookmark : Icons.bookmark_border_outlined,
                       size: 30.sp,
-                      color: isSelected
-                          ? ColorsManagers.red
-                          : ColorsManagers.white,
+                      color: ColorsManagers.red,
                     ),
                   ),
                 ),

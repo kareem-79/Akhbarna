@@ -1,31 +1,37 @@
 import 'package:flutter/material.dart';
+import '../core/prefs_manager/prefs_manager.dart';
 import '../core/utils/font_size.dart';
 import '../model/language_model.dart';
 
 class ConfigProvider extends ChangeNotifier {
-  ThemeMode currentTheme = ThemeMode.dark;
+  ThemeMode currentTheme = ThemeMode.light;
 
   double _textScaleFactor = 1.0;
   bool _isSystemFont = true;
 
   FontSize _fontSize = FontSize.medium;
 
-  double get textScaleFactor => _textScaleFactor;
-
-  bool get isSystemFont => _isSystemFont;
-
-  FontSize get fontSize => _fontSize;
-
   Locale _currentLocale = const Locale('ar', 'EG');
 
+  double get textScaleFactor => _textScaleFactor;
+  bool get isSystemFont => _isSystemFont;
+  FontSize get fontSize => _fontSize;
   Locale get currentLocale => _currentLocale;
+
+  Future<void> loadSavedSettings() async {
+    currentTheme = PrefsManager.getSavedTheme() ?? ThemeMode.light;
+    _currentLocale =
+        PrefsManager.getSavedLanguage() ?? const Locale('ar', 'EG');
+
+    notifyListeners();
+  }
 
   String get currentLanguageName {
     return AppLanguage.languages
         .firstWhere(
           (lang) => lang.locale == _currentLocale,
-      orElse: () => AppLanguage.languages.first,
-    )
+          orElse: () => AppLanguage.languages.first,
+        )
         .name;
   }
 
@@ -34,17 +40,16 @@ class ConfigProvider extends ChangeNotifier {
   void changeAppTheme(ThemeMode newTheme) {
     if (currentTheme == newTheme) return;
     currentTheme = newTheme;
+    PrefsManager.saveTheme(currentTheme);
     notifyListeners();
   }
 
   void setSystemFont(bool isSystem) {
     _isSystemFont = isSystem;
-
     if (isSystem) {
       _fontSize = FontSize.auto;
       _textScaleFactor = 1.0;
     }
-
     notifyListeners();
   }
 
@@ -80,12 +85,13 @@ class ConfigProvider extends ChangeNotifier {
   void changeLanguage(Locale newLocale) {
     if (_currentLocale == newLocale) return;
     _currentLocale = newLocale;
+    PrefsManager.saveLanguage(newLocale);
     notifyListeners();
   }
 
   void changeLanguageByCode(String langCode) {
     final language = AppLanguage.languages.firstWhere(
-          (lang) => lang.code == langCode.toLowerCase(),
+      (lang) => lang.code == langCode.toLowerCase(),
       orElse: () => AppLanguage.languages.first,
     );
     changeLanguage(language.locale);

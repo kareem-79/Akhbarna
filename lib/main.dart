@@ -5,10 +5,20 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'config/Theme/theme_manager.dart';
+import 'core/prefs_manager/prefs_manager.dart';
 import 'l10n/app_localizations.dart';
 
-void main() {
-  runApp(const Akhbarna());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await PrefsManager.init();
+  final configProvider = ConfigProvider();
+  await configProvider.loadSavedSettings();
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => configProvider,
+      child: const Akhbarna(),
+    ),
+  );
 }
 
 class Akhbarna extends StatelessWidget {
@@ -16,62 +26,52 @@ class Akhbarna extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var configProvider = Provider.of<ConfigProvider>(context);
     return ScreenUtilInit(
       minTextAdapt: true,
       designSize: const Size(393, 852),
       splitScreenMode: true,
-      builder: (context, child) => MultiProvider(
-        providers: [
-          ChangeNotifierProvider<ConfigProvider>(
-            create: (_) => ConfigProvider(),
-          ),
+      builder: (context, child) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        locale: configProvider.currentLocale,
+        theme: ThemeManager.light,
+        darkTheme: ThemeManager.dark,
+        themeMode: configProvider.currentTheme,
+        builder: (context, child) {
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(
+              textScaler: configProvider.isSystemFont
+                  ? MediaQuery.textScalerOf(context)
+                  : TextScaler.linear(configProvider.textScaleFactor),
+            ),
+            child: child!,
+          );
+        },
+        onGenerateRoute: RoutesManager.routes,
+        initialRoute: RoutesManager.splash,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
         ],
-        child: Consumer<ConfigProvider>(
-          builder: (context, configProvider, child) {
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              locale: configProvider.currentLocale,
-              theme: ThemeManager.light,
-              darkTheme: ThemeManager.dark,
-              themeMode: configProvider.currentTheme,
-              builder: (context, child) {
-                return MediaQuery(
-                  data: MediaQuery.of(context).copyWith(
-                    textScaler: configProvider.isSystemFont
-                        ? MediaQuery.textScalerOf(context)
-                        : TextScaler.linear(configProvider.textScaleFactor),
-                  ),
-                  child: child!,
-                );
-              },
-              onGenerateRoute: RoutesManager.routes,
-              initialRoute: RoutesManager.mainLayout,
-              localizationsDelegates: const [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: const [
-                Locale('en'),
-                Locale('ar'),
-                Locale('fr'),
-                Locale('de'),
-                Locale('it'),
-                Locale('es'),
-                Locale('zh'),
-                Locale('ja'),
-                Locale('ru'),
-                Locale('pt'),
-                Locale('hi'),
-                Locale('ko'),
-                Locale('nl'),
-                Locale('sv'),
-                Locale('tr'),
-              ],
-            );
-          },
-        ),
+        supportedLocales: const [
+          Locale('en'),
+          Locale('ar'),
+          Locale('fr'),
+          Locale('de'),
+          Locale('it'),
+          Locale('es'),
+          Locale('zh'),
+          Locale('ja'),
+          Locale('ru'),
+          Locale('pt'),
+          Locale('hi'),
+          Locale('ko'),
+          Locale('nl'),
+          Locale('sv'),
+          Locale('tr'),
+        ],
       ),
     );
   }

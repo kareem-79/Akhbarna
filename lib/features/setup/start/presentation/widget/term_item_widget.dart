@@ -1,3 +1,4 @@
+import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,13 +27,14 @@ class TermsItemWidget extends StatelessWidget {
             "$index. $title",
             style: textTheme.bodyMedium?.copyWith(
               fontWeight: FontWeight.bold,
-              fontSize: 20.sp
+              color: ColorsManagers.white,
+              fontSize: 20.sp,
             ),
           ),
           SizedBox(height: 6.h),
           Text(
             description,
-            style: textTheme.bodySmall,
+            style: textTheme.bodySmall?.copyWith(color: ColorsManagers.white),
             softWrap: true,
             overflow: TextOverflow.visible,
           ),

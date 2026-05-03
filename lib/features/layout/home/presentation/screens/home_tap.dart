@@ -36,6 +36,7 @@ class _HomeTapState extends State<HomeTap> {
             child: Padding(
               padding: EdgeInsets.all(16.0.sp),
               child: SingleChildScrollView(
+                padding: EdgeInsets.zero,
                 child: Column(
                   children: [
                     TopNewsWidget(),

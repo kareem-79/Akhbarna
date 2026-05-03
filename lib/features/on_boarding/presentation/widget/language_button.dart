@@ -45,7 +45,7 @@ class LanguageButton extends StatelessWidget {
           config.currentLanguageCode == 'ar'
               ? appLocalizations.lang_english
               : appLocalizations.lang_arabic,
-          style: textTheme.labelSmall?.copyWith(color: ColorsManagers.white),
+          style: textTheme.labelSmall,
         ),
       ),
     );

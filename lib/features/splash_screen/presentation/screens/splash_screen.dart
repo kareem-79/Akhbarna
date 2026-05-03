@@ -4,6 +4,9 @@ import 'package:akhbarna/core/resources/routes_managers.dart';
 import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../core/prefs_manager/prefs_manager.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -57,8 +60,11 @@ class _SplashScreenState extends State<SplashScreen>
     await _textController.forward();
 
     await Future.delayed(const Duration(seconds: 1));
-
-    Navigator.pushReplacementNamed(context, RoutesManager.onBoarding);
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      RoutesManager.startUp,
+      (route) => false,
+    );
   }
 
   @override
@@ -74,7 +80,6 @@ class _SplashScreenState extends State<SplashScreen>
     TextTheme textTheme = Theme.of(context).textTheme;
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
-      backgroundColor: ColorsManagers.darkNavy,
       body: Stack(
         children: [
           Center(

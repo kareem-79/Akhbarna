@@ -24,11 +24,10 @@ class SourceItemWidget extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(14.sp),
         decoration: BoxDecoration(
-          color: ColorsManagers.darkNavy,
           borderRadius: BorderRadius.circular(35.r),
           border: source.isSelected
               ? Border.all(color: ColorsManagers.red)
-              : Border.all(color: ColorsManagers.white),
+              : Border.all(color: ColorsManagers.blue),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

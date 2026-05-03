@@ -1,3 +1,4 @@
+import 'package:akhbarna/features/layout/home/presentation/widget/notification_screen_widget.dart';
 import 'package:akhbarna/features/layout/profile/presentation/screens/security/presentation/security_screen.dart';
 import 'package:akhbarna/features/on_boarding/presentation/screens/on_boarding.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +38,7 @@ class RoutesManager {
   static const String editProfile = "EditProfile";
   static const String security = "Security";
   static const String aboutUs = "AboutUs";
+  static const String notification = "Notification";
 
   static Route<dynamic> routes(RouteSettings settings) {
     switch (settings.name) {
@@ -82,6 +84,8 @@ class RoutesManager {
         return MaterialPageRoute(builder: (_) => SecurityScreen());
       case aboutUs:
         return MaterialPageRoute(builder: (_) => AboutUsScreen());
+      case notification:
+        return MaterialPageRoute(builder: (_) => NotificationScreenWidget());
       default:
         return unDefinedRoute();
     }

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:akhbarna/core/resources/assets_managers.dart';
 import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/widget/svg_widget.dart';
@@ -20,32 +22,27 @@ class _MainLayoutState extends State<MainLayout> {
   int selectedIndex = 0;
 
   final List<Widget> tabs = [
-    HomeTap(),
-    CategoryTab(),
-    BookMarketTab(),
+    const HomeTap(),
+    const CategoryTab(),
+    const BookMarketTab(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      backgroundColor: ColorsManagers.darkNavy,
       body: tabs[selectedIndex],
+
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.all(16.sp),
+        padding: EdgeInsets.all(8.sp),
         child: ClipRRect(
-          clipBehavior: Clip.antiAlias,
-          borderRadius: BorderRadiusGeometry.circular(60.r),
-          child: Theme(
-            data: Theme.of(context).copyWith(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              splashFactory: NoSplash.splashFactory,
-            ),
-            child: BottomNavigationBar(
+          borderRadius: BorderRadius.circular(60.r),
+          child: BottomNavigationBar(
+              elevation: 0,
               currentIndex: selectedIndex,
               onTap: _onTab,
+              type: BottomNavigationBarType.fixed,
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
               items: [
                 BottomNavigationBarItem(
                   icon: SvgWidget(
@@ -79,10 +76,8 @@ class _MainLayoutState extends State<MainLayout> {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
-
   void _onTab(int newIndex) {
     if (newIndex == 3) {
       Navigator.pushNamed(context, RoutesManager.profile);

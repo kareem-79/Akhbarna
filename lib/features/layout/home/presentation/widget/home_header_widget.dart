@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../../core/resources/assets_managers.dart';
 import '../../../../../core/resources/colors_managers.dart';
+import '../../../../../core/resources/routes_managers.dart';
 import '../../../../../core/widget/custom_text_form_field.dart';
 import '../../../../../l10n/app_localizations.dart';
 
@@ -62,10 +63,15 @@ class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
                 ),
               ),
               SizedBox(width: 30.w),
-              SvgPicture.asset(
-                IconManagers.notification,
-                width: 30.w,
-                height: 30.h,
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, RoutesManager.notification);
+                },
+                child: SvgPicture.asset(
+                  IconManagers.notification,
+                  width: 30.w,
+                  height: 30.h,
+                ),
               ),
             ],
           ),

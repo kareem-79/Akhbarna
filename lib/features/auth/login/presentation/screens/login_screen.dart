@@ -4,6 +4,7 @@ import 'package:akhbarna/core/widget/custom_elevated_button.dart';
 import 'package:akhbarna/core/widget/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../core/prefs_manager/prefs_manager.dart';
 import '../../../../../core/resources/assets_managers.dart';
 import '../../../../../core/utils/ui_utils.dart';
 import '../../../../../core/utils/validation.dart';
@@ -101,7 +102,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.pushNamed(context, RoutesManager.forgetPassword);
                   },
                   text: appLocalizations.forgot_password,
-                  color: ColorsManagers.white,
                 ),
               ),
               SizedBox(height: 40.h),
@@ -157,7 +157,13 @@ class _LoginScreenState extends State<LoginScreen> {
         appLocalizations.login_success,
         ColorsManagers.riverBed,
       );
-      Navigator.pushNamed(context, RoutesManager.selectLocation);
+      bool hasEnteredBefore = await PrefsManager.checkEntering();
+      if (!hasEnteredBefore) {
+        await PrefsManager.saveEntering();
+        Navigator.pushReplacementNamed(context, RoutesManager.onBoarding);
+      } else {
+        Navigator.pushReplacementNamed(context, RoutesManager.mainLayout);
+      }
     }
   }
 }

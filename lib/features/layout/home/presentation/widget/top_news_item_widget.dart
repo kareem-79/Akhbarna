@@ -21,7 +21,7 @@ class _TopNewsItemWidgetState extends State<TopNewsItemWidget> {
     TextTheme textTheme = Theme.of(context).textTheme;
     Color cardColor = Theme.of(context).cardColor;
     return Container(
-      width: 350.w,
+      width: 330.w,
       height: 290.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30.r),

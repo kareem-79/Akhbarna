@@ -2,6 +2,7 @@ class ImageManagers {
   static const String base = "assets/images";
   static const String akhbarnaIcon = "$base/akhbarna_icon.png";
   static const String akhbarnaText = "$base/اخبارنا.png";
+  static const String akhbarnaTextLightMood = "$base/اخبارنا_light_mood.png";
   static const String onBoarding1 = "$base/on_boarding1.png";
   static const String onBoarding2 = "$base/on_boarding2.png";
   static const String onBoarding3 = "$base/on_boarding3.png";
@@ -33,6 +34,8 @@ class IconManagers {
   static const String notification = "$base/notification.svg";
   static const String selected = "$base/selected.svg";
   static const String unSelected = "$base/unSelected.svg";
+  static const String noNotification = "$base/no_notification.svg";
+  static const String delete = "$base/delete_icon.svg";
 }
 
 class CategoryImageManagers {
@@ -44,6 +47,16 @@ class CategoryImageManagers {
   static const String technology = "$base/technology.png";
   static const String health = "$base/health.png";
   static const String economy = "$base/economy.png";
+  static const String art = "$base/art.png";
+}
+
+class CategoryTabImageManagers {
+  static const String base = "assets/images/categories";
+  static const String international = "$base/international.png";
+  static const String economy = "$base/economy.png";
+  static const String health = "$base/health.png";
+  static const String politics = "$base/politics.png";
+  static const String sport = "$base/sport.png";
   static const String art = "$base/art.png";
 }
 

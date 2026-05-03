@@ -2,7 +2,9 @@ import 'package:akhbarna/core/resources/assets_managers.dart';
 import 'package:akhbarna/features/auth/widget/auth_switch_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import '../../core/widget/arrow_back_widget.dart';
+import '../../provider/config_provider.dart';
 
 class AuthLayout extends StatefulWidget {
   const AuthLayout({
@@ -40,10 +42,16 @@ class _AuthLayoutState extends State<AuthLayout> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ArrowBackWidget(),
-                  Image.asset(
-                    ImageManagers.akhbarnaText,
-                    width: 100.w,
-                    height: 50.h,
+                  Consumer<ConfigProvider>(
+                    builder: (context, provider, child) {
+                      return Image.asset(
+                        provider.currentTheme == ThemeMode.dark
+                            ? ImageManagers.akhbarnaText
+                            : ImageManagers.akhbarnaTextLightMood,
+                        width: 120.w,
+                        height: 70.h,
+                      );
+                    },
                   ),
                   Image.asset(
                     ImageManagers.akhbarnaIcon,
@@ -58,12 +66,8 @@ class _AuthLayoutState extends State<AuthLayout> {
                 onSwitch: widget.onSwitch,
                 textTheme: textTheme,
               ),
-
               SizedBox(height: 32.h),
-              Text(
-                widget.title,
-                style: textTheme.bodyLarge,
-              ),
+              Text(widget.title, style: textTheme.bodyLarge),
               SizedBox(height: 24.h),
               Expanded(child: widget.child),
             ],

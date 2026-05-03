@@ -20,6 +20,7 @@ class AuthSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    Color scaffoldColor = Theme.of(context).scaffoldBackgroundColor;
     return Align(
       alignment: Alignment.centerRight,
       child: GestureDetector(
@@ -28,7 +29,7 @@ class AuthSwitch extends StatelessWidget {
           height: 50.h,
           padding: EdgeInsets.symmetric(horizontal: 6.w),
           decoration: BoxDecoration(
-            color: ColorsManagers.darkNavy,
+            color: scaffoldColor,
             borderRadius: BorderRadius.circular(50.r),
           ),
           child: Row(

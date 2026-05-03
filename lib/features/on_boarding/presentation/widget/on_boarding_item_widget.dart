@@ -22,7 +22,7 @@ class OnBoardingItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
-
+    Color primaryColor = Theme.of(context).primaryColor;
     return Padding(
       padding: EdgeInsets.only(top: 8.0.sp),
       child: Stack(
@@ -60,7 +60,7 @@ class OnBoardingItemWidget extends StatelessWidget {
               children: [
                 Text(
                   model.title,
-                  style: textTheme.bodyMedium?.copyWith(fontSize: 20.sp),
+                  style: textTheme.bodyMedium?.copyWith(fontSize: 20.sp,color: primaryColor),
                 ),
                 Text(
                   model.description,
@@ -101,7 +101,7 @@ class OnBoardingItemWidget extends StatelessWidget {
                         } else {
                           Navigator.pushReplacementNamed(
                             context,
-                            RoutesManager.startUp,
+                            RoutesManager.selectLocation,
                           );
                         }
                       },

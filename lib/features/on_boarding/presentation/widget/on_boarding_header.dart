@@ -39,7 +39,7 @@ class OnBoardingHeader extends StatelessWidget {
             ),
             child: TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, RoutesManager.startUp);
+                Navigator.pushNamed(context, RoutesManager.selectLocation);
               },
               style: TextButton.styleFrom(
                 padding: EdgeInsets.zero,
@@ -48,9 +48,7 @@ class OnBoardingHeader extends StatelessWidget {
               ),
               child: Text(
                 appLocalizations.onboarding_skip,
-                style: textTheme.labelSmall?.copyWith(
-                  color: ColorsManagers.white,
-                ),
+                style: textTheme.labelSmall
               ),
             ),
           ),

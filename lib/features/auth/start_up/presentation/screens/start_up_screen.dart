@@ -21,6 +21,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    Color primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -40,7 +41,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                     bottom: 50.h,
                     left: 10.w,
                     right: 10.w,
-                    child: Text(appLocalizations.option, style: textTheme.bodyMedium),
+                    child: Text(appLocalizations.option, style: textTheme.bodyMedium?.copyWith(color: primaryColor)),
                   ),
                   Positioned(
                     bottom: 20.h,
@@ -48,7 +49,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                     right: 10.w,
                     child: Row(
                       children: [
-                        Text(appLocalizations.register, style: textTheme.bodyMedium),
+                        Text(appLocalizations.register, style: textTheme.bodyMedium?.copyWith(color: primaryColor)),
                         Text(
                           appLocalizations.login_simple,
                           style: textTheme.bodyMedium?.copyWith(
@@ -78,6 +79,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                 onPress: () {},
                 text: appLocalizations.login_with_facebook,
                 path: IconManagers.facebook,
+
               ),
               SizedBox(height: 20.h),
               Row(
