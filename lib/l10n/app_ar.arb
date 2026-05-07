@@ -17,6 +17,7 @@
   "forgot_password": "هل نسيت كلمة السر؟",
   "verify_account": "التحقق من الحساب",
   "login_success": "تم تسجيل الدخول بنجاح",
+  "failed_login": "فشل في تسجيل الدخول.",
   "otp_required": "من فضلك أدخل كود التحقق بالكامل",
   "passwords_not_match": "كلمتا المرور غير متطابقتين",
   "or_login_with": "أو ادخل باستخدام",

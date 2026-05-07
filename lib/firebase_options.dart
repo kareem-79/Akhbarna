@@ -85,4 +85,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'a5barna-efa19.firebasestorage.app',
     measurementId: 'G-6Z5FB2LSTS',
   );
+
 }

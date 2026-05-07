@@ -66,6 +66,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get login_success => '로그인 성공';
 
   @override
+  String get failed_login => 'Failed to Login.';
+
+  @override
   String get verify_account => '계정 인증';
 
   @override

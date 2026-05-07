@@ -66,6 +66,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get login_success => 'تم تسجيل الدخول بنجاح';
 
   @override
+  String get failed_login => 'فشل في تسجيل الدخول.';
+
+  @override
   String get verify_account => 'التحقق من الحساب';
 
   @override

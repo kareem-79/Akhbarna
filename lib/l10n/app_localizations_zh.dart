@@ -66,6 +66,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get login_success => '登录成功';
 
   @override
+  String get failed_login => 'Failed to Login.';
+
+  @override
   String get verify_account => '验证账号';
 
   @override

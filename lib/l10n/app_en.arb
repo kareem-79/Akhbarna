@@ -18,6 +18,7 @@
   "profile_updated_success": "Profile updated successfully",
   "search": "Search.....",
   "login_success": "Logged in successfully",
+  "failed_login": "Failed to Login.",
   "verify_account": "Verify account",
   "option": "Option",
   "register": "Sign up",

@@ -238,6 +238,12 @@ abstract class AppLocalizations {
   /// **'Logged in successfully'**
   String get login_success;
 
+  /// No description provided for @failed_login.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to Login.'**
+  String get failed_login;
+
   /// No description provided for @verify_account.
   ///
   /// In en, this message translates to:

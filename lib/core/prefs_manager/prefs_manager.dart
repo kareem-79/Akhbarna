@@ -20,10 +20,10 @@ class PrefsManager {
   static ThemeMode? getSavedTheme() {
     String? savedTheme = prefs.getString(ChachConstant.themeKey);
     if (savedTheme != null) {
-      if (savedTheme == ChachConstant.light) {
-        return ThemeMode.light;
-      } else {
+      if (savedTheme == ChachConstant.dark) {
         return ThemeMode.dark;
+      } else {
+        return ThemeMode.light;
       }
     }
     return null;

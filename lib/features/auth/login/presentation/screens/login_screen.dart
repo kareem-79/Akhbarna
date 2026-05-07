@@ -9,6 +9,7 @@ import '../../../../../core/resources/assets_managers.dart';
 import '../../../../../core/utils/ui_utils.dart';
 import '../../../../../core/utils/validation.dart';
 import '../../../../../core/widget/custom_text_button.dart';
+import '../../../../../firebase/firebase_services.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../auth_layout.dart';
 import '../../../widget/custom_start_up_elevated_button.dart';
@@ -125,7 +126,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Expanded(
                     child: CustomStartUpElevatedButton(
-                      onPress: () {},
+                      onPress: () async {
+                        await FirebaseServices.signInWithGoogle(context);
+                        _navigate();
+                      },
                       text: appLocalizations.google,
                       path: IconManagers.google,
                     ),
@@ -152,6 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
     BuildContext context,
   ) async {
     if (formKey.currentState?.validate() ?? false) {
+      UiUtils.showLoadingDialog(context);
       UiUtils.showToast(
         context,
         appLocalizations.login_success,
@@ -164,6 +169,16 @@ class _LoginScreenState extends State<LoginScreen> {
       } else {
         Navigator.pushReplacementNamed(context, RoutesManager.mainLayout);
       }
+    }
+  }
+
+  _navigate() async {
+    bool hasEnteredBefore = await PrefsManager.checkEntering();
+    if (!hasEnteredBefore) {
+      await PrefsManager.saveEntering();
+      Navigator.pushReplacementNamed(context, RoutesManager.onBoarding);
+    } else {
+      Navigator.pushReplacementNamed(context, RoutesManager.mainLayout);
     }
   }
 }

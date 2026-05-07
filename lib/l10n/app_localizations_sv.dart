@@ -68,6 +68,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get login_success => 'Inloggning lyckades';
 
   @override
+  String get failed_login => 'Failed to Login.';
+
+  @override
   String get verify_account => 'Verifiera konto';
 
   @override

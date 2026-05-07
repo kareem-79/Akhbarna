@@ -1,4 +1,5 @@
 import 'package:akhbarna/core/utils/ui_utils.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,9 +8,14 @@ import '../../../../../../../core/resources/routes_managers.dart';
 import '../../../../../../../core/widget/custom_elevated_button.dart';
 import '../../../../../../../l10n/app_localizations.dart';
 
-class LogoutBottomSheet extends StatelessWidget {
+class LogoutBottomSheet extends StatefulWidget {
   const LogoutBottomSheet({super.key});
 
+  @override
+  State<LogoutBottomSheet> createState() => _LogoutBottomSheetState();
+}
+
+class _LogoutBottomSheetState extends State<LogoutBottomSheet> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -70,18 +76,7 @@ class LogoutBottomSheet extends StatelessWidget {
               children: [
                 Expanded(
                   child: CustomElevatedButton(
-                    onPress: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        RoutesManager.login,
-                        (route) => false,
-                      );
-                      UiUtils.showToast(
-                        context,
-                        appLocalizations.logout_confirm_message,
-                        ColorsManagers.lightGray,
-                      );
-                    },
+                    onPress: _logout,
                     text: appLocalizations.yes,
                     foregroundColor: ColorsManagers.white,
                     backgroundColor: ColorsManagers.red,
@@ -104,6 +99,16 @@ class LogoutBottomSheet extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void _logout() async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacementNamed(context, RoutesManager.login);
+    UiUtils.showToast(
+      context,
+      AppLocalizations.of(context)!.logout_confirm_message,
+      ColorsManagers.lightGray,
     );
   }
 }

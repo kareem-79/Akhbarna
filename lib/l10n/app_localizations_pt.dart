@@ -68,6 +68,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get login_success => 'Sessão iniciada com sucesso';
 
   @override
+  String get failed_login => 'Failed to Login.';
+
+  @override
   String get verify_account => 'Verificar conta';
 
   @override

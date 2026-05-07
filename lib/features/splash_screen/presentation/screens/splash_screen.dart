@@ -2,6 +2,7 @@ import 'package:akhbarna/core/resources/assets_managers.dart';
 import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/resources/routes_managers.dart';
 import 'package:akhbarna/l10n/app_localizations.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -60,11 +61,17 @@ class _SplashScreenState extends State<SplashScreen>
     await _textController.forward();
 
     await Future.delayed(const Duration(seconds: 1));
-    Navigator.pushNamedAndRemoveUntil(
-      context,
-      RoutesManager.startUp,
-      (route) => false,
-    );
+    FirebaseAuth.instance.currentUser == null
+        ? Navigator.pushNamedAndRemoveUntil(
+            context,
+            RoutesManager.startUp,
+            (route) => false,
+          )
+        : Navigator.pushNamedAndRemoveUntil(
+            context,
+            RoutesManager.mainLayout,
+            (route) => false,
+          );
   }
 
   @override

@@ -68,6 +68,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get login_success => 'Вход выполнен успешно';
 
   @override
+  String get failed_login => 'Failed to Login.';
+
+  @override
   String get verify_account => 'Подтвердить аккаунт';
 
   @override

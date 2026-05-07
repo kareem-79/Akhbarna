@@ -66,6 +66,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get login_success => 'Giriş başarılı';
 
   @override
+  String get failed_login => 'Failed to Login.';
+
+  @override
   String get verify_account => 'Hesabı Doğrula';
 
   @override

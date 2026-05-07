@@ -67,6 +67,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get login_success => 'Erfolgreich angemeldet';
 
   @override
+  String get failed_login => 'Failed to Login.';
+
+  @override
   String get verify_account => 'Konto verifizieren';
 
   @override

@@ -1,12 +1,13 @@
 import 'package:akhbarna/core/resources/assets_managers.dart';
 import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/resources/routes_managers.dart';
-import 'package:akhbarna/core/widget/custom_elevated_button.dart';
 import 'package:akhbarna/core/widget/custom_text_button.dart';
 import 'package:akhbarna/features/auth/widget/custom_start_up_elevated_button.dart';
+import 'package:akhbarna/firebase/firebase_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/prefs_manager/prefs_manager.dart';
 import '../../../../../l10n/app_localizations.dart';
 
 class StartUpScreen extends StatefulWidget {
@@ -41,7 +42,12 @@ class _StartUpScreenState extends State<StartUpScreen> {
                     bottom: 50.h,
                     left: 10.w,
                     right: 10.w,
-                    child: Text(appLocalizations.option, style: textTheme.bodyMedium?.copyWith(color: primaryColor)),
+                    child: Text(
+                      appLocalizations.option,
+                      style: textTheme.bodyMedium?.copyWith(
+                        color: primaryColor,
+                      ),
+                    ),
                   ),
                   Positioned(
                     bottom: 20.h,
@@ -49,7 +55,12 @@ class _StartUpScreenState extends State<StartUpScreen> {
                     right: 10.w,
                     child: Row(
                       children: [
-                        Text(appLocalizations.register, style: textTheme.bodyMedium?.copyWith(color: primaryColor)),
+                        Text(
+                          appLocalizations.register,
+                          style: textTheme.bodyMedium?.copyWith(
+                            color: primaryColor,
+                          ),
+                        ),
                         Text(
                           appLocalizations.login_simple,
                           style: textTheme.bodyMedium?.copyWith(
@@ -63,14 +74,18 @@ class _StartUpScreenState extends State<StartUpScreen> {
               ),
               SizedBox(height: 20.h),
               CustomStartUpElevatedButton(
-                onPress: () {},
+                onPress: () {
+                  Navigator.pushNamed(context, RoutesManager.login);
+                },
                 text: appLocalizations.login_with_email,
                 foregroundColor: ColorsManagers.white,
                 backgroundColor: ColorsManagers.red,
                 path: IconManagers.email,
               ),
               CustomStartUpElevatedButton(
-                onPress: () {
+                onPress: () async {
+                  await FirebaseServices.signInWithGoogle(context);
+                  _navigate();
                 },
                 text: appLocalizations.login_with_google,
                 path: IconManagers.google,
@@ -79,7 +94,6 @@ class _StartUpScreenState extends State<StartUpScreen> {
                 onPress: () {},
                 text: appLocalizations.login_with_facebook,
                 path: IconManagers.facebook,
-
               ),
               SizedBox(height: 20.h),
               Row(
@@ -103,4 +117,13 @@ class _StartUpScreenState extends State<StartUpScreen> {
     );
   }
 
+  _navigate() async {
+    bool hasEnteredBefore = await PrefsManager.checkEntering();
+    if (!hasEnteredBefore) {
+      await PrefsManager.saveEntering();
+      Navigator.pushReplacementNamed(context, RoutesManager.onBoarding);
+    } else {
+      Navigator.pushReplacementNamed(context, RoutesManager.mainLayout);
+    }
+  }
 }
