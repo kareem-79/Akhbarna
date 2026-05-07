@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "901378013831",
+    "project_id": "a5barna-efa19",
+    "storage_bucket": "a5barna-efa19.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901378013831:android:fca337460acf4a721fd622",
+        "android_client_info": {
+          "package_name": "com.akhbarna.akhbarna"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901378013831-ir89ead987a75u78rq41a7rvdhrqr2ec.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.akhbarna.akhbarna",
+            "certificate_hash": "6e2822bdf9e0b97661045a61b480dc2463355e1c"
+          }
+        },
+        {
+          "client_id": "901378013831-rgf4sg4v2bukktjtru6rlg4uccgrehkq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOws2DidjRpkJssraE82wIAZzGOoA3Q7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901378013831-rgf4sg4v2bukktjtru6rlg4uccgrehkq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "901378013831-jjsd71d89j8hmgva6hufjuhugej5pddk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.akhbarna.akhbarna"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
