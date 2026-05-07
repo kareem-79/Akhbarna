@@ -8,7 +8,9 @@ import '../../../../../core/widget/custom_text_form_field.dart';
 import '../../../../../l10n/app_localizations.dart';
 
 class HomeHeaderWidget extends StatefulWidget {
-  const HomeHeaderWidget({super.key});
+  final VoidCallback onTap;
+
+  const HomeHeaderWidget({super.key, required this.onTap});
 
   @override
   State<HomeHeaderWidget> createState() => _HomeHeaderWidgetState();
@@ -48,10 +50,13 @@ class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset(
-                ImageManagers.akhbarnaIcon,
-                width: 50.w,
-                height: 50.h,
+              InkWell(
+                onTap: widget.onTap,
+                child: Image.asset(
+                  ImageManagers.akhbarnaIcon,
+                  width: 50.w,
+                  height: 50.h,
+                ),
               ),
               SizedBox(width: 30.w),
               Expanded(

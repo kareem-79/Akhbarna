@@ -11,7 +11,9 @@ class PrefsManager {
   }
 
   static void saveTheme(ThemeMode themeMode) {
-    String theme = themeMode == ThemeMode.dark ? ChachConstant.dark : ChachConstant.light;
+    String theme = themeMode == ThemeMode.dark
+        ? ChachConstant.dark
+        : ChachConstant.light;
     prefs.setString(ChachConstant.themeKey, theme);
   }
 
@@ -38,10 +40,28 @@ class PrefsManager {
     }
     return null;
   }
+
   static Future<void> saveEntering() async {
     prefs.setBool(ChachConstant.isFirst, true);
   }
-  static Future<bool>checkEntering()async{
-    return prefs.getBool(ChachConstant.isFirst)??false;
+
+  static Future<bool> checkEntering() async {
+    return prefs.getBool(ChachConstant.isFirst) ?? false;
+  }
+
+  static void saveFontSize(String fontSize) {
+    prefs.setString(ChachConstant.fontSizeKey, fontSize);
+  }
+
+  static String? getSavedFontSize() {
+    return prefs.getString(ChachConstant.fontSizeKey);
+  }
+
+  static void saveIsSystemFont(bool isSystem) {
+    prefs.setBool(ChachConstant.isSystemFontKey, isSystem);
+  }
+
+  static bool getIsSystemFont() {
+    return prefs.getBool(ChachConstant.isSystemFontKey) ?? true;
   }
 }

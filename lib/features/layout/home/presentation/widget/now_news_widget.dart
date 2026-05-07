@@ -4,14 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/resources/assets_managers.dart';
 import '../../../../../core/resources/colors_managers.dart';
 
-class TopNewsWidget extends StatefulWidget {
-  const TopNewsWidget({super.key});
+class NowNewsWidget extends StatefulWidget {
+  const NowNewsWidget({super.key});
 
   @override
-  State<TopNewsWidget> createState() => _TopNewsWidgetState();
+  State<NowNewsWidget> createState() => _NowNewsWidgetState();
 }
 
-class _TopNewsWidgetState extends State<TopNewsWidget> {
+class _NowNewsWidgetState extends State<NowNewsWidget> {
   bool isSelected = false;
 
   @override

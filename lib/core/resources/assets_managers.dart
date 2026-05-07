@@ -16,6 +16,7 @@ class ImageManagers {
   static const String news2 = "$base/news2.png";
   static const String news3 = "$base/news3.png";
   static const String news4 = "$base/news4.png";
+  static const String news5 = "$base/news5.png";
 }
 
 class IconManagers {
@@ -36,6 +37,7 @@ class IconManagers {
   static const String unSelected = "$base/unSelected.svg";
   static const String noNotification = "$base/no_notification.svg";
   static const String delete = "$base/delete_icon.svg";
+  static const String save = "$base/save.svg";
 }
 
 class CategoryImageManagers {

@@ -11,8 +11,8 @@ class HomeTabModel {
 
   static List<HomeTabModel> homeTabList(BuildContext context) {
     return [
-      HomeTabModel(id: '1', name: "اخر الأخبار"),
-      HomeTabModel(id: '2', name: "عاجل"),
+      HomeTabModel(id: '1', name: "عاجل"),
+      HomeTabModel(id: '2', name: "اخر الأخبار"),
       HomeTabModel(id: '3', name: "الأكثر قراءة"),
     ];
   }

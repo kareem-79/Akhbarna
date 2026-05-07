@@ -2,129 +2,82 @@ import 'package:akhbarna/model/top_news_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/resources/colors_managers.dart';
-
-class TopNewsItemWidget extends StatefulWidget {
+class TopNewsItemWidget extends StatelessWidget {
   final TopNewsModel news;
 
   const TopNewsItemWidget({super.key, required this.news});
 
   @override
-  State<TopNewsItemWidget> createState() => _TopNewsItemWidgetState();
-}
-
-class _TopNewsItemWidgetState extends State<TopNewsItemWidget> {
-  bool isSelected = false;
-
-  @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
-    Color cardColor = Theme.of(context).cardColor;
+    final textTheme = Theme.of(context).textTheme;
+    final cardColor = Theme.of(context).cardColor;
+
     return Container(
-      width: 330.w,
-      height: 290.h,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30.r),
-        image: DecorationImage(
-          image: AssetImage(widget.news.image),
-          fit: BoxFit.cover,
+      height: 300.h,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(25.r)),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(25.r),
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+              color: cardColor,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 20.r,
+                        backgroundColor: Colors.transparent,
+                        child: Image.asset(news.source),
+                      ),
+                      SizedBox(width: 8.w),
+                      Expanded(
+                        child: Text(
+                          news.sourceTitle,
+                          style: textTheme.bodySmall,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 10.h),
+
+                  Text(
+                    news.title,
+                    style: textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      height: 1.4,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+
+                  SizedBox(height: 8.h),
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(news.time, style: textTheme.bodySmall),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(news.image),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
-      ),
-      child: Stack(
-        children: [
-          PositionedDirectional(
-            top: 20.sp,
-            start: 20.sp,
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  isSelected = !isSelected;
-                });
-              },
-              child: CircleAvatar(
-                backgroundColor: ColorsManagers.white.withOpacity(.4),
-                child: Icon(
-                  isSelected ? Icons.bookmark : Icons.bookmark_border_outlined,
-                  size: 30.sp,
-                  color: ColorsManagers.red,
-                ),
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 110.h,
-              width: 350.w,
-              decoration: BoxDecoration(
-                color: cardColor.withOpacity(.8),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(30.r),
-                  bottomRight: Radius.circular(30.r),
-                ),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 16.0.sp,
-                  vertical: 8.sp,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Image.asset(
-                                widget.news.source,
-                                width: 40.w,
-                                height: 40.h,
-                              ),
-                              SizedBox(width: 10.w),
-                              Text(
-                                widget.news.sourceTitle,
-                                style: textTheme.bodySmall,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ],
-                          ),
-                          Container(
-                            height: 25.h,
-                            width: 80.w,
-                            decoration: BoxDecoration(
-                              color: ColorsManagers.red,
-                              borderRadius: BorderRadius.circular(60.r),
-                            ),
-                            child: Center(
-                              child: Text("عاجل", style: textTheme.bodySmall),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Text(
-                      widget.news.title,
-                      style: textTheme.bodySmall?.copyWith(fontSize: 16.sp),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    SizedBox(height: 8.h),
-                    Text(
-                      widget.news.time,
-                      style: textTheme.bodySmall?.copyWith(
-                        color: ColorsManagers.gray3,
-                      ),
-                    ),
-                    SizedBox(height: 8.h),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

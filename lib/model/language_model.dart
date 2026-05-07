@@ -16,18 +16,6 @@ class AppLanguage {
   static const List<AppLanguage> languages = [
     AppLanguage(
       code: 'ar',
-      name: 'العربية (السعودية)',
-      flag: '🇸🇦',
-      locale: Locale('ar', 'SA'),
-    ),
-    AppLanguage(
-      code: 'ar',
-      name: 'العربية (الإمارات)',
-      flag: '🇦🇪',
-      locale: Locale('ar', 'AE'),
-    ),
-    AppLanguage(
-      code: 'ar',
       name: 'العربية (مصر)',
       flag: '🇪🇬',
       locale: Locale('ar', 'EG'),

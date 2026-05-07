@@ -11,8 +11,7 @@ class NotificationItemWidget extends StatefulWidget {
   const NotificationItemWidget({super.key, required this.onDelete});
 
   @override
-  State<NotificationItemWidget> createState() =>
-      _NotificationItemWidgetState();
+  State<NotificationItemWidget> createState() => _NotificationItemWidgetState();
 }
 
 class _NotificationItemWidgetState extends State<NotificationItemWidget> {
@@ -22,6 +21,7 @@ class _NotificationItemWidgetState extends State<NotificationItemWidget> {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     Color primaryColor = Theme.of(context).primaryColor;
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.sp, vertical: 4.sp),
       child: Dismissible(
@@ -32,45 +32,59 @@ class _NotificationItemWidgetState extends State<NotificationItemWidget> {
           padding: EdgeInsets.symmetric(horizontal: 20.sp),
           decoration: BoxDecoration(
             color: ColorsManagers.red,
-            borderRadius: BorderRadius.circular(25),
+            borderRadius: BorderRadius.circular(25.r),
           ),
-          child:  Icon(
-            Icons.delete,
-            color: ColorsManagers.white,
-            size: 30,
-          ),
+          child: Icon(Icons.delete, color: ColorsManagers.white, size: 30.sp),
         ),
         onDismissed: (direction) {
           widget.onDelete();
         },
-
         child: Container(
           padding: EdgeInsets.all(16.sp),
           decoration: BoxDecoration(
             color: ColorsManagers.gray2,
             borderRadius: BorderRadius.circular(25.r),
-            border: Border.all(color: ColorsManagers.red),
+            border: Border.all(color: ColorsManagers.red, width: 2.w),
           ),
           child: Stack(
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Column(
+                    children: [
+                      SvgPicture.asset(
+                        IconManagers.notification,
+                        color: ColorsManagers.red,
+                        width: 28.w,
+                        height: 28.h,
+                      ),
+                      SizedBox(height: 12.h),
+                      CircleAvatar(
+                        radius: 25.r,
+                        backgroundColor: Colors.transparent,
+                        child: Image.asset(SourceImageManagers.elgzira),
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 10.w),
+
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 30.h),
-
                         RichText(
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           text: TextSpan(
-                            style: textTheme.bodySmall?.copyWith(color: primaryColor),
+                            style: textTheme.bodySmall?.copyWith(
+                              color: primaryColor,
+                            ),
                             children: [
-                              TextSpan(
+                              const TextSpan(
                                 text:
-                                "وزير الري المصري الأسبق: قوى خارجية تحرك إثيوبيا ",
+                                    "وزير الري المصري الأسبق: قوى خارجية تحرك إثيوبيا ",
                               ),
                               TextSpan(
                                 text: "اقرأ المزيد...",
@@ -87,48 +101,36 @@ class _NotificationItemWidgetState extends State<NotificationItemWidget> {
 
                         Row(
                           children: [
-                            Icon(Icons.remove_red_eye,
-                                size: 16.sp,
-                                color: ColorsManagers.gray3),
+                            Icon(
+                              Icons.remove_red_eye,
+                              size: 16.sp,
+                              color: ColorsManagers.gray3,
+                            ),
                             SizedBox(width: 5.w),
-                            Text("12.5k",
-                                style: textTheme.bodySmall?.copyWith(
-                                    color: ColorsManagers.gray3)),
-                            Spacer(),
-                            Text("منذ 5 دقائق",
-                                style: textTheme.bodySmall?.copyWith(
-                                    color: ColorsManagers.gray3)),
+                            Text(
+                              "12.5k",
+                              style: textTheme.bodySmall?.copyWith(
+                                color: ColorsManagers.gray3,
+                              ),
+                            ),
+                            const Spacer(),
+                            Text(
+                              "منذ 5 دقائق",
+                              style: textTheme.bodySmall?.copyWith(
+                                color: ColorsManagers.gray3,
+                              ),
+                            ),
                           ],
                         ),
                       ],
                     ),
-                  ),
-
-                  SizedBox(width: 10.w),
-
-                  Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 20.r,
-                        backgroundColor: Colors.transparent,
-                        child: Image.asset(
-                            SourceImageManagers.elgzira),
-                      ),
-                      SizedBox(height: 12.h),
-                      SvgPicture.asset(
-                        IconManagers.notification,
-                        color: ColorsManagers.red,
-                        width: 28.w,
-                        height: 28.h,
-                      ),
-                    ],
                   ),
                 ],
               ),
 
               PositionedDirectional(
                 top: 0,
-                start: 0,
+                end: 0,
                 child: GestureDetector(
                   onTap: () {
                     setState(() {

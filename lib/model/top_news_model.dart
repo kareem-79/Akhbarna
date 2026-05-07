@@ -21,26 +21,52 @@ class TopNewsModel {
 }
 List<TopNewsModel> topNewsList = [
   TopNewsModel(
-    image: ImageManagers.news2,
+    image: ImageManagers.news5,
     title:
-    "تسريب مائي يتلف مئات مجلدات الحضارة المصرية في متحف اللوفر… فما الذي حدث؟",
-    source: SourceImageManagers.cnn,
+    "بعد إيقاف رئيسه فيرون إستوديانتس يتوج بلقب المرحلة الختامية بالدوري الأرجنتيني",
+    source: SourceImageManagers.elShrouk,
     time: "منذ 20 دقيقة",
     isBreaking: true,
-    sourceTitle: 'CNN بالعربية',
+    sourceTitle: 'جريدة الشروق',
   ),
   TopNewsModel(
-    image: ImageManagers.news3,
+    image: ImageManagers.news5,
     title:
-    "كيف أثارت مباراة في كأس العالم غضباً في مصر وإيران بسبب الاحتفال بالمثليين؟",
+    "بعد إيقاف رئيسه فيرون إستوديانتس يتوج بلقب المرحلة الختامية بالدوري الأرجنتيني",
     source: SourceImageManagers.sky,
     time: "منذ 2 دقيقة",
     isBreaking: true,
-    sourceTitle: 'سكاي نيوز',
+    sourceTitle: 'سكاي نيوز عربية',
   ),
   TopNewsModel(
-    image: ImageManagers.news3,
-    title: "4 شهداء و10 إصابات في غزة والأمطار تعيق عمليات الإسعاف",
+    image: ImageManagers.news5,
+    title: "بعد إيقاف رئيسه فيرون إستوديانتس يتوج بلقب المرحلة الختامية بالدوري الأرجنتيني",
+    source: SourceImageManagers.elgzira,
+    sourceTitle: "الجزيرة نت",
+    time: "منذ 22 دقيقة",
+    isBreaking: true,
+  ),
+  TopNewsModel(
+    image: ImageManagers.news5,
+    title:
+    "بعد إيقاف رئيسه فيرون إستوديانتس يتوج بلقب المرحلة الختامية بالدوري الأرجنتيني",
+    source: SourceImageManagers.elShrouk,
+    time: "منذ 20 دقيقة",
+    isBreaking: true,
+    sourceTitle: 'جريدة الشروق',
+  ),
+  TopNewsModel(
+    image: ImageManagers.news5,
+    title:
+    "بعد إيقاف رئيسه فيرون إستوديانتس يتوج بلقب المرحلة الختامية بالدوري الأرجنتيني",
+    source: SourceImageManagers.sky,
+    time: "منذ 2 دقيقة",
+    isBreaking: true,
+    sourceTitle: 'سكاي نيوز عربية',
+  ),
+  TopNewsModel(
+    image: ImageManagers.news5,
+    title: "بعد إيقاف رئيسه فيرون إستوديانتس يتوج بلقب المرحلة الختامية بالدوري الأرجنتيني",
     source: SourceImageManagers.elgzira,
     sourceTitle: "الجزيرة نت",
     time: "منذ 22 دقيقة",

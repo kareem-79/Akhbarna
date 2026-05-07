@@ -1,18 +1,19 @@
 import 'package:akhbarna/features/layout/home/presentation/widget/notification_item_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../../core/resources/assets_managers.dart';
-import 'notification_header_widget.dart';
+import '../widget/notification_header_widget.dart';
 
-class NotificationScreenWidget extends StatefulWidget {
-  const NotificationScreenWidget({super.key});
+class NotificationScreen extends StatefulWidget {
+  const NotificationScreen({super.key});
 
   @override
-  State<NotificationScreenWidget> createState() =>
-      _NotificationScreenWidgetState();
+  State<NotificationScreen> createState() =>
+      _NotificationScreenState();
 }
 
-class _NotificationScreenWidgetState extends State<NotificationScreenWidget> {
+class _NotificationScreenState extends State<NotificationScreen> {
   List<int> items = [1, 2, 3, 4, 5, 6, 7];
 
   @override
@@ -30,6 +31,7 @@ class _NotificationScreenWidgetState extends State<NotificationScreenWidget> {
               });
             },
           ),
+          SizedBox(height: 6.h),
           Expanded(
             child: items.isEmpty
                 ? Center(
@@ -38,11 +40,11 @@ class _NotificationScreenWidgetState extends State<NotificationScreenWidget> {
                       children: [
                         SvgPicture.asset(
                           IconManagers.noNotification,
-                          width: 250,
-                          height: 250,
+                          width: 250.w,
+                          height: 250.h,
                           color: shadowColor,
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height: 10.h),
                         Text("لا يوجد اشعارات", style: textTheme.bodyLarge),
                       ],
                     ),

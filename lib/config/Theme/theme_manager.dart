@@ -11,7 +11,7 @@ class ThemeManager {
     cardColor: ColorsManagers.gray2,
     iconTheme: IconThemeData(color: ColorsManagers.white),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: Colors.transparent,
+      backgroundColor: ColorsManagers.gray,
       elevation: 0,
       type: BottomNavigationBarType.fixed,
       selectedItemColor: ColorsManagers.blue,

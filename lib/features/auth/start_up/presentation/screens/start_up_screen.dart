@@ -102,4 +102,5 @@ class _StartUpScreenState extends State<StartUpScreen> {
       ),
     );
   }
+
 }

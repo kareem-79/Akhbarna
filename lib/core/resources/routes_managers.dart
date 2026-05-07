@@ -1,4 +1,4 @@
-import 'package:akhbarna/features/layout/home/presentation/widget/notification_screen_widget.dart';
+import 'package:akhbarna/features/layout/home/presentation/screens/notification_screen.dart';
 import 'package:akhbarna/features/layout/profile/presentation/screens/security/presentation/security_screen.dart';
 import 'package:akhbarna/features/on_boarding/presentation/screens/on_boarding.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +8,8 @@ import '../../features/auth/forget_password/presentation/screens/login_with_OTP.
 import '../../features/auth/login/presentation/screens/login_screen.dart';
 import '../../features/auth/register/presentation/screens/register_screen.dart';
 import '../../features/auth/start_up/presentation/screens/start_up_screen.dart';
+import '../../features/layout/home/presentation/screens/top_news_screen.dart';
+import '../../features/layout/home/presentation/screens/most_read_Screen.dart';
 import '../../features/layout/main_layout.dart';
 import '../../features/layout/profile/presentation/screens/about/presentation/about_screen.dart';
 import '../../features/layout/profile/presentation/screens/profile_tab.dart';
@@ -39,6 +41,8 @@ class RoutesManager {
   static const String security = "Security";
   static const String aboutUs = "AboutUs";
   static const String notification = "Notification";
+  static const String topNews = "TopNews";
+  static const String mostRead = "MostRead";
 
   static Route<dynamic> routes(RouteSettings settings) {
     switch (settings.name) {
@@ -85,7 +89,11 @@ class RoutesManager {
       case aboutUs:
         return MaterialPageRoute(builder: (_) => AboutUsScreen());
       case notification:
-        return MaterialPageRoute(builder: (_) => NotificationScreenWidget());
+        return MaterialPageRoute(builder: (_) => NotificationScreen());
+      case topNews:
+        return MaterialPageRoute(builder: (_) => TopNewsScreen());
+      case mostRead:
+        return MaterialPageRoute(builder: (_) => MostReadScreen());
       default:
         return unDefinedRoute();
     }

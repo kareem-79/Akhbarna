@@ -14,14 +14,33 @@ class ConfigProvider extends ChangeNotifier {
   Locale _currentLocale = const Locale('ar', 'EG');
 
   double get textScaleFactor => _textScaleFactor;
+
   bool get isSystemFont => _isSystemFont;
+
   FontSize get fontSize => _fontSize;
+
   Locale get currentLocale => _currentLocale;
 
   Future<void> loadSavedSettings() async {
     currentTheme = PrefsManager.getSavedTheme() ?? ThemeMode.light;
     _currentLocale =
         PrefsManager.getSavedLanguage() ?? const Locale('ar', 'EG');
+
+    _isSystemFont = PrefsManager.getIsSystemFont();
+
+    final savedFont = PrefsManager.getSavedFontSize();
+
+    if (_isSystemFont || savedFont == null) {
+      _fontSize = FontSize.auto;
+      _textScaleFactor = 1.0;
+    } else {
+      _fontSize = FontSize.values.firstWhere(
+        (e) => e.name == savedFont,
+        orElse: () => FontSize.medium,
+      );
+
+      _applyFontScale(_fontSize);
+    }
 
     notifyListeners();
   }
@@ -46,39 +65,46 @@ class ConfigProvider extends ChangeNotifier {
 
   void setSystemFont(bool isSystem) {
     _isSystemFont = isSystem;
+
+    PrefsManager.saveIsSystemFont(isSystem);
+
     if (isSystem) {
       _fontSize = FontSize.auto;
       _textScaleFactor = 1.0;
     }
+
     notifyListeners();
+  }
+
+  void _applyFontScale(FontSize size) {
+    switch (size) {
+      case FontSize.small:
+        _textScaleFactor = 0.85;
+        break;
+      case FontSize.medium:
+        _textScaleFactor = 1.0;
+        break;
+      case FontSize.large:
+        _textScaleFactor = 1.2;
+        break;
+      case FontSize.extraLarge:
+        _textScaleFactor = 1.45;
+        break;
+      case FontSize.auto:
+        _textScaleFactor = 1.0;
+        break;
+    }
   }
 
   void changeFontSize(FontSize size) {
     _isSystemFont = false;
     _fontSize = size;
 
-    switch (size) {
-      case FontSize.small:
-        _textScaleFactor = 0.85;
-        break;
+    _applyFontScale(size);
 
-      case FontSize.medium:
-        _textScaleFactor = 1.0;
-        break;
+    PrefsManager.saveFontSize(size.name);
+    PrefsManager.saveIsSystemFont(false);
 
-      case FontSize.large:
-        _textScaleFactor = 1.2;
-        break;
-
-      case FontSize.extraLarge:
-        _textScaleFactor = 1.45;
-        break;
-
-      case FontSize.auto:
-        _isSystemFont = true;
-        _textScaleFactor = 1.0;
-        break;
-    }
     notifyListeners();
   }
 

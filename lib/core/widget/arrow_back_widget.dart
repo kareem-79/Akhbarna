@@ -13,7 +13,7 @@ class ArrowBackWidget extends StatelessWidget {
       height: 45.h,
       decoration: BoxDecoration(
         color: ColorsManagers.white2,
-        borderRadius: BorderRadius.circular(12.r),
+        borderRadius: BorderRadius.circular(16.r),
       ),
       child: IconButton(
         icon:  Icon(Icons.arrow_back,color:ColorsManagers.darkNavy),
