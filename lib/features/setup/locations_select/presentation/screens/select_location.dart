@@ -2,6 +2,8 @@ import 'package:akhbarna/features/setup/locations_select/presentation/widget/ima
 import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../core/prefs_manager/location_prefs_manager.dart';
 import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../core/resources/routes_managers.dart';
 import '../../../../../core/utils/ui_utils.dart';
@@ -22,9 +24,23 @@ class _SelectLocationState extends State<SelectLocation> {
   int selectedIndex = -1;
 
   @override
+  void initState() {
+    super.initState();
+    loadSavedCountry();
+  }
+
+  void loadSavedCountry() async {
+    final index = await LocationPrefsService.getSelectedIndex();
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     Color shadowColor = Theme.of(context).shadowColor;
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       extendBody: true,
@@ -41,7 +57,7 @@ class _SelectLocationState extends State<SelectLocation> {
                   color: shadowColor,
                 ),
                 ImageLocationWidget(),
-                 CustomTextFormFiled(
+                CustomTextFormFiled(
                   label: appLocalizations.search_country,
                   suffixIcon: Icon(Icons.search_rounded),
                 ),
@@ -53,13 +69,16 @@ class _SelectLocationState extends State<SelectLocation> {
                   itemBuilder: (context, index) {
                     final location = LocationModel.locations[index];
                     final isSelected = selectedIndex == index;
+
                     return LocationTile(
                       location: location,
                       isSelected: isSelected,
-                      onTap: () {
+                      onTap: () async {
                         setState(() {
                           selectedIndex = index;
                         });
+
+                        await LocationPrefsService.saveSelectedIndex(index);
                       },
                     );
                   },
@@ -79,6 +98,7 @@ class _SelectLocationState extends State<SelectLocation> {
             );
             return;
           }
+
           Navigator.pushNamed(context, RoutesManager.selectLanguage);
         },
         text: appLocalizations.next,

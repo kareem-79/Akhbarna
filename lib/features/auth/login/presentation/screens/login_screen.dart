@@ -162,13 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
         appLocalizations.login_success,
         ColorsManagers.riverBed,
       );
-      bool hasEnteredBefore = await PrefsManager.checkEntering();
-      if (!hasEnteredBefore) {
-        await PrefsManager.saveEntering();
-        Navigator.pushReplacementNamed(context, RoutesManager.onBoarding);
-      } else {
-        Navigator.pushReplacementNamed(context, RoutesManager.mainLayout);
-      }
+      _navigate();
     }
   }
 

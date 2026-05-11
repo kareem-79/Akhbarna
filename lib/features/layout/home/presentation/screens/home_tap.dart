@@ -94,7 +94,6 @@ class _HomeTapState extends State<HomeTap> {
                             SizedBox(
                               height: 220.h,
                               child: PageView.builder(
-
                                 controller: pageController,
                                 itemCount: breakingList.length,
                                 itemBuilder: (context, index) {
@@ -122,6 +121,31 @@ class _HomeTapState extends State<HomeTap> {
                       },
                     ),
                     SizedBox(height: 10.h),
+
+                    SectionHeaderWidget(title: "اخر الاخبار"),
+                    SizedBox(height: 10.h),
+                    ListView.separated(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return TopNewsItemWidget(news: topList[index]);
+                      },
+                      separatorBuilder: (context, index) =>
+                          SizedBox(height: 10.w),
+                      itemCount: topList.length,
+                    ),
+                    SizedBox(height: 10.h),
+                    Center(
+                      child: CustomTextButton(
+                        onPress: () {
+                          Navigator.pushNamed(context, RoutesManager.topNews);
+                        },
+                        text: "اقرأ المزيد.. ",
+                        color: ColorsManagers.red,
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
                     SectionHeaderWidget(title: "الاكثر قراءة"),
                     SizedBox(height: 10.h),
                     ListView.separated(
@@ -142,30 +166,6 @@ class _HomeTapState extends State<HomeTap> {
                       child: CustomTextButton(
                         onPress: () {
                           Navigator.pushNamed(context, RoutesManager.mostRead);
-                        },
-                        text: "اقرأ المزيد.. ",
-                        color: ColorsManagers.red,
-                      ),
-                    ),
-                    SizedBox(height: 10.h),
-                    SectionHeaderWidget(title: "اخر الاخبار"),
-                    SizedBox(height: 10.h),
-                    ListView.separated(
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return TopNewsItemWidget(news: topList[index]);
-                      },
-                      separatorBuilder: (context, index) =>
-                          SizedBox(height: 10.w),
-                      itemCount: topList.length,
-                    ),
-                    SizedBox(height: 10.h),
-                    Center(
-                      child: CustomTextButton(
-                        onPress: () {
-                          Navigator.pushNamed(context, RoutesManager.topNews);
                         },
                         text: "اقرأ المزيد.. ",
                         color: ColorsManagers.red,

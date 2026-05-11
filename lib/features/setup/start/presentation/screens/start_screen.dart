@@ -8,6 +8,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../../provider/config_provider.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({super.key});
@@ -49,11 +52,16 @@ class _StartScreenState extends State<StartScreen> {
                   AppBarWidget(title: "", height: 35.h),
                   SizedBox(height: 80.h),
                   Center(
-                    child: Image.asset(
-                      ImageManagers.akhbarnaText,
-                      width: 200.w,
-                      height: 80.h,
-                      fit: BoxFit.contain,
+                    child: Consumer<ConfigProvider>(
+                      builder: (context, provider, child) {
+                        return SvgPicture.asset(
+                          provider.currentTheme == ThemeMode.dark
+                              ? ImageManagers.akhbarnaText
+                              : ImageManagers.akhbarnaTextLightMood,
+                          height: 80.h,
+                          width: 200.w,
+                        );
+                      },
                     ),
                   ),
                   SizedBox(height: 60.h),

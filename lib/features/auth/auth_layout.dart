@@ -2,6 +2,7 @@ import 'package:akhbarna/core/resources/assets_managers.dart';
 import 'package:akhbarna/features/auth/widget/auth_switch_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import '../../core/widget/arrow_back_widget.dart';
 import '../../provider/config_provider.dart';
@@ -44,19 +45,18 @@ class _AuthLayoutState extends State<AuthLayout> {
                   ArrowBackWidget(),
                   Consumer<ConfigProvider>(
                     builder: (context, provider, child) {
-                      return Image.asset(
+                      return SvgPicture.asset(
                         provider.currentTheme == ThemeMode.dark
                             ? ImageManagers.akhbarnaText
                             : ImageManagers.akhbarnaTextLightMood,
-                        width: 120.w,
-                        height: 70.h,
+                        height: 50.h,
                       );
                     },
                   ),
                   Image.asset(
                     ImageManagers.akhbarnaIcon,
-                    width: 70.w,
-                    height: 70.h,
+                    width: 60.w,
+                    height: 60.h,
                   ),
                 ],
               ),

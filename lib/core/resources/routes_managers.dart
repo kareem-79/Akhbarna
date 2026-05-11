@@ -1,6 +1,7 @@
 import 'package:akhbarna/features/layout/home/presentation/screens/notification_screen.dart';
 import 'package:akhbarna/features/layout/profile/presentation/screens/security/presentation/security_screen.dart';
 import 'package:akhbarna/features/on_boarding/presentation/screens/on_boarding.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../features/auth/forget_password/presentation/screens/change_password.dart';
 import '../../features/auth/forget_password/presentation/screens/forget_password.dart';
@@ -8,8 +9,8 @@ import '../../features/auth/forget_password/presentation/screens/login_with_OTP.
 import '../../features/auth/login/presentation/screens/login_screen.dart';
 import '../../features/auth/register/presentation/screens/register_screen.dart';
 import '../../features/auth/start_up/presentation/screens/start_up_screen.dart';
-import '../../features/layout/home/presentation/screens/top_news_screen.dart';
 import '../../features/layout/home/presentation/screens/most_read_Screen.dart';
+import '../../features/layout/home/presentation/screens/top_news_screen.dart';
 import '../../features/layout/main_layout.dart';
 import '../../features/layout/profile/presentation/screens/about/presentation/about_screen.dart';
 import '../../features/layout/profile/presentation/screens/profile_tab.dart';
@@ -47,64 +48,129 @@ class RoutesManager {
   static Route<dynamic> routes(RouteSettings settings) {
     switch (settings.name) {
       case splash:
-        return MaterialPageRoute(builder: (_) => SplashScreen());
+        return CupertinoPageRoute(
+          builder: (_) => const SplashScreen(),
+        );
+
       case onBoarding:
-        return MaterialPageRoute(builder: (_) => OnBoardingScreen());
+        return CupertinoPageRoute(
+          builder: (_) => const OnBoardingScreen(),
+        );
+
       case startUp:
-        return MaterialPageRoute(builder: (_) => StartUpScreen());
+        return CupertinoPageRoute(
+          builder: (_) => const StartUpScreen(),
+        );
+
       case register:
-        return MaterialPageRoute(builder: (_) => RegisterScreen());
+        return CupertinoPageRoute(
+          builder: (_) => const RegisterScreen(),
+        );
+
       case login:
-        return MaterialPageRoute(builder: (_) => LoginScreen());
+        return CupertinoPageRoute(
+          builder: (_) => const LoginScreen(),
+        );
+
       case forgetPassword:
-        return MaterialPageRoute(builder: (_) => ForgetPassword());
+        return CupertinoPageRoute(
+          builder: (_) => const ForgetPassword(),
+        );
+
       case loginWithOtp:
-        return MaterialPageRoute(builder: (_) => LoginWithOtp());
+        return CupertinoPageRoute(
+          builder: (_) => const LoginWithOtp(),
+        );
+
       case changePassword:
-        return MaterialPageRoute(builder: (_) => ChangePassword());
+        return CupertinoPageRoute(
+          builder: (_) => const ChangePassword(),
+        );
+
       case selectLocation:
-        return MaterialPageRoute(builder: (_) => SelectLocation());
+        return CupertinoPageRoute(
+          builder: (_) => const SelectLocation(),
+        );
+
       case selectCategory:
-        return MaterialPageRoute(builder: (_) => SelectCategory());
+        return CupertinoPageRoute(
+          builder: (_) => const SelectCategory(),
+        );
+
       case selectLanguage:
         final bool isFromEdit = settings.arguments as bool? ?? false;
-        return MaterialPageRoute(
-          builder: (_) => SelectLanguage(isFromEdit: isFromEdit),
+
+        return CupertinoPageRoute(
+          builder: (_) => SelectLanguage(
+            isFromEdit: isFromEdit,
+          ),
         );
+
       case selectSources:
         final bool isFromEdit = settings.arguments as bool? ?? false;
-        return MaterialPageRoute(
-          builder: (_) => SelectSources(isFromEdit: isFromEdit),
-        );
-      case start:
-        return MaterialPageRoute(builder: (_) => StartScreen());
-      case mainLayout:
-        return MaterialPageRoute(builder: (_) => MainLayout());
-      case profile:
-        return MaterialPageRoute(builder: (_) => ProfileTab());
-      case editProfile:
-        return MaterialPageRoute(builder: (_) => EditProfile());
-      case security:
-        return MaterialPageRoute(builder: (_) => SecurityScreen());
-      case aboutUs:
-        return MaterialPageRoute(builder: (_) => AboutUsScreen());
-      case notification:
-        return MaterialPageRoute(builder: (_) => NotificationScreen());
-      case topNews:
-        return MaterialPageRoute(builder: (_) => TopNewsScreen());
-      case mostRead:
-        return MaterialPageRoute(builder: (_) => MostReadScreen());
-      default:
-        return unDefinedRoute();
-    }
-  }
 
-  static Route<dynamic> unDefinedRoute() {
-    return MaterialPageRoute(
-      builder: (_) => Scaffold(
-        appBar: AppBar(title: const Text('No Route Found')),
-        body: const Center(child: Text('No Route Found')),
-      ),
-    );
+        return CupertinoPageRoute(
+          builder: (_) => SelectSources(
+            isFromEdit: isFromEdit,
+          ),
+        );
+
+      case start:
+        return CupertinoPageRoute(
+          builder: (_) => const StartScreen(),
+        );
+
+      case mainLayout:
+        return CupertinoPageRoute(
+          builder: (_) => const MainLayout(),
+        );
+
+      case profile:
+        return CupertinoPageRoute(
+          builder: (_) => const ProfileTab(),
+        );
+
+      case editProfile:
+        return CupertinoPageRoute(
+          builder: (_) => const EditProfile(),
+        );
+
+      case security:
+        return CupertinoPageRoute(
+          builder: (_) => const SecurityScreen(),
+        );
+
+      case aboutUs:
+        return CupertinoPageRoute(
+          builder: (_) => const AboutUsScreen(),
+        );
+
+      case notification:
+        return CupertinoPageRoute(
+          builder: (_) => const NotificationScreen(),
+        );
+
+      case topNews:
+        return CupertinoPageRoute(
+          builder: (_) => const TopNewsScreen(),
+        );
+
+      case mostRead:
+        return CupertinoPageRoute(
+          builder: (_) => const MostReadScreen(),
+        );
+
+      default:
+        return CupertinoPageRoute(
+          builder: (_) => Scaffold(
+            appBar: AppBar(
+              title: const Text('No Route Found'),
+            ),
+            body: const Center(
+              child: Text('No Route Found'),
+            ),
+          ),
+        );
+    }
   }
 }

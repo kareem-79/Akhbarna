@@ -1,8 +1,8 @@
 class ImageManagers {
   static const String base = "assets/images";
   static const String akhbarnaIcon = "$base/akhbarna_icon.png";
-  static const String akhbarnaText = "$base/اخبارنا.png";
-  static const String akhbarnaTextLightMood = "$base/اخبارنا_light_mood.png";
+  static const String akhbarnaText = "$base/أخبارنا.svg";
+  static const String akhbarnaTextLightMood = "$base/اخبارنا_light_mood.svg";
   static const String onBoarding1 = "$base/on_boarding1.png";
   static const String onBoarding2 = "$base/on_boarding2.png";
   static const String onBoarding3 = "$base/on_boarding3.png";

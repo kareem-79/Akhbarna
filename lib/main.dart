@@ -43,9 +43,7 @@ class Akhbarna extends StatelessWidget {
           builder: (context, configProvider, _) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-
               locale: configProvider.currentLocale,
-
               theme: ThemeManager.light,
               darkTheme: ThemeManager.dark,
               themeMode: configProvider.currentTheme,
@@ -60,7 +58,6 @@ class Akhbarna extends StatelessWidget {
                   child: child!,
                 );
               },
-
               onGenerateRoute: RoutesManager.routes,
               initialRoute: RoutesManager.splash,
               localizationsDelegates: const [

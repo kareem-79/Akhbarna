@@ -4,7 +4,7 @@ import '../core/utils/font_size.dart';
 import '../model/language_model.dart';
 
 class ConfigProvider extends ChangeNotifier {
-  ThemeMode currentTheme = ThemeMode.light;
+  ThemeMode currentTheme = ThemeMode.dark;
 
   double _textScaleFactor = 1.0;
   bool _isSystemFont = true;
@@ -22,7 +22,7 @@ class ConfigProvider extends ChangeNotifier {
   Locale get currentLocale => _currentLocale;
 
   Future<void> loadSavedSettings() async {
-    currentTheme = PrefsManager.getSavedTheme() ?? ThemeMode.light;
+    currentTheme = PrefsManager.getSavedTheme() ?? ThemeMode.dark;
     _currentLocale =
         PrefsManager.getSavedLanguage() ?? const Locale('ar', 'EG');
 

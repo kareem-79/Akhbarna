@@ -23,6 +23,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
     TextTheme textTheme = Theme.of(context).textTheme;
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     Color primaryColor = Theme.of(context).primaryColor;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -38,6 +39,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
+
                   Positioned(
                     bottom: 50.h,
                     left: 10.w,
@@ -47,13 +49,16 @@ class _StartUpScreenState extends State<StartUpScreen> {
                       style: textTheme.bodyMedium?.copyWith(
                         color: primaryColor,
                       ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
+
                   Positioned(
                     bottom: 20.h,
                     left: 10.w,
                     right: 10.w,
-                    child: Row(
+                    child: Wrap(
                       children: [
                         Text(
                           appLocalizations.register,
@@ -72,7 +77,9 @@ class _StartUpScreenState extends State<StartUpScreen> {
                   ),
                 ],
               ),
+
               SizedBox(height: 20.h),
+
               CustomStartUpElevatedButton(
                 onPress: () {
                   Navigator.pushNamed(context, RoutesManager.login);
@@ -82,6 +89,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                 backgroundColor: ColorsManagers.red,
                 path: IconManagers.email,
               ),
+
               CustomStartUpElevatedButton(
                 onPress: () async {
                   await FirebaseServices.signInWithGoogle(context);
@@ -90,25 +98,36 @@ class _StartUpScreenState extends State<StartUpScreen> {
                 text: appLocalizations.login_with_google,
                 path: IconManagers.google,
               ),
+
               CustomStartUpElevatedButton(
                 onPress: () {},
                 text: appLocalizations.login_with_facebook,
                 path: IconManagers.facebook,
               ),
+
               SizedBox(height: 20.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(appLocalizations.no_account, style: textTheme.bodySmall),
-                  SizedBox(width: 8.w),
-                  CustomTextButton(
-                    onPress: () {
-                      Navigator.pushNamed(context, RoutesManager.register);
-                    },
-                    text: appLocalizations.create_account,
-                    color: ColorsManagers.red,
-                  ),
-                ],
+
+              Center(
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Text(
+                      appLocalizations.no_account,
+                      style: textTheme.bodySmall,
+                    ),
+
+                    SizedBox(width: 8.w),
+
+                    CustomTextButton(
+                      onPress: () {
+                        Navigator.pushNamed(context, RoutesManager.register);
+                      },
+                      text: appLocalizations.create_account,
+                      color: ColorsManagers.red,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

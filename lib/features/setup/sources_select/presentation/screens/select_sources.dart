@@ -5,6 +5,7 @@ import 'package:akhbarna/model/source_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/prefs_manager/source_prefs_manager.dart';
 import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../core/resources/routes_managers.dart';
 import '../../../../../core/widget/app_bar_widget.dart';
@@ -21,6 +22,12 @@ class SelectSources extends StatefulWidget {
 }
 
 class _SelectSourcesState extends State<SelectSources> {
+  @override
+  void initState() {
+    super.initState();
+    loadSavedSources();
+  }
+
   @override
   Widget build(BuildContext context) {
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
@@ -64,11 +71,18 @@ class _SelectSourcesState extends State<SelectSources> {
     );
   }
 
-  void toggleSources(int index) {
+  void toggleSources(int index) async {
     setState(() {
       SourceModel.sources[index].isSelected =
           !SourceModel.sources[index].isSelected;
     });
+
+    final selectedNames = SourceModel.sources
+        .where((e) => e.isSelected)
+        .map((e) => e.name)
+        .toList();
+
+    await SourcePrefsService.saveSelectedSources(selectedNames);
   }
 
   void onNext(AppLocalizations appLocalizations) {
@@ -87,5 +101,14 @@ class _SelectSourcesState extends State<SelectSources> {
     } else {
       Navigator.pushNamed(context, RoutesManager.selectCategory);
     }
+  }
+
+  void loadSavedSources() async {
+    final saved = await SourcePrefsService.getSelectedSources();
+    setState(() {
+      for (var source in SourceModel.sources) {
+        source.isSelected = saved.contains(source.name);
+      }
+    });
   }
 }

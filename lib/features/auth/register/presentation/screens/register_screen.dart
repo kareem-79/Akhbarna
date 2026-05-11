@@ -1,12 +1,14 @@
 import 'package:akhbarna/core/resources/routes_managers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../core/prefs_manager/prefs_manager.dart';
 import '../../../../../core/resources/assets_managers.dart';
 import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../core/utils/ui_utils.dart';
 import '../../../../../core/utils/validation.dart';
 import '../../../../../core/widget/custom_elevated_button.dart';
 import '../../../../../core/widget/custom_text_form_field.dart';
+import '../../../../../firebase/firebase_services.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../auth_layout.dart';
 import '../../../widget/custom_start_up_elevated_button.dart';
@@ -131,7 +133,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 children: [
                   Expanded(
                     child: CustomStartUpElevatedButton(
-                      onPress: () {},
+                      onPress: () async{
+                        await FirebaseServices.signInWithGoogle(context);
+                        _navigate();
+                      },
                       text: appLocalizations.google,
                       path: IconManagers.google,
                     ),
@@ -164,6 +169,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ColorsManagers.riverBed,
       );
       Navigator.pushNamed(context, RoutesManager.login);
+    }
+  }
+  _navigate() async {
+    bool hasEnteredBefore = await PrefsManager.checkEntering();
+    if (!hasEnteredBefore) {
+      await PrefsManager.saveEntering();
+      Navigator.pushReplacementNamed(context, RoutesManager.onBoarding);
+    } else {
+      Navigator.pushReplacementNamed(context, RoutesManager.mainLayout);
     }
   }
 }

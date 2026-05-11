@@ -2,9 +2,12 @@ import 'package:akhbarna/core/resources/assets_managers.dart';
 import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/resources/routes_managers.dart';
 import 'package:akhbarna/l10n/app_localizations.dart';
+import 'package:akhbarna/provider/config_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/prefs_manager/prefs_manager.dart';
 
@@ -104,10 +107,16 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
                 FadeTransition(
                   opacity: _fadeText,
-                  child: Image.asset(
-                    ImageManagers.akhbarnaText,
-                    width: 140.w,
-                    height: 85.h,
+                  child: Consumer<ConfigProvider>(
+                    builder: (context, provider, child) {
+                      return SvgPicture.asset(
+                        provider.currentTheme == ThemeMode.dark
+                            ? ImageManagers.akhbarnaText
+                            : ImageManagers.akhbarnaTextLightMood,
+                        height: 85.h,
+                        width: 140.w,
+                      );
+                    },
                   ),
                 ),
 
