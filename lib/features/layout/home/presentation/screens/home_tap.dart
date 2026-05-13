@@ -1,13 +1,14 @@
 import 'package:akhbarna/core/resources/routes_managers.dart';
 import 'package:akhbarna/core/widget/custom_text_button.dart';
+import 'package:akhbarna/features/layout/home/presentation/widget/breaking_news_item_widget.dart';
 import 'package:akhbarna/features/layout/home/presentation/widget/home_header_widget.dart';
 import 'package:akhbarna/features/layout/home/presentation/widget/most_read_news_item_widget.dart';
-import 'package:akhbarna/features/layout/home/presentation/widget/breaking_news_item_widget.dart';
 import 'package:akhbarna/features/layout/home/presentation/widget/top_news_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../core/widget/section_header_widget.dart';
 import '../../../../../model/breaking_news_model.dart';
@@ -29,23 +30,62 @@ class _HomeTapState extends State<HomeTap> {
   List<BreakingNewsModel> breakingList = [];
   List<MostReadModel> mostReadList = [];
   List<TopNewsModel> topList = [];
+
+  List<TopNewsModel> visibleTopNews = [];
+  List<MostReadModel> visibleMostRead = [];
+
+  final int loadCount = 10;
+
   late HomeTabModel selectedHomeTab = HomeTabModel.homeTabList(context)[0];
+
   final ScrollController scrollController = ScrollController();
   final PageController pageController = PageController();
 
   @override
   void initState() {
     super.initState();
+
     breakingList = breakingNewsList;
     mostReadList = mostReadNewsList;
     topList = topNewsList;
+
+    visibleTopNews = topList.take(loadCount).toList();
+    visibleMostRead = mostReadList.take(loadCount).toList();
+
+    scrollController.addListener(loadMore);
+  }
+
+  void loadMore() {
+    if (scrollController.position.pixels >=
+        scrollController.position.maxScrollExtent - 300) {
+      if (visibleTopNews.length < topList.length) {
+        setState(() {
+          final next = visibleTopNews.length + loadCount;
+
+          visibleTopNews = topList.take(next).toList();
+        });
+      }
+      if (visibleMostRead.length < mostReadList.length) {
+        setState(() {
+          final next = visibleMostRead.length + loadCount;
+
+          visibleMostRead = mostReadList.take(next).toList();
+        });
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    pageController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           HomeHeaderWidget(
             onTap: () {
@@ -58,36 +98,46 @@ class _HomeTapState extends State<HomeTap> {
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.all(16.0.sp),
-              child: SingleChildScrollView(
+              padding: EdgeInsets.all(16.sp),
+              child: CustomScrollView(
                 controller: scrollController,
-                padding: EdgeInsets.zero,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    NowNewsWidget(),
-                    SizedBox(height: 10.h),
-                    HomeTabBar(
-                      homeTabList: HomeTabModel.homeTabList(context),
-                      selectedHomeTabIndex: 0,
-                      selectedBgColor: ColorsManagers.gray2,
-                      selectedFgColor: ColorsManagers.white,
-                      unSelectedBgColor: ColorsManagers.red,
-                      unSelectedFgColor: ColorsManagers.white,
-                      onHomeTabItemSelected: (homeTabModel) {
-                        setState(() {
-                          selectedHomeTab = homeTabModel;
-                        });
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Column(
+                      children: [
+                        const NowNewsWidget(),
+                        SizedBox(height: 10.h),
+                        HomeTabBar(
+                          homeTabList: HomeTabModel.homeTabList(context),
+                          selectedHomeTabIndex: 0,
+                          selectedBgColor: ColorsManagers.gray2,
+                          selectedFgColor: ColorsManagers.white,
+                          unSelectedBgColor: ColorsManagers.red,
+                          unSelectedFgColor: ColorsManagers.white,
+                          onHomeTabItemSelected: (homeTabModel) {
+                            setState(() {
+                              selectedHomeTab = homeTabModel;
+                            });
 
-                        if (homeTabModel.id == '2') {
-                          Navigator.pushNamed(context, RoutesManager.topNews);
-                        } else if (homeTabModel.id == '3') {
-                          Navigator.pushNamed(context, RoutesManager.mostRead);
-                        }
-                      },
+                            if (homeTabModel.id == '2') {
+                              Navigator.pushNamed(
+                                context,
+                                RoutesManager.topNews,
+                              );
+                            } else if (homeTabModel.id == '3') {
+                              Navigator.pushNamed(
+                                context,
+                                RoutesManager.mostRead,
+                              );
+                            }
+                          },
+                        ),
+                        SizedBox(height: 10.h),
+                      ],
                     ),
-                    SizedBox(height: 10.h),
-                    Consumer<BookmarkProvider>(
+                  ),
+                  SliverToBoxAdapter(
+                    child: Consumer<BookmarkProvider>(
                       builder: (context, provider, _) {
                         return Column(
                           children: [
@@ -120,59 +170,75 @@ class _HomeTapState extends State<HomeTap> {
                         );
                       },
                     ),
-                    SizedBox(height: 10.h),
-
-                    SectionHeaderWidget(title: "اخر الاخبار"),
-                    SizedBox(height: 10.h),
-                    ListView.separated(
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return TopNewsItemWidget(news: topList[index]);
-                      },
-                      separatorBuilder: (context, index) =>
-                          SizedBox(height: 10.w),
-                      itemCount: topList.length,
-                    ),
-                    SizedBox(height: 10.h),
-                    Center(
-                      child: CustomTextButton(
-                        onPress: () {
-                          Navigator.pushNamed(context, RoutesManager.topNews);
-                        },
-                        text: "اقرأ المزيد.. ",
-                        color: ColorsManagers.red,
+                  ),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10.h),
+                      child: Column(
+                        children: [
+                          SectionHeaderWidget(title: "اخر الاخبار"),
+                          SizedBox(height: 10.h),
+                        ],
                       ),
                     ),
-                    SizedBox(height: 10.h),
-                    SectionHeaderWidget(title: "الاكثر قراءة"),
-                    SizedBox(height: 10.h),
-                    ListView.separated(
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return MostReadNewsItemWidget(
-                          news: mostReadList[index],
-                        );
-                      },
-                      separatorBuilder: (context, index) =>
-                          SizedBox(height: 10.w),
-                      itemCount: mostReadList.length,
+                  ),
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      return Padding(
+                        padding: EdgeInsets.only(bottom: 10.h),
+                        child: TopNewsItemWidget(news: visibleTopNews[index]),
+                      );
+                    }, childCount: visibleTopNews.length),
+                  ),
+                  SliverToBoxAdapter(
+                    child: Column(
+                      children: [
+                        Center(
+                          child: CustomTextButton(
+                            onPress: () {
+                              Navigator.pushNamed(
+                                context,
+                                RoutesManager.topNews,
+                              );
+                            },
+                            text: "اقرأ المزيد.. ",
+                            color: ColorsManagers.red,
+                          ),
+                        ),
+                        SizedBox(height: 10.h),
+                        SectionHeaderWidget(title: "الاكثر قراءة"),
+                        SizedBox(height: 10.h),
+                      ],
                     ),
-                    SizedBox(height: 10.h),
-                    Center(
-                      child: CustomTextButton(
-                        onPress: () {
-                          Navigator.pushNamed(context, RoutesManager.mostRead);
-                        },
-                        text: "اقرأ المزيد.. ",
-                        color: ColorsManagers.red,
+                  ),
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      return Padding(
+                        padding: EdgeInsets.only(bottom: 10.h),
+                        child: MostReadNewsItemWidget(
+                          news: visibleMostRead[index],
+                        ),
+                      );
+                    }, childCount: visibleMostRead.length),
+                  ),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10.h),
+                      child: Center(
+                        child: CustomTextButton(
+                          onPress: () {
+                            Navigator.pushNamed(
+                              context,
+                              RoutesManager.mostRead,
+                            );
+                          },
+                          text: "اقرأ المزيد.. ",
+                          color: ColorsManagers.red,
+                        ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

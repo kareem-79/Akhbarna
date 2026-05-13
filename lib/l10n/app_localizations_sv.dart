@@ -110,6 +110,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get create_account => 'Skapa konto';
 
   @override
+  String get create_account_success => 'Account created successfully';
+
+  @override
   String get enter_code =>
       'Ange den 6-siffriga verifieringskoden som skickats till din e-post';
 

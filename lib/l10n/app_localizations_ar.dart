@@ -108,6 +108,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get create_account => 'إنشاء حساب';
 
   @override
+  String get create_account_success => 'تم انشاء الحساب بنجاح';
+
+  @override
   String get enter_code =>
       'أدخل رمز التحقق المكون من 6 أرقام والذي تم إرساله إلى بريدك الإلكتروني';
 

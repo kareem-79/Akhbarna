@@ -1,4 +1,3 @@
-import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -39,7 +38,7 @@ class UiUtils {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         content: Text(
           massage,
-          style: Theme.of(context).textTheme.titleSmall,
+          style: Theme.of(context).textTheme.bodySmall,
           textAlign: TextAlign.center,
         ),
       ),
@@ -58,7 +57,7 @@ class UiUtils {
         ),
         child: Text(
           message,
-          style: TextStyle(color: ColorsManagers.white, fontSize: 16.sp),
+          style: Theme.of(context).textTheme.bodySmall,
         ),
       ),
       gravity: ToastGravity.BOTTOM,

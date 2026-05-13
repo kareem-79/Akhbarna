@@ -9,12 +9,12 @@ class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
 
   @override
-  State<NotificationScreen> createState() =>
-      _NotificationScreenState();
+  State<NotificationScreen> createState() => _NotificationScreenState();
 }
 
 class _NotificationScreenState extends State<NotificationScreen> {
-  List<int> items = [1, 2, 3, 4, 5, 6, 7];
+  List<int> items = List.generate(20, (index) => index + 1);
+  final ScrollController scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,18 +49,27 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       ],
                     ),
                   )
-                : ListView.builder(
-                    padding: EdgeInsets.zero,
-                    itemCount: items.length,
-                    itemBuilder: (context, index) {
-                      return NotificationItemWidget(
-                        onDelete: () {
-                          setState(() {
-                            items.removeAt(index);
-                          });
-                        },
-                      );
-                    },
+                : CustomScrollView(
+                    controller: scrollController,
+                    slivers: [
+                      SliverPadding(
+                        padding: EdgeInsets.zero,
+                        sliver: SliverList(
+                          delegate: SliverChildBuilderDelegate((
+                            context,
+                            index,
+                          ) {
+                            return NotificationItemWidget(
+                              onDelete: () {
+                                setState(() {
+                                  items.removeAt(index);
+                                });
+                              },
+                            );
+                          }, childCount: items.length),
+                        ),
+                      ),
+                    ],
                   ),
           ),
         ],

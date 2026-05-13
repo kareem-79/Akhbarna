@@ -35,23 +35,23 @@ class AuthSwitchItem extends StatelessWidget {
             Container(
               width: 45.w,
               height: 45.h,
-              decoration:  BoxDecoration(
+              decoration: BoxDecoration(
                 color: ColorsManagers.white,
                 shape: BoxShape.circle,
               ),
-              child: Icon(
-                icon,
-                size: 30.sp,
-                color: ColorsManagers.black,
-              ),
+              child: Icon(icon, size: 30.sp, color: ColorsManagers.black),
             ),
           if (isActive) SizedBox(width: 8.w),
           Padding(
-            padding: EdgeInsets.all(12.sp),
+            padding: EdgeInsets.symmetric(horizontal: 12.sp),
             child: Text(
               text,
+              maxLines: 1,
               style: textTheme.bodySmall?.copyWith(
-                color: isActive ? ColorsManagers.white : ColorsManagers.lightGray,
+                color: isActive
+                    ? ColorsManagers.white
+                    : ColorsManagers.lightGray,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ),

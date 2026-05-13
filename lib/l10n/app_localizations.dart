@@ -322,6 +322,12 @@ abstract class AppLocalizations {
   /// **'Create Account'**
   String get create_account;
 
+  /// No description provided for @create_account_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Account created successfully'**
+  String get create_account_success;
+
   /// No description provided for @enter_code.
   ///
   /// In en, this message translates to:

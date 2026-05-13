@@ -110,6 +110,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get create_account => 'Создать аккаунт';
 
   @override
+  String get create_account_success => 'Account created successfully';
+
+  @override
   String get enter_code =>
       'Введите 6-значный код подтверждения, отправленный на вашу почту';
 

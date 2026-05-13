@@ -108,6 +108,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get create_account => 'Créer un compte';
 
   @override
+  String get create_account_success => 'Account created successfully';
+
+  @override
   String get enter_code =>
       'Entrez le code de vérification à 6 chiffres envoyé à votre adresse e-mail';
 

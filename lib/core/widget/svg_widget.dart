@@ -15,18 +15,22 @@ class SvgWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedScale(
-      duration: const Duration(milliseconds: 150),
-      scale: isSelected ? 1.2 : 1,
-      child: SvgPicture.asset(
-        image,
-        width: 24.w,
-        height: 24.h,
-        colorFilter: ColorFilter.mode(
-          isSelected
-              ? ColorsManagers.blue
-              : ColorsManagers.white.withOpacity(.6),
-          BlendMode.srcIn,
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.easeInOut,
+      child: AnimatedScale(
+        duration: const Duration(milliseconds: 250),
+        scale: isSelected ? 1.25 : 1.0,
+        child: SvgPicture.asset(
+          image,
+          width: 24.w,
+          height: 24.h,
+          colorFilter: ColorFilter.mode(
+            isSelected
+                ? ColorsManagers.blue
+                : ColorsManagers.white.withOpacity(0.6),
+            BlendMode.srcIn,
+          ),
         ),
       ),
     );

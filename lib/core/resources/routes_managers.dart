@@ -1,26 +1,25 @@
+import 'package:akhbarna/features/auth/forget_password/presentation/screens/change_password.dart';
+import 'package:akhbarna/features/auth/forget_password/presentation/screens/forget_password.dart';
+import 'package:akhbarna/features/auth/forget_password/presentation/screens/login_with_OTP.dart';
+import 'package:akhbarna/features/auth/login/presentation/screens/login_screen.dart';
+import 'package:akhbarna/features/auth/register/presentation/screens/register_screen.dart';
+import 'package:akhbarna/features/auth/start_up/presentation/screens/start_up_screen.dart';
+import 'package:akhbarna/features/layout/home/presentation/screens/most_read_Screen.dart';
 import 'package:akhbarna/features/layout/home/presentation/screens/notification_screen.dart';
+import 'package:akhbarna/features/layout/home/presentation/screens/top_news_screen.dart';
+import 'package:akhbarna/features/layout/main_layout.dart';
+import 'package:akhbarna/features/layout/profile/presentation/screens/about/presentation/about_screen.dart';
+import 'package:akhbarna/features/layout/profile/presentation/screens/profile_tab.dart';
 import 'package:akhbarna/features/layout/profile/presentation/screens/security/presentation/security_screen.dart';
+import 'package:akhbarna/features/layout/profile/presentation/screens/ِaccount_information/presentation/edit_profile_screen.dart';
 import 'package:akhbarna/features/on_boarding/presentation/screens/on_boarding.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:akhbarna/features/setup/category_select/presentation/screens/select_category.dart';
+import 'package:akhbarna/features/setup/language_select/presentation/screens/select_language.dart';
+import 'package:akhbarna/features/setup/locations_select/presentation/screens/select_location.dart';
+import 'package:akhbarna/features/setup/sources_select/presentation/screens/select_sources.dart';
+import 'package:akhbarna/features/setup/start/presentation/screens/start_screen.dart';
+import 'package:akhbarna/features/splash_screen/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
-import '../../features/auth/forget_password/presentation/screens/change_password.dart';
-import '../../features/auth/forget_password/presentation/screens/forget_password.dart';
-import '../../features/auth/forget_password/presentation/screens/login_with_OTP.dart';
-import '../../features/auth/login/presentation/screens/login_screen.dart';
-import '../../features/auth/register/presentation/screens/register_screen.dart';
-import '../../features/auth/start_up/presentation/screens/start_up_screen.dart';
-import '../../features/layout/home/presentation/screens/most_read_Screen.dart';
-import '../../features/layout/home/presentation/screens/top_news_screen.dart';
-import '../../features/layout/main_layout.dart';
-import '../../features/layout/profile/presentation/screens/about/presentation/about_screen.dart';
-import '../../features/layout/profile/presentation/screens/profile_tab.dart';
-import '../../features/layout/profile/presentation/screens/ِaccount_information/presentation/edit_profile_screen.dart';
-import '../../features/setup/category_select/presentation/screens/select_category.dart';
-import '../../features/setup/language_select/presentation/screens/select_language.dart';
-import '../../features/setup/locations_select/presentation/screens/select_location.dart';
-import '../../features/setup/sources_select/presentation/screens/select_sources.dart';
-import '../../features/setup/start/presentation/screens/start_screen.dart';
-import '../../features/splash_screen/presentation/screens/splash_screen.dart';
 
 class RoutesManager {
   static const String splash = "Splash";
@@ -45,128 +44,103 @@ class RoutesManager {
   static const String topNews = "TopNews";
   static const String mostRead = "MostRead";
 
+  static Route<dynamic> slideRight(Widget screen) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => screen,
+      transitionDuration: const Duration(milliseconds: 420),
+      reverseTransitionDuration: const Duration(milliseconds: 320),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1.0, 0.0),
+            end: Offset.zero,
+          ).animate(
+            CurvedAnimation(
+              parent: animation,
+              curve: Curves.easeOutQuart,
+            ),
+          ),
+          child: child,
+        );
+      },
+    );
+  }
+
   static Route<dynamic> routes(RouteSettings settings) {
     switch (settings.name) {
       case splash:
-        return CupertinoPageRoute(
-          builder: (_) => const SplashScreen(),
-        );
+        return slideRight(const SplashScreen());
 
       case onBoarding:
-        return CupertinoPageRoute(
-          builder: (_) => const OnBoardingScreen(),
-        );
+        return slideRight(const OnBoardingScreen());
 
       case startUp:
-        return CupertinoPageRoute(
-          builder: (_) => const StartUpScreen(),
-        );
+        return slideRight(const StartUpScreen());
 
       case register:
-        return CupertinoPageRoute(
-          builder: (_) => const RegisterScreen(),
-        );
+        return slideRight(const RegisterScreen());
 
       case login:
-        return CupertinoPageRoute(
-          builder: (_) => const LoginScreen(),
-        );
+        return slideRight(const LoginScreen());
 
       case forgetPassword:
-        return CupertinoPageRoute(
-          builder: (_) => const ForgetPassword(),
-        );
+        return slideRight(const ForgetPassword());
 
       case loginWithOtp:
-        return CupertinoPageRoute(
-          builder: (_) => const LoginWithOtp(),
-        );
+        return slideRight(const LoginWithOtp());
 
       case changePassword:
-        return CupertinoPageRoute(
-          builder: (_) => const ChangePassword(),
-        );
+        return slideRight(const ChangePassword());
 
       case selectLocation:
-        return CupertinoPageRoute(
-          builder: (_) => const SelectLocation(),
-        );
+        return slideRight(const SelectLocation());
 
       case selectCategory:
-        return CupertinoPageRoute(
-          builder: (_) => const SelectCategory(),
-        );
+        return slideRight(const SelectCategory());
 
       case selectLanguage:
         final bool isFromEdit = settings.arguments as bool? ?? false;
-
-        return CupertinoPageRoute(
-          builder: (_) => SelectLanguage(
-            isFromEdit: isFromEdit,
-          ),
+        return slideRight(
+          SelectLanguage(isFromEdit: isFromEdit),
         );
 
       case selectSources:
         final bool isFromEdit = settings.arguments as bool? ?? false;
-
-        return CupertinoPageRoute(
-          builder: (_) => SelectSources(
-            isFromEdit: isFromEdit,
-          ),
+        return slideRight(
+          SelectSources(isFromEdit: isFromEdit),
         );
 
       case start:
-        return CupertinoPageRoute(
-          builder: (_) => const StartScreen(),
-        );
+        return slideRight(const StartScreen());
 
       case mainLayout:
-        return CupertinoPageRoute(
-          builder: (_) => const MainLayout(),
-        );
+        return slideRight(const MainLayout());
 
       case profile:
-        return CupertinoPageRoute(
-          builder: (_) => const ProfileTab(),
-        );
+        return slideRight(const ProfileTab());
 
       case editProfile:
-        return CupertinoPageRoute(
-          builder: (_) => const EditProfile(),
-        );
+        return slideRight(const EditProfile());
 
       case security:
-        return CupertinoPageRoute(
-          builder: (_) => const SecurityScreen(),
-        );
+        return slideRight(const SecurityScreen());
 
       case aboutUs:
-        return CupertinoPageRoute(
-          builder: (_) => const AboutUsScreen(),
-        );
+        return slideRight(const AboutUsScreen());
 
       case notification:
-        return CupertinoPageRoute(
-          builder: (_) => const NotificationScreen(),
-        );
+        return slideRight(const NotificationScreen());
 
       case topNews:
-        return CupertinoPageRoute(
-          builder: (_) => const TopNewsScreen(),
-        );
+        return slideRight(const TopNewsScreen());
 
       case mostRead:
-        return CupertinoPageRoute(
-          builder: (_) => const MostReadScreen(),
-        );
+        return slideRight(const MostReadScreen());
 
       default:
-        return CupertinoPageRoute(
-          builder: (_) => Scaffold(
-            appBar: AppBar(
-              title: const Text('No Route Found'),
-            ),
-            body: const Center(
+        return slideRight(
+          const Scaffold(
+            body: Center(
               child: Text('No Route Found'),
             ),
           ),

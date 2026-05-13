@@ -108,6 +108,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get create_account => 'Hesap Oluştur';
 
   @override
+  String get create_account_success => 'Account created successfully';
+
+  @override
   String get enter_code =>
       'E-posta adresinize gönderilen 6 haneli doğrulama kodunu girin';
 

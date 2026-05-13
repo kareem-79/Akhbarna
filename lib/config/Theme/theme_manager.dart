@@ -9,6 +9,7 @@ class ThemeManager {
     shadowColor: ColorsManagers.white,
     primaryColor: ColorsManagers.white,
     cardColor: ColorsManagers.gray2,
+    useMaterial3: false,
     iconTheme: IconThemeData(color: ColorsManagers.white),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: ColorsManagers.gray,
@@ -19,6 +20,7 @@ class ThemeManager {
       showUnselectedLabels: false,
       showSelectedLabels: false,
     ),
+    dialogTheme: DialogThemeData(backgroundColor: ColorsManagers.darkNavy),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         padding: EdgeInsetsGeometry.all(14.sp),
@@ -92,6 +94,7 @@ class ThemeManager {
     shadowColor: ColorsManagers.black,
     primaryColor: ColorsManagers.white,
     cardColor: ColorsManagers.mainGray,
+    useMaterial3: false,
     iconTheme: IconThemeData(color: ColorsManagers.black),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: ColorsManagers.red,
@@ -102,6 +105,7 @@ class ThemeManager {
       showUnselectedLabels: false,
       showSelectedLabels: false,
     ),
+    dialogTheme: DialogThemeData(backgroundColor: ColorsManagers.white2),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         padding: EdgeInsetsGeometry.all(14.sp),

@@ -108,6 +108,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get create_account => '创建账号';
 
   @override
+  String get create_account_success => 'Account created successfully';
+
+  @override
   String get enter_code => '请输入发送至您邮箱的6位验证码';
 
   @override

@@ -104,7 +104,11 @@ class _LogoutBottomSheetState extends State<LogoutBottomSheet> {
 
   void _logout() async {
     await FirebaseAuth.instance.signOut();
-    Navigator.pushReplacementNamed(context, RoutesManager.login);
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      RoutesManager.login,
+      (route) => false,
+    );
     UiUtils.showToast(
       context,
       AppLocalizations.of(context)!.logout_confirm_message,

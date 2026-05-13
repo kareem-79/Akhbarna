@@ -13,11 +13,40 @@ class TopNewsScreen extends StatefulWidget {
 
 class _TopNewsScreenState extends State<TopNewsScreen> {
   List<TopNewsModel> topList = [];
+  List<TopNewsModel> visibleTopNews = [];
+
+  final ScrollController scrollController = ScrollController();
+
+  final int loadCount = 10;
 
   @override
   void initState() {
     super.initState();
+
     topList = topNewsList;
+
+    visibleTopNews = topList.take(loadCount).toList();
+
+    scrollController.addListener(loadMore);
+  }
+
+  void loadMore() {
+    if (scrollController.position.pixels >=
+        scrollController.position.maxScrollExtent - 300) {
+      if (visibleTopNews.length < topList.length) {
+        setState(() {
+          final next = visibleTopNews.length + loadCount;
+
+          visibleTopNews = topList.take(next).toList();
+        });
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -29,15 +58,24 @@ class _TopNewsScreenState extends State<TopNewsScreen> {
           SizedBox(height: 10.h),
           Expanded(
             child: Padding(
-              padding:  EdgeInsets.all(16.0.sp),
-              child: ListView.separated(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return TopNewsItemWidget(news: topList[index]);
-                },
-                separatorBuilder: (context, index) => SizedBox(height: 10.w),
-                itemCount: topList.length,
+              padding: EdgeInsets.all(16.sp),
+              child: CustomScrollView(
+                controller: scrollController,
+                slivers: [
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.only(bottom: 10.h),
+                          child: TopNewsItemWidget(
+                            news: visibleTopNews[index],
+                          ),
+                        );
+                      },
+                      childCount: visibleTopNews.length,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

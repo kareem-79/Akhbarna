@@ -2,7 +2,10 @@ import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/resources/routes_managers.dart';
 import 'package:akhbarna/core/widget/custom_elevated_button.dart';
 import 'package:akhbarna/core/widget/custom_text_form_field.dart';
+import 'package:akhbarna/features/auth/login/data/models/LoginRequest.dart';
+import 'package:akhbarna/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/prefs_manager/prefs_manager.dart';
 import '../../../../../core/resources/assets_managers.dart';
@@ -24,20 +27,20 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   late bool secure = true;
   var formKey = GlobalKey<FormState>();
-  late TextEditingController emailController;
-  late TextEditingController passwordController;
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
 
   @override
   void initState() {
     super.initState();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
   }
 
   @override
   void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
@@ -49,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
       title: appLocalizations.welcome_back,
       switchText: appLocalizations.register_now,
       onSwitch: () {
-        Navigator.pushNamed(context, RoutesManager.register);
+        Navigator.pushNamedAndRemoveUntil(context, RoutesManager.register,(route) => false,);
       },
       isLogin: true,
       child: SingleChildScrollView(
@@ -60,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               CustomTextFormFiled(
                 label: appLocalizations.email,
-                controller: emailController,
+                controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 prefixIcon: Icons.email_outlined,
                 validator: (input) {
@@ -75,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               CustomTextFormFiled(
                 label: appLocalizations.password,
-                controller: passwordController,
+                controller: _passwordController,
                 validator: (input) {
                   if (input == null || input.trim().isEmpty) {
                     return appLocalizations.password_required;
@@ -106,11 +109,39 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               SizedBox(height: 40.h),
-              CustomElevatedButton(
-                onPress: () => _login(appLocalizations, context),
-                text: appLocalizations.login,
-                backgroundColor: ColorsManagers.red,
-                foregroundColor: ColorsManagers.white,
+              BlocListener<LoginCubit,LoginState>(
+                listener: (context, state) {
+                  if (state is LoginLoading) {
+                    UiUtils.showLoadingDialog(context, isDisable: false);
+                  } else if (state is LoginError) {
+                    UiUtils.hideDialog(context);
+                    UiUtils.showToast(
+                      context,
+                      state.massage,
+                      ColorsManagers.vividTangerine,
+                    );
+                  } else if (state is LoginSuccess) {
+                    UiUtils.hideDialog(context);
+                    UiUtils.showToast(
+                      context,
+                      appLocalizations.login_success,
+                      ColorsManagers.riverBed,
+                    );
+                    _navigate();
+                  }
+                },
+                child: CustomElevatedButton(
+                  onPress: () {
+                    if (formKey.currentState?.validate() ?? false){
+                      BlocProvider.of<LoginCubit>(context).login(
+                        LoginRequest(email: _emailController.text, password: _passwordController.text)
+                      );
+                    }
+                  },
+                  text: appLocalizations.login,
+                  backgroundColor: ColorsManagers.red,
+                  foregroundColor: ColorsManagers.white,
+                ),
               ),
               SizedBox(height: 20.h),
               Align(
@@ -151,28 +182,13 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Future<void> _login(
-    AppLocalizations appLocalizations,
-    BuildContext context,
-  ) async {
-    if (formKey.currentState?.validate() ?? false) {
-      UiUtils.showLoadingDialog(context);
-      UiUtils.showToast(
-        context,
-        appLocalizations.login_success,
-        ColorsManagers.riverBed,
-      );
-      _navigate();
-    }
-  }
-
   _navigate() async {
     bool hasEnteredBefore = await PrefsManager.checkEntering();
     if (!hasEnteredBefore) {
       await PrefsManager.saveEntering();
-      Navigator.pushReplacementNamed(context, RoutesManager.onBoarding);
+      Navigator.pushNamedAndRemoveUntil(context, RoutesManager.onBoarding,(route) => false,);
     } else {
-      Navigator.pushReplacementNamed(context, RoutesManager.mainLayout);
+      Navigator.pushNamedAndRemoveUntil(context, RoutesManager.mainLayout,(route) => false,);
     }
   }
 }

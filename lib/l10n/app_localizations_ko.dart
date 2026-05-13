@@ -108,6 +108,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get create_account => '계정 만들기';
 
   @override
+  String get create_account_success => 'Account created successfully';
+
+  @override
   String get enter_code => '이메일로 전송된 6자리 인증 코드를 입력해주세요';
 
   @override

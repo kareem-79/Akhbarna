@@ -108,6 +108,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get create_account => 'アカウントを作成';
 
   @override
+  String get create_account_success => 'Account created successfully';
+
+  @override
   String get enter_code => 'メールアドレスに送信された6桁の確認コードを入力してください';
 
   @override

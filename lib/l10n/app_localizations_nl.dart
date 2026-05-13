@@ -108,6 +108,9 @@ class AppLocalizationsNl extends AppLocalizations {
   String get create_account => 'Account aanmaken';
 
   @override
+  String get create_account_success => 'Account created successfully';
+
+  @override
   String get enter_code =>
       'Voer de 6-cijferige verificatiecode in die naar uw e-mail is gestuurd';
 

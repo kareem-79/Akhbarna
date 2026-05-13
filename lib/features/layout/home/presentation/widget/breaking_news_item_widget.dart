@@ -20,6 +20,7 @@ class BreakingNewsItemWidget extends StatelessWidget {
 
     return Container(
       width: 330.w,
+      height: 200.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30.r),
         image: DecorationImage(
@@ -100,14 +101,12 @@ class BreakingNewsItemWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 10.h),
                   Text(
                     news.title,
                     style: textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(height: 5.h),
                   Text(
                     news.time,
                     style: textTheme.bodySmall?.copyWith(

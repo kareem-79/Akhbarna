@@ -42,7 +42,6 @@ class _AuthLayoutState extends State<AuthLayout> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ArrowBackWidget(),
                   Consumer<ConfigProvider>(
                     builder: (context, provider, child) {
                       return SvgPicture.asset(

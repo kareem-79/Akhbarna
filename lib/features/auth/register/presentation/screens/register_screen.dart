@@ -1,5 +1,8 @@
 import 'package:akhbarna/core/resources/routes_managers.dart';
+import 'package:akhbarna/features/auth/register/data/models/RegisterRequest.dart';
+import 'package:akhbarna/features/auth/register/presentation/cubit/register_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/prefs_manager/prefs_manager.dart';
 import '../../../../../core/resources/assets_managers.dart';
@@ -23,23 +26,23 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   late bool secure = true;
   var formKey = GlobalKey<FormState>();
-  late TextEditingController nameController;
-  late TextEditingController emailController;
-  late TextEditingController passwordController;
+  late TextEditingController _nameController;
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
 
   @override
   void initState() {
     super.initState();
-    nameController = TextEditingController();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
+    _nameController = TextEditingController();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
   }
 
   @override
   void dispose() {
-    nameController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
@@ -51,7 +54,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
       title: appLocalizations.signup,
       switchText: appLocalizations.login,
       onSwitch: () {
-        Navigator.pushNamed(context, RoutesManager.login);
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          RoutesManager.login,
+          (route) => false,
+        );
       },
       isLogin: false,
       child: SingleChildScrollView(
@@ -62,7 +69,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             children: [
               CustomTextFormFiled(
                 label: appLocalizations.name,
-                controller: nameController,
+                controller: _nameController,
                 prefixIcon: Icons.person_2_outlined,
                 validator: (input) {
                   if (input == null || input.trim().isEmpty) {
@@ -76,7 +83,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               CustomTextFormFiled(
                 label: appLocalizations.email,
-                controller: emailController,
+                controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 prefixIcon: Icons.email_outlined,
                 validator: (input) {
@@ -91,7 +98,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               CustomTextFormFiled(
                 label: appLocalizations.password,
-                controller: passwordController,
+                controller: _passwordController,
                 validator: (input) {
                   if (input == null || input.trim().isEmpty) {
                     return appLocalizations.password_required;
@@ -113,11 +120,43 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
 
               SizedBox(height: 40.h),
-              CustomElevatedButton(
-                onPress: () => _createAccount(appLocalizations, context),
-                text: appLocalizations.create_account,
-                backgroundColor: ColorsManagers.red,
-                foregroundColor: ColorsManagers.white,
+              BlocListener<RegisterCubit, RegisterState>(
+                listener: (context, state) {
+                  if (state is RegisterLoading) {
+                    UiUtils.showLoadingDialog(context, isDisable: false);
+                  } else if (state is RegisterError) {
+                    UiUtils.hideDialog(context);
+                    UiUtils.showToast(
+                      context,
+                      state.massage,
+                      ColorsManagers.vividTangerine,
+                    );
+                  } else if (state is RegisterSuccess) {
+                    UiUtils.hideDialog(context);
+                    UiUtils.showToast(
+                      context,
+                      appLocalizations.create_account_success,
+                      ColorsManagers.riverBed,
+                    );
+                    Navigator.pushReplacementNamed(context, RoutesManager.login);
+                  }
+                },
+                child: CustomElevatedButton(
+                  onPress: () {
+                    if (formKey.currentState?.validate() ?? false) {
+                      BlocProvider.of<RegisterCubit>(context).register(
+                        RegisterRequest(
+                          name: _nameController.text,
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                        ),
+                      );
+                    }
+                  },
+                  text: appLocalizations.create_account,
+                  backgroundColor: ColorsManagers.red,
+                  foregroundColor: ColorsManagers.white,
+                ),
               ),
               SizedBox(height: 20.h),
               Align(
@@ -133,7 +172,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 children: [
                   Expanded(
                     child: CustomStartUpElevatedButton(
-                      onPress: () async{
+                      onPress: () async {
                         await FirebaseServices.signInWithGoogle(context);
                         _navigate();
                       },
@@ -158,19 +197,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  Future<void> _createAccount(
-    AppLocalizations appLocalizations,
-    BuildContext context,
-  ) async {
-    if (formKey.currentState?.validate() ?? false) {
-      UiUtils.showToast(
-        context,
-        appLocalizations.create_account,
-        ColorsManagers.riverBed,
-      );
-      Navigator.pushNamed(context, RoutesManager.login);
-    }
-  }
   _navigate() async {
     bool hasEnteredBefore = await PrefsManager.checkEntering();
     if (!hasEnteredBefore) {
