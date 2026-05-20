@@ -15,6 +15,7 @@ import '../../../../../firebase/firebase_services.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../auth_layout.dart';
 import '../../../widget/custom_start_up_elevated_button.dart';
+import '../cubit/register_state.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -57,7 +58,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         Navigator.pushNamedAndRemoveUntil(
           context,
           RoutesManager.login,
-          (route) => false,
+              (route) => false,
         );
       },
       isLogin: false,
@@ -118,7 +119,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   icon: Icon(secure ? Icons.visibility_off : Icons.visibility),
                 ),
               ),
-
               SizedBox(height: 40.h),
               BlocListener<RegisterCubit, RegisterState>(
                 listener: (context, state) {
@@ -173,8 +173,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Expanded(
                     child: CustomStartUpElevatedButton(
                       onPress: () async {
+                        final response =
                         await FirebaseServices.signInWithGoogle(context);
-                        _navigate();
+
+                        if (response != null) {
+                          _navigate();
+                        }
                       },
                       text: appLocalizations.google,
                       path: IconManagers.google,

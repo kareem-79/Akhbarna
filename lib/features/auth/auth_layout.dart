@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import '../../core/widget/arrow_back_widget.dart';
 import '../../provider/config_provider.dart';
 
 class AuthLayout extends StatefulWidget {

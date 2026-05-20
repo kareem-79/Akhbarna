@@ -2,9 +2,11 @@ import 'package:akhbarna/features/auth/register/data/data_sources/remote/registe
 import 'package:akhbarna/features/auth/register/data/models/RegisterRequest.dart';
 import 'package:akhbarna/features/auth/register/data/models/RegisterResponse.dart';
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import '../../../../../../core/errors/app_exception.dart';
 import '../../../../../../core/resources/constant.dart';
 
+@Singleton(as: RegisterRemoteDataSource)
 class RegisterApiRemoteDataSource implements RegisterRemoteDataSource {
   Dio dio = Dio(BaseOptions(baseUrl: ApiConstant.baseUrl));
 

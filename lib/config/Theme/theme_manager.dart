@@ -20,7 +20,7 @@ class ThemeManager {
       showUnselectedLabels: false,
       showSelectedLabels: false,
     ),
-    dialogTheme: DialogThemeData(backgroundColor: ColorsManagers.darkNavy),
+    dialogTheme: DialogThemeData(backgroundColor: ColorsManagers.darkNavy,elevation: 0),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         padding: EdgeInsetsGeometry.all(14.sp),
@@ -105,7 +105,7 @@ class ThemeManager {
       showUnselectedLabels: false,
       showSelectedLabels: false,
     ),
-    dialogTheme: DialogThemeData(backgroundColor: ColorsManagers.white2),
+    dialogTheme: DialogThemeData(backgroundColor: ColorsManagers.white2,elevation: 0),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         padding: EdgeInsetsGeometry.all(14.sp),

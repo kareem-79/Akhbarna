@@ -1,15 +1,13 @@
 import 'package:akhbarna/core/resources/assets_managers.dart';
-import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/resources/routes_managers.dart';
 import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:akhbarna/provider/config_provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-
-import '../../../../core/prefs_manager/prefs_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../core/resources/constant.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -64,17 +62,25 @@ class _SplashScreenState extends State<SplashScreen>
     await _textController.forward();
 
     await Future.delayed(const Duration(seconds: 1));
-    FirebaseAuth.instance.currentUser == null
-        ? Navigator.pushNamedAndRemoveUntil(
-            context,
-            RoutesManager.startUp,
+    SharedPreferences prefs =
+    await SharedPreferences.getInstance();
+
+    String token =
+        prefs.getString(ChachConstant.tokenKey) ?? '';
+
+    if (token.isNotEmpty) {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        RoutesManager.mainLayout,
             (route) => false,
-          )
-        : Navigator.pushNamedAndRemoveUntil(
-            context,
-            RoutesManager.mainLayout,
+      );
+    } else {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        RoutesManager.startUp,
             (route) => false,
-          );
+      );
+    }
   }
 
   @override

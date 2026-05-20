@@ -1,7 +1,9 @@
-import 'package:akhbarna/features/auth/register/data/models/RegisterResponse.dart';
+import 'package:dartz/dartz.dart';
 
+import '../../../../../core/errors/failure.dart';
 import '../../data/models/RegisterRequest.dart';
+import '../entities/user_entity.dart';
 
 abstract class RegisterRepository {
-  Future<RegisterResponse> register(RegisterRequest request);
+  Future<Either<Failure, UserEntity>> register(RegisterRequest request);
 }

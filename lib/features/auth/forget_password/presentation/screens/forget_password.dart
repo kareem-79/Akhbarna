@@ -5,7 +5,6 @@ import 'package:akhbarna/core/widget/app_bar_widget.dart';
 import 'package:akhbarna/core/widget/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/utils/ui_utils.dart';
 import '../../../../../core/utils/validation.dart';
 import '../../../../../core/widget/custom_text_form_field.dart';
 import '../../../../../l10n/app_localizations.dart';

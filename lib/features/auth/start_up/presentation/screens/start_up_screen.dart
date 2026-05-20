@@ -92,8 +92,12 @@ class _StartUpScreenState extends State<StartUpScreen> {
 
               CustomStartUpElevatedButton(
                 onPress: () async {
+                  final response =
                   await FirebaseServices.signInWithGoogle(context);
-                  _navigate();
+
+                  if (response != null) {
+                    _navigate();
+                  }
                 },
                 text: appLocalizations.login_with_google,
                 path: IconManagers.google,

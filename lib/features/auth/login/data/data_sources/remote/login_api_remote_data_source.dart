@@ -2,10 +2,10 @@ import 'package:akhbarna/features/auth/login/data/data_sources/remote/login_remo
 import 'package:akhbarna/features/auth/login/data/models/LoginRequest.dart';
 import 'package:akhbarna/features/auth/login/data/models/LoginResponse.dart';
 import 'package:dio/dio.dart';
-
+import 'package:injectable/injectable.dart';
 import '../../../../../../core/errors/app_exception.dart';
 import '../../../../../../core/resources/constant.dart';
-
+@Singleton(as: LoginRemoteDataSource)
 class LoginApiRemoteDataSource implements LoginRemoteDataSource{
   Dio dio = Dio(BaseOptions(baseUrl: ApiConstant.baseUrl));
   @override

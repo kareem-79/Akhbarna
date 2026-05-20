@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../core/resources/colors_managers.dart';
 import '../../../l10n/app_localizations.dart';
 import 'auth_switch_item_widget.dart';
 

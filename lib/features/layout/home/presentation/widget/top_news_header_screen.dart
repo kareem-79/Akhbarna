@@ -2,7 +2,6 @@ import 'package:akhbarna/core/widget/arrow_back_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/resources/colors_managers.dart';
-import '../../../../../l10n/app_localizations.dart';
 
 class TopNewsHeaderWidget extends StatefulWidget {
 

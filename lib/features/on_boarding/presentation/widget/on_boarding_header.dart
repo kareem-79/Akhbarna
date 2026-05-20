@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../core/resources/colors_managers.dart';
 import '../../../../core/resources/routes_managers.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../../provider/config_provider.dart';
 import 'language_button.dart';
 
 class OnBoardingHeader extends StatelessWidget {

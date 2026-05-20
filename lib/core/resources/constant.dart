@@ -12,6 +12,7 @@ class ChachConstant {
   static const String selectedSources = 'selected_sources';
   static const String selectedCategories = 'selected_categories';
   static const String keyBookMarket = 'bookmarks';
+  static const String tokenKey = 'token';
 
 }
 abstract class ApiConstant{

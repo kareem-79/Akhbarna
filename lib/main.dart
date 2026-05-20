@@ -1,9 +1,5 @@
 import 'package:akhbarna/core/resources/routes_managers.dart';
-import 'package:akhbarna/features/auth/login/data/data_sources/remote/login_api_remote_data_source.dart';
-import 'package:akhbarna/features/auth/login/data/repositories_impl/login_repository_impl.dart';
 import 'package:akhbarna/features/auth/login/presentation/cubit/login_cubit.dart';
-import 'package:akhbarna/features/auth/register/data/data_sources/remote/register_api_remote_data_source.dart';
-import 'package:akhbarna/features/auth/register/data/repositories_impl/register_repository_impl.dart';
 import 'package:akhbarna/features/auth/register/presentation/cubit/register_cubit.dart';
 import 'package:akhbarna/provider/book_market_provider.dart';
 import 'package:akhbarna/provider/config_provider.dart';
@@ -14,6 +10,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'config/Theme/theme_manager.dart';
+import 'core/di/service_locator.dart';
 import 'core/prefs_manager/prefs_manager.dart';
 import 'firebase_options.dart';
 import 'l10n/app_localizations.dart';
@@ -27,26 +24,13 @@ void main() async {
 
   final configProvider = ConfigProvider();
   await configProvider.loadSavedSettings();
-
+  setup();
   runApp(
     MultiProvider(
       providers: [
-        BlocProvider(
-          create: (_) => RegisterCubit(
-            registerRepository: RegisterRepositoryImpl(
-              registerApiRemoteDataSource: RegisterApiRemoteDataSource(),
-            ),
-          ),
-        ),
-        BlocProvider(
-          create: (_) => LoginCubit(
-            loginRepository: LoginRepositoryImpl(
-              loginApiRemoteDataSource: LoginApiRemoteDataSource(),
-            ),
-          ),
-        ),
+        BlocProvider(create: (_) => serviceLocator.get<RegisterCubit>()),
+        BlocProvider(create: (_) => serviceLocator.get<LoginCubit>()),
         ChangeNotifierProvider.value(value: configProvider),
-
         ChangeNotifierProvider(create: (_) => BookmarkProvider()),
       ],
 

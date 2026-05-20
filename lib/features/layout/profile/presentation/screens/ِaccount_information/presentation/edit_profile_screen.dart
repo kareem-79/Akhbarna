@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../../../core/resources/colors_managers.dart';
-import '../../../../../../../core/resources/routes_managers.dart';
 import '../../../../../../../core/utils/validation.dart';
 import '../../../../../../../core/widget/app_bar_widget.dart';
 import '../../../../../../../core/widget/custom_buttom_navigation_bar.dart';

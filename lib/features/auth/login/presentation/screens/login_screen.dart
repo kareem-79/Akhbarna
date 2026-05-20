@@ -16,6 +16,7 @@ import '../../../../../firebase/firebase_services.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../auth_layout.dart';
 import '../../../widget/custom_start_up_elevated_button.dart';
+import '../cubit/login_state.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -52,7 +53,11 @@ class _LoginScreenState extends State<LoginScreen> {
       title: appLocalizations.welcome_back,
       switchText: appLocalizations.register_now,
       onSwitch: () {
-        Navigator.pushNamedAndRemoveUntil(context, RoutesManager.register,(route) => false,);
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          RoutesManager.register,
+          (route) => false,
+        );
       },
       isLogin: true,
       child: SingleChildScrollView(
@@ -109,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               SizedBox(height: 40.h),
-              BlocListener<LoginCubit,LoginState>(
+              BlocListener<LoginCubit, LoginState>(
                 listener: (context, state) {
                   if (state is LoginLoading) {
                     UiUtils.showLoadingDialog(context, isDisable: false);
@@ -132,9 +137,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 child: CustomElevatedButton(
                   onPress: () {
-                    if (formKey.currentState?.validate() ?? false){
+                    if (formKey.currentState?.validate() ?? false) {
                       BlocProvider.of<LoginCubit>(context).login(
-                        LoginRequest(email: _emailController.text, password: _passwordController.text)
+                        LoginRequest(
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                        ),
                       );
                     }
                   },
@@ -158,8 +166,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   Expanded(
                     child: CustomStartUpElevatedButton(
                       onPress: () async {
-                        await FirebaseServices.signInWithGoogle(context);
-                        _navigate();
+                        final response =
+                            await FirebaseServices.signInWithGoogle(context);
+
+                        if (response != null) {
+                          _navigate();
+                        }
                       },
                       text: appLocalizations.google,
                       path: IconManagers.google,
@@ -186,9 +198,17 @@ class _LoginScreenState extends State<LoginScreen> {
     bool hasEnteredBefore = await PrefsManager.checkEntering();
     if (!hasEnteredBefore) {
       await PrefsManager.saveEntering();
-      Navigator.pushNamedAndRemoveUntil(context, RoutesManager.onBoarding,(route) => false,);
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        RoutesManager.onBoarding,
+        (route) => false,
+      );
     } else {
-      Navigator.pushNamedAndRemoveUntil(context, RoutesManager.mainLayout,(route) => false,);
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        RoutesManager.mainLayout,
+        (route) => false,
+      );
     }
   }
 }

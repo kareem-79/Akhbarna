@@ -66,13 +66,18 @@ class _NowNewsWidgetState extends State<NowNewsWidget> {
               ),
               Spacer(),
               Container(
-                height: 25.h,
-                width: 80.w,
+                width: 70.h,
+                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
                 decoration: BoxDecoration(
                   color: ColorsManagers.red,
-                  borderRadius: BorderRadius.circular(60.r),
+                  borderRadius: BorderRadius.circular(20.r),
                 ),
-                child: Center(child: Text("الان", style: textTheme.bodySmall)),
+                child: Center(
+                  child: Text(
+                      "الان",
+                      style: textTheme.bodySmall
+                  ),
+                ),
               ),
             ],
           ),

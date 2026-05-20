@@ -1,9 +1,10 @@
 import 'package:akhbarna/core/utils/ui_utils.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../../../core/resources/colors_managers.dart';
+import '../../../../../../../core/resources/constant.dart';
 import '../../../../../../../core/resources/routes_managers.dart';
 import '../../../../../../../core/widget/custom_elevated_button.dart';
 import '../../../../../../../l10n/app_localizations.dart';
@@ -103,15 +104,21 @@ class _LogoutBottomSheetState extends State<LogoutBottomSheet> {
   }
 
   void _logout() async {
-    await FirebaseAuth.instance.signOut();
+    SharedPreferences prefs =
+    await SharedPreferences.getInstance();
+
+    await prefs.remove(ChachConstant.tokenKey);
+
     Navigator.pushNamedAndRemoveUntil(
       context,
       RoutesManager.login,
-      (route) => false,
+          (route) => false,
     );
+
     UiUtils.showToast(
       context,
-      AppLocalizations.of(context)!.logout_confirm_message,
+      AppLocalizations.of(context)!
+          .logout_confirm_message,
       ColorsManagers.lightGray,
     );
   }

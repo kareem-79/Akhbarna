@@ -1,33 +1,24 @@
-import 'package:akhbarna/features/auth/register/domain/repositories/register_repository.dart';
+import 'package:akhbarna/features/auth/register/presentation/cubit/register_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import '../../data/models/RegisterRequest.dart';
-
+import '../../domain/use_case/register_use_case.dart';
+@singleton
 class RegisterCubit extends Cubit<RegisterState> {
-  RegisterRepository registerRepository;
+  RegisterUseCase registerUseCase;
 
-  RegisterCubit({required this.registerRepository}) : super(InitState());
+  RegisterCubit({required this.registerUseCase}) : super(InitState());
 
   void register(RegisterRequest request) async {
-    try {
-      emit(RegisterLoading());
-      var response = await registerRepository.register(request);
-      emit(RegisterSuccess());
-    } catch (e) {
-      emit(RegisterError(massage: e.toString()));
-    }
+    emit(RegisterLoading());
+    var result = await registerUseCase.call(request);
+    result.fold(
+      (failure) {
+        emit(RegisterError(massage: failure.message));
+      },
+      (user) {
+        emit(RegisterSuccess());
+      },
+    );
   }
 }
-
-abstract class RegisterState {}
-
-class InitState extends RegisterState {}
-
-class RegisterLoading extends RegisterState {}
-
-class RegisterError extends RegisterState {
-  String massage;
-
-  RegisterError({required this.massage});
-}
-
-class RegisterSuccess extends RegisterState {}

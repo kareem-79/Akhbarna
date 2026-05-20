@@ -1,13 +1,12 @@
 import 'dart:io';
 import 'dart:ui';
-import 'package:akhbarna/core/utils/ui_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EnlargableProfileAvatar extends StatelessWidget {
-  final String? imageUrl;        // لو رابط نت
-  final String? imagePath;       // لو صورة من الجهاز
+  final String? imageUrl;
+  final String? imagePath;
   final double radius;
   final bool isEditable;
   final ValueChanged<String>? onImagePicked;
