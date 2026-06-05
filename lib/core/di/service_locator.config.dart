@@ -59,10 +59,14 @@ import 'package:akhbarna/features/layout/home/domain/repositories/home_repositor
     as _i466;
 import 'package:akhbarna/features/layout/home/domain/use_case/get_breaking_news_use_case.dart'
     as _i898;
+import 'package:akhbarna/features/layout/home/domain/use_case/get_latest_news_use_case.dart'
+    as _i393;
 import 'package:akhbarna/features/layout/home/domain/use_case/get_most_read_news_use_case.dart'
     as _i537;
 import 'package:akhbarna/features/layout/home/presentation/cubit/breaking_news_cubit.dart'
     as _i862;
+import 'package:akhbarna/features/layout/home/presentation/cubit/latest_news_cubit.dart'
+    as _i676;
 import 'package:akhbarna/features/layout/home/presentation/cubit/most_read_news_cubit.dart'
     as _i487;
 import 'package:get_it/get_it.dart' as _i174;
@@ -126,6 +130,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i582.RegisterCubit>(
       () => _i582.RegisterCubit(registerUseCase: gh<_i794.RegisterUseCase>()),
     );
+    gh.factory<_i393.GetLatestNewsUseCase>(
+      () => _i393.GetLatestNewsUseCase(repository: gh<_i466.HomeRepository>()),
+    );
     gh.factory<_i537.GetMostReadNewsUseCase>(
       () =>
           _i537.GetMostReadNewsUseCase(repository: gh<_i466.HomeRepository>()),
@@ -141,6 +148,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i487.MostReadNewsCubit>(
       () => _i487.MostReadNewsCubit(
         getMostReadNewsUseCase: gh<_i537.GetMostReadNewsUseCase>(),
+      ),
+    );
+    gh.factory<_i676.LatestNewsCubit>(
+      () => _i676.LatestNewsCubit(
+        getLatestNewsUseCase: gh<_i393.GetLatestNewsUseCase>(),
       ),
     );
     gh.factory<_i739.ForgetPasswordCubit>(

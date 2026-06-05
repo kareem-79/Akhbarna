@@ -25,4 +25,5 @@ abstract class NewsApiConstant{
   static const String baseUrl="http://akhbarna1.runasp.net/api/Article/static/";
   static const String breakingNews="breaking";
   static const String mostReadNews="most-read";
+  static const String topNews="latest";
 }

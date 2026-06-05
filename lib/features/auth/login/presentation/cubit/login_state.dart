@@ -1,3 +1,5 @@
+import '../../../register/domain/entities/user_entity.dart';
+
 abstract class LoginState {}
 
 class InitState extends LoginState {}
@@ -10,4 +12,10 @@ class LoginError extends LoginState {
   LoginError({required this.massage});
 }
 
-class LoginSuccess extends LoginState {}
+class LoginSuccess extends LoginState {
+  final UserEntity user;
+
+  LoginSuccess({
+    required this.user,
+  });
+}

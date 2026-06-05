@@ -2,6 +2,7 @@ import 'package:akhbarna/features/layout/home/data/models/ArticleModel.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MostReadNewsItemWidget extends StatelessWidget {
@@ -67,18 +68,13 @@ class MostReadNewsItemWidget extends StatelessWidget {
 
               Expanded(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
-
                   children: [
                     Text(
                       news.title ?? "",
-
                       style: textTheme.bodySmall,
-
                       overflow: TextOverflow.ellipsis,
-
                       maxLines: 2,
                     ),
 
@@ -88,7 +84,6 @@ class MostReadNewsItemWidget extends StatelessWidget {
                       children: [
                         const CircleAvatar(
                           backgroundColor: Colors.transparent,
-
                           child: Icon(Icons.public),
                         ),
 
@@ -97,14 +92,26 @@ class MostReadNewsItemWidget extends StatelessWidget {
                         Expanded(
                           child: Text(
                             news.sourceName ?? "",
-
                             style: textTheme.bodySmall,
-
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        const Spacer(),
-                        const Icon(Icons.share_outlined),
+
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(20),
+                            onTap: () {
+                              SharePlus.instance.share(
+                                ShareParams(text: news.articleUrl ?? ''),
+                              );
+                            },
+                            child: const Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Icon(Icons.share_outlined),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ],

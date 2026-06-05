@@ -115,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 40.h),
               BlocListener<LoginCubit, LoginState>(
-                listener: (context, state) {
+                listener: (context, state) async {
                   if (state is LoginLoading) {
                     UiUtils.showLoadingDialog(context, isDisable: false);
                   } else if (state is LoginError) {
@@ -126,6 +126,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ColorsManagers.vividTangerine,
                     );
                   } else if (state is LoginSuccess) {
+                    await PrefsManager.saveUserName(
+                      state.user.name,
+                    );
                     UiUtils.hideDialog(context);
                     UiUtils.showToast(
                       context,

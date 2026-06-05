@@ -26,7 +26,12 @@ void main() async {
   setup();
   runApp(
     MultiProvider(
-      providers: AppBlocProviders.providers,
+      providers: [
+        ...AppBlocProviders.providers,
+        ChangeNotifierProvider.value(
+          value: configProvider,
+        ),
+      ],
       child: const Akhbarna(),
     ),
   );

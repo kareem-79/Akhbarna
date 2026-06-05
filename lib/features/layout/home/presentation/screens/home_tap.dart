@@ -1,6 +1,5 @@
 import 'package:akhbarna/core/resources/routes_managers.dart';
 import 'package:akhbarna/core/widget/custom_text_button.dart';
-import 'package:akhbarna/features/layout/home/data/models/ArticleModel.dart';
 import 'package:akhbarna/features/layout/home/presentation/cubit/breaking_news_cubit.dart';
 import 'package:akhbarna/features/layout/home/presentation/cubit/breaking_news_state.dart';
 import 'package:akhbarna/features/layout/home/presentation/widget/breaking_widget/breaking_news_item_widget.dart';
@@ -16,12 +15,15 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../core/widget/section_header_widget.dart';
 import '../../../../../model/home_tab_model.dart';
-import '../../../../../model/top_news_model.dart';
 import '../../../../../provider/book_market_provider.dart';
+import '../cubit/latest_news_cubit.dart';
+import '../cubit/latest_news_state.dart';
 import '../cubit/most_read_news_cubit.dart';
 import '../cubit/most_read_news_state.dart';
 import '../widget/home_widget/home_tab_bar_widget.dart';
+import '../widget/most_read_widget/most_read_loading_widget.dart';
 import '../widget/now_news_widget.dart';
+import '../widget/top_news_widget/top_news_loading_widget.dart';
 
 class HomeTap extends StatefulWidget {
   const HomeTap({super.key});
@@ -31,14 +33,6 @@ class HomeTap extends StatefulWidget {
 }
 
 class _HomeTapState extends State<HomeTap> {
-  List<TopNewsModel> topList = [];
-
-  List<TopNewsModel> visibleTopNews = [];
-
-  List<ArticleModel> visibleMostRead = [];
-
-  final int loadCount = 10;
-
   late HomeTabModel selectedHomeTab = HomeTabModel.homeTabList(context)[0];
 
   final ScrollController scrollController = ScrollController();
@@ -53,24 +47,7 @@ class _HomeTapState extends State<HomeTap> {
 
     context.read<MostReadNewsCubit>().getMostReadNews(top: 20);
 
-    topList = topNewsList;
-
-    visibleTopNews = topList.take(loadCount).toList();
-
-    scrollController.addListener(loadMore);
-  }
-
-  void loadMore() {
-    if (scrollController.position.pixels >=
-        scrollController.position.maxScrollExtent - 300) {
-      if (visibleTopNews.length < topList.length) {
-        setState(() {
-          final next = visibleTopNews.length + loadCount;
-
-          visibleTopNews = topList.take(next).toList();
-        });
-      }
-    }
+    context.read<LatestNewsCubit>().getLatestNews(top: 20);
   }
 
   @override
@@ -105,16 +82,16 @@ class _HomeTapState extends State<HomeTap> {
 
               child: RefreshIndicator(
                 color: ColorsManagers.red,
-
                 onRefresh: () async {
                   await context.read<BreakingNewsCubit>().getBreakingNews();
                   await context.read<MostReadNewsCubit>().getMostReadNews(
                     top: 20,
                   );
+                  await context.read<LatestNewsCubit>().getLatestNews(top: 20);
+
                 },
                 child: CustomScrollView(
                   controller: scrollController,
-
                   slivers: [
                     SliverToBoxAdapter(
                       child: Column(
@@ -159,7 +136,6 @@ class _HomeTapState extends State<HomeTap> {
                         ],
                       ),
                     ),
-
                     BlocBuilder<BreakingNewsCubit, BreakingNewsState>(
                       builder: (context, state) {
                         if (state is BreakingNewsLoading) {
@@ -225,6 +201,7 @@ class _HomeTapState extends State<HomeTap> {
                         return const SliverToBoxAdapter(child: SizedBox());
                       },
                     ),
+                    //topNews
                     SliverToBoxAdapter(
                       child: Padding(
                         padding: EdgeInsets.only(top: 10.h),
@@ -236,14 +213,43 @@ class _HomeTapState extends State<HomeTap> {
                         ),
                       ),
                     ),
-                    SliverList(
-                      delegate: SliverChildBuilderDelegate((context, index) {
-                        return Padding(
-                          padding: EdgeInsets.only(bottom: 10.h),
-                          child: TopNewsItemWidget(news: visibleTopNews[index]),
-                        );
-                      }, childCount: visibleTopNews.length),
+                    BlocBuilder<LatestNewsCubit, LatestNewsState>(
+                      builder: (context, state) {
+                        if (state is LatestNewsLoading) {
+                          return SliverToBoxAdapter(
+                            child: SizedBox(
+                              height: 1200.h,
+                              child: LatestNewsLoadingWidget(),
+                            ),
+                          );
+                        }
+                        if (state is LatestNewsError) {
+                          return SliverToBoxAdapter(
+                            child: Center(child: Text(state.message)),
+                          );
+                        }
+
+                        if (state is LatestNewsSuccess) {
+                          return SliverList(
+                            delegate: SliverChildBuilderDelegate((
+                              context,
+                              index,
+                            ) {
+                              return Padding(
+                                padding: EdgeInsets.only(bottom: 10.h),
+
+                                child: TopNewsItemWidget(
+                                  news: state.articles[index],
+                                ),
+                              );
+                            }, childCount: state.articles.length),
+                          );
+                        }
+
+                        return const SliverToBoxAdapter(child: SizedBox());
+                      },
                     ),
+                    //mostRead
                     SliverToBoxAdapter(
                       child: Column(
                         children: [
@@ -275,7 +281,10 @@ class _HomeTapState extends State<HomeTap> {
                       builder: (context, state) {
                         if (state is MostReadNewsLoading) {
                           return SliverToBoxAdapter(
-                            child: Center(child: CircularProgressIndicator()),
+                            child: SizedBox(
+                              height: 1200.h,
+                              child: MostReadLoadingWidget(),
+                            ),
                           );
                         }
 

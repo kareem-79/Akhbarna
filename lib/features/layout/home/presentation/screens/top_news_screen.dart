@@ -1,8 +1,13 @@
+import 'package:akhbarna/features/layout/home/presentation/cubit/latest_news_cubit.dart';
+import 'package:akhbarna/features/layout/home/presentation/cubit/latest_news_state.dart';
 import 'package:akhbarna/features/layout/home/presentation/widget/top_news_widget/top_news_header_screen.dart';
 import 'package:akhbarna/features/layout/home/presentation/widget/top_news_widget/top_news_item_widget.dart';
-import 'package:akhbarna/model/top_news_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../core/resources/colors_managers.dart';
+import '../widget/top_news_widget/top_news_loading_widget.dart';
 
 class TopNewsScreen extends StatefulWidget {
   const TopNewsScreen({super.key});
@@ -12,41 +17,11 @@ class TopNewsScreen extends StatefulWidget {
 }
 
 class _TopNewsScreenState extends State<TopNewsScreen> {
-  List<TopNewsModel> topList = [];
-  List<TopNewsModel> visibleTopNews = [];
-
-  final ScrollController scrollController = ScrollController();
-
-  final int loadCount = 10;
-
   @override
   void initState() {
     super.initState();
 
-    topList = topNewsList;
-
-    visibleTopNews = topList.take(loadCount).toList();
-
-    scrollController.addListener(loadMore);
-  }
-
-  void loadMore() {
-    if (scrollController.position.pixels >=
-        scrollController.position.maxScrollExtent - 300) {
-      if (visibleTopNews.length < topList.length) {
-        setState(() {
-          final next = visibleTopNews.length + loadCount;
-
-          visibleTopNews = topList.take(next).toList();
-        });
-      }
-    }
-  }
-
-  @override
-  void dispose() {
-    scrollController.dispose();
-    super.dispose();
+    context.read<LatestNewsCubit>().getLatestNews(top: 50);
   }
 
   @override
@@ -54,28 +29,43 @@ class _TopNewsScreenState extends State<TopNewsScreen> {
     return Scaffold(
       body: Column(
         children: [
-          TopNewsHeaderWidget(),
+          const TopNewsHeaderWidget(),
+
           SizedBox(height: 10.h),
+
           Expanded(
             child: Padding(
               padding: EdgeInsets.all(16.sp),
-              child: CustomScrollView(
-                controller: scrollController,
-                slivers: [
-                  SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                        return Padding(
-                          padding: EdgeInsets.only(bottom: 10.h),
-                          child: TopNewsItemWidget(
-                            news: visibleTopNews[index],
-                          ),
-                        );
-                      },
-                      childCount: visibleTopNews.length,
-                    ),
-                  ),
-                ],
+              child: RefreshIndicator(
+                color: ColorsManagers.red,
+
+                onRefresh: () async {
+                  await context.read<LatestNewsCubit>().getLatestNews(top: 50);
+                },
+                child: BlocBuilder<LatestNewsCubit, LatestNewsState>(
+                  builder: (context, state) {
+                    if (state is LatestNewsLoading) {
+                      return const LatestNewsLoadingWidget();
+                    }
+
+                    if (state is LatestNewsError) {
+                      return Center(child: Text(state.message));
+                    }
+
+                    if (state is LatestNewsSuccess) {
+                      return ListView.separated(
+                        padding: EdgeInsets.zero,
+                        itemCount: state.articles.length,
+                        separatorBuilder: (_, __) => SizedBox(height: 10.h),
+                        itemBuilder: (context, index) {
+                          return TopNewsItemWidget(news: state.articles[index]);
+                        },
+                      );
+                    }
+
+                    return const SizedBox();
+                  },
+                ),
               ),
             ),
           ),

@@ -64,4 +64,12 @@ class PrefsManager {
   static bool getIsSystemFont() {
     return prefs.getBool(ChachConstant.isSystemFontKey) ?? true;
   }
+
+  static Future<void> saveUserName(String name) async {
+    await prefs.setString('user_name', name);
+  }
+
+  static String getUserName() {
+    return prefs.getString('user_name') ?? '';
+  }
 }

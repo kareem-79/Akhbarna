@@ -12,4 +12,8 @@ abstract class HomeRepository {
   getMostReadNews({
     required int top,
   });
+  Future<Either<Failure, List<ArticleModel>>>
+  getLatestNews({
+    required int top,
+  });
 }
