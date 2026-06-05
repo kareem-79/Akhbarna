@@ -1,9 +1,13 @@
-import 'package:akhbarna/features/layout/home/presentation/widget/most_read_header_widget.dart';
+import 'package:akhbarna/features/layout/home/presentation/cubit/most_read_news_cubit.dart';
+import 'package:akhbarna/features/layout/home/presentation/cubit/most_read_news_state.dart';
+import 'package:akhbarna/features/layout/home/presentation/widget/most_read_widget/most_read_news_item_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../model/most_read_model.dart';
-import '../widget/most_read_news_item_widget.dart';
+import '../../../../../core/resources/colors_managers.dart';
+import '../widget/most_read_widget/most_read_header_widget.dart';
+import '../widget/most_read_widget/most_read_loading_widget.dart';
 
 class MostReadScreen extends StatefulWidget {
   const MostReadScreen({super.key});
@@ -13,41 +17,11 @@ class MostReadScreen extends StatefulWidget {
 }
 
 class _MostReadScreenState extends State<MostReadScreen> {
-  List<MostReadModel> mostReadList = [];
-  List<MostReadModel> visibleMostRead = [];
-
-  final ScrollController scrollController = ScrollController();
-
-  final int loadCount = 10;
-
   @override
   void initState() {
     super.initState();
 
-    mostReadList = mostReadNewsList;
-
-    visibleMostRead = mostReadList.take(loadCount).toList();
-
-    scrollController.addListener(loadMore);
-  }
-
-  void loadMore() {
-    if (scrollController.position.pixels >=
-        scrollController.position.maxScrollExtent - 300) {
-      if (visibleMostRead.length < mostReadList.length) {
-        setState(() {
-          final next = visibleMostRead.length + loadCount;
-
-          visibleMostRead = mostReadList.take(next).toList();
-        });
-      }
-    }
-  }
-
-  @override
-  void dispose() {
-    scrollController.dispose();
-    super.dispose();
+    context.read<MostReadNewsCubit>().getMostReadNews(top: 50);
   }
 
   @override
@@ -55,28 +29,52 @@ class _MostReadScreenState extends State<MostReadScreen> {
     return Scaffold(
       body: Column(
         children: [
-          MostReadHeaderWidget(),
+          const MostReadHeaderWidget(),
+
           SizedBox(height: 10.h),
+
           Expanded(
             child: Padding(
               padding: EdgeInsets.all(16.sp),
-              child: CustomScrollView(
-                controller: scrollController,
-                slivers: [
-                  SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                        return Padding(
-                          padding: EdgeInsets.only(bottom: 10.h),
-                          child: MostReadNewsItemWidget(
-                            news: visibleMostRead[index],
-                          ),
-                        );
-                      },
-                      childCount: visibleMostRead.length,
-                    ),
-                  ),
-                ],
+
+              child: RefreshIndicator(
+                color: ColorsManagers.red,
+
+                onRefresh: () async {
+                  await context.read<MostReadNewsCubit>().getMostReadNews(
+                    top: 50,
+                  );
+                },
+                child: BlocBuilder<MostReadNewsCubit, MostReadNewsState>(
+                  builder: (context, state) {
+                    if (state is MostReadNewsLoading) {
+                      return const MostReadLoadingWidget();
+                    }
+
+                    if (state is MostReadNewsError) {
+                      return Center(child: Text(state.message));
+                    }
+
+                    if (state is MostReadNewsSuccess) {
+                      return ListView.separated(
+                        padding: EdgeInsets.zero,
+                        itemCount: state.articles.length,
+
+                        separatorBuilder: (context, index) {
+                          return SizedBox(height: 10.h);
+                        },
+
+                        itemBuilder: (context, index) {
+                          return MostReadNewsItemWidget(
+                            news: state.articles[index],
+                          );
+                        },
+                      );
+                    }
+
+                    return const SizedBox();
+                  },
+                ),
               ),
             ),
           ),

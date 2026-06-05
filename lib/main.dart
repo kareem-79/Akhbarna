@@ -1,17 +1,16 @@
+import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/resources/routes_managers.dart';
-import 'package:akhbarna/features/auth/login/presentation/cubit/login_cubit.dart';
-import 'package:akhbarna/features/auth/register/presentation/cubit/register_cubit.dart';
-import 'package:akhbarna/provider/book_market_provider.dart';
 import 'package:akhbarna/provider/config_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'config/Theme/theme_manager.dart';
 import 'core/di/service_locator.dart';
 import 'core/prefs_manager/prefs_manager.dart';
+import 'core/resources/app_bloc_providers.dart';
 import 'firebase_options.dart';
 import 'l10n/app_localizations.dart';
 
@@ -27,13 +26,7 @@ void main() async {
   setup();
   runApp(
     MultiProvider(
-      providers: [
-        BlocProvider(create: (_) => serviceLocator.get<RegisterCubit>()),
-        BlocProvider(create: (_) => serviceLocator.get<LoginCubit>()),
-        ChangeNotifierProvider.value(value: configProvider),
-        ChangeNotifierProvider(create: (_) => BookmarkProvider()),
-      ],
-
+      providers: AppBlocProviders.providers,
       child: const Akhbarna(),
     ),
   );
@@ -51,48 +44,57 @@ class Akhbarna extends StatelessWidget {
       builder: (context, child) {
         return Consumer<ConfigProvider>(
           builder: (context, configProvider, _) {
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              locale: configProvider.currentLocale,
-              theme: ThemeManager.light,
-              darkTheme: ThemeManager.dark,
-              themeMode: configProvider.currentTheme,
+            return SkeletonizerConfig(
+              data: SkeletonizerConfigData(
+                effect: ShimmerEffect(
+                  duration: Duration(milliseconds: 1000),
+                  baseColor: ColorsManagers.gray,
+                  highlightColor: ColorsManagers.white,
+                ),
+              ),
+              child: MaterialApp(
+                debugShowCheckedModeBanner: false,
+                locale: configProvider.currentLocale,
+                theme: ThemeManager.light,
+                darkTheme: ThemeManager.dark,
+                themeMode: configProvider.currentTheme,
 
-              builder: (context, child) {
-                return MediaQuery(
-                  data: MediaQuery.of(context).copyWith(
-                    textScaler: configProvider.isSystemFont
-                        ? MediaQuery.textScalerOf(context)
-                        : TextScaler.linear(configProvider.textScaleFactor),
-                  ),
-                  child: child!,
-                );
-              },
-              onGenerateRoute: RoutesManager.routes,
-              initialRoute: RoutesManager.splash,
-              localizationsDelegates: const [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: const [
-                Locale('en'),
-                Locale('ar'),
-                Locale('fr'),
-                Locale('de'),
-                Locale('it'),
-                Locale('es'),
-                Locale('zh'),
-                Locale('ja'),
-                Locale('ru'),
-                Locale('pt'),
-                Locale('hi'),
-                Locale('ko'),
-                Locale('nl'),
-                Locale('sv'),
-                Locale('tr'),
-              ],
+                builder: (context, child) {
+                  return MediaQuery(
+                    data: MediaQuery.of(context).copyWith(
+                      textScaler: configProvider.isSystemFont
+                          ? MediaQuery.textScalerOf(context)
+                          : TextScaler.linear(configProvider.textScaleFactor),
+                    ),
+                    child: child!,
+                  );
+                },
+                onGenerateRoute: RoutesManager.routes,
+                initialRoute: RoutesManager.mainLayout,
+                localizationsDelegates: const [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: const [
+                  Locale('en'),
+                  Locale('ar'),
+                  Locale('fr'),
+                  Locale('de'),
+                  Locale('it'),
+                  Locale('es'),
+                  Locale('zh'),
+                  Locale('ja'),
+                  Locale('ru'),
+                  Locale('pt'),
+                  Locale('hi'),
+                  Locale('ko'),
+                  Locale('nl'),
+                  Locale('sv'),
+                  Locale('tr'),
+                ],
+              ),
             );
           },
         );

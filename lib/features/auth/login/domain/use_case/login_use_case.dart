@@ -6,7 +6,7 @@ import '../../../../../core/errors/failure.dart';
 import '../../../register/domain/entities/user_entity.dart';
 import '../../data/models/LoginRequest.dart';
 
-@singleton
+@injectable
 class LoginUseCase {
   LoginRepository loginRepository;
 

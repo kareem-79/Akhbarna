@@ -5,7 +5,7 @@ import '../../../../../core/errors/failure.dart';
 import '../../data/models/RegisterRequest.dart';
 import '../entities/user_entity.dart';
 
-@singleton
+@injectable
 class RegisterUseCase {
   RegisterRepository registerRepository;
 

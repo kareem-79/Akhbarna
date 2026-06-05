@@ -19,4 +19,10 @@ abstract class ApiConstant{
   static const String baseUrl='http://akhbarna1.runasp.net/api/v1/';
   static const String registerEndpoint='auth/register';
   static const String loginEndpoint='auth/login';
+  static const String forgetPassword='auth/forgot-password';
+}
+abstract class NewsApiConstant{
+  static const String baseUrl="http://akhbarna1.runasp.net/api/Article/static/";
+  static const String breakingNews="breaking";
+  static const String mostReadNews="most-read";
 }

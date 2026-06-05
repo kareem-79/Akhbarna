@@ -49,6 +49,7 @@ class TopNewsItemWidget extends StatelessWidget {
 
                   Text(
                     news.title,
+                    textDirection: TextDirection.rtl,
                     style: textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w600,
                       height: 1.4,

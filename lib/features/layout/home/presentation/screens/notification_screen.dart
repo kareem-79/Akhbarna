@@ -1,9 +1,9 @@
-import 'package:akhbarna/features/layout/home/presentation/widget/notification_item_widget.dart';
+import 'package:akhbarna/features/layout/home/presentation/widget/notification_widget./notification_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../../core/resources/assets_managers.dart';
-import '../widget/notification_header_widget.dart';
+import '../widget/notification_widget./notification_header_widget.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});

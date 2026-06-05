@@ -79,4 +79,5 @@ class SourceImageManagers {
   static const String akhbarElYoum = "$base/akhbar_el_youm.png";
   static const String elMasry = "$base/el_masry.png";
   static const String elShrouk = "$base/el_shrouk.png";
+  static const String france24 = "$base/france24.png";
 }

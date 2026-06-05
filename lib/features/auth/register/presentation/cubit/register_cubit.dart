@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../data/models/RegisterRequest.dart';
 import '../../domain/use_case/register_use_case.dart';
-@singleton
+@injectable
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterUseCase registerUseCase;
 

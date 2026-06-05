@@ -1,0 +1,33 @@
+import 'package:akhbarna/features/layout/home/presentation/cubit/breaking_news_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
+import '../../core/di/service_locator.dart';
+
+import '../../features/auth/login/presentation/cubit/login_cubit.dart';
+
+import '../../features/auth/register/presentation/cubit/register_cubit.dart';
+
+import '../../features/auth/forget_password/presentation/cubit/forget_password_cubit.dart';
+
+import '../../features/layout/home/presentation/cubit/most_read_news_cubit.dart';
+import '../../provider/book_market_provider.dart';
+import '../../provider/config_provider.dart';
+
+class AppBlocProviders {
+  static List<SingleChildWidget> providers = [
+    BlocProvider(create: (_) => serviceLocator.get<RegisterCubit>()),
+
+    BlocProvider(create: (_) => serviceLocator.get<LoginCubit>()),
+
+    BlocProvider(create: (_) => serviceLocator.get<ForgetPasswordCubit>()),
+
+    BlocProvider(create: (_) => serviceLocator.get<BreakingNewsCubit>()),
+
+    BlocProvider(create: (_) => serviceLocator.get<MostReadNewsCubit>()),
+
+    ChangeNotifierProvider(create: (_) => ConfigProvider()),
+
+    ChangeNotifierProvider(create: (_) => BookmarkProvider()),
+  ];
+}

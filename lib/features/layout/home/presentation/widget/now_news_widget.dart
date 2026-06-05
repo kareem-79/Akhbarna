@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../core/resources/assets_managers.dart';
 import '../../../../../core/resources/colors_managers.dart';
 
@@ -43,7 +42,9 @@ class _NowNewsWidgetState extends State<NowNewsWidget> {
                   child: CircleAvatar(
                     backgroundColor: ColorsManagers.white.withOpacity(.4),
                     child: Icon(
-                      isSelected ? Icons.bookmark : Icons.bookmark_border_outlined,
+                      isSelected
+                          ? Icons.bookmark
+                          : Icons.bookmark_border_outlined,
                       size: 30.sp,
                       color: ColorsManagers.red,
                     ),
@@ -72,18 +73,14 @@ class _NowNewsWidgetState extends State<NowNewsWidget> {
                   color: ColorsManagers.red,
                   borderRadius: BorderRadius.circular(20.r),
                 ),
-                child: Center(
-                  child: Text(
-                      "الان",
-                      style: textTheme.bodySmall
-                  ),
-                ),
+                child: Center(child: Text("الان", style: textTheme.bodySmall)),
               ),
             ],
           ),
           SizedBox(height: 8.h),
           Text(
             "السيسي عن إيران: نبذل جهدا كبيرا لخفض التصعيد",
+            textDirection: TextDirection.rtl,
             style: textTheme.bodyMedium,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,

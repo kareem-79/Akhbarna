@@ -21,6 +21,7 @@ class SourceModel {
     SourceModel(name: "أخبار اليوم", imagePath: SourceImageManagers.akhbarElYoum),
     SourceModel(name: "المصري اليوم", imagePath: SourceImageManagers.elMasry),
     SourceModel(name: "الشروق", imagePath: SourceImageManagers.elShrouk),
+    SourceModel(name: "فرانس 24", imagePath: SourceImageManagers.france24),
   ];
 }
 

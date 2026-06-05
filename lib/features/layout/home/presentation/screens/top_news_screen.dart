@@ -1,5 +1,5 @@
-import 'package:akhbarna/features/layout/home/presentation/widget/top_news_header_screen.dart';
-import 'package:akhbarna/features/layout/home/presentation/widget/top_news_item_widget.dart';
+import 'package:akhbarna/features/layout/home/presentation/widget/top_news_widget/top_news_header_screen.dart';
+import 'package:akhbarna/features/layout/home/presentation/widget/top_news_widget/top_news_item_widget.dart';
 import 'package:akhbarna/model/top_news_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -31,8 +31,13 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
 
   void _startTimer() {
     Future.delayed(const Duration(seconds: 1), () {
+      if (!mounted) return;
+
       if (seconds > 0) {
-        setState(() => seconds--);
+        setState(() {
+          seconds--;
+        });
+
         _startTimer();
       }
     });
@@ -181,7 +186,11 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
               });
               return;
             }
-            Navigator.pushNamed(context, RoutesManager.changePassword,arguments: false);
+            Navigator.pushNamed(
+              context,
+              RoutesManager.changePassword,
+              arguments: false,
+            );
           },
           text: appLocalizations.confirm,
           backgroundColor: ColorsManagers.red,

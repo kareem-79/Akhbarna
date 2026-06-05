@@ -18,7 +18,6 @@ class LoginRepositoryImpl implements LoginRepository {
   Future<Either<Failure, UserEntity>> login(LoginRequest request) async {
     try {
       final response = await loginApiRemoteDataSource.login(request);
-      print("TOKEN FROM API = ${response.token}");
       await authLocalDataSource.saveToken(response.token);
       return Right(response.toUserEntity());
     } on AppException catch (exception) {

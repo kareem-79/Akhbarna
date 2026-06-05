@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../domain/use_case/login_use_case.dart';
 import 'login_state.dart';
-@singleton
+@injectable
 class LoginCubit extends Cubit<LoginState> {
   LoginUseCase loginUseCase;
   LoginCubit({required this.loginUseCase}) : super(InitState());

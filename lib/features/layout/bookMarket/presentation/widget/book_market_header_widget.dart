@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/resources/colors_managers.dart';
-import '../../../../../l10n/app_localizations.dart';
-
 class BookMarketHeaderWidget extends StatefulWidget {
   const BookMarketHeaderWidget({super.key});
 
@@ -13,7 +11,6 @@ class BookMarketHeaderWidget extends StatefulWidget {
 class _BookMarketHeaderWidgetState extends State<BookMarketHeaderWidget> {
   @override
   Widget build(BuildContext context) {
-    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     TextTheme textTheme = Theme.of(context).textTheme;
     return Container(
       height: 140.h,

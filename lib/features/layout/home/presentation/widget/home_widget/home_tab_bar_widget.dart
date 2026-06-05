@@ -3,7 +3,7 @@ import 'package:akhbarna/model/home_tab_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../profile/presentation/widget/custom_tab_items_widget.dart';
+import '../../../../profile/presentation/widget/custom_tab_items_widget.dart';
 
 class HomeTabBar extends StatefulWidget {
   final List<HomeTabModel> homeTabList;

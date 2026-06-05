@@ -9,6 +9,18 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:akhbarna/features/auth/forget_password/data/data_sources/remote/forget_password_api_remote_data_source.dart'
+    as _i26;
+import 'package:akhbarna/features/auth/forget_password/data/data_sources/remote/forget_password_remote_data_source.dart'
+    as _i318;
+import 'package:akhbarna/features/auth/forget_password/data/repositories_impl/forget_password_repository_impl.dart'
+    as _i522;
+import 'package:akhbarna/features/auth/forget_password/domain/repositories/forget_password_repository.dart'
+    as _i975;
+import 'package:akhbarna/features/auth/forget_password/domain/use_case/send_otp_use_case.dart'
+    as _i343;
+import 'package:akhbarna/features/auth/forget_password/presentation/cubit/forget_password_cubit.dart'
+    as _i739;
 import 'package:akhbarna/features/auth/login/data/data_sources/remote/login_api_remote_data_source.dart'
     as _i244;
 import 'package:akhbarna/features/auth/login/data/data_sources/remote/login_remote_data_source.dart'
@@ -37,6 +49,22 @@ import 'package:akhbarna/features/auth/register/domain/use_case/register_use_cas
     as _i794;
 import 'package:akhbarna/features/auth/register/presentation/cubit/register_cubit.dart'
     as _i582;
+import 'package:akhbarna/features/layout/home/data/data_sources/remote/home_api_remote_data_source.dart'
+    as _i130;
+import 'package:akhbarna/features/layout/home/data/data_sources/remote/home_remote_data_source.dart'
+    as _i29;
+import 'package:akhbarna/features/layout/home/data/repositories_impl/home_repository_impl.dart'
+    as _i478;
+import 'package:akhbarna/features/layout/home/domain/repositories/home_repository.dart'
+    as _i466;
+import 'package:akhbarna/features/layout/home/domain/use_case/get_breaking_news_use_case.dart'
+    as _i898;
+import 'package:akhbarna/features/layout/home/domain/use_case/get_most_read_news_use_case.dart'
+    as _i537;
+import 'package:akhbarna/features/layout/home/presentation/cubit/breaking_news_cubit.dart'
+    as _i862;
+import 'package:akhbarna/features/layout/home/presentation/cubit/most_read_news_cubit.dart'
+    as _i487;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -50,6 +78,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i1023.AuthLocalDataSource>(
       () => _i948.AuthSharedprefsLocalDataSource(),
     );
+    gh.singleton<_i318.ForgetPasswordRemoteDataSource>(
+      () => _i26.ForgetPasswordApiRemoteDataSource(),
+    );
+    gh.singleton<_i29.HomeRemoteDataSource>(
+      () => _i130.HomeApiRemoteDataSource(),
+    );
     gh.singleton<_i402.LoginRemoteDataSource>(
       () => _i244.LoginApiRemoteDataSource(),
     );
@@ -62,24 +96,58 @@ extension GetItInjectableX on _i174.GetIt {
         authLocalDataSource: gh<_i1023.AuthLocalDataSource>(),
       ),
     );
+    gh.singleton<_i975.ForgetPasswordRepository>(
+      () => _i522.ForgetPasswordRepositoryImpl(
+        remoteDataSource: gh<_i318.ForgetPasswordRemoteDataSource>(),
+      ),
+    );
     gh.singleton<_i537.LoginRepository>(
       () => _i1059.LoginRepositoryImpl(
         loginApiRemoteDataSource: gh<_i402.LoginRemoteDataSource>(),
         authLocalDataSource: gh<_i1023.AuthLocalDataSource>(),
       ),
     );
-    gh.singleton<_i794.RegisterUseCase>(
+    gh.factory<_i794.RegisterUseCase>(
       () => _i794.RegisterUseCase(
         registerRepository: gh<_i861.RegisterRepository>(),
       ),
     );
-    gh.singleton<_i766.LoginUseCase>(
+    gh.singleton<_i466.HomeRepository>(
+      () => _i478.HomeRepositoryImpl(
+        remoteDataSource: gh<_i29.HomeRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i766.LoginUseCase>(
       () => _i766.LoginUseCase(loginRepository: gh<_i537.LoginRepository>()),
     );
-    gh.singleton<_i582.RegisterCubit>(
+    gh.factory<_i898.GetBreakingNewsUseCase>(
+      () => _i898.GetBreakingNewsUseCase(gh<_i466.HomeRepository>()),
+    );
+    gh.factory<_i582.RegisterCubit>(
       () => _i582.RegisterCubit(registerUseCase: gh<_i794.RegisterUseCase>()),
     );
-    gh.singleton<_i281.LoginCubit>(
+    gh.factory<_i537.GetMostReadNewsUseCase>(
+      () =>
+          _i537.GetMostReadNewsUseCase(repository: gh<_i466.HomeRepository>()),
+    );
+    gh.factory<_i343.SendOtpUseCase>(
+      () => _i343.SendOtpUseCase(gh<_i975.ForgetPasswordRepository>()),
+    );
+    gh.factory<_i862.BreakingNewsCubit>(
+      () => _i862.BreakingNewsCubit(
+        getBreakingNewsUseCase: gh<_i898.GetBreakingNewsUseCase>(),
+      ),
+    );
+    gh.factory<_i487.MostReadNewsCubit>(
+      () => _i487.MostReadNewsCubit(
+        getMostReadNewsUseCase: gh<_i537.GetMostReadNewsUseCase>(),
+      ),
+    );
+    gh.factory<_i739.ForgetPasswordCubit>(
+      () =>
+          _i739.ForgetPasswordCubit(sendOtpUseCase: gh<_i343.SendOtpUseCase>()),
+    );
+    gh.factory<_i281.LoginCubit>(
       () => _i281.LoginCubit(loginUseCase: gh<_i766.LoginUseCase>()),
     );
     return this;

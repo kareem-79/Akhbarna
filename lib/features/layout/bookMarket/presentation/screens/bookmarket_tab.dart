@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/resources/assets_managers.dart';
 import '../../../../../provider/book_market_provider.dart';
-import '../../../home/presentation/widget/breaking_news_item_widget.dart';
+import '../../../home/presentation/widget/breaking_widget/breaking_news_item_widget.dart';
 import '../widget/book_market_header_widget.dart';
 
 class BookMarketTab extends StatelessWidget {
