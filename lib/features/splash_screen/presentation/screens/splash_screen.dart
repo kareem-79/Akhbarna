@@ -1,4 +1,5 @@
 import 'package:akhbarna/core/resources/assets_managers.dart';
+import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/resources/routes_managers.dart';
 import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:akhbarna/provider/config_provider.dart';
@@ -24,6 +25,8 @@ class _SplashScreenState extends State<SplashScreen>
 
   late Animation<double> _logoScale;
   late Animation<double> _fadeText;
+  bool _showContent = false;
+
 
   @override
   void initState() {
@@ -39,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen>
       duration: const Duration(milliseconds: 600),
     );
 
-    _logoScale = Tween(begin: 0.8, end: 1.0).animate(
+    _logoScale = Tween<double>(begin: 0.8, end: 1.0).animate(
       CurvedAnimation(parent: _logoController, curve: Curves.easeOutBack),
     );
 
@@ -48,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen>
       duration: const Duration(milliseconds: 800),
     );
 
-    _fadeText = Tween(
+    _fadeText = Tween<double>(
       begin: 0.0,
       end: 1.0,
     ).animate(CurvedAnimation(parent: _textController, curve: Curves.easeIn));
@@ -57,28 +60,37 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Future<void> _startAnimation() async {
+    await Future.delayed(const Duration(milliseconds: 700));
+
     await _linesController.forward();
+
+    setState(() {
+      _showContent = true;
+    });
+
     await _logoController.forward();
+
     await _textController.forward();
 
     await Future.delayed(const Duration(seconds: 1));
-    SharedPreferences prefs =
-    await SharedPreferences.getInstance();
 
-    String token =
-        prefs.getString(ChachConstant.tokenKey) ?? '';
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String token = prefs.getString(ChachConstant.tokenKey) ?? '';
+
+    if (!mounted) return;
 
     if (token.isNotEmpty) {
       Navigator.pushNamedAndRemoveUntil(
         context,
         RoutesManager.mainLayout,
-            (route) => false,
+        (route) => false,
       );
     } else {
       Navigator.pushNamedAndRemoveUntil(
         context,
         RoutesManager.startUp,
-            (route) => false,
+        (route) => false,
       );
     }
   }
@@ -98,11 +110,46 @@ class _SplashScreenState extends State<SplashScreen>
     return Scaffold(
       body: Stack(
         children: [
+          Container(color: const Color(0xff06112C)),
+
+          AnimatedBuilder(
+            animation: _linesController,
+            builder: (context, child) {
+              final width = MediaQuery.of(context).size.width;
+              final height = MediaQuery.of(context).size.height;
+
+              return Stack(
+                children: List.generate(10, (index) {
+                  final rowHeight = height / 10;
+
+                  final moveRight = index.isEven;
+
+                  return Positioned(
+                    top: index * rowHeight,
+                    child: Transform.translate(
+                      offset: Offset(
+                        moveRight
+                            ? _linesController.value * width
+                            : -_linesController.value * width,
+                        0,
+                      ),
+                      child: Container(
+                        width: width,
+                        height: rowHeight,
+                        color: ColorsManagers.red,
+                      ),
+                    ),
+                  );
+                }),
+              );
+            },
+          ),
+          if (_showContent)
           Center(
             child: Column(
-              mainAxisSize: MainAxisSize.max,
               children: [
-                Spacer(),
+                const Spacer(),
+
                 ScaleTransition(
                   scale: _logoScale,
                   child: Image.asset(
@@ -111,6 +158,7 @@ class _SplashScreenState extends State<SplashScreen>
                     height: 160.h,
                   ),
                 ),
+
                 FadeTransition(
                   opacity: _fadeText,
                   child: Consumer<ConfigProvider>(

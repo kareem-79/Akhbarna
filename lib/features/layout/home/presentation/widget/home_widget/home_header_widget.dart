@@ -1,10 +1,10 @@
+import 'package:akhbarna/core/widget/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../../../core/resources/assets_managers.dart';
 import '../../../../../../core/resources/colors_managers.dart';
 import '../../../../../../core/resources/routes_managers.dart';
-import '../../../../../../core/widget/custom_text_form_field.dart';
 import '../../../../../../l10n/app_localizations.dart';
 
 class HomeHeaderWidget extends StatefulWidget {
@@ -60,11 +60,9 @@ class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
               ),
               SizedBox(width: 30.w),
               Expanded(
-                child: CustomTextFormFiled(
-                  label: appLocalizations.search,
-                  suffixIcon: Icon(Icons.search_outlined),
+                child: SearchWidget(
+                  hintText: appLocalizations.search,
                   controller: searchController,
-                  keyboardType: TextInputType.text,
                 ),
               ),
               SizedBox(width: 30.w),

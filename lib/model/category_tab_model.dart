@@ -1,45 +1,63 @@
-import 'package:akhbarna/core/resources/assets_managers.dart';
+import '../core/resources/assets_managers.dart';
 
 class CategoryTabModel {
-  String id;
-  String imageBath;
-  String title;
+  final String id;
+  final String imagePath;
+  final String title;
 
   CategoryTabModel({
     required this.id,
-    required this.imageBath,
+    required this.imagePath,
     required this.title,
   });
+
   static List<CategoryTabModel> categories = [
     CategoryTabModel(
-      id: "international",
-      imageBath: CategoryTabImageManagers.international,
-      title: 'International',
+      id: "دولي",
+      imagePath: CategoryTabImageManagers.international,
+      title: "دولي",
     ),
+
     CategoryTabModel(
-      id: "economy",
-      imageBath: CategoryTabImageManagers.economy,
-      title: 'Economy',
+      id: "رياضة",
+      imagePath: CategoryTabImageManagers.sport,
+      title: "رياضة",
     ),
+
     CategoryTabModel(
-      id: "sports",
-      imageBath: CategoryTabImageManagers.sport,
-      title: 'Sports',
+      id: "اقتصاد",
+      imagePath: CategoryTabImageManagers.economy,
+      title: "اقتصاد",
     ),
+
     CategoryTabModel(
-      id: "politics",
-      imageBath: CategoryTabImageManagers.politics,
-      title: "Politics",
+      id: "سياسة",
+      imagePath: CategoryTabImageManagers.politics,
+      title: "سياسة",
     ),
+
     CategoryTabModel(
-      id: "health",
-      imageBath: CategoryTabImageManagers.health,
-      title: 'Health',
+      id: "تكنولوجيا",
+      imagePath: CategoryTabImageManagers.technology,
+      title: "تكنولوجيا",
     ),
+
     CategoryTabModel(
-      id: "art",
-      imageBath: CategoryTabImageManagers.art,
-      title: 'Art',
+      id: "صحة",
+      imagePath: CategoryTabImageManagers.health,
+      title: "الصحة",
+    ),
+
+    CategoryTabModel(
+      id: "فن",
+      imagePath: CategoryTabImageManagers.entertainment,
+      title: "ترفيه",
+    ),
+
+    CategoryTabModel(
+      id: "علوم",
+      imagePath: CategoryTabImageManagers.sciences,
+      title: "علوم",
     ),
   ];
 }

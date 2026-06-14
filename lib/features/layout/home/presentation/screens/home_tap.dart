@@ -75,7 +75,6 @@ class _HomeTapState extends State<HomeTap> {
               );
             },
           ),
-
           Expanded(
             child: Padding(
               padding: EdgeInsets.all(16.sp),
@@ -88,7 +87,6 @@ class _HomeTapState extends State<HomeTap> {
                     top: 20,
                   );
                   await context.read<LatestNewsCubit>().getLatestNews(top: 20);
-
                 },
                 child: CustomScrollView(
                   controller: scrollController,
@@ -102,16 +100,7 @@ class _HomeTapState extends State<HomeTap> {
 
                           HomeTabBar(
                             homeTabList: HomeTabModel.homeTabList(context),
-
                             selectedHomeTabIndex: 0,
-
-                            selectedBgColor: ColorsManagers.gray2,
-
-                            selectedFgColor: ColorsManagers.white,
-
-                            unSelectedBgColor: ColorsManagers.red,
-
-                            unSelectedFgColor: ColorsManagers.white,
 
                             onHomeTabItemSelected: (homeTabModel) {
                               setState(() {
@@ -121,7 +110,6 @@ class _HomeTapState extends State<HomeTap> {
                               if (homeTabModel.id == '2') {
                                 Navigator.pushNamed(
                                   context,
-
                                   RoutesManager.topNews,
                                 );
                               } else if (homeTabModel.id == '3') {
@@ -207,7 +195,15 @@ class _HomeTapState extends State<HomeTap> {
                         padding: EdgeInsets.only(top: 10.h),
                         child: Column(
                           children: [
-                            SectionHeaderWidget(title: "اخر الاخبار"),
+                            SectionHeaderWidget(
+                              title: "🕐 آخر الأخبار",
+                              onViewAll: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  RoutesManager.topNews,
+                                );
+                              },
+                            ),
                             SizedBox(height: 10.h),
                           ],
                         ),
@@ -219,7 +215,7 @@ class _HomeTapState extends State<HomeTap> {
                           return SliverToBoxAdapter(
                             child: SizedBox(
                               height: 1200.h,
-                              child: LatestNewsLoadingWidget(),
+                              child: TopNewsLoadingWidget(),
                             ),
                           );
                         }
@@ -253,25 +249,17 @@ class _HomeTapState extends State<HomeTap> {
                     SliverToBoxAdapter(
                       child: Column(
                         children: [
-                          Center(
-                            child: CustomTextButton(
-                              onPress: () {
-                                Navigator.pushNamed(
-                                  context,
-
-                                  RoutesManager.topNews,
-                                );
-                              },
-
-                              text: "اقرأ المزيد.. ",
-
-                              color: ColorsManagers.red,
-                            ),
-                          ),
-
                           SizedBox(height: 10.h),
 
-                          SectionHeaderWidget(title: "الاكثر قراءة"),
+                          SectionHeaderWidget(
+                            title: "📖 الاكثر قراءة",
+                            onViewAll: () {
+                              Navigator.pushNamed(
+                                context,
+                                RoutesManager.mostRead,
+                              );
+                            },
+                          ),
 
                           SizedBox(height: 10.h),
                         ],
@@ -301,7 +289,7 @@ class _HomeTapState extends State<HomeTap> {
                               index,
                             ) {
                               return Padding(
-                                padding: EdgeInsets.only(bottom: 10.h),
+                                padding: EdgeInsets.only(bottom: 4.h),
                                 child: MostReadNewsItemWidget(
                                   news: state.articles[index],
                                 ),
@@ -309,26 +297,8 @@ class _HomeTapState extends State<HomeTap> {
                             }, childCount: state.articles.length),
                           );
                         }
-
                         return const SliverToBoxAdapter(child: SizedBox());
                       },
-                    ),
-                    SliverToBoxAdapter(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10.h),
-                        child: Center(
-                          child: CustomTextButton(
-                            onPress: () {
-                              Navigator.pushNamed(
-                                context,
-                                RoutesManager.mostRead,
-                              );
-                            },
-                            text: "اقرأ المزيد.. ",
-                            color: ColorsManagers.red,
-                          ),
-                        ),
-                      ),
                     ),
                   ],
                 ),

@@ -2,135 +2,112 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class LatestNewsLoadingWidget extends StatelessWidget {
-  const LatestNewsLoadingWidget({super.key});
+class TopNewsLoadingWidget extends StatelessWidget {
+  const TopNewsLoadingWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       padding: EdgeInsets.zero,
-      itemCount: 4,
-
-      separatorBuilder: (_, __) =>
-          SizedBox(height: 12.h),
-
+      itemCount: 6,
+      separatorBuilder: (_, __) => SizedBox(height: 4.h),
       itemBuilder: (context, index) {
-        return Skeletonizer.zone(
-          child: Container(
-            height: 300.h,
-
-            decoration: BoxDecoration(
-              borderRadius:
-              BorderRadius.circular(
-                25.r,
-              ),
-
-              color: Theme.of(context)
-                  .cardColor,
-            ),
-
-            child: ClipRRect(
-              borderRadius:
-              BorderRadius.circular(
-                25.r,
-              ),
-
-              child: Column(
-                children: [
-
-                  Container(
-                    width: double.infinity,
-
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 16.w,
-                      vertical: 12.h,
+        return Skeletonizer(
+          enabled: true,
+          child: Stack(
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 12.h),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Colors.white.withOpacity(.08),
+                    ),
+                  ),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12.r),
+                      child: Bone(
+                        width: 105.w,
+                        height: 80.h,
+                      ),
                     ),
 
-                    child: Column(
-                      crossAxisAlignment:
-                      CrossAxisAlignment.start,
+                    SizedBox(width: 12.w),
 
-                      children: [
-
-                        Row(
-                          children: [
-
-                            Bone.circle(
-                              size: 40.sp,
-                            ),
-
-                            SizedBox(
-                              width: 8.w,
-                            ),
-
-                            Expanded(
-                              child: Bone.text(
-                                words: 2,
-                              ),
-                            ),
-
-                            SizedBox(
-                              width: 12.w,
-                            ),
-
-                            Bone.icon(),
-                          ],
-                        ),
-
-                        SizedBox(
-                          height: 16.h,
-                        ),
-
-                        Bone.text(
-                          words: 8,
-                        ),
-
-                        SizedBox(
-                          height: 8.h,
-                        ),
-
-                        Bone.text(
-                          words: 5,
-                        ),
-
-                        SizedBox(
-                          height: 10.h,
-                        ),
-
-                        Align(
-                          alignment:
-                          Alignment
-                              .centerLeft,
-
-                          child: SizedBox(
-                            width: 80.w,
-                            child: Bone.text(
-                              words: 1,
-                            ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Bone(
+                            width: 55.w,
+                            height: 24.h,
+                            borderRadius: BorderRadius.circular(8.r),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
 
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
+                          SizedBox(height: 8.h),
 
-                      margin:
-                      EdgeInsets.only(
-                        top: 4.h,
+                          Bone(
+                            width: double.infinity,
+                            height: 14.h,
+                            borderRadius: BorderRadius.circular(4.r),
+                          ),
+
+                          SizedBox(height: 6.h),
+
+                          Bone(
+                            width: 90.w,
+                            height: 14.h,
+                            borderRadius: BorderRadius.circular(4.r),
+                          ),
+
+                          SizedBox(height: 10.h),
+
+                          Row(
+                            children: [
+                              Bone(
+                                width: 85.w,
+                                height: 12.h,
+                                borderRadius: BorderRadius.circular(4.r),
+                              ),
+
+                              SizedBox(width: 6.w),
+
+                              Bone.circle(size: 3.sp),
+
+                              SizedBox(width: 6.w),
+
+                              Bone(
+                                width: 60.w,
+                                height: 12.h,
+                                borderRadius: BorderRadius.circular(4.r),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-
-                      child: Bone.square(
-                        size: double.infinity,
-                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
+
+              PositionedDirectional(
+                end: 5.w,
+                bottom: 8.h,
+                child: Bone.circle(size: 32.sp),
+              ),
+
+              PositionedDirectional(
+                end: 40.w,
+                bottom: 8.h,
+                child: Bone.circle(size: 32.sp),
+              ),
+            ],
           ),
         );
       },

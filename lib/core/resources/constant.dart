@@ -13,17 +13,20 @@ class ChachConstant {
   static const String selectedCategories = 'selected_categories';
   static const String keyBookMarket = 'bookmarks';
   static const String tokenKey = 'token';
+}
 
+abstract class ApiConstant {
+  static const String baseUrl = 'http://akhbarna1.runasp.net/api/v1/';
+  static const String registerEndpoint = 'auth/register';
+  static const String loginEndpoint = 'auth/login';
+  static const String forgetPassword = 'auth/forgot-password';
 }
-abstract class ApiConstant{
-  static const String baseUrl='http://akhbarna1.runasp.net/api/v1/';
-  static const String registerEndpoint='auth/register';
-  static const String loginEndpoint='auth/login';
-  static const String forgetPassword='auth/forgot-password';
-}
-abstract class NewsApiConstant{
-  static const String baseUrl="http://akhbarna1.runasp.net/api/Article/static/";
-  static const String breakingNews="breaking";
-  static const String mostReadNews="most-read";
-  static const String topNews="latest";
+
+abstract class NewsApiConstant {
+  static const String baseUrl =
+      "http://akhbarna1.runasp.net/api/Article/static/";
+  static const String breakingNews = "breaking";
+  static const String mostReadNews = "most-read";
+  static const String topNews = "latest";
+  static const String byCategory = "by-category";
 }

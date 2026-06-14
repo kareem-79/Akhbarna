@@ -126,9 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ColorsManagers.vividTangerine,
                     );
                   } else if (state is LoginSuccess) {
-                    await PrefsManager.saveUserName(
-                      state.user.name,
-                    );
+                    await PrefsManager.saveUserName(state.user.name);
                     UiUtils.hideDialog(context);
                     UiUtils.showToast(
                       context,
@@ -173,6 +171,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             await FirebaseServices.signInWithGoogle(context);
 
                         if (response != null) {
+                          await PrefsManager.saveUserName(response.name);
+
                           _navigate();
                         }
                       },

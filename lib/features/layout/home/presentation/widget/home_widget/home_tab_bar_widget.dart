@@ -1,27 +1,18 @@
 import 'package:akhbarna/core/resources/colors_managers.dart';
-import 'package:akhbarna/model/home_tab_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../profile/presentation/widget/custom_tab_items_widget.dart';
+import '../../../../../../model/home_tab_model.dart';
 
 class HomeTabBar extends StatefulWidget {
   final List<HomeTabModel> homeTabList;
-  int selectedHomeTabIndex;
-  final Color selectedBgColor;
-  final Color selectedFgColor;
-  final Color unSelectedBgColor;
-  final Color unSelectedFgColor;
+  final int selectedHomeTabIndex;
   final void Function(HomeTabModel)? onHomeTabItemSelected;
 
-  HomeTabBar({
+  const HomeTabBar({
     super.key,
     required this.homeTabList,
     required this.selectedHomeTabIndex,
-    required this.selectedBgColor,
-    required this.selectedFgColor,
-    required this.unSelectedBgColor,
-    required this.unSelectedFgColor,
     this.onHomeTabItemSelected,
   });
 
@@ -30,7 +21,7 @@ class HomeTabBar extends StatefulWidget {
 }
 
 class _HomeTabBarState extends State<HomeTabBar> {
-  int selectedIndex = 0;
+  late int selectedIndex;
 
   @override
   void initState() {
@@ -40,37 +31,63 @@ class _HomeTabBarState extends State<HomeTabBar> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: widget.homeTabList.length,
-      child: Container(
-        height: 60.h,
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          color: ColorsManagers.red,
-          borderRadius: BorderRadius.circular(60.r),
-        ),
-        child: TabBar(
-          dividerColor: Colors.transparent,
-          labelPadding: EdgeInsets.zero,
-          indicatorColor: Colors.transparent,
-          onTap: (index) {
-            widget.onHomeTabItemSelected!(widget.homeTabList[index]);
-            setState(() {
-              selectedIndex = index;
-            });
-          },
-          tabs: widget.homeTabList.asMap().entries.map((entry) {
-            int idx = entry.key;
-            var model = entry.value;
-            return CustomTabItemWidget(
-              homeTabModel: model,
-              isSelected: selectedIndex == idx,
-              selectedBgColor: ColorsManagers.gray2,
-              selectedFgColor: widget.selectedFgColor,
-              unSelectedBgColor: Colors.transparent,
-              unSelectedFgColor: widget.unSelectedFgColor,
-            );
-          }).toList(),
+    final TextTheme textTheme = Theme.of(context).textTheme;
+    final Color primaryColor = Theme.of(context).primaryColor;
+    return SizedBox(
+      height: 48.h,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Container(
+          padding: EdgeInsets.all(4.sp),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(30.r)),
+          child: Row(
+            children: List.generate(widget.homeTabList.length, (index) {
+              final tab = widget.homeTabList[index];
+              final isSelected = selectedIndex == index;
+
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 3.w),
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = index;
+                    });
+
+                    widget.onHomeTabItemSelected?.call(tab);
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 250),
+                    curve: Curves.easeInOut,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16.w,
+                      vertical: 4.h,
+                    ),
+                    decoration: BoxDecoration(
+                      color: isSelected
+                          ? ColorsManagers.red
+                          : ColorsManagers.dark,
+                      borderRadius: BorderRadius.circular(25.r),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(tab.emoji, style: TextStyle(fontSize: 10.sp)),
+                        SizedBox(width: 6.w),
+                        Text(
+                          tab.name,
+                          style: textTheme.bodySmall?.copyWith(
+                            fontSize: 14.sp,
+                            color: primaryColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }),
+          ),
         ),
       ),
     );

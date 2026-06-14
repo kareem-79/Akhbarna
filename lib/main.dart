@@ -1,5 +1,6 @@
 import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/resources/routes_managers.dart';
+import 'package:akhbarna/core/widget/my_scroll_behavior.dart';
 import 'package:akhbarna/provider/config_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -28,9 +29,7 @@ void main() async {
     MultiProvider(
       providers: [
         ...AppBlocProviders.providers,
-        ChangeNotifierProvider.value(
-          value: configProvider,
-        ),
+        ChangeNotifierProvider.value(value: configProvider),
       ],
       child: const Akhbarna(),
     ),
@@ -42,6 +41,7 @@ class Akhbarna extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color cardColor = Theme.of(context).cardColor;
     return ScreenUtilInit(
       minTextAdapt: true,
       designSize: const Size(393, 852),
@@ -53,11 +53,12 @@ class Akhbarna extends StatelessWidget {
               data: SkeletonizerConfigData(
                 effect: ShimmerEffect(
                   duration: Duration(milliseconds: 1000),
-                  baseColor: ColorsManagers.gray,
-                  highlightColor: ColorsManagers.white,
+                  baseColor: cardColor,
+                  highlightColor: ColorsManagers.gray2,
                 ),
               ),
               child: MaterialApp(
+                scrollBehavior: MyScrollBehavior(),
                 debugShowCheckedModeBanner: false,
                 locale: configProvider.currentLocale,
                 theme: ThemeManager.light,
@@ -75,7 +76,7 @@ class Akhbarna extends StatelessWidget {
                   );
                 },
                 onGenerateRoute: RoutesManager.routes,
-                initialRoute: RoutesManager.mainLayout,
+                initialRoute: RoutesManager.splash,
                 localizationsDelegates: const [
                   AppLocalizations.delegate,
                   GlobalMaterialLocalizations.delegate,

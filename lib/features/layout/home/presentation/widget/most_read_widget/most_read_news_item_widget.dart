@@ -1,126 +1,290 @@
+import 'package:akhbarna/core/resources/colors_managers.dart';
+import 'package:akhbarna/core/utils/timer_format_helper.dart';
 import 'package:akhbarna/features/layout/home/data/models/ArticleModel.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/find_locale.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MostReadNewsItemWidget extends StatelessWidget {
+import '../../../../../../core/utils/viewer_format_helper.dart';
+
+class MostReadNewsItemWidget extends StatefulWidget {
   final ArticleModel news;
 
   const MostReadNewsItemWidget({super.key, required this.news});
 
   @override
+  State<MostReadNewsItemWidget> createState() => _MostReadNewsItemWidgetState();
+}
+
+class _MostReadNewsItemWidgetState extends State<MostReadNewsItemWidget> {
+  bool isSelected = false;
+
+  @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
-    Color cardColor = Theme.of(context).cardColor;
-
-    return GestureDetector(
-      onTap: () async {
-        final uri = Uri.parse(news.articleUrl ?? "");
-        await launchUrl(uri, mode: LaunchMode.inAppWebView);
+    final textTheme = Theme.of(context).textTheme;
+    final Color shadowColor = Theme.of(context).shadowColor;
+    return TweenAnimationBuilder(
+      duration: Duration(milliseconds: 300 + (widget.news.hashCode % 5) * 100),
+      tween: Tween<double>(begin: 40.0, end: 0.0),
+      builder: (context, value, child) {
+        return Transform.translate(
+          offset: Offset(0, value),
+          child: Opacity(
+            opacity: (1 - value / 40).clamp(0.0, 1.0),
+            child: child,
+          ),
+        );
       },
-      child: Container(
-        height: 150.h,
-
-        decoration: BoxDecoration(
-          color: cardColor,
-          borderRadius: BorderRadius.circular(30.r),
-        ),
-
-        child: Padding(
-          padding: EdgeInsets.all(16.sp),
-
-          child: Row(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(30.r),
-
-                child: CachedNetworkImage(
-                  imageUrl: news.imageUrl ?? "",
-
-                  width: 100.w,
-
-                  height: 100.h,
-                  useOldImageOnUrlChange: true,
-
-                  fadeInDuration: Duration.zero,
-                  fadeOutDuration: Duration.zero,
-
-                  fit: BoxFit.cover,
-
-                  placeholder: (context, url) {
-                    return const Center(child: CircularProgressIndicator());
-                  },
-
-                  errorWidget: (context, url, error) {
-                    return Container(
-                      width: 100.w,
-                      height: 100.h,
-                      color: Colors.grey.shade300,
-                      child: const Icon(Icons.image_not_supported),
-                    );
-                  },
-                ),
+      child: GestureDetector(
+        onTap: () async {
+          final uri = Uri.parse(widget.news.articleUrl ?? "");
+          await launchUrl(uri, mode: LaunchMode.inAppWebView);
+        },
+        child: Stack(
+          children: [
+            Container(
+              margin: EdgeInsets.only(bottom: 12.h),
+              padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 44.h),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.r),
+                border: Border.all(color: shadowColor),
               ),
-
-              SizedBox(width: 10.w),
-
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      news.title ?? "",
-                      style: textTheme.bodySmall,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(14.r),
+                    child: CachedNetworkImage(
+                      imageUrl: widget.news.imageUrl ?? "",
+                      width: 80.w,
+                      height: 80.h,
+                      fit: BoxFit.cover,
+                      placeholder: (_, __) =>
+                          Container(color: Colors.grey.shade300),
+                      errorWidget: (_, __, ___) => Container(
+                        color: Colors.grey.shade300,
+                        child: const Icon(Icons.image),
+                      ),
                     ),
+                  ),
 
-                    SizedBox(height: 16.h),
+                  SizedBox(width: 12.w),
 
-                    Row(
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const CircleAvatar(
-                          backgroundColor: Colors.transparent,
-                          child: Icon(Icons.public),
-                        ),
-
-                        SizedBox(width: 10.w),
-
-                        Expanded(
-                          child: Text(
-                            news.sourceName ?? "",
-                            style: textTheme.bodySmall,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-
-                        Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(20),
-                            onTap: () {
-                              SharePlus.instance.share(
-                                ShareParams(text: news.articleUrl ?? ''),
-                              );
-                            },
-                            child: const Padding(
-                              padding: EdgeInsets.all(8),
-                              child: Icon(Icons.share_outlined),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 6.w,
+                              height: 6.h,
+                              decoration: BoxDecoration(
+                                color: getCategoryColor(widget.news.category),
+                                shape: BoxShape.circle,
+                              ),
                             ),
+                            SizedBox(width: 6.w),
+                            Text(
+                              widget.news.category ?? "",
+                              style: textTheme.bodySmall?.copyWith(
+                                color: getCategoryColor(widget.news.category),
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(width: 6.w),
+                            Container(
+                              width: 3.w,
+                              height: 3.w,
+                              decoration: BoxDecoration(
+                                color: ColorsManagers.gray3,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                            SizedBox(width: 6.w),
+                            Text(
+                              widget.news.sourceName ?? "",
+                              style: textTheme.bodySmall?.copyWith(
+                                color: ColorsManagers.gray3,
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 8.h),
+                        Text(
+                          widget.news.title ?? "",
+                          textAlign: TextAlign.right,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: textTheme.bodySmall?.copyWith(
+                            fontWeight: FontWeight.w700,
+                            height: 1.4,
                           ),
+                        ),
+
+                        SizedBox(height: 12.h),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "منذ ${TimeFormatHelper.formatDate(widget.news.publishedDate)}",
+                              style: textTheme.bodySmall?.copyWith(
+                                fontSize: 12.sp,
+                                color: ColorsManagers.gray3,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+
+                            SizedBox(width: 6.w),
+
+                            Container(
+                              width: 3.w,
+                              height: 3.w,
+                              decoration: BoxDecoration(
+                                color: ColorsManagers.gray3,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+
+                            SizedBox(width: 6.w),
+
+                            Flexible(
+                              child: Row(
+                                children: [
+                                  Text(
+                                    ViewFormatHelper.formatViews(
+                                      widget.news.viewCount,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                    style: textTheme.bodySmall?.copyWith(
+                                      fontSize: 12.sp,
+                                      color: ColorsManagers.gray3,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(width: 4.w),
+                                  Icon(
+                                    Icons.visibility,
+                                    size: 12.sp,
+                                    color: ColorsManagers.gray3,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+            PositionedDirectional(
+              end: 8.w,
+              bottom: 20.h,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  InkWell(
+                    borderRadius: BorderRadius.circular(20.r),
+                    onTap: () {
+                      setState(() {
+                        isSelected = !isSelected;
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(6.sp),
+                      decoration: BoxDecoration(
+                        color: ColorsManagers.dark,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: getCategoryColor(
+                            widget.news.category,
+                          ).withOpacity(.25),
+                        ),
+                      ),
+                      child: Icon(
+                        isSelected
+                            ? Icons.bookmark_rounded
+                            : Icons.bookmark_border_rounded,
+                        size: 20.sp,
+                        color: getCategoryColor(widget.news.category),
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(width: 8.w),
+
+                  InkWell(
+                    borderRadius: BorderRadius.circular(20.r),
+                    onTap: () {
+                      SharePlus.instance.share(
+                        ShareParams(text: widget.news.articleUrl ?? ''),
+                      );
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(6.sp),
+                      decoration: BoxDecoration(
+                        color: ColorsManagers.dark,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: getCategoryColor(
+                            widget.news.category,
+                          ).withOpacity(.25),
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.share_outlined,
+                        size: 20.sp,
+                        color: getCategoryColor(widget.news.category),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
+  }
+
+  Color getCategoryColor(String? category) {
+    switch (category?.trim()) {
+      case "رياضة":
+        return ColorsManagers.pinkDark;
+
+      case "تكنولوجيا":
+        return ColorsManagers.mintDark;
+
+      case "سياسة":
+        return ColorsManagers.aquaDark;
+
+      case "اقتصاد":
+        return ColorsManagers.yellowDark;
+
+      case "صحة":
+        return ColorsManagers.purpleDark;
+
+      case "ترفيه":
+        return ColorsManagers.orangeDark;
+
+      case "علوم":
+        return ColorsManagers.skyBlueDark;
+
+      case "دولي":
+        return ColorsManagers.roseDark;
+
+      default:
+        return ColorsManagers.roseDark;
+    }
   }
 }

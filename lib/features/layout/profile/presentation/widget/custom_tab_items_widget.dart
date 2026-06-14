@@ -1,44 +1,47 @@
+import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/model/home_tab_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CustomTabItemWidget extends StatelessWidget {
+  final HomeTabModel homeTabModel;
+  final bool isSelected;
+
   const CustomTabItemWidget({
     super.key,
     required this.homeTabModel,
     required this.isSelected,
-    required this.selectedBgColor,
-    required this.selectedFgColor,
-    required this.unSelectedBgColor,
-    required this.unSelectedFgColor,
   });
-
-  final HomeTabModel homeTabModel;
-  final Color selectedBgColor;
-  final Color selectedFgColor;
-  final Color unSelectedBgColor;
-  final Color unSelectedFgColor;
-  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(2.0),
-      child: Container(
-        height: double.infinity,
-        constraints: BoxConstraints(minHeight: double.infinity),
-        decoration: BoxDecoration(
-          color: isSelected ? selectedBgColor : unSelectedBgColor,
-          borderRadius: BorderRadius.circular(60.r),
-        ),
-        alignment: Alignment.center,
-        child: Text(
-          homeTabModel.name,
-          style: GoogleFonts.cairo(
-            color: isSelected ? selectedFgColor : unSelectedFgColor,
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w600,
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.easeInOut,
+      margin: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
+      decoration: BoxDecoration(
+        color: isSelected ? ColorsManagers.red : Colors.transparent,
+        borderRadius: BorderRadius.circular(25.r),
+      ),
+      child: Center(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(homeTabModel.emoji, style: TextStyle(fontSize: 14.sp)),
+
+              SizedBox(width: 4.w),
+
+              Text(
+                homeTabModel.name,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
           ),
         ),
       ),

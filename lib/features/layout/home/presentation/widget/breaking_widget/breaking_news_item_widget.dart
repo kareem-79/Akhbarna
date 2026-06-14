@@ -121,38 +121,19 @@ class BreakingNewsItemWidget extends StatelessWidget {
 
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Expanded(
                           child: Row(
                             children: [
-                              CircleAvatar(
-                                radius: 20.r,
-
-                                backgroundColor: Colors.transparent,
-
-                                child: Icon(
-                                  Icons.public,
-
-                                  color: ColorsManagers.white,
-                                ),
-                              ),
-
-                              SizedBox(width: 8.w),
-
                               Flexible(
                                 child: Text(
                                   news.sourceName ?? "",
                                   style: textTheme.bodySmall,
-
                                   maxLines: 1,
-
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),

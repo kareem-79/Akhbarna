@@ -21,6 +21,8 @@ import 'package:akhbarna/features/setup/start/presentation/screens/start_screen.
 import 'package:akhbarna/features/splash_screen/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../features/layout/category/presentation/screens/category_article_screen.dart';
+
 class RoutesManager {
   static const String splash = "Splash";
   static const String startUp = "/startUp";
@@ -43,6 +45,7 @@ class RoutesManager {
   static const String notification = "Notification";
   static const String topNews = "TopNews";
   static const String mostRead = "MostRead";
+  static const String categoryArticle = "CategoryArticle";
 
   static Route<dynamic> slideRight(Widget screen) {
     return PageRouteBuilder(
@@ -51,15 +54,13 @@ class RoutesManager {
       reverseTransitionDuration: const Duration(milliseconds: 320),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         return SlideTransition(
-          position: Tween<Offset>(
-            begin: const Offset(1.0, 0.0),
-            end: Offset.zero,
-          ).animate(
-            CurvedAnimation(
-              parent: animation,
-              curve: Curves.easeOutQuart,
-            ),
-          ),
+          position:
+              Tween<Offset>(
+                begin: const Offset(1.0, 0.0),
+                end: Offset.zero,
+              ).animate(
+                CurvedAnimation(parent: animation, curve: Curves.easeOutQuart),
+              ),
           child: child,
         );
       },
@@ -100,15 +101,11 @@ class RoutesManager {
 
       case selectLanguage:
         final bool isFromEdit = settings.arguments as bool? ?? false;
-        return slideRight(
-          SelectLanguage(isFromEdit: isFromEdit),
-        );
+        return slideRight(SelectLanguage(isFromEdit: isFromEdit));
 
       case selectSources:
         final bool isFromEdit = settings.arguments as bool? ?? false;
-        return slideRight(
-          SelectSources(isFromEdit: isFromEdit),
-        );
+        return slideRight(SelectSources(isFromEdit: isFromEdit));
 
       case start:
         return slideRight(const StartScreen());
@@ -136,14 +133,13 @@ class RoutesManager {
 
       case mostRead:
         return slideRight(const MostReadScreen());
+      case categoryArticle:
+        final String categoryName = settings.arguments as String;
+        return slideRight(CategoryArticleScreen(categoryName: categoryName));
 
       default:
         return slideRight(
-          const Scaffold(
-            body: Center(
-              child: Text('No Route Found'),
-            ),
-          ),
+          const Scaffold(body: Center(child: Text('No Route Found'))),
         );
     }
   }

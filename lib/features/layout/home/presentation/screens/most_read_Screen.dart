@@ -61,7 +61,7 @@ class _MostReadScreenState extends State<MostReadScreen> {
                         itemCount: state.articles.length,
 
                         separatorBuilder: (context, index) {
-                          return SizedBox(height: 10.h);
+                          return SizedBox(height: 4.h);
                         },
 
                         itemBuilder: (context, index) {

@@ -59,7 +59,9 @@ class CategoryTabImageManagers {
   static const String health = "$base/health.png";
   static const String politics = "$base/politics.png";
   static const String sport = "$base/sport.png";
-  static const String art = "$base/art.png";
+  static const String entertainment = "$base/entertainment.png";
+  static const String sciences = "$base/sciences.png";
+  static const String technology = "$base/technology.png";
 }
 
 class SourceImageManagers {

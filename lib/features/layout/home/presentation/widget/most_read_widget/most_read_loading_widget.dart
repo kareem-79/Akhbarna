@@ -10,69 +10,134 @@ class MostReadLoadingWidget extends StatelessWidget {
     return ListView.separated(
       physics: const NeverScrollableScrollPhysics(),
       padding: EdgeInsets.zero,
-
       itemCount: 6,
-
-      separatorBuilder: (_, __) => SizedBox(height: 10.h),
-
+      separatorBuilder: (_, __) => SizedBox(height: 12.h),
       itemBuilder: (context, index) {
         return Skeletonizer(
           enabled: true,
-
-          child: Container(
-            height: 150.h,
-
-            decoration: BoxDecoration(
-              color: Theme.of(context).cardColor,
-
-              borderRadius: BorderRadius.circular(30.r),
-            ),
-
-            child: Padding(
-              padding: EdgeInsets.all(16.sp),
-
-              child: Row(
-                children: [
-                  Bone.square(
-                    size: 100.sp,
-
-                    borderRadius: BorderRadius.circular(30.r),
+          child: Stack(
+            children: [
+              Container(
+                margin: EdgeInsets.only(bottom: 12.h),
+                padding: EdgeInsets.fromLTRB(
+                  12.w,
+                  12.h,
+                  12.w,
+                  44.h,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.r),
+                  border: Border.all(
+                    color: Colors.white.withOpacity(.05),
                   ),
-
-                  SizedBox(width: 10.w),
-
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-
-                      crossAxisAlignment: CrossAxisAlignment.start,
-
-                      children: [
-                        Bone.text(words: 4),
-
-                        SizedBox(height: 10.h),
-
-                        Bone.text(words: 3),
-
-                        SizedBox(height: 20.h),
-
-                        Row(
-                          children: [
-                            Bone.circle(size: 30.sp),
-
-                            SizedBox(width: 10.w),
-
-                            Expanded(child: Bone.text(words: 2)),
-
-                            Bone.icon(),
-                          ],
-                        ),
-                      ],
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Bone.square(
+                      size: 80.sp,
+                      borderRadius: BorderRadius.circular(14.r),
                     ),
-                  ),
-                ],
+
+                    SizedBox(width: 12.w),
+
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Bone.circle(size: 6.sp),
+
+                              SizedBox(width: 6.w),
+
+                              Bone.text(
+                                words: 1,
+                                fontSize: 12.sp,
+                              ),
+
+                              SizedBox(width: 6.w),
+
+                              Bone.circle(size: 3.sp),
+
+                              SizedBox(width: 6.w),
+
+                              Expanded(
+                                child: Bone.text(
+                                  words: 2,
+                                  fontSize: 12.sp,
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          SizedBox(height: 8.h),
+
+                          Bone.text(
+                            words: 8,
+                            fontSize: 14.sp,
+                          ),
+
+                          SizedBox(height: 6.h),
+
+                          Bone.text(
+                            words: 6,
+                            fontSize: 14.sp,
+                          ),
+
+                          SizedBox(height: 12.h),
+
+                          Row(
+                            children: [
+                              Bone.text(
+                                words: 3,
+                                fontSize: 12.sp,
+                              ),
+
+                              SizedBox(width: 6.w),
+
+                              Bone.circle(size: 3.sp),
+
+                              SizedBox(width: 6.w),
+
+                              Expanded(
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Bone(
+                                    width: 70.w,
+                                    height: 12.h,
+                                    borderRadius: BorderRadius.circular(4.r),
+                                  ),
+                                ),
+                              ),
+
+                              SizedBox(width: 4.w),
+
+                              Bone.icon(size: 12.sp),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
+
+              PositionedDirectional(
+                end: 8.w,
+                bottom: 20.h,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Bone.circle(size: 32.sp),
+
+                    SizedBox(width: 8.w),
+
+                    Bone.circle(size: 32.sp),
+                  ],
+                ),
+              ),
+            ],
           ),
         );
       },

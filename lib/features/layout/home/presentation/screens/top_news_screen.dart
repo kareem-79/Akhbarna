@@ -45,7 +45,7 @@ class _TopNewsScreenState extends State<TopNewsScreen> {
                 child: BlocBuilder<LatestNewsCubit, LatestNewsState>(
                   builder: (context, state) {
                     if (state is LatestNewsLoading) {
-                      return const LatestNewsLoadingWidget();
+                      return const TopNewsLoadingWidget();
                     }
 
                     if (state is LatestNewsError) {
@@ -56,7 +56,7 @@ class _TopNewsScreenState extends State<TopNewsScreen> {
                       return ListView.separated(
                         padding: EdgeInsets.zero,
                         itemCount: state.articles.length,
-                        separatorBuilder: (_, __) => SizedBox(height: 10.h),
+                        separatorBuilder: (_, __) => SizedBox(height: 4.h),
                         itemBuilder: (context, index) {
                           return TopNewsItemWidget(news: state.articles[index]);
                         },
