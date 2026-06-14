@@ -18,6 +18,20 @@ class MainLayout extends StatefulWidget {
 class _MainLayoutState extends State<MainLayout> {
   int selectedIndex = 0;
 
+  late final PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   final List<Widget> tabs = [
     const HomeTap(),
     const CategoryTab(),
@@ -27,48 +41,21 @@ class _MainLayoutState extends State<MainLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 380),
-        reverseDuration: const Duration(milliseconds: 280),
-        transitionBuilder: (Widget child, Animation<double> animation) {
-          final slideAnimation = Tween<Offset>(
-            begin: const Offset(0.08, 0),
-            end: Offset.zero,
-          ).animate(CurvedAnimation(
-            parent: animation,
-            curve: Curves.easeOutCubic,
-          ));
-
-          final scaleAnimation = Tween<double>(
-            begin: 0.96,
-            end: 1.0,
-          ).animate(CurvedAnimation(
-            parent: animation,
-            curve: Curves.easeOutCubic,
-          ));
-
-          return FadeTransition(
-            opacity: animation,
-            child: SlideTransition(
-              position: slideAnimation,
-              child: ScaleTransition(
-                scale: scaleAnimation,
-                child: child,
-              ),
-            ),
-          );
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
+          setState(() {
+            selectedIndex = index;
+          });
         },
-        child: KeyedSubtree(
-          key: ValueKey<int>(selectedIndex),
-          child: tabs[selectedIndex],
-        ),
+        children: tabs,
       ),
+
       bottomNavigationBar: Padding(
         padding: EdgeInsets.all(8.sp),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(60.r),
           child: BottomNavigationBar(
-            elevation: 0,
             currentIndex: selectedIndex,
             onTap: _onTab,
             items: [
@@ -110,10 +97,17 @@ class _MainLayoutState extends State<MainLayout> {
   void _onTab(int newIndex) {
     if (newIndex == 3) {
       Navigator.pushNamed(context, RoutesManager.profile);
-    } else if (newIndex != selectedIndex) {
-      setState(() {
-        selectedIndex = newIndex;
-      });
+      return;
     }
+
+    setState(() {
+      selectedIndex = newIndex;
+    });
+
+    _pageController.animateToPage(
+      newIndex,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
   }
 }

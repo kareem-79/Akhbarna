@@ -1,3 +1,4 @@
+import 'package:akhbarna/core/widget/custom_elevated_button.dart';
 import 'package:akhbarna/features/layout/profile/presentation/screens/logout/presentation/logout_bottom_sheet.dart';
 import 'package:akhbarna/features/layout/profile/presentation/widget/custom_blur_bottom_sheet.dart';
 import 'package:akhbarna/l10n/app_localizations.dart';
@@ -6,10 +7,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/prefs_manager/prefs_manager.dart';
 import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../core/resources/routes_managers.dart';
-import '../../../../../core/widget/app_bar_widget.dart';
+import '../../../../../model/language_model.dart';
 import '../widget/enlargable_profile_avatar.dart';
+import '../widget/settings_divider_widget.dart';
+import '../widget/settings_section_widget.dart';
+import '../widget/settings_tile_widget.dart';
 import 'general_settings/presentation/general_setting_bottom_sheet.dart';
-import '../widget/profile_item_widget.dart';
 
 class ProfileTab extends StatefulWidget {
   const ProfileTab({super.key});
@@ -23,129 +26,253 @@ class _ProfileTabState extends State<ProfileTab> {
 
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
-    Color shadowColor = Theme.of(context).shadowColor;
-    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    final textTheme = Theme.of(context).textTheme;
+    final appLocalizations = AppLocalizations.of(context)!;
+    final currentLanguage = AppLanguage.languages.firstWhere(
+          (lang) => lang.code == Localizations.localeOf(context).languageCode,
+      orElse: () => AppLanguage.languages.first,
+    );
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w),
-            child: Column(
-              children: [
-                AppBarWidget(
-                  title: appLocalizations.account_management,
-                  height: 30,
-                  color: shadowColor,
-                ),
-                Row(
-                  children: [
-                    EnlargableProfileAvatar(
-                      imagePath: _profileImagePath,
-                      radius: 40.r,
-                      isEditable: false,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(height: 16.h),
+              Row(
+                children: [
+                  Container(
+                    width: 42.w,
+                    height: 42.h,
+                    decoration: BoxDecoration(
+                      color: ColorsManagers.gray2,
+                      borderRadius: BorderRadius.circular(12.r),
                     ),
+                    child: IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: Icon(Icons.arrow_back_ios_new, size: 18.sp),
+                    ),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 20.h),
+              Text("الإعدادات", style: textTheme.bodyMedium),
+              SizedBox(height: 24.h),
+              Container(
+                padding: EdgeInsets.all(16.r),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(24.r),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [ColorsManagers.dark, ColorsManagers.darkNavy],
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 52.w,
+                      height: 52.h,
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(16.r),
+                      ),
+                      child: const Icon(
+                        Icons.person_outline,
+                        color: Colors.white,
+                      ),
+                    ),
+
                     SizedBox(width: 12.w),
+
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             PrefsManager.getUserName(),
-                            style: textTheme.bodyMedium,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
+                            style: textTheme.bodySmall?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           SizedBox(height: 4.h),
                           Text(
                             "Egypt",
-                            maxLines: 2,
                             style: textTheme.bodySmall?.copyWith(
-                              color: ColorsManagers.lightGray,
+                              color: Colors.grey,
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ),
-
-                SizedBox(height: 30.h),
-
-                GridView.count(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 12.h,
-                  crossAxisSpacing: 12.w,
-                  childAspectRatio: 1.1,
-                  children: [
-                    ProfileItemWidget(
-                      icon: Icons.person_outline_outlined,
-                      title: appLocalizations.account_information,
-                      onTap: () async {
-                        final result = await Navigator.pushNamed(
-                          context,
-                          RoutesManager.editProfile,
-                          arguments: _profileImagePath,
-                        );
-                        if (result != null && result is String) {
-                          setState(() {
-                            _profileImagePath = result;
-                          });
-                        }
-                      },
-                    ),
-                    ProfileItemWidget(
-                      icon: Icons.tune_outlined,
-                      title: appLocalizations.general_settings,
-                      onTap: () => _showGeneralSettings(context),
-                    ),
-                    ProfileItemWidget(
-                      icon: Icons.notifications_none_outlined,
-                      title: appLocalizations.notifications,
-                      onTap: () {},
-                    ),
-                    ProfileItemWidget(
-                      icon: Icons.security_outlined,
-                      title: appLocalizations.security_settings,
-                      onTap: () {
-                        Navigator.pushNamed(context, RoutesManager.security);
-                      },
-                    ),
-                    ProfileItemWidget(
-                      icon: Icons.language_outlined,
-                      title: appLocalizations.language,
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          RoutesManager.selectLanguage,
-                          arguments: true,
-                        );
-                      },
-                    ),
-                    ProfileItemWidget(
-                      icon: Icons.help_outline,
-                      title: appLocalizations.help_center,
-                      onTap: () {},
-                    ),
-                    ProfileItemWidget(
-                      icon: Icons.info_outline,
-                      title: appLocalizations.about_us,
-                      onTap: () {
-                        Navigator.pushNamed(context, RoutesManager.aboutUs);
-                      },
-                    ),
-                    ProfileItemWidget(
-                      icon: Icons.logout_outlined,
-                      title: appLocalizations.logout,
-                      onTap: () => _showLogoutBottomSheet(context),
+                    SizedBox(width: 12.w),
+                    EnlargableProfileAvatar(
+                      imagePath: _profileImagePath,
+                      radius: 28.r,
+                      isEditable: false,
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+
+              SizedBox(height: 28.h),
+
+              Text(
+                "الحساب",
+                style: textTheme.bodySmall?.copyWith(color: Colors.grey),
+              ),
+
+              SizedBox(height: 10.h),
+
+              SettingsSectionWidget(
+                children: [
+                  SettingsTileWidget(
+                    title: appLocalizations.account_information,
+                    subtitle: "الاسم، البريد، الصورة",
+                    icon: Icons.person_outline,
+                    iconColor: ColorsManagers.azureRadiance,
+                    iconBackgroundColor: ColorsManagers.azureRadiance
+                        .withValues(alpha: .15),
+                    onTap: () async {
+                      final result = await Navigator.pushNamed(
+                        context,
+                        RoutesManager.editProfile,
+                        arguments: _profileImagePath,
+                      );
+
+                      if (result != null && result is String) {
+                        setState(() {
+                          _profileImagePath = result;
+                        });
+                      }
+                    },
+                  ),
+
+                  const SettingsDividerWidget(),
+
+                  SettingsTileWidget(
+                    title: appLocalizations.security_settings,
+                    subtitle: appLocalizations.password,
+                    icon: Icons.lock_outline,
+                    iconColor: ColorsManagers.red,
+                    iconBackgroundColor: ColorsManagers.red.withValues(
+                      alpha: .15,
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, RoutesManager.security);
+                    },
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 24.h),
+              Text(
+                "التفضيلات",
+                style: textTheme.bodySmall?.copyWith(color: Colors.grey),
+              ),
+
+              SizedBox(height: 10.h),
+
+              SettingsSectionWidget(
+                children: [
+                  SettingsTileWidget(
+                    title: appLocalizations.general_settings,
+                    subtitle: "المظهر، حجم الخط، المصادر",
+                    icon: Icons.settings_outlined,
+                    iconColor: ColorsManagers.yellowDark,
+                    iconBackgroundColor: ColorsManagers.yellowLight,
+                    onTap: () => _showGeneralSettings(context),
+                  ),
+
+                  const SettingsDividerWidget(),
+
+                  SwitchListTile(
+                    value: true,
+                    onChanged: (value) {},
+                    activeColor: Colors.red,
+                    title: Text(
+                      appLocalizations.notifications,
+                      style: textTheme.bodySmall,
+                    ),
+                    secondary: Container(
+                      width: 44.w,
+                      height: 44.h,
+                      decoration: BoxDecoration(
+                        color: ColorsManagers.mintDark.withOpacity(.3),
+                        borderRadius: BorderRadius.circular(12.r),
+                      ),
+                      child: Icon(
+                        Icons.notifications_none,
+                        color: ColorsManagers.mintDark,
+                      ),
+                    ),
+                  ),
+
+                  const SettingsDividerWidget(),
+
+                  SettingsTileWidget(
+                    title: appLocalizations.language,
+                    subtitle: currentLanguage.name,
+                    icon: Icons.language,
+                    iconColor: ColorsManagers.purpleDark,
+                    iconBackgroundColor: ColorsManagers.purpleLight,
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        RoutesManager.selectLanguage,
+                        arguments: true,
+                      );
+                    },
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 24.h),
+              Text(
+                "الدعم",
+                style: textTheme.bodySmall?.copyWith(color: Colors.grey),
+              ),
+
+              SizedBox(height: 10.h),
+
+              SettingsSectionWidget(
+                children: [
+                  SettingsTileWidget(
+                    title: "الاسئلة الشائعة",
+                    icon: Icons.help_outline,
+                    iconColor: ColorsManagers.mintDark,
+                    iconBackgroundColor: ColorsManagers.mintLight,
+                    onTap: () {},
+                  ),
+                  const SettingsDividerWidget(),
+
+                  SettingsTileWidget(
+                    title: appLocalizations.about_us,
+                    subtitle: "Version 1.0.0",
+                    icon: Icons.info_outline,
+                    iconColor: ColorsManagers.skyBlueDark,
+                    iconBackgroundColor: ColorsManagers.skyBlueLight,
+                    onTap: () {
+                      Navigator.pushNamed(context, RoutesManager.aboutUs);
+                    },
+                  ),
+                ],
+              ),
+              CustomElevatedButton(
+                text: appLocalizations.logout,
+                foregroundColor: ColorsManagers.white,
+                borderColor: ColorsManagers.red,
+                backgroundColor: ColorsManagers.red.withOpacity(.5),
+                onPress: () => _showLogoutBottomSheet(context),
+              ),
+
+              SizedBox(height: 30.h),
+            ],
           ),
         ),
       ),
