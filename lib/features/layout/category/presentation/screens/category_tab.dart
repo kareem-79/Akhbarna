@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../model/category_tab_model.dart';
 import '../cubit/category_news_cubit.dart';
@@ -74,7 +73,7 @@ class _CategoryTabState extends State<CategoryTab> {
                       final categoryModel = CategoryTabModel.categories[index];
 
                       final matched = state.categoriesResponse.categories.where(
-                        (e) => e.categoryName == categoryModel.title,
+                            (e) => e.categoryName == categoryModel.id,
                       );
 
                       final newsCount = matched.isEmpty

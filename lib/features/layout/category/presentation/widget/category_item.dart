@@ -1,7 +1,6 @@
 import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../core/resources/routes_managers.dart';
 import '../../../../../model/category_tab_model.dart';
 
@@ -21,17 +20,10 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isOddIndex = index % 2 != 0;
     final textTheme = Theme.of(context).textTheme;
-
     final colors = getCategoryGradient(category.title);
-
     return TweenAnimationBuilder(
-      duration: Duration(
-        milliseconds: 400 + (index * 100),
-      ),
-      tween: Tween<double>(
-        begin: isOddIndex ? -100.0 : 100.0,
-        end: 0.0,
-      ),
+      duration: Duration(milliseconds: 400 + (index * 100)),
+      tween: Tween<double>(begin: isOddIndex ? -100.0 : 100.0, end: 0.0),
       builder: (context, value, child) {
         return Transform.translate(
           offset: Offset(value, 0.0),
@@ -45,7 +37,7 @@ class CategoryItem extends StatelessWidget {
         onTap: () => Navigator.pushNamed(
           context,
           RoutesManager.categoryArticle,
-          arguments: category.title,
+          arguments: category.id,
         ),
         child: Container(
           height: 110.h,
@@ -64,7 +56,6 @@ class CategoryItem extends StatelessWidget {
                       : Alignment.centerLeft,
                 ),
               ),
-
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.r),
@@ -135,7 +126,9 @@ class CategoryItem extends StatelessWidget {
                   height: 5.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20.r),
-                    gradient: LinearGradient(colors: [colors.first, colors.last]),
+                    gradient: LinearGradient(
+                      colors: [colors.first, colors.last],
+                    ),
                     boxShadow: [
                       BoxShadow(
                         color: colors.last.withOpacity(.5),
