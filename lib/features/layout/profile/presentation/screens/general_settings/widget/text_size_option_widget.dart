@@ -33,14 +33,12 @@ class TextSizeOptionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final config = Provider.of<ConfigProvider>(context);
     TextTheme textTheme = Theme.of(context).textTheme;
+    final Color shadowColor = Theme.of(context).shadowColor;
     return ListTile(
       contentPadding: EdgeInsets.zero,
       title: Text(
         _label(context),
-        style: textTheme.bodyMedium?.copyWith(
-          fontSize: 20.sp,
-          color: ColorsManagers.white,
-        ),
+        style: textTheme.bodyMedium?.copyWith(fontSize: 20.sp),
       ),
       trailing: Radio<FontSize>(
         value: size,
@@ -50,7 +48,12 @@ class TextSizeOptionWidget extends StatelessWidget {
             config.changeFontSize(val);
           }
         },
-        activeColor: Colors.blue,
+        fillColor: MaterialStateProperty.resolveWith<Color>((states) {
+          if (states.contains(MaterialState.selected)) {
+            return ColorsManagers.blue;
+          }
+          return shadowColor;
+        }),
       ),
     );
   }

@@ -29,4 +29,5 @@ abstract class NewsApiConstant {
   static const String mostReadNews = "most-read";
   static const String topNews = "latest";
   static const String byCategory = "by-category";
+  static const String trendingNews = "trending";
 }

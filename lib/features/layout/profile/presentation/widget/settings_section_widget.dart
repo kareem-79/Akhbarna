@@ -13,13 +13,10 @@ class SettingsSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Color cardColor = Theme.of(context).cardColor;
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [ColorsManagers.dark, ColorsManagers.darkNavy],
-        ),
+        color: cardColor,
         borderRadius: BorderRadius.circular(24.r),
       ),
       child: Column(

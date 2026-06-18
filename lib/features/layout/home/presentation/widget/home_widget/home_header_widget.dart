@@ -35,7 +35,7 @@ class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
   Widget build(BuildContext context) {
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Container(
-      height: 140.h,
+      height: 110.h,
       width: double.infinity,
       decoration: BoxDecoration(
         color: ColorsManagers.red,

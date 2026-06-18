@@ -2,6 +2,7 @@ import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/resources/routes_managers.dart';
 import 'package:akhbarna/core/widget/my_scroll_behavior.dart';
 import 'package:akhbarna/provider/config_provider.dart';
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -41,7 +42,6 @@ class Akhbarna extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color cardColor = Theme.of(context).cardColor;
     return ScreenUtilInit(
       minTextAdapt: true,
       designSize: const Size(393, 852),
@@ -49,6 +49,7 @@ class Akhbarna extends StatelessWidget {
       builder: (context, child) {
         return Consumer<ConfigProvider>(
           builder: (context, configProvider, _) {
+            Color cardColor = Theme.of(context).cardColor;
             return SkeletonizerConfig(
               data: SkeletonizerConfigData(
                 effect: ShimmerEffect(
@@ -57,49 +58,57 @@ class Akhbarna extends StatelessWidget {
                   highlightColor: ColorsManagers.gray2,
                 ),
               ),
-              child: MaterialApp(
-                scrollBehavior: MyScrollBehavior(),
-                debugShowCheckedModeBanner: false,
-                locale: configProvider.currentLocale,
-                theme: ThemeManager.light,
-                darkTheme: ThemeManager.dark,
-                themeMode: configProvider.currentTheme,
-
-                builder: (context, child) {
-                  return MediaQuery(
-                    data: MediaQuery.of(context).copyWith(
-                      textScaler: configProvider.isSystemFont
-                          ? MediaQuery.textScalerOf(context)
-                          : TextScaler.linear(configProvider.textScaleFactor),
-                    ),
-                    child: child!,
-                  );
-                },
-                onGenerateRoute: RoutesManager.routes,
-                initialRoute: RoutesManager.splash,
-                localizationsDelegates: const [
-                  AppLocalizations.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                supportedLocales: const [
-                  Locale('en'),
-                  Locale('ar'),
-                  Locale('fr'),
-                  Locale('de'),
-                  Locale('it'),
-                  Locale('es'),
-                  Locale('zh'),
-                  Locale('ja'),
-                  Locale('ru'),
-                  Locale('pt'),
-                  Locale('hi'),
-                  Locale('ko'),
-                  Locale('nl'),
-                  Locale('sv'),
-                  Locale('tr'),
-                ],
+              child: ThemeProvider(
+                initTheme: configProvider.currentTheme == ThemeMode.dark
+                    ? ThemeManager.dark
+                    : ThemeManager.light,
+                child: ThemeSwitchingArea(
+                  child: MaterialApp(
+                    scrollBehavior: MyScrollBehavior(),
+                    debugShowCheckedModeBanner: false,
+                    locale: configProvider.currentLocale,
+                    theme: ThemeManager.light,
+                    darkTheme: ThemeManager.dark,
+                    themeMode: configProvider.currentTheme,
+                    themeAnimationDuration: const Duration(milliseconds: 700),
+                    themeAnimationCurve: Curves.easeInOutCubic,
+                    builder: (context, child) {
+                      return MediaQuery(
+                        data: MediaQuery.of(context).copyWith(
+                          textScaler: configProvider.isSystemFont
+                              ? MediaQuery.textScalerOf(context)
+                              : TextScaler.linear(configProvider.textScaleFactor),
+                        ),
+                        child: child!,
+                      );
+                    },
+                    onGenerateRoute: RoutesManager.routes,
+                    initialRoute: RoutesManager.splash,
+                    localizationsDelegates: const [
+                      AppLocalizations.delegate,
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                      GlobalCupertinoLocalizations.delegate,
+                    ],
+                    supportedLocales: const [
+                      Locale('en'),
+                      Locale('ar'),
+                      Locale('fr'),
+                      Locale('de'),
+                      Locale('it'),
+                      Locale('es'),
+                      Locale('zh'),
+                      Locale('ja'),
+                      Locale('ru'),
+                      Locale('pt'),
+                      Locale('hi'),
+                      Locale('ko'),
+                      Locale('nl'),
+                      Locale('sv'),
+                      Locale('tr'),
+                    ],
+                  ),
+                ),
               ),
             );
           },

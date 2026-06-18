@@ -4,16 +4,15 @@ import 'package:dartz/dartz.dart';
 import '../../../../../core/errors/failure.dart';
 
 abstract class HomeRepository {
+  Future<Either<Failure, List<ArticleModel>>> getBreakingNews();
 
-  Future<Either<Failure, List<ArticleModel>>>
-  getBreakingNews();
-
-  Future<Either<Failure, List<ArticleModel>>>
-  getMostReadNews({
+  Future<Either<Failure, List<ArticleModel>>> getMostReadNews({
     required int top,
   });
-  Future<Either<Failure, List<ArticleModel>>>
-  getLatestNews({
+
+  Future<Either<Failure, List<ArticleModel>>> getLatestNews({required int top});
+
+  Future<Either<Failure, List<ArticleModel>>> getTrendingNews({
     required int top,
   });
 }

@@ -81,4 +81,28 @@ class HomeApiRemoteDataSource implements HomeRemoteDataSource {
       throw RemoteException(message: message ?? "Failed to load latest news");
     }
   }
+
+  @override
+  Future<List<ArticleModel>> getTrendingNews({required int top}) async {
+    try {
+      final response = await dio.get(
+        NewsApiConstant.trendingNews,
+        queryParameters: {"top": top},
+      );
+
+      List data = response.data;
+
+      return data.map((e) {
+        return ArticleModel.fromJson(e);
+      }).toList();
+    } catch (exception) {
+      String? message;
+
+      if (exception is DioException) {
+        message = exception.response?.data["message"];
+      }
+
+      throw RemoteException(message: message ?? "Failed to load trending news");
+    }
+  }
 }

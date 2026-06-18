@@ -11,7 +11,7 @@ class TopNewsLoadingWidget extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       padding: EdgeInsets.zero,
-      itemCount: 6,
+      itemCount: 10,
       separatorBuilder: (_, __) => SizedBox(height: 4.h),
       itemBuilder: (context, index) {
         return Skeletonizer(

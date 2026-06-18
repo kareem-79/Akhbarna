@@ -1,4 +1,5 @@
 import 'package:akhbarna/features/layout/home/presentation/cubit/breaking_news_cubit.dart';
+import 'package:akhbarna/features/layout/home/presentation/cubit/trending_news_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
@@ -20,6 +21,7 @@ class AppBlocProviders {
     BlocProvider(create: (_) => serviceLocator.get<MostReadNewsCubit>()),
     BlocProvider(create: (_) => serviceLocator.get<LatestNewsCubit>()),
     BlocProvider(create: (_) => serviceLocator.get<CategoryNewsCubit>()),
+    BlocProvider(create: (_) => serviceLocator.get<TrendingNewsCubit>()),
     ChangeNotifierProvider(create: (_) => BookmarkProvider()),
   ];
 }

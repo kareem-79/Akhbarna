@@ -9,6 +9,7 @@ class ThemeManager {
     shadowColor: ColorsManagers.white,
     primaryColor: ColorsManagers.white,
     cardColor: ColorsManagers.gray2,
+    canvasColor: ColorsManagers.dark,
     useMaterial3: false,
     iconTheme: IconThemeData(color: ColorsManagers.white),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -94,6 +95,7 @@ class ThemeManager {
     shadowColor: ColorsManagers.black,
     primaryColor: ColorsManagers.white,
     cardColor: ColorsManagers.mainGray,
+    canvasColor: ColorsManagers.gray2,
     useMaterial3: false,
     iconTheme: IconThemeData(color: ColorsManagers.black),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(

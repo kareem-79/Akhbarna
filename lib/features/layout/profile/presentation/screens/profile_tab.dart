@@ -1,3 +1,4 @@
+import 'package:akhbarna/core/widget/arrow_back_widget.dart';
 import 'package:akhbarna/core/widget/custom_elevated_button.dart';
 import 'package:akhbarna/features/layout/profile/presentation/screens/logout/presentation/logout_bottom_sheet.dart';
 import 'package:akhbarna/features/layout/profile/presentation/widget/custom_blur_bottom_sheet.dart';
@@ -12,7 +13,6 @@ import '../widget/enlargable_profile_avatar.dart';
 import '../widget/settings_divider_widget.dart';
 import '../widget/settings_section_widget.dart';
 import '../widget/settings_tile_widget.dart';
-import 'general_settings/presentation/general_setting_bottom_sheet.dart';
 
 class ProfileTab extends StatefulWidget {
   const ProfileTab({super.key});
@@ -29,10 +29,10 @@ class _ProfileTabState extends State<ProfileTab> {
     final textTheme = Theme.of(context).textTheme;
     final appLocalizations = AppLocalizations.of(context)!;
     final currentLanguage = AppLanguage.languages.firstWhere(
-          (lang) => lang.code == Localizations.localeOf(context).languageCode,
+      (lang) => lang.code == Localizations.localeOf(context).languageCode,
       orElse: () => AppLanguage.languages.first,
     );
-
+    final Color cardColor = Theme.of(context).cardColor;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -42,22 +42,9 @@ class _ProfileTabState extends State<ProfileTab> {
             children: [
               SizedBox(height: 16.h),
               Row(
-                children: [
-                  Container(
-                    width: 42.w,
-                    height: 42.h,
-                    decoration: BoxDecoration(
-                      color: ColorsManagers.gray2,
-                      borderRadius: BorderRadius.circular(12.r),
-                    ),
-                    child: IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: Icon(Icons.arrow_back_ios_new, size: 18.sp),
-                    ),
-                  ),
-                ],
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [ArrowBackWidget()],
               ),
-
               SizedBox(height: 20.h),
               Text("الإعدادات", style: textTheme.bodyMedium),
               SizedBox(height: 24.h),
@@ -65,11 +52,7 @@ class _ProfileTabState extends State<ProfileTab> {
                 padding: EdgeInsets.all(16.r),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(24.r),
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [ColorsManagers.dark, ColorsManagers.darkNavy],
-                  ),
+                  color: cardColor,
                 ),
                 child: Row(
                   children: [
@@ -77,12 +60,12 @@ class _ProfileTabState extends State<ProfileTab> {
                       width: 52.w,
                       height: 52.h,
                       decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: ColorsManagers.red,
                         borderRadius: BorderRadius.circular(16.r),
                       ),
-                      child: const Icon(
+                      child: Icon(
                         Icons.person_outline,
-                        color: Colors.white,
+                        color: ColorsManagers.white,
                       ),
                     ),
 
@@ -186,7 +169,10 @@ class _ProfileTabState extends State<ProfileTab> {
                     icon: Icons.settings_outlined,
                     iconColor: ColorsManagers.yellowDark,
                     iconBackgroundColor: ColorsManagers.yellowLight,
-                    onTap: () => _showGeneralSettings(context),
+                    onTap: () => Navigator.pushNamed(
+                      context,
+                      RoutesManager.generalSettings,
+                    ),
                   ),
 
                   const SettingsDividerWidget(),
@@ -197,7 +183,9 @@ class _ProfileTabState extends State<ProfileTab> {
                     activeColor: Colors.red,
                     title: Text(
                       appLocalizations.notifications,
-                      style: textTheme.bodySmall,
+                      style: textTheme.bodySmall?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                     secondary: Container(
                       width: 44.w,
@@ -277,10 +265,6 @@ class _ProfileTabState extends State<ProfileTab> {
         ),
       ),
     );
-  }
-
-  void _showGeneralSettings(BuildContext context) {
-    showBlurBottomSheet(context, child: const GeneralSettingsBottomSheet());
   }
 
   void _showLogoutBottomSheet(BuildContext context) {

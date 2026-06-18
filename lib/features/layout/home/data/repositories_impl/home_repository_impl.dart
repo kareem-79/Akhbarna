@@ -49,4 +49,17 @@ class HomeRepositoryImpl implements HomeRepository {
       return Left(Failure(message: exception.message));
     }
   }
+
+  @override
+  Future<Either<Failure, List<ArticleModel>>> getTrendingNews({
+    required int top,
+  }) async {
+    try {
+      final response = await remoteDataSource.getTrendingNews(top: top);
+
+      return Right(response);
+    } on AppException catch (exception) {
+      return Left(Failure(message: exception.message));
+    }
+  }
 }

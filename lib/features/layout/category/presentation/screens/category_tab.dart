@@ -38,19 +38,16 @@ class _CategoryTabState extends State<CategoryTab> {
                 bottomRight: Radius.circular(60.r),
               ),
             ),
-            child: SafeArea(
-              bottom: false,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  SizedBox(height: 10.h),
-                  Text(
-                    "صباح الخير\nإليكم بعض الأخبار",
-                    style: textTheme.bodyLarge?.copyWith(fontSize: 28.sp),
-                    maxLines: 2,
-                  ),
-                ],
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SizedBox(height: 5.h,),
+                Text(
+                  "صباح الخير\nإليكم بعض الأخبار",
+                  style: textTheme.bodyLarge?.copyWith(fontSize: 28.sp),
+                  maxLines: 2,
+                ),
+              ],
             ),
           ),
           Expanded(

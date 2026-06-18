@@ -1,5 +1,4 @@
 import 'package:akhbarna/core/resources/routes_managers.dart';
-import 'package:akhbarna/core/widget/custom_text_button.dart';
 import 'package:akhbarna/features/layout/home/presentation/cubit/breaking_news_cubit.dart';
 import 'package:akhbarna/features/layout/home/presentation/cubit/breaking_news_state.dart';
 import 'package:akhbarna/features/layout/home/presentation/widget/breaking_widget/breaking_news_item_widget.dart';
@@ -20,9 +19,12 @@ import '../cubit/latest_news_cubit.dart';
 import '../cubit/latest_news_state.dart';
 import '../cubit/most_read_news_cubit.dart';
 import '../cubit/most_read_news_state.dart';
+import '../cubit/trending_news_cubit.dart';
+import '../cubit/trending_news_state.dart';
 import '../widget/home_widget/home_tab_bar_widget.dart';
 import '../widget/most_read_widget/most_read_loading_widget.dart';
-import '../widget/now_news_widget.dart';
+import '../widget/now_news_loading_widget/now_news_loading_widget.dart';
+import '../widget/now_news_loading_widget/now_news_widget.dart';
 import '../widget/top_news_widget/top_news_loading_widget.dart';
 
 class HomeTap extends StatefulWidget {
@@ -37,17 +39,21 @@ class _HomeTapState extends State<HomeTap> {
 
   final ScrollController scrollController = ScrollController();
 
-  final PageController pageController = PageController();
+  late PageController pageController = PageController();
 
   @override
   void initState() {
     super.initState();
 
-    context.read<BreakingNewsCubit>().getBreakingNews();
-
-    context.read<MostReadNewsCubit>().getMostReadNews(top: 20);
-
-    context.read<LatestNewsCubit>().getLatestNews(top: 20);
+    Future.microtask(() {
+      Future.wait([
+        context.read<BreakingNewsCubit>().getBreakingNews(),
+        context.read<MostReadNewsCubit>().getMostReadNews(top: 20),
+        context.read<LatestNewsCubit>().getLatestNews(top: 20),
+        context.read<TrendingNewsCubit>().getTrendingNews(top: 20),
+      ]);
+    });
+    pageController = PageController(viewportFraction: 0.60);
   }
 
   @override
@@ -78,15 +84,15 @@ class _HomeTapState extends State<HomeTap> {
           Expanded(
             child: Padding(
               padding: EdgeInsets.all(16.sp),
-
               child: RefreshIndicator(
                 color: ColorsManagers.red,
                 onRefresh: () async {
-                  await context.read<BreakingNewsCubit>().getBreakingNews();
-                  await context.read<MostReadNewsCubit>().getMostReadNews(
-                    top: 20,
-                  );
-                  await context.read<LatestNewsCubit>().getLatestNews(top: 20);
+                  await Future.wait([
+                    context.read<BreakingNewsCubit>().getBreakingNews(),
+                    context.read<MostReadNewsCubit>().getMostReadNews(top: 20),
+                    context.read<LatestNewsCubit>().getLatestNews(top: 20),
+                    context.read<TrendingNewsCubit>().getTrendingNews(top: 20),
+                  ]);
                 },
                 child: CustomScrollView(
                   controller: scrollController,
@@ -94,14 +100,29 @@ class _HomeTapState extends State<HomeTap> {
                     SliverToBoxAdapter(
                       child: Column(
                         children: [
-                          const NowNewsWidget(),
+                          BlocBuilder<TrendingNewsCubit, TrendingNewsState>(
+                            builder: (context, state) {
+                              if (state is TrendingNewsLoading) {
+                                return NowNewsLoadingWidget();
+                              }
+                              if (state is TrendingNewsError) {
+                                return NowNewsLoadingWidget();
+                              }
+                              if (state is TrendingNewsSuccess &&
+                                  state.articles.isNotEmpty) {
+                                return NowNewsWidget(
+                                  article: state.articles.first,
+                                );
+                              }
+                              return const SizedBox();
+                            },
+                          ),
 
                           SizedBox(height: 10.h),
 
                           HomeTabBar(
                             homeTabList: HomeTabModel.homeTabList(context),
                             selectedHomeTabIndex: 0,
-
                             onHomeTabItemSelected: (homeTabModel) {
                               setState(() {
                                 selectedHomeTab = homeTabModel;
@@ -132,8 +153,8 @@ class _HomeTapState extends State<HomeTap> {
                           );
                         }
                         if (state is BreakingNewsError) {
-                          return SliverToBoxAdapter(
-                            child: Center(child: Text(state.message)),
+                          return BreakingNewsLoadingWidget(
+                            pageController: pageController,
                           );
                         }
                         if (state is BreakingNewsSuccess) {
@@ -143,16 +164,19 @@ class _HomeTapState extends State<HomeTap> {
                                 return Column(
                                   children: [
                                     SizedBox(
-                                      height: 220.h,
-
+                                      height: 250.h,
                                       child: PageView.builder(
                                         controller: pageController,
-
+                                        padEnds: false,
                                         itemCount: state.newsList.length,
-
                                         itemBuilder: (context, index) {
-                                          return BreakingNewsItemWidget(
-                                            news: state.newsList[index],
+                                          return Padding(
+                                            padding: EdgeInsetsDirectional.only(
+                                              end: 12.w,
+                                            ),
+                                            child: BreakingNewsItemWidget(
+                                              news: state.newsList[index],
+                                            ),
                                           );
                                         },
                                       ),
@@ -221,7 +245,10 @@ class _HomeTapState extends State<HomeTap> {
                         }
                         if (state is LatestNewsError) {
                           return SliverToBoxAdapter(
-                            child: Center(child: Text(state.message)),
+                            child: SizedBox(
+                              height: 1200.h,
+                              child: TopNewsLoadingWidget(),
+                            ),
                           );
                         }
 
@@ -278,7 +305,10 @@ class _HomeTapState extends State<HomeTap> {
 
                         if (state is MostReadNewsError) {
                           return SliverToBoxAdapter(
-                            child: Center(child: Text(state.message)),
+                            child: SizedBox(
+                              height: 1200.h,
+                              child: MostReadLoadingWidget(),
+                            ),
                           );
                         }
 

@@ -75,12 +75,16 @@ import 'package:akhbarna/features/layout/home/domain/use_case/get_latest_news_us
     as _i393;
 import 'package:akhbarna/features/layout/home/domain/use_case/get_most_read_news_use_case.dart'
     as _i537;
+import 'package:akhbarna/features/layout/home/domain/use_case/get_trending_news_use_case.dart'
+    as _i386;
 import 'package:akhbarna/features/layout/home/presentation/cubit/breaking_news_cubit.dart'
     as _i862;
 import 'package:akhbarna/features/layout/home/presentation/cubit/latest_news_cubit.dart'
     as _i676;
 import 'package:akhbarna/features/layout/home/presentation/cubit/most_read_news_cubit.dart'
     as _i487;
+import 'package:akhbarna/features/layout/home/presentation/cubit/trending_news_cubit.dart'
+    as _i913;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -162,6 +166,10 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i537.GetMostReadNewsUseCase(repository: gh<_i466.HomeRepository>()),
     );
+    gh.factory<_i386.GetTrendingNewsUseCase>(
+      () =>
+          _i386.GetTrendingNewsUseCase(repository: gh<_i466.HomeRepository>()),
+    );
     gh.factory<_i343.SendOtpUseCase>(
       () => _i343.SendOtpUseCase(gh<_i975.ForgetPasswordRepository>()),
     );
@@ -183,6 +191,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i676.LatestNewsCubit>(
       () => _i676.LatestNewsCubit(
         getLatestNewsUseCase: gh<_i393.GetLatestNewsUseCase>(),
+      ),
+    );
+    gh.factory<_i913.TrendingNewsCubit>(
+      () => _i913.TrendingNewsCubit(
+        getTrendingNewsUseCase: gh<_i386.GetTrendingNewsUseCase>(),
       ),
     );
     gh.factory<_i739.ForgetPasswordCubit>(

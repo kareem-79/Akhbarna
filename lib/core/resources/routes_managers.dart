@@ -22,6 +22,7 @@ import 'package:akhbarna/features/splash_screen/presentation/screens/splash_scre
 import 'package:flutter/material.dart';
 
 import '../../features/layout/category/presentation/screens/category_article_screen.dart';
+import '../../features/layout/profile/presentation/screens/general_settings/presentation/general_setting.dart';
 
 class RoutesManager {
   static const String splash = "Splash";
@@ -46,6 +47,7 @@ class RoutesManager {
   static const String topNews = "TopNews";
   static const String mostRead = "MostRead";
   static const String categoryArticle = "CategoryArticle";
+  static const String generalSettings = "GeneralSettings";
 
   static Route<dynamic> slideRight(Widget screen) {
     return PageRouteBuilder(
@@ -136,7 +138,8 @@ class RoutesManager {
       case categoryArticle:
         final String categoryName = settings.arguments as String;
         return slideRight(CategoryArticleScreen(categoryName: categoryName));
-
+      case generalSettings:
+        return slideRight(const GeneralSettingsScreen());
       default:
         return slideRight(
           const Scaffold(body: Center(child: Text('No Route Found'))),

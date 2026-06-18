@@ -1,6 +1,5 @@
 import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/widget/arrow_back_widget.dart';
-import 'package:akhbarna/core/widget/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -33,7 +32,7 @@ class _CategoryHeaderWidgetState extends State<CategoryHeaderWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150.h,
+      height: 110.h,
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
       decoration: BoxDecoration(

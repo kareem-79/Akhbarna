@@ -5,101 +5,82 @@ import 'package:skeletonizer/skeletonizer.dart';
 class BreakingNewsLoadingWidget extends StatelessWidget {
   final PageController pageController;
 
-  const BreakingNewsLoadingWidget({super.key, required this.pageController});
+  const BreakingNewsLoadingWidget({
+    super.key,
+    required this.pageController,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: SizedBox(
-        height: 220.h,
-
-        child: Skeletonizer.zone(
+        height: 200.h,
+        child: Skeletonizer(
           child: PageView.builder(
             controller: pageController,
-
-            itemCount: 3,
-
+            padEnds: false,
+            itemCount: 5,
             itemBuilder: (context, index) {
-              return Container(
-                width: 330.w,
-                height: 200.h,
+              return Padding(
+                padding: EdgeInsetsDirectional.only(end: 8.w),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.r),
+                    color: Theme.of(context).cardColor,
+                  ),
 
-                margin: EdgeInsets.symmetric(horizontal: 4.w),
-
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.r),
-
-                  color: Theme.of(context).cardColor.withOpacity(.25),
-                ),
-
-                child: Stack(
-                  children: [
-                    Positioned.fill(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(30.r),
-
-                        child: Bone.square(size: double.infinity),
-                      ),
-                    ),
-
-                    PositionedDirectional(
-                      top: 15.h,
-                      start: 15.w,
-
-                      child: Bone.circle(size: 40.sp),
-                    ),
-
-                    Align(
-                      alignment: Alignment.bottomCenter,
-
-                      child: Container(
-                        width: double.infinity,
-
-                        padding: EdgeInsets.all(12.sp),
-
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(.35),
-
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(30.r),
-
-                            bottomRight: Radius.circular(30.r),
-                          ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20.r),
+                    child: Column(
+                      children: [
+                        Bone(
+                          width: double.infinity,
+                          height: 90.h,
+                          borderRadius: BorderRadius.circular(0),
                         ),
 
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-
-                          children: [
-                            Row(
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 14.w,
+                              vertical: 10.h,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Bone.circle(size: 30.sp),
+                                Bone(
+                                  width: 60.w,
+                                  height: 24.h,
+                                  borderRadius: BorderRadius.circular(12.r),
+                                ),
 
-                                SizedBox(width: 8.w),
+                                SizedBox(height: 10.h),
 
-                                Expanded(child: Bone.text(words: 2)),
+                                Bone.text(
+                                  words: 4,
+                                  fontSize: 14.sp,
+                                ),
 
-                                SizedBox(
+                                SizedBox(height: 6.h),
+
+                                Bone.text(
+                                  words: 3,
+                                  fontSize: 14.sp,
+                                ),
+
+                                const Spacer(),
+
+                                Bone(
                                   width: 50.w,
-                                  child: Bone.text(words: 1),
+                                  height: 12.h,
                                 ),
                               ],
                             ),
-
-                            SizedBox(height: 12.h),
-
-                            Bone.text(words: 6),
-
-                            SizedBox(height: 8.h),
-
-                            Bone.text(words: 4),
-                          ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               );
             },

@@ -31,7 +31,6 @@ class SettingRowWidget extends StatelessWidget {
             title,
             style: textTheme.bodyMedium?.copyWith(
               fontSize: 20.sp,
-              color: ColorsManagers.white,
             ),
           ),
         ),
