@@ -8,15 +8,13 @@ class WeatherCubit extends Cubit<WeatherState> {
   final GetCurrentWeatherUseCase getCurrentWeatherUseCase;
 
   WeatherCubit({required this.getCurrentWeatherUseCase})
-    : super(WeatherInitial());
+      : super(WeatherInitial());
 
   Future<void> getCurrentWeather({
     required double lat,
     required double lng,
     required String lang,
   }) async {
-    print("START WEATHER");
-
     emit(WeatherLoading());
 
     final result = await getCurrentWeatherUseCase(
@@ -25,17 +23,12 @@ class WeatherCubit extends Cubit<WeatherState> {
       lang: lang,
     );
 
-    print("API FINISHED");
 
     result.fold(
-      (failure) {
-        print("ERROR => ${failure.message}");
-
+          (failure) {
         emit(WeatherError(message: failure.message));
       },
-      (weather) {
-        print("SUCCESS => ${weather.location.name}");
-
+          (weather) {
         emit(WeatherSuccess(weather: weather));
       },
     );
