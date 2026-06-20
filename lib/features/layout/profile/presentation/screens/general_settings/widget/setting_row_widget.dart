@@ -5,55 +5,56 @@ import '../../../../../../../core/resources/colors_managers.dart';
 
 class SettingRowWidget extends StatelessWidget {
   final String title;
+  final String? subtitle;
   final bool value;
   final ValueChanged<bool> onChanged;
-  final IconData? icon;
 
   const SettingRowWidget({
     super.key,
     required this.title,
+    this.subtitle,
     required this.value,
     required this.onChanged,
-    this.icon,
   });
 
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
+    final textTheme = Theme.of(context).textTheme;
+
     return Row(
       children: [
-        if (icon != null) ...[
-          Icon(icon, size: 35.sp, color: ColorsManagers.white),
-          SizedBox(width: 12.w),
-        ],
         Expanded(
-          child: Text(
-            title,
-            style: textTheme.bodyMedium?.copyWith(
-              fontSize: 20.sp,
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                title,
+                textAlign: TextAlign.right,
+                style: textTheme.bodySmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              if (subtitle != null) ...[
+                SizedBox(height: 4.h),
+                Text(
+                  subtitle!,
+                  textAlign: TextAlign.right,
+                  style: textTheme.labelSmall?.copyWith(
+                    color: ColorsManagers.gray3,
+                  ),
+                ),
+              ],
+            ],
           ),
         ),
         Switch(
           value: value,
           onChanged: onChanged,
-          activeColor: ColorsManagers.blue,
-          activeTrackColor: ColorsManagers.blue.withOpacity(0.4),
+          activeColor: ColorsManagers.white,
+          activeTrackColor: ColorsManagers.red,
           inactiveThumbColor: ColorsManagers.white,
-          inactiveTrackColor: Colors.grey.shade300,
+          inactiveTrackColor: ColorsManagers.gray3,
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          thumbColor: WidgetStateProperty.resolveWith<Color?>((states) {
-            if (states.contains(WidgetState.selected)) {
-              return ColorsManagers.blue;
-            }
-            return ColorsManagers.white;
-          }),
-          trackColor: WidgetStateProperty.resolveWith<Color?>((states) {
-            if (states.contains(WidgetState.selected)) {
-              return ColorsManagers.blue.withOpacity(0.4);
-            }
-            return Colors.grey.shade300;
-          }),
         ),
       ],
     );

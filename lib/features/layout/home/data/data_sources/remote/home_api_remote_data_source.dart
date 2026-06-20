@@ -9,7 +9,6 @@ import 'home_remote_data_source.dart';
 @Singleton(as: HomeRemoteDataSource)
 class HomeApiRemoteDataSource implements HomeRemoteDataSource {
   Dio dio = Dio(BaseOptions(baseUrl: NewsApiConstant.baseUrl));
-
   @override
   Future<List<ArticleModel>> getBreakingNews() async {
     try {

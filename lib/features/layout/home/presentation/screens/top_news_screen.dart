@@ -1,5 +1,4 @@
 import 'package:akhbarna/features/layout/home/presentation/cubit/latest_news_cubit.dart';
-import 'package:akhbarna/features/layout/home/presentation/cubit/latest_news_state.dart';
 import 'package:akhbarna/features/layout/home/presentation/widget/top_news_widget/top_news_header_screen.dart';
 import 'package:akhbarna/features/layout/home/presentation/widget/top_news_widget/top_news_item_widget.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/resources/colors_managers.dart';
+import '../cubit/state/latest_news_state.dart';
 import '../widget/top_news_widget/top_news_loading_widget.dart';
 
 class TopNewsScreen extends StatefulWidget {

@@ -427,4 +427,7 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get vision_description =>
       'Wij streven ernaar een betrouwbare bron van dagelijks nieuws te zijn en gebruikers te helpen om op een eenvoudige en effectieve manier op de hoogte te blijven van wat er om hen heen gebeurt.';
+
+  @override
+  String get now => 'Now';
 }

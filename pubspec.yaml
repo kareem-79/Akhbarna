@@ -62,6 +62,7 @@ dependencies:
   share_plus: ^12.0.2
   flutter_secure_storage: ^10.3.1
   animated_theme_switcher: ^2.0.10
+  geolocator: ^14.0.1
 
 dev_dependencies:
   flutter_test:

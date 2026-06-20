@@ -432,4 +432,7 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get vision_description =>
       'Wir möchten die vertrauenswürdige Anlaufstelle für tägliche Nachrichten werden und Ihnen helfen, stets informiert zu bleiben – einfach und effektiv.';
+
+  @override
+  String get now => 'Now';
 }

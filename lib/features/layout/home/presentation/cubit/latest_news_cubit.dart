@@ -1,9 +1,9 @@
+import 'package:akhbarna/features/layout/home/presentation/cubit/state/latest_news_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/errors/failure.dart';
 import '../../domain/use_case/get_latest_news_use_case.dart';
-import 'latest_news_state.dart';
 
 @injectable
 class LatestNewsCubit extends Cubit<LatestNewsState> {

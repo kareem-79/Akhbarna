@@ -10,6 +10,7 @@ import '../../features/auth/forget_password/presentation/cubit/forget_password_c
 import '../../features/layout/category/presentation/cubit/category_news_cubit.dart';
 import '../../features/layout/home/presentation/cubit/latest_news_cubit.dart';
 import '../../features/layout/home/presentation/cubit/most_read_news_cubit.dart';
+import '../../features/layout/home/presentation/cubit/weather_cubit.dart';
 import '../../provider/book_market_provider.dart';
 
 class AppBlocProviders {
@@ -22,6 +23,7 @@ class AppBlocProviders {
     BlocProvider(create: (_) => serviceLocator.get<LatestNewsCubit>()),
     BlocProvider(create: (_) => serviceLocator.get<CategoryNewsCubit>()),
     BlocProvider(create: (_) => serviceLocator.get<TrendingNewsCubit>()),
+    BlocProvider(create: (_) => serviceLocator.get<WeatherCubit>()),
     ChangeNotifierProvider(create: (_) => BookmarkProvider()),
   ];
 }

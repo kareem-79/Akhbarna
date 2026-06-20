@@ -9,8 +9,13 @@ import '../../../../../../../provider/config_provider.dart';
 
 class TextSizeOptionWidget extends StatelessWidget {
   final FontSize size;
+  final bool isLast;
 
-  const TextSizeOptionWidget({super.key, required this.size});
+  const TextSizeOptionWidget({
+    super.key,
+    required this.size,
+    this.isLast = false,
+  });
 
   String _label(BuildContext context) {
     final appLocalizations = AppLocalizations.of(context)!;
@@ -31,29 +36,66 @@ class TextSizeOptionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final config = Provider.of<ConfigProvider>(context);
-    TextTheme textTheme = Theme.of(context).textTheme;
-    final Color shadowColor = Theme.of(context).shadowColor;
-    return ListTile(
-      contentPadding: EdgeInsets.zero,
-      title: Text(
-        _label(context),
-        style: textTheme.bodyMedium?.copyWith(fontSize: 20.sp),
-      ),
-      trailing: Radio<FontSize>(
-        value: size,
-        groupValue: config.effectiveFontSize,
-        onChanged: (val) {
-          if (val != null) {
-            config.changeFontSize(val);
-          }
-        },
-        fillColor: MaterialStateProperty.resolveWith<Color>((states) {
-          if (states.contains(MaterialState.selected)) {
-            return ColorsManagers.blue;
-          }
-          return shadowColor;
-        }),
+    final config = context.watch<ConfigProvider>();
+    final textTheme = Theme.of(context).textTheme;
+    final shadowColor = Theme.of(context).shadowColor;
+    return InkWell(
+      onTap: () => config.changeFontSize(size),
+      child: Container(
+        height: 64.h,
+        decoration: BoxDecoration(
+          border: isLast
+              ? null
+              : Border(
+                  bottom: BorderSide(
+                    color: shadowColor.withOpacity(.08),
+                  ),
+                ),
+        ),
+        child: Row(
+          children: [
+            Radio<FontSize>(
+              value: size,
+              groupValue: config.effectiveFontSize,
+              onChanged: (value) {
+                if (value != null) {
+                  config.changeFontSize(value);
+                }
+              },
+              activeColor: ColorsManagers.red,
+              fillColor: WidgetStateProperty.resolveWith<Color>((states) {
+                if (states.contains(WidgetState.selected)) {
+                  return ColorsManagers.red;
+                }
+                return shadowColor;
+              }),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            ),
+            SizedBox(width: 8.w),
+            Text(
+              _label(context),
+              style: textTheme.bodyLarge?.copyWith(
+                fontSize: 20.sp,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const Spacer(),
+            Text(
+              "أخبارنا",
+              style: textTheme.bodyMedium?.copyWith(
+                fontSize: switch (size) {
+                  FontSize.small => 14.sp,
+                  FontSize.medium => 18.sp,
+                  FontSize.large => 22.sp,
+                  FontSize.extraLarge => 26.sp,
+                  FontSize.auto => 18.sp,
+                },
+                color: shadowColor.withOpacity(.5),
+              ),
+            ),
+
+          ],
+        ),
       ),
     );
   }

@@ -420,4 +420,7 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get vision_description =>
       'نطمح لأن نكون مصدرًا موثوقًا للأخبار اليومية، ونساعد المستخدم على البقاء على اطلاع دائم بكل ما يحدث حوله بطريقة بسيطة وفعالة.';
+
+  @override
+  String get now => 'الآن';
 }

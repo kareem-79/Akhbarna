@@ -1,30 +1,31 @@
 import 'package:akhbarna/core/resources/routes_managers.dart';
 import 'package:akhbarna/features/layout/home/presentation/cubit/breaking_news_cubit.dart';
-import 'package:akhbarna/features/layout/home/presentation/cubit/breaking_news_state.dart';
+import 'package:akhbarna/features/layout/home/presentation/cubit/state/breaking_news_state.dart';
 import 'package:akhbarna/features/layout/home/presentation/widget/breaking_widget/breaking_news_item_widget.dart';
 import 'package:akhbarna/features/layout/home/presentation/widget/breaking_widget/breaking_news_loading_widget.dart';
 import 'package:akhbarna/features/layout/home/presentation/widget/home_widget/home_header_widget.dart';
 import 'package:akhbarna/features/layout/home/presentation/widget/most_read_widget/most_read_news_item_widget.dart';
 import 'package:akhbarna/features/layout/home/presentation/widget/top_news_widget/top_news_item_widget.dart';
+import 'package:akhbarna/features/layout/home/presentation/widget/weather_widget/weather_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../../core/resources/colors_managers.dart';
+import '../../../../../core/services/location_service.dart';
 import '../../../../../core/widget/section_header_widget.dart';
 import '../../../../../model/home_tab_model.dart';
-import '../../../../../provider/book_market_provider.dart';
 import '../cubit/latest_news_cubit.dart';
-import '../cubit/latest_news_state.dart';
 import '../cubit/most_read_news_cubit.dart';
-import '../cubit/most_read_news_state.dart';
+import '../cubit/state/latest_news_state.dart';
+import '../cubit/state/most_read_news_state.dart';
+import '../cubit/state/trending_news_state.dart';
 import '../cubit/trending_news_cubit.dart';
-import '../cubit/trending_news_state.dart';
+import '../cubit/weather_cubit.dart';
 import '../widget/home_widget/home_tab_bar_widget.dart';
 import '../widget/most_read_widget/most_read_loading_widget.dart';
-import '../widget/now_news_loading_widget/now_news_loading_widget.dart';
-import '../widget/now_news_loading_widget/now_news_widget.dart';
+import '../widget/now_news_widget/now_news_loading_widget.dart';
+import '../widget/now_news_widget/now_news_widget.dart';
 import '../widget/top_news_widget/top_news_loading_widget.dart';
 
 class HomeTap extends StatefulWidget {
@@ -38,29 +39,33 @@ class _HomeTapState extends State<HomeTap> {
   late HomeTabModel selectedHomeTab = HomeTabModel.homeTabList(context)[0];
 
   final ScrollController scrollController = ScrollController();
-
-  late PageController pageController = PageController();
+  late PageController breakingController;
+  late PageController trendingController;
 
   @override
   void initState() {
     super.initState();
 
     Future.microtask(() {
-      Future.wait([
-        context.read<BreakingNewsCubit>().getBreakingNews(),
-        context.read<MostReadNewsCubit>().getMostReadNews(top: 20),
-        context.read<LatestNewsCubit>().getLatestNews(top: 20),
-        context.read<TrendingNewsCubit>().getTrendingNews(top: 20),
-      ]);
+      context.read<BreakingNewsCubit>().getBreakingNews();
+      context.read<MostReadNewsCubit>().getMostReadNews(top: 20);
+      context.read<LatestNewsCubit>().getLatestNews(top: 20);
+      context.read<TrendingNewsCubit>().getTrendingNews(top: 20);
     });
-    pageController = PageController(viewportFraction: 0.60);
+
+    Future.delayed(const Duration(milliseconds: 500), () {
+      loadWeather();
+    });
+    breakingController = PageController(viewportFraction: 0.60);
+    trendingController = PageController(viewportFraction: 0.60);
   }
 
   @override
   void dispose() {
     scrollController.dispose();
 
-    pageController.dispose();
+    breakingController.dispose();
+    trendingController.dispose();
 
     super.dispose();
   }
@@ -93,10 +98,12 @@ class _HomeTapState extends State<HomeTap> {
                     context.read<LatestNewsCubit>().getLatestNews(top: 20),
                     context.read<TrendingNewsCubit>().getTrendingNews(top: 20),
                   ]);
+
                 },
                 child: CustomScrollView(
                   controller: scrollController,
                   slivers: [
+                    //nowNews
                     SliverToBoxAdapter(
                       child: Column(
                         children: [
@@ -127,13 +134,17 @@ class _HomeTapState extends State<HomeTap> {
                               setState(() {
                                 selectedHomeTab = homeTabModel;
                               });
-
                               if (homeTabModel.id == '2') {
+                                Navigator.pushNamed(
+                                  context,
+                                  RoutesManager.trendingNews,
+                                );
+                              } else if (homeTabModel.id == '3') {
                                 Navigator.pushNamed(
                                   context,
                                   RoutesManager.topNews,
                                 );
-                              } else if (homeTabModel.id == '3') {
+                              } else if (homeTabModel.id == '4') {
                                 Navigator.pushNamed(
                                   context,
                                   RoutesManager.mostRead,
@@ -149,63 +160,154 @@ class _HomeTapState extends State<HomeTap> {
                       builder: (context, state) {
                         if (state is BreakingNewsLoading) {
                           return BreakingNewsLoadingWidget(
-                            pageController: pageController,
+                            pageController: breakingController,
                           );
                         }
                         if (state is BreakingNewsError) {
                           return BreakingNewsLoadingWidget(
-                            pageController: pageController,
+                            pageController: breakingController,
                           );
                         }
                         if (state is BreakingNewsSuccess) {
                           return SliverToBoxAdapter(
-                            child: Consumer<BookmarkProvider>(
-                              builder: (context, provider, _) {
-                                return Column(
-                                  children: [
-                                    SizedBox(
-                                      height: 250.h,
-                                      child: PageView.builder(
-                                        controller: pageController,
-                                        padEnds: false,
-                                        itemCount: state.newsList.length,
-                                        itemBuilder: (context, index) {
-                                          return Padding(
-                                            padding: EdgeInsetsDirectional.only(
-                                              end: 12.w,
-                                            ),
-                                            child: BreakingNewsItemWidget(
-                                              news: state.newsList[index],
-                                            ),
-                                          );
-                                        },
-                                      ),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 250.h,
+                                  child: PageView.builder(
+                                    controller: breakingController,
+                                    padEnds: false,
+                                    itemCount: state.newsList.length,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding: EdgeInsetsDirectional.only(
+                                          end: 12.w,
+                                        ),
+                                        child: BreakingNewsItemWidget(
+                                          news: state.newsList[index],
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+
+                                SizedBox(height: 12.h),
+
+                                SmoothPageIndicator(
+                                  controller: breakingController,
+
+                                  count: state.newsList.length,
+
+                                  effect: ExpandingDotsEffect(
+                                    dotHeight: 8.h,
+                                    dotWidth: 8.w,
+
+                                    activeDotColor: ColorsManagers.red,
+
+                                    dotColor: ColorsManagers.gray2.withOpacity(
+                                      0.5,
                                     ),
 
-                                    SizedBox(height: 12.h),
+                                    expansionFactor: 4,
 
-                                    SmoothPageIndicator(
-                                      controller: pageController,
+                                    spacing: 5.w,
+                                  ),
+                                ),
+                                SizedBox(height: 12.h),
+                              ],
+                            ),
+                          );
+                        }
+                        return const SliverToBoxAdapter(child: SizedBox());
+                      },
+                    ),
+                    //weather
+                    SliverToBoxAdapter(
+                      child: Column(
+                        children: [
+                          SizedBox(height: 10.h),
+                          WeatherWidget(),
 
-                                      count: state.newsList.length,
-
-                                      effect: ExpandingDotsEffect(
-                                        dotHeight: 8.h,
-                                        dotWidth: 8.w,
-
-                                        activeDotColor: ColorsManagers.red,
-
-                                        dotColor: ColorsManagers.gray2
-                                            .withOpacity(0.5),
-
-                                        expansionFactor: 4,
-
-                                        spacing: 5.w,
-                                      ),
-                                    ),
-                                  ],
+                        ],
+                      ),
+                    ),
+                    //trendNews
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 10.h),
+                        child: Column(
+                          children: [
+                            SectionHeaderWidget(
+                              title: "🔥 الأكثر تداولاً",
+                              onViewAll: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  RoutesManager.trendingNews,
                                 );
                               },
+                            ),
+                            SizedBox(height: 10.h),
+                          ],
+                        ),
+                      ),
+                    ),
+                    BlocBuilder<TrendingNewsCubit, TrendingNewsState>(
+                      builder: (context, state) {
+                        if (state is TrendingNewsLoading) {
+                          return BreakingNewsLoadingWidget(
+                            pageController: trendingController,
+                          );
+                        }
+                        if (state is TrendingNewsError) {
+                          return BreakingNewsLoadingWidget(
+                            pageController: trendingController,
+                          );
+                        }
+                        if (state is TrendingNewsSuccess) {
+                          return SliverToBoxAdapter(
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 250.h,
+                                  child: PageView.builder(
+                                    controller: trendingController,
+                                    padEnds: false,
+                                    itemCount: state.articles.length,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding: EdgeInsetsDirectional.only(
+                                          end: 12.w,
+                                        ),
+                                        child: BreakingNewsItemWidget(
+                                          news: state.articles[index],
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+
+                                SizedBox(height: 12.h),
+
+                                SmoothPageIndicator(
+                                  controller: trendingController,
+                                  count: state.articles.length,
+
+                                  effect: ExpandingDotsEffect(
+                                    dotHeight: 8.h,
+                                    dotWidth: 8.w,
+
+                                    activeDotColor: ColorsManagers.red,
+
+                                    dotColor: ColorsManagers.gray2.withOpacity(
+                                      0.5,
+                                    ),
+
+                                    expansionFactor: 4,
+
+                                    spacing: 5.w,
+                                  ),
+                                ),
+                              ],
                             ),
                           );
                         }
@@ -338,5 +440,18 @@ class _HomeTapState extends State<HomeTap> {
         ],
       ),
     );
+  }
+  Future<void> loadWeather() async {
+    try {
+      final position = await LocationService.getCurrentLocation();
+
+      await context.read<WeatherCubit>().getCurrentWeather(
+        lat: position.latitude,
+        lng: position.longitude,
+        lang: "en",
+      );
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }

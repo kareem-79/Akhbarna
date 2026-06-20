@@ -404,4 +404,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get vision_description => '成为用户值得信赖的每日新闻来源，帮助大家以简单有效的方式了解世界。';
+
+  @override
+  String get now => 'Now';
 }

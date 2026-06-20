@@ -5,29 +5,14 @@ class HomeTabModel {
   String name;
   String emoji;
 
-  HomeTabModel({
-    required this.id,
-    required this.name,
-    required this.emoji,
-  });
+  HomeTabModel({required this.id, required this.name, required this.emoji});
 
   static List<HomeTabModel> homeTabList(BuildContext context) {
     return [
-      HomeTabModel(
-        id: '1',
-        name: "عاجل",
-        emoji: "🚨",
-      ),
-      HomeTabModel(
-        id: '2',
-        name: "آخر الأخبار",
-        emoji: "🕐",
-      ),
-      HomeTabModel(
-        id: '3',
-        name: "الأكثر قراءة",
-        emoji: "📖",
-      ),
+      HomeTabModel(id: '1', name: "عاجل", emoji: "🚨"),
+      HomeTabModel(id: "2", name: " تريند", emoji: "🔥"),
+      HomeTabModel(id: '3', name: "آخر الأخبار", emoji: "🕐"),
+      HomeTabModel(id: '4', name: "الأكثر قراءة", emoji: "📖"),
     ];
   }
 }

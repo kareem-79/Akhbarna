@@ -65,12 +65,22 @@ import 'package:akhbarna/features/layout/home/data/data_sources/remote/home_api_
     as _i130;
 import 'package:akhbarna/features/layout/home/data/data_sources/remote/home_remote_data_source.dart'
     as _i29;
+import 'package:akhbarna/features/layout/home/data/data_sources/remote/weather_api_remote_data_source.dart'
+    as _i1054;
+import 'package:akhbarna/features/layout/home/data/data_sources/remote/weather_remote_data_source.dart'
+    as _i660;
 import 'package:akhbarna/features/layout/home/data/repositories_impl/home_repository_impl.dart'
     as _i478;
+import 'package:akhbarna/features/layout/home/data/repositories_impl/weather_repository_impl.dart'
+    as _i658;
 import 'package:akhbarna/features/layout/home/domain/repositories/home_repository.dart'
     as _i466;
+import 'package:akhbarna/features/layout/home/domain/repositories/weather_repository.dart'
+    as _i661;
 import 'package:akhbarna/features/layout/home/domain/use_case/get_breaking_news_use_case.dart'
     as _i898;
+import 'package:akhbarna/features/layout/home/domain/use_case/get_current_weather_use_case.dart'
+    as _i25;
 import 'package:akhbarna/features/layout/home/domain/use_case/get_latest_news_use_case.dart'
     as _i393;
 import 'package:akhbarna/features/layout/home/domain/use_case/get_most_read_news_use_case.dart'
@@ -85,6 +95,8 @@ import 'package:akhbarna/features/layout/home/presentation/cubit/most_read_news_
     as _i487;
 import 'package:akhbarna/features/layout/home/presentation/cubit/trending_news_cubit.dart'
     as _i913;
+import 'package:akhbarna/features/layout/home/presentation/cubit/weather_cubit.dart'
+    as _i733;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -101,17 +113,30 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i433.CategoryRemoteDataSource>(
       () => _i926.CategoryRemoteDataSourceImpl(),
     );
+    gh.singleton<_i660.WeatherRemoteDataSource>(
+      () => _i1054.WeatherApiRemoteDataSource(),
+    );
     gh.singleton<_i318.ForgetPasswordRemoteDataSource>(
       () => _i26.ForgetPasswordApiRemoteDataSource(),
     );
     gh.singleton<_i29.HomeRemoteDataSource>(
       () => _i130.HomeApiRemoteDataSource(),
     );
+    gh.singleton<_i661.WeatherRepository>(
+      () => _i658.WeatherRepositoryImpl(
+        remoteDataSource: gh<_i660.WeatherRemoteDataSource>(),
+      ),
+    );
     gh.singleton<_i402.LoginRemoteDataSource>(
       () => _i244.LoginApiRemoteDataSource(),
     );
     gh.singleton<_i512.RegisterRemoteDataSource>(
       () => _i757.RegisterApiRemoteDataSource(),
+    );
+    gh.factory<_i25.GetCurrentWeatherUseCase>(
+      () => _i25.GetCurrentWeatherUseCase(
+        repository: gh<_i661.WeatherRepository>(),
+      ),
     );
     gh.singleton<_i692.CategoryRepository>(
       () => _i521.CategoryRepositoryImpl(
@@ -148,6 +173,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i466.HomeRepository>(
       () => _i478.HomeRepositoryImpl(
         remoteDataSource: gh<_i29.HomeRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i733.WeatherCubit>(
+      () => _i733.WeatherCubit(
+        getCurrentWeatherUseCase: gh<_i25.GetCurrentWeatherUseCase>(),
       ),
     );
     gh.factory<_i766.LoginUseCase>(

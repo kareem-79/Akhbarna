@@ -88,7 +88,6 @@ class _BreakingNewsItemWidgetState extends State<BreakingNewsItemWidget> {
                           overflow: TextOverflow.ellipsis,
                           style: textTheme.bodySmall?.copyWith(
                             fontWeight: FontWeight.w800,
-                            height: 1.3,
                           ),
                         ),
                       ),

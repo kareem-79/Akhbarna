@@ -1,4 +1,4 @@
-import '../../data/models/ArticleModel.dart';
+import '../../../data/models/ArticleModel.dart';
 
 abstract class BreakingNewsState {}
 

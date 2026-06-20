@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../domain/use_case/get_breaking_news_use_case.dart';
 
-import 'breaking_news_state.dart';
+import 'state/breaking_news_state.dart';
 
 @injectable
 class BreakingNewsCubit extends Cubit<BreakingNewsState> {

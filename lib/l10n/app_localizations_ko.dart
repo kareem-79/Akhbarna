@@ -414,4 +414,7 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get vision_description =>
       '일상 속 신뢰할 수 있는 뉴스 소스가 되어, 사용자들이 주변에서 일어나는 일을 간단하고 효과적으로 파악할 수 있도록 돕는 것입니다.';
+
+  @override
+  String get now => 'Now';
 }

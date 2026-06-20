@@ -30,4 +30,10 @@ abstract class NewsApiConstant {
   static const String topNews = "latest";
   static const String byCategory = "by-category";
   static const String trendingNews = "trending";
+  static const String weatherBaseUrl = "https://api.weatherapi.com/v1/";
+
+  static const String weatherApiKey = "f3f6d3d527aa42a08d2224953261906";
+
+  static const String currentWeather =
+      "current.json";
 }

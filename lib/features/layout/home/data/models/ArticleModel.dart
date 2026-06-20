@@ -11,6 +11,8 @@ class ArticleModel {
     required this.publishedDate,
     required this.viewCount,
     required this.isBreaking,
+    required this.sourceLogoUrl,
+    required this.sourceLogoFallbackUrl,
   });
 
   factory ArticleModel.fromJson(dynamic json) {
@@ -26,6 +28,8 @@ class ArticleModel {
       publishedDate: json['publishedDate'],
       viewCount: json['viewCount'],
       isBreaking: json['isBreaking'],
+      sourceLogoUrl: json['sourceLogoUrl'],
+      sourceLogoFallbackUrl: json['sourceLogoFallbackUrl'],
     );
   }
 
@@ -40,4 +44,6 @@ class ArticleModel {
   final String? publishedDate;
   final int? viewCount;
   final bool? isBreaking;
+  final String? sourceLogoUrl;
+  final String? sourceLogoFallbackUrl;
 }

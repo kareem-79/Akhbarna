@@ -426,4 +426,7 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get vision_description =>
       'हम एक विश्वसनीय दैनिक समाचार स्रोत बनना चाहते हैं और उपयोगकर्ताओं को उनके आसपास की घटनाओं से सरल और प्रभावी तरीके से अवगत कराना चाहते हैं।';
+
+  @override
+  String get now => 'Now';
 }

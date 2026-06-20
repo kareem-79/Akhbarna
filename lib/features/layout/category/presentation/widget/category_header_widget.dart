@@ -31,6 +31,8 @@ class _CategoryHeaderWidgetState extends State<CategoryHeaderWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final Color shadowColor = Theme.of(context).shadowColor;
+    final Color bg = Theme.of(context).scaffoldBackgroundColor;
     return Container(
       height: 110.h,
       width: double.infinity,
@@ -45,15 +47,7 @@ class _CategoryHeaderWidgetState extends State<CategoryHeaderWidget> {
       child: SafeArea(
         child: Row(
           children: [
-            Container(
-              width: 52.w,
-              height: 52.w,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-              ),
-              child: const ArrowBackWidget(),
-            ),
+            ArrowBackWidget(backgroundColor: shadowColor, arrowGroundColor: bg),
             SizedBox(width: 12.w),
             Expanded(
               child: SearchWidget(
@@ -68,7 +62,7 @@ class _CategoryHeaderWidgetState extends State<CategoryHeaderWidget> {
               replacement: const SizedBox.shrink(),
               child: Container(
                 width: 50.w,
-                height: 50.w,
+                height: 50.h,
                 decoration: BoxDecoration(
                   color: ColorsManagers.white,
                   shape: BoxShape.circle,

@@ -24,13 +24,16 @@ class _NowNewsWidgetState extends State<NowNewsWidget> {
     TextTheme textTheme = Theme.of(context).textTheme;
     final canvasColor = Theme.of(context).canvasColor;
     final bgColor = Theme.of(context).scaffoldBackgroundColor;
+
     return GestureDetector(
       onTap: () async {
         final uri = Uri.parse(widget.article.articleUrl ?? "");
         await launchUrl(uri, mode: LaunchMode.inAppWebView);
       },
       child: Container(
-        height: 400.h,
+        constraints: BoxConstraints(
+          minHeight: 400.h,
+        ),
         padding: EdgeInsets.all(20.w),
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -38,16 +41,17 @@ class _NowNewsWidgetState extends State<NowNewsWidget> {
             end: Alignment.bottomRight,
             colors: [canvasColor, bgColor],
           ),
-          borderRadius: BorderRadius.circular(60.r),
+          borderRadius: BorderRadius.circular(20.r),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Stack(
               alignment: Alignment.topCenter,
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(60.r),
+                  borderRadius: BorderRadius.circular(20.r),
                   child: CachedNetworkImage(
                     imageUrl: widget.article.imageUrl ?? "",
                     width: double.infinity,
@@ -61,30 +65,33 @@ class _NowNewsWidgetState extends State<NowNewsWidget> {
                     ),
                   ),
                 ),
-
-                PositionedDirectional(
-                  top: 20.sp,
-                  start: 20.sp,
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isSelected = !isSelected;
-                      });
-                    },
-                    child: CircleAvatar(
-                      backgroundColor: ColorsManagers.white.withOpacity(.4),
-                      child: Icon(
-                        isSelected
-                            ? Icons.bookmark
-                            : Icons.bookmark_border_outlined,
-                        size: 30.sp,
-                        color: ColorsManagers.red,
-                      ),
-                    ),
-                  ),
-                ),
+                // PositionedDirectional(
+                //   top: 20.sp,
+                //   start: 20.sp,
+                //   child: GestureDetector(
+                //     onTap: () {
+                //       setState(() {
+                //         isSelected = !isSelected;
+                //       });
+                //     },
+                //     child: CircleAvatar(
+                //       backgroundColor:
+                //       ColorsManagers.white.withOpacity(.4),
+                //       child: Icon(
+                //         isSelected
+                //             ? Icons.bookmark
+                //             : Icons.bookmark_border_outlined,
+                //         size: 30.sp,
+                //         color: ColorsManagers.red,
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
+
+            SizedBox(height: 12.h),
+
             Row(
               children: [
                 Image.asset(
@@ -92,32 +99,51 @@ class _NowNewsWidgetState extends State<NowNewsWidget> {
                   width: 60.w,
                   height: 60.h,
                 ),
+
                 SizedBox(width: 12.w),
-                Text(
-                  widget.article.sourceName ?? "",
-                  style: textTheme.bodyLarge?.copyWith(fontSize: 28.sp),
+
+                Expanded(
+                  child: Text(
+                    widget.article.sourceName ?? "",
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: textTheme.bodyLarge?.copyWith(
+                      fontSize: 28.sp,
+                    ),
+                  ),
                 ),
-                Spacer(),
+
+                SizedBox(width: 8.w),
+
                 Container(
-                  width: 70.h,
-                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 12.w,
+                    vertical: 4.h,
+                  ),
                   decoration: BoxDecoration(
                     color: ColorsManagers.red,
                     borderRadius: BorderRadius.circular(20.r),
                   ),
-                  child: Center(child: Text("تريند", style: textTheme.bodySmall)),
+                  child: Text(
+                    "تريند",
+                    style: textTheme.bodySmall,
+                  ),
                 ),
               ],
             ),
-            SizedBox(height: 8.h),
+
+            SizedBox(height: 12.h),
+
             Text(
               widget.article.title ?? "",
               textDirection: TextDirection.rtl,
               style: textTheme.bodyMedium,
-              maxLines: 2,
+              maxLines: 3,
               overflow: TextOverflow.ellipsis,
             ),
+
             SizedBox(height: 8.h),
+
             Text(
               "منذ ${TimeFormatHelper.formatDate(widget.article.publishedDate)}",
               style: textTheme.bodySmall?.copyWith(
@@ -126,7 +152,6 @@ class _NowNewsWidgetState extends State<NowNewsWidget> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8.h),
           ],
         ),
       ),

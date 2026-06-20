@@ -414,4 +414,7 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get vision_description =>
       '日常の信頼できるニュースソースとなり、ユーザーの皆さまが身の回りの出来事をシンプルかつ効果的に把握できるお手伝いをすることです。';
+
+  @override
+  String get now => 'Now';
 }

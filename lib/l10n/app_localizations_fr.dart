@@ -432,4 +432,7 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get vision_description =>
       'Nous aspirons à devenir une source fiable d\'actualités quotidiennes et à vous aider à rester informé de tout ce qui se passe autour de vous, de manière simple et efficace.';
+
+  @override
+  String get now => 'Now';
 }
