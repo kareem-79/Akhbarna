@@ -8,4 +8,6 @@ abstract class HomeRemoteDataSource {
   Future<List<ArticleModel>> getLatestNews({required int top});
 
   Future<List<ArticleModel>> getTrendingNews({required int top});
+
+  Future<List<ArticleModel>> searchArticles({required String keyword});
 }

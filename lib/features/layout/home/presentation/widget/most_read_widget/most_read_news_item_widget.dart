@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../../../core/resources/routes_managers.dart';
 import '../../../../../../core/utils/viewer_format_helper.dart';
 
 class MostReadNewsItemWidget extends StatefulWidget {
@@ -38,9 +39,12 @@ class _MostReadNewsItemWidgetState extends State<MostReadNewsItemWidget> {
         );
       },
       child: GestureDetector(
-        onTap: () async {
-          final uri = Uri.parse(widget.news.articleUrl ?? "");
-          await launchUrl(uri, mode: LaunchMode.inAppWebView);
+        onTap: ()  {
+          Navigator.pushNamed(
+            context,
+            RoutesManager.articleDetails,
+            arguments: widget.news,
+          );
         },
         child: Stack(
           children: [

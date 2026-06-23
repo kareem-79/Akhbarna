@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../domain/use_case/get_current_weather_use_case.dart';
 
-@injectable
+@lazySingleton
 class WeatherCubit extends Cubit<WeatherState> {
   final GetCurrentWeatherUseCase getCurrentWeatherUseCase;
 

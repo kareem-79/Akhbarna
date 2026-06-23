@@ -9,8 +9,9 @@ import '../../../../../../l10n/app_localizations.dart';
 
 class HomeHeaderWidget extends StatefulWidget {
   final VoidCallback onTap;
+  final Function(String keyword)? onSearch;
 
-  const HomeHeaderWidget({super.key, required this.onTap});
+  const HomeHeaderWidget({super.key, required this.onTap, this.onSearch});
 
   @override
   State<HomeHeaderWidget> createState() => _HomeHeaderWidgetState();
@@ -60,9 +61,16 @@ class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
               ),
               SizedBox(width: 30.w),
               Expanded(
-                child: SearchWidget(
-                  hintText: appLocalizations.search,
-                  controller: searchController,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, RoutesManager.search);
+                  },
+                  child: IgnorePointer(
+                    child: SearchWidget(
+                      hintText: appLocalizations.search,
+                      controller: searchController,
+                    ),
+                  ),
                 ),
               ),
               SizedBox(width: 30.w),

@@ -13,6 +13,8 @@ class ChachConstant {
   static const String selectedCategories = 'selected_categories';
   static const String keyBookMarket = 'bookmarks';
   static const String tokenKey = 'token';
+  static const String userName = 'user_name';
+  static const String profileImage = 'profile_image';
 }
 
 abstract class ApiConstant {
@@ -31,9 +33,14 @@ abstract class NewsApiConstant {
   static const String byCategory = "by-category";
   static const String trendingNews = "trending";
   static const String weatherBaseUrl = "https://api.weatherapi.com/v1/";
-
   static const String weatherApiKey = "f3f6d3d527aa42a08d2224953261906";
-
-  static const String currentWeather =
-      "current.json";
+  static const String currentWeather = "current.json";
+  static const String matchBaseUrl = "http://akhbarna1.runasp.net/api/";
+  static const String match = "matches/important";
+  static const String searchArticles = "search";
+}
+abstract class PlatformConstant {
+  static const String facebook = "https://www.facebook.com/sharer/sharer.php?u=";
+  static const String twitter = "https://twitter.com/intent/tweet?url=";
+  static const String whatsApp = "https://wa.me/?text=";
 }

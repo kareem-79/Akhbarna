@@ -1,9 +1,11 @@
 import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/widget/arrow_back_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../core/widget/search_widget.dart';
+import '../cubit/matches_cubit.dart';
+import '../screens/match_screen.dart';
 
 class CategoryHeaderWidget extends StatefulWidget {
   final String hintText;
@@ -21,6 +23,7 @@ class _CategoryHeaderWidgetState extends State<CategoryHeaderWidget> {
   void initState() {
     super.initState();
     searchController = TextEditingController();
+    context.read<MatchesCubit>().getMatches();
   }
 
   @override
@@ -67,10 +70,34 @@ class _CategoryHeaderWidgetState extends State<CategoryHeaderWidget> {
                   color: ColorsManagers.white,
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
-                  Icons.sports_soccer,
-                  color: ColorsManagers.red,
-                  size: 30.sp,
+                child: IconButton(
+                  onPressed: () {
+                    showGeneralDialog(
+                      transitionDuration: const Duration(milliseconds: 200),
+                      context: context,
+                      barrierDismissible: true,
+                      barrierLabel: '',
+                      pageBuilder: (_, __, ___) {
+                        return Center(
+                          child: Container(
+                            height: 700.h,
+                            width: 350.w,
+                            padding:  EdgeInsets.all(16.sp),
+                            decoration: BoxDecoration(
+                              color: bg,
+                              borderRadius: BorderRadius.circular(20.r),
+                            ),
+                            child:  MatchScreen(),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  icon: Icon(
+                    Icons.sports_soccer,
+                    color: ColorsManagers.red,
+                    size: 30.sp,
+                  ),
                 ),
               ),
             ),

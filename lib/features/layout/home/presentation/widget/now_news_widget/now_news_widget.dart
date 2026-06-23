@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../../../../core/resources/assets_managers.dart';
 import '../../../../../../core/resources/colors_managers.dart';
+import '../../../../../../core/resources/routes_managers.dart';
 import '../../../../../../core/utils/timer_format_helper.dart';
 import '../../../data/models/ArticleModel.dart';
 
@@ -27,8 +27,11 @@ class _NowNewsWidgetState extends State<NowNewsWidget> {
 
     return GestureDetector(
       onTap: () async {
-        final uri = Uri.parse(widget.article.articleUrl ?? "");
-        await launchUrl(uri, mode: LaunchMode.inAppWebView);
+        Navigator.pushNamed(
+          context,
+          RoutesManager.articleDetails,
+          arguments: widget.article,
+        );
       },
       child: Container(
         constraints: BoxConstraints(
@@ -94,10 +97,19 @@ class _NowNewsWidgetState extends State<NowNewsWidget> {
 
             Row(
               children: [
-                Image.asset(
-                  SourceImageManagers.elarabia,
-                  width: 60.w,
-                  height: 60.h,
+                ClipRRect(
+                  borderRadius: BorderRadiusGeometry.circular(60.r),
+                  child: CachedNetworkImage(
+                    imageUrl:
+                    widget.article.sourceLogoUrl ??
+                       widget.article.sourceLogoFallbackUrl ??
+                        "",
+                    width: 60.w,
+                    height: 60.h,
+                    fit: BoxFit.cover,
+                    errorWidget: (_, __, ___) =>
+                    const Icon(Icons.newspaper),
+                  ),
                 ),
 
                 SizedBox(width: 12.w),

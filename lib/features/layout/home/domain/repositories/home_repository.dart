@@ -15,4 +15,8 @@ abstract class HomeRepository {
   Future<Either<Failure, List<ArticleModel>>> getTrendingNews({
     required int top,
   });
+
+  Future<Either<Failure, List<ArticleModel>>> searchArticles({
+    required String keyword,
+  });
 }

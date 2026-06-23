@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../domain/use_case/get_most_read_news_use_case.dart';
 
-@injectable
+@lazySingleton
 class MostReadNewsCubit extends Cubit<MostReadNewsState> {
   final GetMostReadNewsUseCase getMostReadNewsUseCase;
 

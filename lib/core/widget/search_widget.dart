@@ -6,12 +6,13 @@ class SearchWidget extends StatelessWidget {
   const SearchWidget({
     super.key,
     this.controller,
-    this.onChange,
-    this.hintText ,
+    this.hintText,
+    this.onSubmitted,
   });
+
   final TextEditingController? controller;
-  final Function(String)? onChange;
   final String? hintText;
+  final Function(String)? onSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +20,8 @@ class SearchWidget extends StatelessWidget {
       height: 50.h,
       child: TextFormField(
         controller: controller,
-        onChanged: onChange,
         cursorColor: ColorsManagers.red,
+        onFieldSubmitted: onSubmitted,
         style: Theme.of(
           context,
         ).textTheme.bodySmall?.copyWith(color: ColorsManagers.darkNavy),

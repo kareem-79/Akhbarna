@@ -5,7 +5,7 @@ import '../../../../../core/errors/failure.dart';
 import '../../domain/use_case/get_trending_news_use_case.dart';
 import 'state/trending_news_state.dart';
 
-@injectable
+@lazySingleton
 class TrendingNewsCubit extends Cubit<TrendingNewsState> {
   final GetTrendingNewsUseCase getTrendingNewsUseCase;
 

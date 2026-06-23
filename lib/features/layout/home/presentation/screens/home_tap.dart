@@ -15,8 +15,14 @@ import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../core/services/location_service.dart';
 import '../../../../../core/widget/section_header_widget.dart';
 import '../../../../../model/home_tab_model.dart';
+import '../../../category/presentation/cubit/matches_cubit.dart';
+import '../../../category/presentation/cubit/matches_state.dart';
+import '../../../category/presentation/screens/match_screen.dart';
+import '../../../category/presentation/widget/match_card_loading_widget.dart';
+import '../../../category/presentation/widget/match_card_widget.dart';
 import '../cubit/latest_news_cubit.dart';
 import '../cubit/most_read_news_cubit.dart';
+import '../cubit/search_article_cubit.dart';
 import '../cubit/state/latest_news_state.dart';
 import '../cubit/state/most_read_news_state.dart';
 import '../cubit/state/trending_news_state.dart';
@@ -35,7 +41,7 @@ class HomeTap extends StatefulWidget {
   State<HomeTap> createState() => _HomeTapState();
 }
 
-class _HomeTapState extends State<HomeTap> {
+class _HomeTapState extends State<HomeTap> with AutomaticKeepAliveClientMixin {
   late HomeTabModel selectedHomeTab = HomeTabModel.homeTabList(context)[0];
 
   final ScrollController scrollController = ScrollController();
@@ -43,16 +49,18 @@ class _HomeTapState extends State<HomeTap> {
   late PageController trendingController;
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   void initState() {
     super.initState();
-
     Future.microtask(() {
       context.read<BreakingNewsCubit>().getBreakingNews();
       context.read<MostReadNewsCubit>().getMostReadNews(top: 20);
       context.read<LatestNewsCubit>().getLatestNews(top: 20);
       context.read<TrendingNewsCubit>().getTrendingNews(top: 20);
     });
-
+    context.read<MatchesCubit>().getMatches();
     Future.delayed(const Duration(milliseconds: 500), () {
       loadWeather();
     });
@@ -72,10 +80,16 @@ class _HomeTapState extends State<HomeTap> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+    final Color bg = Theme.of(context).scaffoldBackgroundColor;
+    final TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
       body: Column(
         children: [
           HomeHeaderWidget(
+            onSearch: (keyword) {
+              context.read<SearchCubit>().search(keyword: keyword);
+            },
             onTap: () {
               scrollController.animateTo(
                 0,
@@ -97,8 +111,8 @@ class _HomeTapState extends State<HomeTap> {
                     context.read<MostReadNewsCubit>().getMostReadNews(top: 20),
                     context.read<LatestNewsCubit>().getLatestNews(top: 20),
                     context.read<TrendingNewsCubit>().getTrendingNews(top: 20),
+                    context.read<MatchesCubit>().getMatches(),
                   ]);
-
                 },
                 child: CustomScrollView(
                   controller: scrollController,
@@ -227,9 +241,72 @@ class _HomeTapState extends State<HomeTap> {
                         children: [
                           SizedBox(height: 10.h),
                           WeatherWidget(),
-
                         ],
                       ),
+                    ),
+                    //matches
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 10.h),
+                        child: Column(
+                          children: [
+                            SectionHeaderWidget(
+                              title: "⚽ أبرز المباريات",
+                              onViewAll: () {
+                                showGeneralDialog(
+                                  transitionDuration: const Duration(
+                                    milliseconds: 200,
+                                  ),
+                                  context: context,
+                                  barrierDismissible: true,
+                                  barrierLabel: '',
+                                  pageBuilder: (_, __, ___) {
+                                    return Center(
+                                      child: Container(
+                                        height: 700.h,
+                                        width: 350.w,
+                                        padding: EdgeInsets.all(16.sp),
+                                        decoration: BoxDecoration(
+                                          color: bg,
+                                          borderRadius: BorderRadius.circular(
+                                            20.r,
+                                          ),
+                                        ),
+                                        child: MatchScreen(),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                            SizedBox(height: 10.h),
+                          ],
+                        ),
+                      ),
+                    ),
+                    BlocBuilder<MatchesCubit, MatchesState>(
+                      builder: (context, state) {
+                        if (state is MatchesLoading) {
+                          return const SliverToBoxAdapter(
+                            child: MatchCardLoadingWidget(),
+                          );
+                        }
+
+                        if (state is MatchesError) {
+                          return SliverToBoxAdapter(
+                            child: MatchCardLoadingWidget(),
+                          );
+                        }
+                        if (state is MatchesSuccess) {
+                          final firstMatch = state.matches.first.matches.first;
+
+                          return SliverToBoxAdapter(
+                            child: MatchCardWidget(match: firstMatch),
+                          );
+                        }
+
+                        return const SliverToBoxAdapter(child: SizedBox());
+                      },
                     ),
                     //trendNews
                     SliverToBoxAdapter(
@@ -444,7 +521,6 @@ class _HomeTapState extends State<HomeTap> {
   Future<void> loadWeather() async {
     try {
       final position = await LocationService.getCurrentLocation();
-
       await context.read<WeatherCubit>().getCurrentWeather(
         lat: position.latitude,
         lng: position.longitude,

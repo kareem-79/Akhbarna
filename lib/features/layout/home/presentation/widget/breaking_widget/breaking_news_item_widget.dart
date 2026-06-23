@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../../../../../core/resources/colors_managers.dart';
+import '../../../../../../core/resources/routes_managers.dart';
 import '../../../data/models/ArticleModel.dart';
 
 class BreakingNewsItemWidget extends StatefulWidget {
@@ -21,9 +21,12 @@ class _BreakingNewsItemWidgetState extends State<BreakingNewsItemWidget> {
     final canvasColor = Theme.of(context).canvasColor;
     final bgColor = Theme.of(context).scaffoldBackgroundColor;
     return GestureDetector(
-      onTap: () async {
-        final uri = Uri.parse(widget.news.articleUrl ?? "");
-        await launchUrl(uri, mode: LaunchMode.inAppWebView);
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          RoutesManager.articleDetails,
+          arguments: widget.news,
+        );
       },
       child: Container(
         decoration: BoxDecoration(
@@ -110,6 +113,7 @@ class _BreakingNewsItemWidgetState extends State<BreakingNewsItemWidget> {
       ),
     );
   }
+
   Color getCategoryTextColor(String? category) {
     switch (category?.trim()) {
       case "رياضة":

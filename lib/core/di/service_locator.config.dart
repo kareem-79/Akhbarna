@@ -53,14 +53,26 @@ import 'package:akhbarna/features/layout/category/data/data_sources/category_api
     as _i926;
 import 'package:akhbarna/features/layout/category/data/data_sources/category_remote_data_source.dart'
     as _i433;
+import 'package:akhbarna/features/layout/category/data/data_sources/match_api_remote_data_source.dart'
+    as _i596;
+import 'package:akhbarna/features/layout/category/data/data_sources/match_remote_data_source.dart'
+    as _i505;
 import 'package:akhbarna/features/layout/category/data/repositories_impl/category_repository_impl.dart'
     as _i521;
+import 'package:akhbarna/features/layout/category/data/repositories_impl/match_repository_impl.dart'
+    as _i753;
 import 'package:akhbarna/features/layout/category/domain/repositories/category_repository.dart'
     as _i692;
+import 'package:akhbarna/features/layout/category/domain/repositories/matches_repository.dart'
+    as _i1065;
 import 'package:akhbarna/features/layout/category/domain/use_case/get_category_news_use_case.dart'
     as _i629;
+import 'package:akhbarna/features/layout/category/domain/use_case/get_matches_use_case.dart'
+    as _i902;
 import 'package:akhbarna/features/layout/category/presentation/cubit/category_news_cubit.dart'
     as _i462;
+import 'package:akhbarna/features/layout/category/presentation/cubit/matches_cubit.dart'
+    as _i766;
 import 'package:akhbarna/features/layout/home/data/data_sources/remote/home_api_remote_data_source.dart'
     as _i130;
 import 'package:akhbarna/features/layout/home/data/data_sources/remote/home_remote_data_source.dart'
@@ -85,6 +97,8 @@ import 'package:akhbarna/features/layout/home/domain/use_case/get_latest_news_us
     as _i393;
 import 'package:akhbarna/features/layout/home/domain/use_case/get_most_read_news_use_case.dart'
     as _i537;
+import 'package:akhbarna/features/layout/home/domain/use_case/get_search_articles_use_case.dart'
+    as _i80;
 import 'package:akhbarna/features/layout/home/domain/use_case/get_trending_news_use_case.dart'
     as _i386;
 import 'package:akhbarna/features/layout/home/presentation/cubit/breaking_news_cubit.dart'
@@ -93,6 +107,8 @@ import 'package:akhbarna/features/layout/home/presentation/cubit/latest_news_cub
     as _i676;
 import 'package:akhbarna/features/layout/home/presentation/cubit/most_read_news_cubit.dart'
     as _i487;
+import 'package:akhbarna/features/layout/home/presentation/cubit/search_article_cubit.dart'
+    as _i358;
 import 'package:akhbarna/features/layout/home/presentation/cubit/trending_news_cubit.dart'
     as _i913;
 import 'package:akhbarna/features/layout/home/presentation/cubit/weather_cubit.dart'
@@ -130,6 +146,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i402.LoginRemoteDataSource>(
       () => _i244.LoginApiRemoteDataSource(),
     );
+    gh.singleton<_i505.MatchesRemoteDataSource>(
+      () => _i596.MatchesApiRemoteDataSource(),
+    );
     gh.singleton<_i512.RegisterRemoteDataSource>(
       () => _i757.RegisterApiRemoteDataSource(),
     );
@@ -160,6 +179,11 @@ extension GetItInjectableX on _i174.GetIt {
         authLocalDataSource: gh<_i1023.AuthLocalDataSource>(),
       ),
     );
+    gh.singleton<_i1065.MatchesRepository>(
+      () => _i753.MatchesRepositoryImpl(
+        remoteDataSource: gh<_i505.MatchesRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i629.GetCategoryNewsUseCase>(
       () => _i629.GetCategoryNewsUseCase(
         repository: gh<_i692.CategoryRepository>(),
@@ -175,7 +199,7 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i29.HomeRemoteDataSource>(),
       ),
     );
-    gh.factory<_i733.WeatherCubit>(
+    gh.lazySingleton<_i733.WeatherCubit>(
       () => _i733.WeatherCubit(
         getCurrentWeatherUseCase: gh<_i25.GetCurrentWeatherUseCase>(),
       ),
@@ -196,6 +220,9 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i537.GetMostReadNewsUseCase(repository: gh<_i466.HomeRepository>()),
     );
+    gh.factory<_i80.SearchArticlesUseCase>(
+      () => _i80.SearchArticlesUseCase(repository: gh<_i466.HomeRepository>()),
+    );
     gh.factory<_i386.GetTrendingNewsUseCase>(
       () =>
           _i386.GetTrendingNewsUseCase(repository: gh<_i466.HomeRepository>()),
@@ -203,27 +230,34 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i343.SendOtpUseCase>(
       () => _i343.SendOtpUseCase(gh<_i975.ForgetPasswordRepository>()),
     );
-    gh.factory<_i462.CategoryNewsCubit>(
+    gh.lazySingleton<_i462.CategoryNewsCubit>(
       () => _i462.CategoryNewsCubit(
         getCategoryNewsUseCase: gh<_i629.GetCategoryNewsUseCase>(),
       ),
     );
-    gh.factory<_i862.BreakingNewsCubit>(
+    gh.factory<_i902.GetMatchesUseCase>(
+      () => _i902.GetMatchesUseCase(repository: gh<_i1065.MatchesRepository>()),
+    );
+    gh.lazySingleton<_i862.BreakingNewsCubit>(
       () => _i862.BreakingNewsCubit(
         getBreakingNewsUseCase: gh<_i898.GetBreakingNewsUseCase>(),
       ),
     );
-    gh.factory<_i487.MostReadNewsCubit>(
+    gh.lazySingleton<_i487.MostReadNewsCubit>(
       () => _i487.MostReadNewsCubit(
         getMostReadNewsUseCase: gh<_i537.GetMostReadNewsUseCase>(),
       ),
     );
-    gh.factory<_i676.LatestNewsCubit>(
+    gh.lazySingleton<_i766.MatchesCubit>(
+      () =>
+          _i766.MatchesCubit(getMatchesUseCase: gh<_i902.GetMatchesUseCase>()),
+    );
+    gh.lazySingleton<_i676.LatestNewsCubit>(
       () => _i676.LatestNewsCubit(
         getLatestNewsUseCase: gh<_i393.GetLatestNewsUseCase>(),
       ),
     );
-    gh.factory<_i913.TrendingNewsCubit>(
+    gh.lazySingleton<_i913.TrendingNewsCubit>(
       () => _i913.TrendingNewsCubit(
         getTrendingNewsUseCase: gh<_i386.GetTrendingNewsUseCase>(),
       ),
@@ -234,6 +268,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i281.LoginCubit>(
       () => _i281.LoginCubit(loginUseCase: gh<_i766.LoginUseCase>()),
+    );
+    gh.lazySingleton<_i358.SearchCubit>(
+      () => _i358.SearchCubit(
+        searchArticlesUseCase: gh<_i80.SearchArticlesUseCase>(),
+      ),
     );
     return this;
   }

@@ -1,3 +1,6 @@
+import 'package:akhbarna/core/resources/colors_managers.dart';
+import 'package:akhbarna/core/resources/routes_managers.dart';
+import 'package:akhbarna/core/widget/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -28,47 +31,55 @@ class BookMarketTab extends StatelessWidget {
           Expanded(
             child: bookmarks.isEmpty
                 ? Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    IconManagers.save,
-                    width: 100.w,
-                    height: 100.h,
-                    color: shadowColor,
-                  ),
-                  SizedBox(height: 8.h),
-                  Text(
-                    "لا يوجد اخبار",
-                    style: textTheme.bodyLarge,
-                  ),
-                ],
-              ),
-            )
-                : CustomScrollView(
-              slivers: [
-                SliverPadding(
-                  padding:
-                  EdgeInsets.symmetric(horizontal: 12.w),
-                  sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                        final news = bookmarks[index];
-
-                        return Padding(
-                          padding:
-                          EdgeInsets.only(bottom: 10.h),
-                          child: BreakingNewsItemWidget(
-                            news: news,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          SvgPicture.asset(
+                            IconManagers.save,
+                            width: 100.w,
+                            height: 100.h,
+                            color: shadowColor,
                           ),
-                        );
-                      },
-                      childCount: bookmarks.length,
+                          SizedBox(height: 8.h),
+                          Center(
+                            child: Text(
+                              "لا يوجد مقالات بعد",
+                              style: textTheme.bodyMedium,
+                            ),
+                          ),
+                          SizedBox(height: 8.h),
+                          Center(
+                            child: Text(
+                              "احفظ مقالاتك المفضلة وكن \nأول من يقرأها في أي وقت",
+                              style: textTheme.bodySmall?.copyWith(
+                                color: ColorsManagers.gray3,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 16.h),
+                          CustomElevatedButton(
+                            onPress: () {
+                              Navigator.pushNamed(
+                                context,
+                                RoutesManager.topNews,
+                              );
+                            },
+                            text: "استعرض الأخبار للحفظ",
+                            foregroundColor: ColorsManagers.white,
+                            backgroundColor: ColorsManagers.red,
+                          ),
+                        ],
+                      ),
                     ),
+                  )
+                : CustomScrollView(
+                    slivers: [
+
+                    ],
                   ),
-                ),
-              ],
-            ),
           ),
         ],
       ),

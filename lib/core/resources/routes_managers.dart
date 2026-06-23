@@ -20,9 +20,11 @@ import 'package:akhbarna/features/setup/sources_select/presentation/screens/sele
 import 'package:akhbarna/features/setup/start/presentation/screens/start_screen.dart';
 import 'package:akhbarna/features/splash_screen/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
-
 import '../../features/layout/category/presentation/screens/category_article_screen.dart';
+import '../../features/layout/category/presentation/screens/match_screen.dart';
+import '../../features/layout/home/presentation/screens/article_details_screen.dart';
 import '../../features/layout/home/presentation/screens/trending_screen.dart';
+import '../../features/layout/home/presentation/widget/search_widget.dart';
 import '../../features/layout/profile/presentation/screens/general_settings/presentation/general_setting.dart';
 
 class RoutesManager {
@@ -50,9 +52,13 @@ class RoutesManager {
   static const String categoryArticle = "CategoryArticle";
   static const String generalSettings = "GeneralSettings";
   static const String trendingNews = "TrendingNews";
+  static const String articleDetails = "ArticleDetails";
+  static const String matchScreen = "MatchScreen";
+  static const String search = "Search";
 
-  static Route<dynamic> slideRight(Widget screen) {
+  static Route<dynamic> slideRight(Widget screen, {RouteSettings? settings}) {
     return PageRouteBuilder(
+      settings: settings,
       pageBuilder: (context, animation, secondaryAnimation) => screen,
       transitionDuration: const Duration(milliseconds: 420),
       reverseTransitionDuration: const Duration(milliseconds: 320),
@@ -144,7 +150,12 @@ class RoutesManager {
         return slideRight(const GeneralSettingsScreen());
       case trendingNews:
         return slideRight(const TrendingScreen());
-
+      case articleDetails:
+        return slideRight(const ArticleDetailsScreen(), settings: settings);
+      case matchScreen:
+        return slideRight(const MatchScreen());
+        case search:
+        return slideRight(const SearchScreen());
       default:
         return slideRight(
           const Scaffold(body: Center(child: Text('No Route Found'))),

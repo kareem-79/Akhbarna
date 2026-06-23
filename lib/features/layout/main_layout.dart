@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:akhbarna/core/resources/assets_managers.dart';
 import 'package:akhbarna/core/widget/svg_widget.dart';
 import 'package:akhbarna/features/layout/bookMarket/presentation/screens/bookmarket_tab.dart';
@@ -5,8 +6,9 @@ import 'package:akhbarna/features/layout/category/presentation/screens/category_
 import 'package:akhbarna/features/layout/home/presentation/screens/home_tap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import '../../core/resources/routes_managers.dart';
+import '../../core/utils/ui_utils.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -19,15 +21,54 @@ class _MainLayoutState extends State<MainLayout> {
   int selectedIndex = 0;
 
   late final PageController _pageController;
+  late StreamSubscription<InternetStatus> internetSubscription;
+
+  bool isDisconnected = false;
 
   @override
   void initState() {
     super.initState();
+
     _pageController = PageController();
+    Future.microtask(() async {
+      final hasInternet = await InternetConnection().hasInternetAccess;
+
+      if (!hasInternet && mounted) {
+        isDisconnected = true;
+
+        UiUtils.showToast(context, 'لا يوجد اتصال بالإنترنت', Colors.red);
+      }
+    });
+    internetSubscription = InternetConnection().onStatusChange.listen((
+      InternetStatus status,
+    ) {
+      switch (status) {
+        case InternetStatus.connected:
+          if (isDisconnected) {
+            isDisconnected = false;
+
+            UiUtils.showToast(
+              context,
+              'تم استعادة الاتصال بالإنترنت',
+              Colors.green,
+            );
+          }
+          break;
+
+        case InternetStatus.disconnected:
+          if (!isDisconnected) {
+            isDisconnected = true;
+
+            UiUtils.showToast(context, 'لا يوجد اتصال بالإنترنت', Colors.red);
+          }
+          break;
+      }
+    });
   }
 
   @override
   void dispose() {
+    internetSubscription.cancel();
     _pageController.dispose();
     super.dispose();
   }

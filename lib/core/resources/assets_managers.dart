@@ -38,6 +38,10 @@ class IconManagers {
   static const String noNotification = "$base/no_notification.svg";
   static const String delete = "$base/delete_icon.svg";
   static const String save = "$base/save.svg";
+  static const String share = "$base/share.svg";
+  static const String whats = "$base/whats.svg";
+  static const String x = "$base/x.svg";
+  static const String more = "$base/more.svg";
 }
 
 class CategoryImageManagers {

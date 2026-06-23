@@ -6,6 +6,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../core/resources/colors_managers.dart';
+import '../../../../../../core/resources/routes_managers.dart';
 import '../../../../../../core/utils/timer_format_helper.dart';
 
 class TopNewsItemWidget extends StatefulWidget {
@@ -38,8 +39,11 @@ class _TopNewsItemWidgetState extends State<TopNewsItemWidget> {
       },
       child: GestureDetector(
         onTap: () async {
-          final uri = Uri.parse(widget.news.articleUrl ?? "");
-          await launchUrl(uri, mode: LaunchMode.inAppWebView);
+          Navigator.pushNamed(
+            context,
+            RoutesManager.articleDetails,
+            arguments: widget.news,
+          );
         },
         child: Stack(
           children: [

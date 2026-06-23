@@ -15,7 +15,11 @@ class CategoryTab extends StatefulWidget {
   State<CategoryTab> createState() => _CategoryTabState();
 }
 
-class _CategoryTabState extends State<CategoryTab> {
+class _CategoryTabState extends State<CategoryTab>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   void initState() {
     super.initState();
@@ -24,6 +28,7 @@ class _CategoryTabState extends State<CategoryTab> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       body: Column(
@@ -41,7 +46,7 @@ class _CategoryTabState extends State<CategoryTab> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: 5.h,),
+                SizedBox(height: 5.h),
                 Text(
                   "صباح الخير\nإليكم بعض الأخبار",
                   style: textTheme.bodyLarge?.copyWith(fontSize: 28.sp),
@@ -58,7 +63,7 @@ class _CategoryTabState extends State<CategoryTab> {
                 }
 
                 if (state is CategoryNewsError) {
-                  return Center(child: Text(state.message));
+                  return const CategoryLoadingWidget();
                 }
 
                 if (state is CategoryNewsSuccess) {
@@ -70,7 +75,7 @@ class _CategoryTabState extends State<CategoryTab> {
                       final categoryModel = CategoryTabModel.categories[index];
 
                       final matched = state.categoriesResponse.categories.where(
-                            (e) => e.categoryName == categoryModel.id,
+                        (e) => e.categoryName == categoryModel.id,
                       );
 
                       final newsCount = matched.isEmpty
@@ -85,7 +90,6 @@ class _CategoryTabState extends State<CategoryTab> {
                     },
                   );
                 }
-
                 return const CategoryLoadingWidget();
               },
             ),

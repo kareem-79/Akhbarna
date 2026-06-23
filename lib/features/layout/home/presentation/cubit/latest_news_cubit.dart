@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../domain/use_case/get_latest_news_use_case.dart';
 
-@injectable
+@lazySingleton
 class LatestNewsCubit extends Cubit<LatestNewsState> {
   final GetLatestNewsUseCase getLatestNewsUseCase;
 

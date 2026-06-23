@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../../../../core/prefs_manager/prefs_manager.dart';
 import '../../../../../../../core/resources/colors_managers.dart';
 import '../../../../../../../core/utils/validation.dart';
 import '../../../../../../../core/widget/app_bar_widget.dart';
@@ -32,6 +33,7 @@ class _EditProfileState extends State<EditProfile> {
     nameController = TextEditingController();
     emailController = TextEditingController();
     locationController = TextEditingController();
+    _imagePath = PrefsManager.getProfileImage();
   }
 
   @override
@@ -73,7 +75,8 @@ class _EditProfileState extends State<EditProfile> {
                         EnlargableProfileAvatar(
                           imagePath: _imagePath,
                           isEditable: true,
-                          onImagePicked: (newPath) {
+                          onImagePicked: (newPath) async {
+                            await PrefsManager.saveProfileImage(newPath);
                             setState(() {
                               _imagePath = newPath;
                             });
@@ -136,17 +139,18 @@ class _EditProfileState extends State<EditProfile> {
                       return null;
                     },
                   ),
+                  SizedBox(height: 50.h),
+                  CustomButtomNavigationBar(
+                    onPress: () => _saveProfile(appLocalizations, context),
+                    text: appLocalizations.save_changes,
+                    backgroundColor: ColorsManagers.red,
+                    foregroundColor: ColorsManagers.white,
+                  ),
                 ],
               ),
             ),
           ),
         ),
-      ),
-      bottomNavigationBar: CustomButtomNavigationBar(
-        onPress: () => _saveProfile(appLocalizations, context),
-        text: appLocalizations.save_changes,
-        backgroundColor: ColorsManagers.red,
-        foregroundColor: ColorsManagers.white,
       ),
     );
   }
@@ -156,6 +160,9 @@ class _EditProfileState extends State<EditProfile> {
     BuildContext context,
   ) async {
     if (formKey.currentState?.validate() ?? false) {
+      if (_imagePath != null) {
+        await PrefsManager.saveProfileImage(_imagePath!);
+      }
       Navigator.pop(context, _imagePath);
       UiUtils.showToast(
         context,
@@ -163,6 +170,5 @@ class _EditProfileState extends State<EditProfile> {
         ColorsManagers.vividTangerine,
       );
     }
-
   }
 }

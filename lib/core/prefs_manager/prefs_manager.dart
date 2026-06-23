@@ -66,10 +66,18 @@ class PrefsManager {
   }
 
   static Future<void> saveUserName(String name) async {
-    await prefs.setString('user_name', name);
+    await prefs.setString(ChachConstant.userName, name);
   }
 
   static String getUserName() {
-    return prefs.getString('user_name') ?? '';
+    return prefs.getString(ChachConstant.userName) ?? '';
+  }
+
+  static Future<void> saveProfileImage(String imagePath) async {
+    await prefs.setString(ChachConstant.profileImage, imagePath);
+  }
+
+  static String? getProfileImage() {
+    return prefs.getString(ChachConstant.profileImage);
   }
 }

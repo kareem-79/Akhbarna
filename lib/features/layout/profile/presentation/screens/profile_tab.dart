@@ -25,6 +25,12 @@ class _ProfileTabState extends State<ProfileTab> {
   String? _profileImagePath;
 
   @override
+  void initState() {
+    super.initState();
+    _profileImagePath = PrefsManager.getProfileImage();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final appLocalizations = AppLocalizations.of(context)!;
@@ -129,6 +135,7 @@ class _ProfileTabState extends State<ProfileTab> {
                       );
 
                       if (result != null && result is String) {
+                        await PrefsManager.saveProfileImage(result);
                         setState(() {
                           _profileImagePath = result;
                         });
