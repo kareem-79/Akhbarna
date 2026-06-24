@@ -1,7 +1,7 @@
+import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../../../../../core/resources/colors_managers.dart';
 import '../../../../../../core/resources/routes_managers.dart';
 import '../../../../../../core/utils/timer_format_helper.dart';
@@ -24,7 +24,7 @@ class _NowNewsWidgetState extends State<NowNewsWidget> {
     TextTheme textTheme = Theme.of(context).textTheme;
     final canvasColor = Theme.of(context).canvasColor;
     final bgColor = Theme.of(context).scaffoldBackgroundColor;
-
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () async {
         Navigator.pushNamed(
@@ -34,9 +34,7 @@ class _NowNewsWidgetState extends State<NowNewsWidget> {
         );
       },
       child: Container(
-        constraints: BoxConstraints(
-          minHeight: 400.h,
-        ),
+        constraints: BoxConstraints(minHeight: 400.h),
         padding: EdgeInsets.all(20.w),
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -101,14 +99,13 @@ class _NowNewsWidgetState extends State<NowNewsWidget> {
                   borderRadius: BorderRadiusGeometry.circular(60.r),
                   child: CachedNetworkImage(
                     imageUrl:
-                    widget.article.sourceLogoUrl ??
-                       widget.article.sourceLogoFallbackUrl ??
+                        widget.article.sourceLogoUrl ??
+                        widget.article.sourceLogoFallbackUrl ??
                         "",
                     width: 60.w,
                     height: 60.h,
                     fit: BoxFit.cover,
-                    errorWidget: (_, __, ___) =>
-                    const Icon(Icons.newspaper),
+                    errorWidget: (_, __, ___) => const Icon(Icons.newspaper),
                   ),
                 ),
 
@@ -119,9 +116,7 @@ class _NowNewsWidgetState extends State<NowNewsWidget> {
                     widget.article.sourceName ?? "",
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: textTheme.bodyLarge?.copyWith(
-                      fontSize: 28.sp,
-                    ),
+                    style: textTheme.bodyLarge?.copyWith(fontSize: 28.sp),
                   ),
                 ),
 
@@ -137,7 +132,7 @@ class _NowNewsWidgetState extends State<NowNewsWidget> {
                     borderRadius: BorderRadius.circular(20.r),
                   ),
                   child: Text(
-                    "تريند",
+                    appLocalizations.trend,
                     style: textTheme.bodySmall,
                   ),
                 ),
@@ -157,7 +152,7 @@ class _NowNewsWidgetState extends State<NowNewsWidget> {
             SizedBox(height: 8.h),
 
             Text(
-              "منذ ${TimeFormatHelper.formatDate(widget.article.publishedDate)}",
+              "${appLocalizations.ago} ${TimeFormatHelper.formatDate(context,widget.article.publishedDate)}",
               style: textTheme.bodySmall?.copyWith(
                 fontSize: 12.sp,
                 color: ColorsManagers.gray3,

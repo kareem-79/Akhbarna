@@ -1,4 +1,5 @@
 import 'package:akhbarna/features/layout/home/presentation/widget/most_read_widget/most_read_loading_widget.dart';
+import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,6 +27,7 @@ class _CategoryArticleScreenState extends State<CategoryArticleScreen> {
 
   @override
   Widget build(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
       body: RefreshIndicator(
         color: ColorsManagers.red,
@@ -55,8 +57,8 @@ class _CategoryArticleScreenState extends State<CategoryArticleScreen> {
                   );
 
                   if (matched.isEmpty) {
-                    return const Expanded(
-                      child: Center(child: Text('لا توجد أخبار لهذا القسم')),
+                    return  Expanded(
+                      child: Center(child: Text(appLocalizations.no_news_for_category)),
                     );
                   }
                   final category = matched.first;

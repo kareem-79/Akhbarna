@@ -47,7 +47,7 @@ class _SearchScreenState extends State<SearchScreen> {
               child: BlocBuilder<SearchCubit, SearchState>(
                 builder: (context, state) {
                   if (state is SearchLoading) {
-                    return  Center(child: CircularProgressIndicator());
+                    return Center(child: CircularProgressIndicator());
                   }
 
                   if (state is SearchError) {
@@ -56,7 +56,12 @@ class _SearchScreenState extends State<SearchScreen> {
 
                   if (state is SearchSuccess) {
                     if (state.articles.isEmpty) {
-                      return  Center(child: Text("لا توجد نتائج",style: textTheme.bodyMedium,));
+                      return Center(
+                        child: Text(
+                          appLocalizations.no_results_found,
+                          style: textTheme.bodyMedium,
+                        ),
+                      );
                     }
                     return ListView.builder(
                       padding: const EdgeInsets.symmetric(horizontal: 16),

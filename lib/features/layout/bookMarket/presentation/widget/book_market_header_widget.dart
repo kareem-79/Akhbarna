@@ -1,3 +1,4 @@
+import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/resources/colors_managers.dart';
@@ -12,6 +13,7 @@ class _BookMarketHeaderWidgetState extends State<BookMarketHeaderWidget> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Container(
       height: 140.h,
       width: double.infinity,
@@ -29,7 +31,7 @@ class _BookMarketHeaderWidgetState extends State<BookMarketHeaderWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "الحفظ",
+                appLocalizations.bookmarks,
                 style: textTheme.bodyLarge?.copyWith(fontSize: 28.sp),
               ),
               CircleAvatar(

@@ -140,11 +140,16 @@ class _EditProfileState extends State<EditProfile> {
                     },
                   ),
                   SizedBox(height: 50.h),
-                  CustomButtomNavigationBar(
-                    onPress: () => _saveProfile(appLocalizations, context),
-                    text: appLocalizations.save_changes,
-                    backgroundColor: ColorsManagers.red,
-                    foregroundColor: ColorsManagers.white,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      CustomButtomNavigationBar(
+                        onPress: () => _saveProfile(appLocalizations, context),
+                        text: appLocalizations.save_changes,
+                        backgroundColor: ColorsManagers.red,
+                        foregroundColor: ColorsManagers.white,
+                      ),
+                    ],
                   ),
                 ],
               ),

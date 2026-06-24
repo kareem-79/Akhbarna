@@ -3,11 +3,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../core/resources/colors_managers.dart';
 import '../../../../../../core/resources/routes_managers.dart';
 import '../../../../../../core/utils/timer_format_helper.dart';
+import '../../../../../../l10n/app_localizations.dart';
 
 class TopNewsItemWidget extends StatefulWidget {
   final ArticleModel news;
@@ -24,7 +24,7 @@ class _TopNewsItemWidgetState extends State<TopNewsItemWidget> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return TweenAnimationBuilder(
       duration: Duration(milliseconds: 300 + (widget.news.hashCode % 5) * 100),
       tween: Tween<double>(begin: 40.0, end: 0.0),
@@ -120,7 +120,7 @@ class _TopNewsItemWidgetState extends State<TopNewsItemWidget> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "منذ ${TimeFormatHelper.formatDate(widget.news.publishedDate)}",
+                              "${appLocalizations.ago} ${TimeFormatHelper.formatDate(context, widget.news.publishedDate)}",
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                               style: textTheme.bodySmall?.copyWith(

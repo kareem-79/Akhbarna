@@ -2,6 +2,7 @@ import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/resources/routes_managers.dart';
+import '../../../../../l10n/app_localizations.dart';
 import '../../../../../model/category_tab_model.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -21,6 +22,7 @@ class CategoryItem extends StatelessWidget {
     final bool isOddIndex = index % 2 != 0;
     final textTheme = Theme.of(context).textTheme;
     final colors = getCategoryGradient(category.title);
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return TweenAnimationBuilder(
       duration: Duration(milliseconds: 400 + (index * 100)),
       tween: Tween<double>(begin: isOddIndex ? -100.0 : 100.0, end: 0.0),
@@ -108,7 +110,7 @@ class CategoryItem extends StatelessWidget {
                     SizedBox(height: 4.h),
 
                     Text(
-                      "$newsCount خبر متاح",
+                      "$newsCount ${appLocalizations.available_news_count}",
                       style: textTheme.bodySmall?.copyWith(
                         fontSize: 14.sp,
                         color: ColorsManagers.white2,

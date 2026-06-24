@@ -1,4 +1,6 @@
 import 'package:akhbarna/core/resources/assets_managers.dart';
+import 'package:akhbarna/l10n/app_localizations.dart';
+import 'package:flutter/material.dart';
 
 class CategoryModel {
   final String name;
@@ -11,14 +13,19 @@ class CategoryModel {
     this.isSelected = false,
   });
 
-  static final List<CategoryModel> categories = [
-    CategoryModel(name: "محلي", image: CategoryImageManagers.local),
-    CategoryModel(name: "رياضة", image: CategoryImageManagers.sports),
-    CategoryModel(name: "اقتصاد", image: CategoryImageManagers.economy),
-    CategoryModel(name: "الصحة", image: CategoryImageManagers.health),
-    CategoryModel(name: "الفن", image: CategoryImageManagers.art),
-    CategoryModel(name: "سياسة", image: CategoryImageManagers.policy),
-    CategoryModel(name: "تكنولوجيا", image: CategoryImageManagers.technology),
-    CategoryModel(name: "التعليم", image: CategoryImageManagers.education),
-  ];
+  static List<CategoryModel> categories(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    return [
+      CategoryModel(name: l10n.sports, image: CategoryImageManagers.sports),
+      CategoryModel(name: l10n.economy, image: CategoryImageManagers.economy),
+      CategoryModel(name: l10n.health, image: CategoryImageManagers.health),
+      CategoryModel(name: l10n.entertainment, image: CategoryImageManagers.art),
+      CategoryModel(name: l10n.politics, image: CategoryImageManagers.policy),
+      CategoryModel(
+        name: l10n.technology,
+        image: CategoryImageManagers.technology,
+      ),
+    ];
+  }
 }

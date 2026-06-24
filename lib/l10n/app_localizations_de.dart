@@ -9,13 +9,13 @@ class AppLocalizationsDe extends AppLocalizations {
   AppLocalizationsDe([String locale = 'de']) : super(locale);
 
   @override
-  String get welcome_title => 'Die Welt in Nachrichten';
+  String get welcome_title => 'Die Welt in einer Nachricht';
 
   @override
-  String get welcome_back => 'Willkommen, melden Sie sich an';
+  String get welcome_back => 'Willkommen zurück, melden Sie sich an';
 
   @override
-  String get signup => 'Registrieren';
+  String get signup => 'Neues Konto erstellen';
 
   @override
   String get login => 'Anmelden';
@@ -33,6 +33,15 @@ class AppLocalizationsDe extends AppLocalizations {
   String get name_required => 'Bitte geben Sie Ihren Namen ein';
 
   @override
+  String get location_required => 'Bitte geben Sie Ihren Standort ein';
+
+  @override
+  String get profile_updated_success => 'Profil erfolgreich aktualisiert';
+
+  @override
+  String get search => 'Suchen.....';
+
+  @override
   String get name_min => 'Der Name muss mindestens 6 Zeichen lang sein';
 
   @override
@@ -48,29 +57,29 @@ class AppLocalizationsDe extends AppLocalizations {
   String get forgot_password => 'Passwort vergessen?';
 
   @override
-  String get otp_required =>
-      'Bitte geben Sie den vollständigen Verifizierungscode ein';
-
-  @override
-  String get passwords_not_match => 'Die Passwörter stimmen nicht überein';
-
-  @override
-  String get location_required => 'Bitte geben Sie Ihren Standort ein';
-
-  @override
-  String get profile_updated_success => 'Profil erfolgreich aktualisiert';
-
-  @override
-  String get search => 'Suchen...';
+  String get verify_account => 'Konto verifizieren';
 
   @override
   String get login_success => 'Erfolgreich angemeldet';
 
   @override
-  String get failed_login => 'Failed to Login.';
+  String get failed_login => 'Anmeldung fehlgeschlagen.';
 
   @override
-  String get verify_account => 'Konto verifizieren';
+  String get otp_required =>
+      'Bitte geben Sie den vollständigen Bestätigungscode ein';
+
+  @override
+  String get passwords_not_match => 'Die Passwörter stimmen nicht überein';
+
+  @override
+  String get or_login_with => 'Oder anmelden mit';
+
+  @override
+  String get google => 'Google';
+
+  @override
+  String get facebook => 'Facebook';
 
   @override
   String get option => 'Option';
@@ -85,15 +94,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get register_now => 'Jetzt registrieren';
 
   @override
-  String get or_login_with => 'Oder anmelden mit';
-
-  @override
-  String get google => 'Google';
-
-  @override
-  String get facebook => 'Facebook';
-
-  @override
   String get login_with_email => 'Mit E-Mail fortfahren';
 
   @override
@@ -103,17 +103,17 @@ class AppLocalizationsDe extends AppLocalizations {
   String get login_with_facebook => 'Mit Facebook anmelden';
 
   @override
-  String get no_account => 'Noch kein Konto?';
+  String get no_account => 'Haben Sie noch kein Konto?';
 
   @override
   String get create_account => 'Konto erstellen';
 
   @override
-  String get create_account_success => 'Account created successfully';
+  String get create_account_success => 'Konto erfolgreich erstellt';
 
   @override
   String get enter_code =>
-      'Geben Sie den 6-stelligen Verifizierungscode ein, den wir an Ihre E-Mail gesendet haben';
+      'Geben Sie den 6-stelligen Bestätigungscode ein, der an Ihre E-Mail gesendet wurde';
 
   @override
   String get resend_code_in => 'Code erneut senden in';
@@ -125,23 +125,23 @@ class AppLocalizationsDe extends AppLocalizations {
   String get resend_code => 'Code erneut senden';
 
   @override
-  String get password_rule =>
-      'Mindestens: 1 Großbuchstabe, 1 Zahl, 1 Sonderzeichen, 8 Zeichen';
-
-  @override
-  String get password_rule2 =>
-      'Ihr Passwort muss mindestens 8 Zeichen lang sein und Groß-/Kleinbuchstaben, Zahlen sowie Sonderzeichen (!\$@%) enthalten.';
-
-  @override
-  String get password_changed => 'Passwort wurde geändert';
-
-  @override
   String get reset_password_instruction =>
       'Geben Sie Ihre E-Mail-Adresse ein, um Ihr Passwort zurückzusetzen.';
 
   @override
   String get reset_password_note =>
-      'Falls diese E-Mail-Adresse bei uns registriert ist, erhalten Sie in Kürze eine Nachricht zum Zurücksetzen Ihres Passworts.';
+      'Falls diese E-Mail registriert ist, erhalten Sie innerhalb weniger Minuten eine Nachricht zum Zurücksetzen des Passworts.';
+
+  @override
+  String get password_rule =>
+      'Mindestens: 1 Großbuchstabe, 1 Zahl, 1 Sonderzeichen, 8 Zeichen';
+
+  @override
+  String get password_rule2 =>
+      'Ihr Passwort muss mindestens 8 Zeichen lang sein und Zahlen, Buchstaben sowie Sonderzeichen (!\$@%) enthalten.';
+
+  @override
+  String get password_changed => 'Passwort erfolgreich geändert';
 
   @override
   String get confirm => 'Bestätigen';
@@ -165,22 +165,19 @@ class AppLocalizationsDe extends AppLocalizations {
   String get account_information => 'Kontoinformationen';
 
   @override
-  String get security_settings => 'Sicherheit';
+  String get notifications => 'Benachrichtigungen';
 
   @override
   String get help_center => 'Hilfezentrum';
 
   @override
-  String get about_us => 'Über uns';
+  String get about_us => 'Über Akhbarna';
 
   @override
-  String get lang_english => 'Englisch';
+  String get lang_english => 'English';
 
   @override
   String get lang_arabic => 'Arabisch';
-
-  @override
-  String get notifications => 'Benachrichtigungen';
 
   @override
   String get light_mode => 'Heller Modus';
@@ -193,12 +190,6 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get logout => 'Abmelden';
-
-  @override
-  String get edit_profile => 'Profil bearbeiten';
-
-  @override
-  String get save_changes => 'Änderungen speichern';
 
   @override
   String get small => 'Klein';
@@ -219,34 +210,43 @@ class AppLocalizationsDe extends AppLocalizations {
   String get auto_simple => 'Automatisch';
 
   @override
-  String get auto_device => 'Automatisch (nach Geräteeinstellungen)';
+  String get auto_device => 'Automatisch (Geräteeinstellungen)';
+
+  @override
+  String get edit_profile => 'Profil bearbeiten';
+
+  @override
+  String get save_changes => 'Änderungen speichern';
+
+  @override
+  String get security_settings => 'Sicherheit';
 
   @override
   String get onboarding_title1 =>
-      'Bleiben Sie mit der Welt verbunden – direkt aus dem Herzen Ihres Landes.';
+      'Bleiben Sie mit der Welt verbunden – direkt aus Ihrem Land.';
 
   @override
   String get onboarding_desc1 =>
-      'Erhalten Sie die neuesten Nachrichten aus vertrauenswürdigen Quellen';
+      'Erhalten Sie die neuesten Nachrichten aus vertrauenswürdigen Quellen.';
 
   @override
   String get onboarding_title2 =>
-      'Jede Nachricht, die Sie interessiert, liefern wir Ihnen schnell.';
+      'Alle Nachrichten, die Sie interessieren, schnell geliefert.';
 
   @override
-  String get onboarding_desc2 => 'Alle Details liegen in Ihren Händen.';
+  String get onboarding_desc2 => 'Alle Details direkt zur Hand.';
 
   @override
   String get onboarding_title3 =>
-      'Erleben Sie Nachrichten mit authentischem arabischem Flair.';
+      'Erleben Sie authentische arabische Nachrichten.';
 
   @override
   String get onboarding_desc3 =>
-      'Nachrichten direkt von der Straße – echt und lebendig.';
+      'Nachrichten direkt von der Straße mit echten Geschichten.';
 
   @override
   String get onboarding_title4 =>
-      'Von Kunst bis Politik – alles finden Sie in «Akhbarna».';
+      'Von Unterhaltung bis Politik – alles in Akhbarna.';
 
   @override
   String get onboarding_skip => 'Überspringen';
@@ -255,18 +255,15 @@ class AppLocalizationsDe extends AppLocalizations {
   String get next => 'Weiter';
 
   @override
-  String get choose_language => 'Sprache wählen';
-
-  @override
   String get fav_language =>
-      'Wählen Sie unten Ihre bevorzugte Sprache. Das hilft uns, Sie besser zu betreuen.';
+      'Wählen Sie unten Ihre bevorzugte Sprache aus. Dies hilft uns, Sie besser zu bedienen.';
 
   @override
   String get choose_interests => 'Wählen Sie Ihre Interessen';
 
   @override
   String get choose_interests_desc =>
-      'Wählen Sie die Themen aus, die Sie interessieren. Akhbarna liefert Ihnen dann die wichtigsten Nachrichten. Wählen Sie mindestens 3.';
+      'Wählen Sie die Themen, die Sie interessieren, und lassen Sie Akhbarna Ihnen die wichtigsten Nachrichten liefern. Wählen Sie mindestens 3 aus.';
 
   @override
   String get select_min_3_interests => 'Wählen Sie mindestens 3 Interessen aus';
@@ -275,17 +272,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String get account_ready => 'Ihr Konto ist bereit,';
 
   @override
-  String get lets_start => 'Los geht’s!';
+  String get lets_start => 'Los geht\'s!';
 
   @override
-  String get agree_to => 'Ich stimme zu den';
+  String get agree_to => 'Ich stimme den';
 
   @override
-  String get terms_and_conditions => 'Allgemeinen Geschäftsbedingungen';
+  String get terms_and_conditions => ' Nutzungsbedingungen ';
 
   @override
-  String get privacy_policy_and_pricing =>
-      'sowie der Datenschutzerklärung und den Preisen';
+  String get privacy_policy_and_pricing => 'und der Datenschutzrichtlinie zu';
 
   @override
   String get discover_news => 'Nachrichten entdecken';
@@ -300,6 +296,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get step_continue => 'Weiter';
 
   @override
+  String get choose_language => 'Sprache auswählen';
+
+  @override
   String get search_country => 'Suchen Sie Ihr Land';
 
   @override
@@ -309,30 +308,30 @@ class AppLocalizationsDe extends AppLocalizations {
   String get choose_sources => 'Nachrichtenquellen auswählen';
 
   @override
-  String get select_min_interests => 'Wählen Sie mindestens ein Interesse';
+  String get select_min_interests => 'Wählen Sie mindestens ein Interesse aus';
 
   @override
   String get choose_country => 'Wählen Sie Ihr Land';
 
   @override
-  String get please_select_country => 'Bitte wählen Sie Ihr Land aus';
+  String get please_select_country => 'Bitte wählen Sie ein Land aus';
 
   @override
-  String get terms_1_title => 'Nutzung der App';
+  String get terms_1_title => 'Nutzung der Anwendung';
 
   @override
   String get terms_1_desc =>
-      'Diese App bietet Nachrichten- und Informationsinhalte. Mit der Nutzung stimmen Sie zu, die App rechtmäßig und ohne Missbrauch zu verwenden.';
+      'Diese Anwendung bietet Nachrichten- und Medieninhalte. Mit der Nutzung der Anwendung stimmen Sie einer rechtmäßigen Nutzung zu und verpflichten sich, sie nicht zu missbrauchen.';
 
   @override
   String get terms_2_title => 'Datenschutz';
 
   @override
   String get terms_2_desc =>
-      'Wir respektieren Ihre Privatsphäre und verpflichten uns, Ihre persönlichen Daten zu schützen. Die Daten werden ausschließlich zur Verbesserung Ihrer Nutzererfahrung verwendet.';
+      'Wir respektieren Ihre Privatsphäre und verpflichten uns, Ihre personenbezogenen Daten zu schützen. Informationen werden nur verwendet, um die Benutzererfahrung zu verbessern.';
 
   @override
-  String get terms_3_title => 'Persönliche Daten';
+  String get terms_3_title => 'Personenbezogene Daten';
 
   @override
   String get terms_3_desc =>
@@ -343,28 +342,28 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get terms_4_desc =>
-      'Nachrichten und Artikel stammen aus verschiedenen Quellen. Wir übernehmen keine vollständige Verantwortung für die Genauigkeit externer Inhalte.';
+      'Nachrichten und Artikel werden aus verschiedenen Quellen gesammelt. Für die Richtigkeit externer Inhalte übernehmen wir keine vollständige Verantwortung.';
 
   @override
   String get terms_5_title => 'Aktualisierungen';
 
   @override
   String get terms_5_desc =>
-      'Wir können diese Bedingungen von Zeit zu Zeit aktualisieren und werden Sie über wichtige Änderungen in der App informieren.';
+      'Wir können diese Bedingungen von Zeit zu Zeit aktualisieren. Nutzer werden über wichtige Änderungen innerhalb der Anwendung informiert.';
 
   @override
   String get terms_6_title => 'Zustimmung';
 
   @override
   String get terms_6_desc =>
-      'Durch die Nutzung der App stimmen Sie allen oben genannten Bedingungen zu.';
+      'Durch die Nutzung dieser Anwendung stimmen Sie allen oben genannten Bedingungen zu.';
 
   @override
-  String get logout_confirm_title => 'Möchten Sie sich wirklich abmelden?';
+  String get logout_confirm_title =>
+      'Sind Sie sicher, dass Sie sich abmelden möchten?';
 
   @override
-  String get logout_confirm_message =>
-      'Sie müssen sich danach erneut anmelden.';
+  String get logout_confirm_message => 'Sie müssen sich erneut anmelden.';
 
   @override
   String get cancel => 'Abbrechen';
@@ -376,43 +375,40 @@ class AppLocalizationsDe extends AppLocalizations {
   String get location => 'Standort';
 
   @override
-  String get about_app_title => 'Über Akhbarna';
+  String get about_app_title => 'Über die Akhbarna-App';
 
   @override
   String get about_app_description =>
-      'Akhbarna ist eine moderne Nachrichtenplattform, die aktuelle, zuverlässige und leicht zugängliche Nachrichten bietet.';
+      'Akhbarna ist eine moderne Nachrichtenplattform, die Nachrichten schnell, zuverlässig und leicht zugänglich bereitstellt.';
 
   @override
   String get about_app_coverage =>
-      'Wir decken die wichtigsten lokalen und internationalen Ereignisse in Bereichen wie Politik, Wirtschaft, Sport und Technologie ab.';
+      'Wir berichten über die wichtigsten lokalen und internationalen Ereignisse in Bereichen wie Politik, Wirtschaft, Sport und Technologie.';
 
   @override
   String get about_app_experience =>
-      'Die App zeichnet sich durch eine einfache und flüssige Bedienung aus, mit der Sie jederzeit und überall auf dem Laufenden bleiben – mit Echtzeit-Updates.';
+      'Die App bietet eine einfache und reibungslose Benutzererfahrung, sodass Nutzer jederzeit und überall Nachrichten verfolgen können, mit Echtzeit-Updates zu wichtigen Ereignissen.';
 
   @override
   String get our_goal => 'Unser Ziel';
 
   @override
-  String get goal_1 =>
-      'Zuverlässige und genaue Nachrichteninhalte bereitzustellen';
+  String get goal_1 => 'Präzise und zuverlässige Nachrichten bereitstellen';
 
   @override
-  String get goal_2 =>
-      'Den Zugang zu Informationen für den Nutzer zu vereinfachen';
+  String get goal_2 => 'Den Zugang zu Informationen vereinfachen';
 
   @override
-  String get goal_3 =>
-      'Nachrichten übersichtlich und lesefreundlich darzustellen';
+  String get goal_3 => 'Nachrichten übersichtlich und leicht lesbar darstellen';
 
   @override
-  String get goal_4 => 'Immer auf dem neuesten Stand der Ereignisse zu sein';
+  String get goal_4 => 'Immer auf dem neuesten Stand bleiben';
 
   @override
   String get app_features => 'App-Funktionen';
 
   @override
-  String get feature_1 => 'Kontinuierliche Nachrichtenaktualisierung';
+  String get feature_1 => 'Kontinuierliche Nachrichtenaktualisierungen';
 
   @override
   String get feature_2 => 'Vielfältige Nachrichtenkategorien';
@@ -421,7 +417,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get feature_3 => 'Einfache und schnelle Benutzeroberfläche';
 
   @override
-  String get feature_4 => 'Suche nach Nachrichten';
+  String get feature_4 => 'Möglichkeit zur Nachrichtensuche';
 
   @override
   String get feature_5 => 'Angenehmes Leseerlebnis';
@@ -431,8 +427,258 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get vision_description =>
-      'Wir möchten die vertrauenswürdige Anlaufstelle für tägliche Nachrichten werden und Ihnen helfen, stets informiert zu bleiben – einfach und effektiv.';
+      'Wir möchten eine vertrauenswürdige Quelle für tägliche Nachrichten sein und Nutzern helfen, auf einfache und effektive Weise informiert zu bleiben.';
 
   @override
-  String get now => 'Now';
+  String get now => 'Jetzt';
+
+  @override
+  String get time_minute => 'Minute';
+
+  @override
+  String get time_hour => 'Stunde';
+
+  @override
+  String get time_day => 'Tag';
+
+  @override
+  String get view_all => 'Alle anzeigen';
+
+  @override
+  String get message => 'Nachricht';
+
+  @override
+  String get failed_register => 'Registrierung fehlgeschlagen';
+
+  @override
+  String get failed_save_token => 'Token konnte nicht gespeichert werden';
+
+  @override
+  String get failed_get_token => 'Token konnte nicht abgerufen werden';
+
+  @override
+  String get bookmarks => 'Lesezeichen';
+
+  @override
+  String get no_articles_yet => 'Noch keine Artikel vorhanden';
+
+  @override
+  String get save_favorite_articles =>
+      'Speichern Sie Ihre Lieblingsartikel und seien Sie\njederzeit der Erste, der sie liest';
+
+  @override
+  String get browse_news_to_save => 'Nachrichten zum Speichern durchsuchen';
+
+  @override
+  String get failed_load_matches => 'Spiele konnten nicht geladen werden';
+
+  @override
+  String get failed_load_category_news =>
+      'Kategorienachrichten konnten nicht geladen werden';
+
+  @override
+  String get good_morning_news => 'Guten Morgen\nHier sind einige Nachrichten';
+
+  @override
+  String get no_news_for_category =>
+      'Für diese Kategorie sind keine Nachrichten verfügbar';
+
+  @override
+  String get available_news_count => 'Verfügbare Nachrichten';
+
+  @override
+  String get sports => 'Sport';
+
+  @override
+  String get technology => 'Technologie';
+
+  @override
+  String get politics => 'Politik';
+
+  @override
+  String get economy => 'Wirtschaft';
+
+  @override
+  String get health => 'Gesundheit';
+
+  @override
+  String get entertainment => 'Unterhaltung';
+
+  @override
+  String get science => 'Wissenschaft';
+
+  @override
+  String get world => 'Welt';
+
+  @override
+  String get failed_load_weather => 'Wetterdaten konnten nicht geladen werden';
+
+  @override
+  String get error => 'Fehler';
+
+  @override
+  String get failed_load_breaking_news =>
+      'Eilmeldungen konnten nicht geladen werden';
+
+  @override
+  String get failed_load_most_read_news =>
+      'Meistgelesene Nachrichten konnten nicht geladen werden';
+
+  @override
+  String get failed_load_latest_news =>
+      'Neueste Nachrichten konnten nicht geladen werden';
+
+  @override
+  String get failed_load_trending_news =>
+      'Trendnachrichten konnten nicht geladen werden';
+
+  @override
+  String get failed_search_articles => 'Suche nach Artikeln fehlgeschlagen';
+
+  @override
+  String get keyword => 'Schlüsselwort';
+
+  @override
+  String get top => 'Top';
+
+  @override
+  String get no_notifications => 'Keine Benachrichtigungen';
+
+  @override
+  String get top_matches => '⚽ Top-Spiele';
+
+  @override
+  String get trending_news => '🔥 Im Trend';
+
+  @override
+  String get latest_news => '🕐 Neueste Nachrichten';
+
+  @override
+  String get most_read_news => '📖 Meistgelesen';
+
+  @override
+  String get english_short => 'en';
+
+  @override
+  String get read_full_article => 'Vollständigen Artikel lesen';
+
+  @override
+  String get share_article_text =>
+      'Lesen Sie diesen Artikel in der Akhbarna News App';
+
+  @override
+  String get international => 'International';
+
+  @override
+  String get most_read => 'Meistgelesen';
+
+  @override
+  String get most_trending => 'Am meisten im Trend';
+
+  @override
+  String get trend => 'Trend';
+
+  @override
+  String get breaking => 'Eilmeldung';
+
+  @override
+  String get settings => 'Einstellungen';
+
+  @override
+  String get sources => 'Quellen';
+
+  @override
+  String get ago => 'vor';
+
+  @override
+  String get thousand_short => 'Tsd.';
+
+  @override
+  String get million_short => 'Mio.';
+
+  @override
+  String get read_more => 'Mehr lesen...';
+
+  @override
+  String get five_minutes_ago => 'Vor 5 Minuten';
+
+  @override
+  String get clear_notifications_confirm =>
+      'Sind Sie sicher, dass Sie alle Benachrichtigungen löschen möchten?';
+
+  @override
+  String get notifications_cleared_success =>
+      'Benachrichtigungen erfolgreich gelöscht';
+
+  @override
+  String get no_results_found => 'Keine Ergebnisse gefunden';
+
+  @override
+  String get latest => 'Neueste Nachrichten';
+
+  @override
+  String get dark => 'Dunkel';
+
+  @override
+  String get appearance => 'Erscheinungsbild';
+
+  @override
+  String get theme_mode => 'Modus';
+
+  @override
+  String get choose_theme => 'App-Design auswählen';
+
+  @override
+  String get automatic => 'Automatisch';
+
+  @override
+  String get system_default => 'Gemäß Geräteeinstellungen';
+
+  @override
+  String get account => 'Konto';
+
+  @override
+  String get profile_info => 'Name, E-Mail, Profilbild';
+
+  @override
+  String get preferences => 'Einstellungen';
+
+  @override
+  String get preferences_desc => 'Design, Schriftgröße, Quellen';
+
+  @override
+  String get support => 'Support';
+
+  @override
+  String get faq => 'Häufig gestellte Fragen';
+
+  @override
+  String get app_version => 'Version 1.0.0';
+
+  @override
+  String get no_internet_connection => 'Keine Internetverbindung';
+
+  @override
+  String get internet_restored => 'Internetverbindung wiederhergestellt';
+
+  @override
+  String get home => 'Startseite';
+
+  @override
+  String get category => 'Kategorien';
+
+  @override
+  String get bookmark => 'Lesezeichen';
+
+  @override
+  String get profile => 'Profil';
+
+  @override
+  String get email_already_exists => 'E-Mail-Adresse existiert bereits';
+
+  @override
+  String get failed_login_message => 'Anmeldung fehlgeschlagen';
+
+  @override
+  String get server_error => 'Serverfehler';
 }

@@ -19,10 +19,18 @@ class SelectCategory extends StatefulWidget {
 }
 
 class _SelectCategoryState extends State<SelectCategory> {
+  late List<CategoryModel> categories;
+  bool initialized = false;
+
   @override
-  void initState() {
-    super.initState();
-    loadSavedCategories();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (!initialized) {
+      categories = CategoryModel.categories(context);
+      initialized = true;
+      loadSavedCategories();
+    }
   }
 
   @override
@@ -30,6 +38,7 @@ class _SelectCategoryState extends State<SelectCategory> {
     TextTheme textTheme = Theme.of(context).textTheme;
     Color shadowColor = Theme.of(context).shadowColor;
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+
     return Scaffold(
       extendBody: true,
       resizeToAvoidBottomInset: true,
@@ -44,15 +53,18 @@ class _SelectCategoryState extends State<SelectCategory> {
                   height: 30,
                   color: shadowColor,
                 ),
+
                 Text(
                   appLocalizations.choose_interests_desc,
                   style: textTheme.labelSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+
                 SizedBox(height: 20.h),
+
                 CategoryGridWidget(
-                  categories: CategoryModel.categories,
+                  categories: categories,
                   onTap: toggleCategory,
                 ),
               ],
@@ -72,38 +84,50 @@ class _SelectCategoryState extends State<SelectCategory> {
 
   void toggleCategory(int index) async {
     setState(() {
-      CategoryModel.categories[index].isSelected =
-          !CategoryModel.categories[index].isSelected;
+      categories[index].isSelected =
+      !categories[index].isSelected;
     });
 
-    final selectedNames = CategoryModel.categories
+    final selectedNames = categories
         .where((e) => e.isSelected)
         .map((e) => e.name)
         .toList();
 
-    await CategoryPrefsService.saveSelectedCategories(selectedNames);
+    await CategoryPrefsService.saveSelectedCategories(
+      selectedNames,
+    );
   }
 
   void onNext() {
-    final selected = CategoryModel.categories.where((e) => e.isSelected).length;
+    final selected =
+        categories.where((e) => e.isSelected).length;
 
     if (selected < 3) {
       UiUtils.showToast(
         context,
-        AppLocalizations.of(context)!.select_min_3_interests,
+        AppLocalizations.of(context)!
+            .select_min_3_interests,
         ColorsManagers.vividTangerine,
       );
       return;
     }
-    Navigator.pushNamed(context, RoutesManager.start);
+
+    Navigator.pushNamed(
+      context,
+      RoutesManager.start,
+    );
   }
 
   void loadSavedCategories() async {
-    final saved = await CategoryPrefsService.getSelectedCategories();
+    final saved =
+    await CategoryPrefsService.getSelectedCategories();
+
+    if (!mounted) return;
 
     setState(() {
-      for (var category in CategoryModel.categories) {
-        category.isSelected = saved.contains(category.name);
+      for (var category in categories) {
+        category.isSelected =
+            saved.contains(category.name);
       }
     });
   }

@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:akhbarna/l10n/app_localizations.dart';
+
 import '../core/resources/assets_managers.dart';
 
 class CategoryTabModel {
@@ -11,53 +14,57 @@ class CategoryTabModel {
     required this.title,
   });
 
-  static List<CategoryTabModel> categories = [
-    CategoryTabModel(
-      id: "دولي",
-      imagePath: CategoryTabImageManagers.international,
-      title: "دولي",
-    ),
+  static List<CategoryTabModel> categories(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
 
-    CategoryTabModel(
-      id: "رياضة",
-      imagePath: CategoryTabImageManagers.sport,
-      title: "رياضة",
-    ),
+    return [
+      CategoryTabModel(
+        id: "دولي",
+        imagePath: CategoryTabImageManagers.international,
+        title: l10n.international,
+      ),
 
-    CategoryTabModel(
-      id: "اقتصاد",
-      imagePath: CategoryTabImageManagers.economy,
-      title: "اقتصاد",
-    ),
+      CategoryTabModel(
+        id: "رياضة",
+        imagePath: CategoryTabImageManagers.sport,
+        title: l10n.sports,
+      ),
 
-    CategoryTabModel(
-      id: "سياسة",
-      imagePath: CategoryTabImageManagers.politics,
-      title: "سياسة",
-    ),
+      CategoryTabModel(
+        id: "اقتصاد",
+        imagePath: CategoryTabImageManagers.economy,
+        title: l10n.economy,
+      ),
 
-    CategoryTabModel(
-      id: "تكنولوجيا",
-      imagePath: CategoryTabImageManagers.technology,
-      title: "تكنولوجيا",
-    ),
+      CategoryTabModel(
+        id: "سياسة",
+        imagePath: CategoryTabImageManagers.politics,
+        title: l10n.politics,
+      ),
 
-    CategoryTabModel(
-      id: "صحة",
-      imagePath: CategoryTabImageManagers.health,
-      title: "الصحة",
-    ),
+      CategoryTabModel(
+        id: "تكنولوجيا",
+        imagePath: CategoryTabImageManagers.technology,
+        title: l10n.technology,
+      ),
 
-    CategoryTabModel(
-      id: "فن",
-      imagePath: CategoryTabImageManagers.entertainment,
-      title: "ترفيه",
-    ),
+      CategoryTabModel(
+        id: "صحة",
+        imagePath: CategoryTabImageManagers.health,
+        title: l10n.health,
+      ),
 
-    CategoryTabModel(
-      id: "علوم",
-      imagePath: CategoryTabImageManagers.sciences,
-      title: "علوم",
-    ),
-  ];
+      CategoryTabModel(
+        id: "فن",
+        imagePath: CategoryTabImageManagers.entertainment,
+        title: l10n.entertainment,
+      ),
+
+      CategoryTabModel(
+        id: "علوم",
+        imagePath: CategoryTabImageManagers.sciences,
+        title: l10n.science,
+      ),
+    ];
+  }
 }

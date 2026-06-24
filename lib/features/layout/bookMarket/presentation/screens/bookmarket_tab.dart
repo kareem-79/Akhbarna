@@ -1,13 +1,13 @@
 import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/resources/routes_managers.dart';
 import 'package:akhbarna/core/widget/custom_elevated_button.dart';
+import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/resources/assets_managers.dart';
 import '../../../../../provider/book_market_provider.dart';
-import '../../../home/presentation/widget/breaking_widget/breaking_news_item_widget.dart';
 import '../widget/book_market_header_widget.dart';
 
 class BookMarketTab extends StatelessWidget {
@@ -20,7 +20,7 @@ class BookMarketTab extends StatelessWidget {
 
     final provider = Provider.of<BookmarkProvider>(context);
     final bookmarks = provider.bookmarks;
-
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
       extendBody: true,
       body: Column(
@@ -46,14 +46,14 @@ class BookMarketTab extends StatelessWidget {
                           SizedBox(height: 8.h),
                           Center(
                             child: Text(
-                              "لا يوجد مقالات بعد",
+                              appLocalizations.no_articles_yet,
                               style: textTheme.bodyMedium,
                             ),
                           ),
                           SizedBox(height: 8.h),
                           Center(
                             child: Text(
-                              "احفظ مقالاتك المفضلة وكن \nأول من يقرأها في أي وقت",
+                              appLocalizations.save_favorite_articles,
                               style: textTheme.bodySmall?.copyWith(
                                 color: ColorsManagers.gray3,
                               ),
@@ -67,7 +67,7 @@ class BookMarketTab extends StatelessWidget {
                                 RoutesManager.topNews,
                               );
                             },
-                            text: "استعرض الأخبار للحفظ",
+                            text: appLocalizations.browse_news_to_save,
                             foregroundColor: ColorsManagers.white,
                             backgroundColor: ColorsManagers.red,
                           ),

@@ -4,7 +4,9 @@ import 'package:akhbarna/features/layout/profile/presentation/screens/logout/pre
 import 'package:akhbarna/features/layout/profile/presentation/widget/custom_blur_bottom_sheet.dart';
 import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_launcher_icons/xml_templates.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../core/prefs_manager/location_prefs_manager.dart';
 import '../../../../../core/prefs_manager/prefs_manager.dart';
 import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../core/resources/routes_managers.dart';
@@ -23,11 +25,21 @@ class ProfileTab extends StatefulWidget {
 
 class _ProfileTabState extends State<ProfileTab> {
   String? _profileImagePath;
+  String _country = "";
 
   @override
   void initState() {
     super.initState();
     _profileImagePath = PrefsManager.getProfileImage();
+    loadCountry();
+  }
+
+  Future<void> loadCountry() async {
+    _country = await LocationPrefsService.getSelectedCountry() ?? "Egypt";
+
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
@@ -52,7 +64,7 @@ class _ProfileTabState extends State<ProfileTab> {
                 children: [ArrowBackWidget()],
               ),
               SizedBox(height: 20.h),
-              Text("الإعدادات", style: textTheme.bodyMedium),
+              Text(appLocalizations.settings, style: textTheme.bodyMedium),
               SizedBox(height: 24.h),
               Container(
                 padding: EdgeInsets.all(16.r),
@@ -91,9 +103,9 @@ class _ProfileTabState extends State<ProfileTab> {
                           ),
                           SizedBox(height: 4.h),
                           Text(
-                            "Egypt",
+                            _country,
                             style: textTheme.bodySmall?.copyWith(
-                              color: Colors.grey,
+                              color: ColorsManagers.gray3,
                             ),
                           ),
                         ],
@@ -112,8 +124,10 @@ class _ProfileTabState extends State<ProfileTab> {
               SizedBox(height: 28.h),
 
               Text(
-                "الحساب",
-                style: textTheme.bodySmall?.copyWith(color: Colors.grey),
+                appLocalizations.account,
+                style: textTheme.bodySmall?.copyWith(
+                  color: ColorsManagers.gray3,
+                ),
               ),
 
               SizedBox(height: 10.h),
@@ -122,7 +136,7 @@ class _ProfileTabState extends State<ProfileTab> {
                 children: [
                   SettingsTileWidget(
                     title: appLocalizations.account_information,
-                    subtitle: "الاسم، البريد، الصورة",
+                    subtitle: appLocalizations.profile_info,
                     icon: Icons.person_outline,
                     iconColor: ColorsManagers.azureRadiance,
                     iconBackgroundColor: ColorsManagers.azureRadiance
@@ -162,8 +176,10 @@ class _ProfileTabState extends State<ProfileTab> {
 
               SizedBox(height: 24.h),
               Text(
-                "التفضيلات",
-                style: textTheme.bodySmall?.copyWith(color: Colors.grey),
+                appLocalizations.preferences,
+                style: textTheme.bodySmall?.copyWith(
+                  color: ColorsManagers.gray3,
+                ),
               ),
 
               SizedBox(height: 10.h),
@@ -172,7 +188,7 @@ class _ProfileTabState extends State<ProfileTab> {
                 children: [
                   SettingsTileWidget(
                     title: appLocalizations.general_settings,
-                    subtitle: "المظهر، حجم الخط، المصادر",
+                    subtitle: appLocalizations.preferences_desc,
                     icon: Icons.settings_outlined,
                     iconColor: ColorsManagers.yellowDark,
                     iconBackgroundColor: ColorsManagers.yellowLight,
@@ -187,7 +203,7 @@ class _ProfileTabState extends State<ProfileTab> {
                   SwitchListTile(
                     value: true,
                     onChanged: (value) {},
-                    activeColor: Colors.red,
+                    activeColor: ColorsManagers.red,
                     title: Text(
                       appLocalizations.notifications,
                       style: textTheme.bodySmall?.copyWith(
@@ -229,8 +245,10 @@ class _ProfileTabState extends State<ProfileTab> {
 
               SizedBox(height: 24.h),
               Text(
-                "الدعم",
-                style: textTheme.bodySmall?.copyWith(color: Colors.grey),
+                appLocalizations.support,
+                style: textTheme.bodySmall?.copyWith(
+                  color: ColorsManagers.gray3,
+                ),
               ),
 
               SizedBox(height: 10.h),
@@ -238,7 +256,7 @@ class _ProfileTabState extends State<ProfileTab> {
               SettingsSectionWidget(
                 children: [
                   SettingsTileWidget(
-                    title: "الاسئلة الشائعة",
+                    title: appLocalizations.faq,
                     icon: Icons.help_outline,
                     iconColor: ColorsManagers.mintDark,
                     iconBackgroundColor: ColorsManagers.mintLight,
@@ -248,7 +266,7 @@ class _ProfileTabState extends State<ProfileTab> {
 
                   SettingsTileWidget(
                     title: appLocalizations.about_us,
-                    subtitle: "Version 1.0.0",
+                    subtitle: appLocalizations.app_version,
                     icon: Icons.info_outline,
                     iconColor: ColorsManagers.skyBlueDark,
                     iconBackgroundColor: ColorsManagers.skyBlueLight,

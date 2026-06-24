@@ -7,6 +7,7 @@ import 'package:akhbarna/features/layout/home/presentation/widget/home_widget/ho
 import 'package:akhbarna/features/layout/home/presentation/widget/most_read_widget/most_read_news_item_widget.dart';
 import 'package:akhbarna/features/layout/home/presentation/widget/top_news_widget/top_news_item_widget.dart';
 import 'package:akhbarna/features/layout/home/presentation/widget/weather_widget/weather_widget.dart';
+import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -82,7 +83,7 @@ class _HomeTapState extends State<HomeTap> with AutomaticKeepAliveClientMixin {
   Widget build(BuildContext context) {
     super.build(context);
     final Color bg = Theme.of(context).scaffoldBackgroundColor;
-    final TextTheme textTheme = Theme.of(context).textTheme;
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
       body: Column(
         children: [
@@ -151,7 +152,7 @@ class _HomeTapState extends State<HomeTap> with AutomaticKeepAliveClientMixin {
                               if (homeTabModel.id == '2') {
                                 Navigator.pushNamed(
                                   context,
-                                  RoutesManager.trendingNews,
+                                  RoutesManager.mostRead,
                                 );
                               } else if (homeTabModel.id == '3') {
                                 Navigator.pushNamed(
@@ -251,7 +252,7 @@ class _HomeTapState extends State<HomeTap> with AutomaticKeepAliveClientMixin {
                         child: Column(
                           children: [
                             SectionHeaderWidget(
-                              title: "⚽ أبرز المباريات",
+                              title: appLocalizations.top_matches,
                               onViewAll: () {
                                 showGeneralDialog(
                                   transitionDuration: const Duration(
@@ -315,7 +316,7 @@ class _HomeTapState extends State<HomeTap> with AutomaticKeepAliveClientMixin {
                         child: Column(
                           children: [
                             SectionHeaderWidget(
-                              title: "🔥 الأكثر تداولاً",
+                              title: appLocalizations.trending_news,
                               onViewAll: () {
                                 Navigator.pushNamed(
                                   context,
@@ -399,7 +400,7 @@ class _HomeTapState extends State<HomeTap> with AutomaticKeepAliveClientMixin {
                         child: Column(
                           children: [
                             SectionHeaderWidget(
-                              title: "🕐 آخر الأخبار",
+                              title: appLocalizations.latest_news,
                               onViewAll: () {
                                 Navigator.pushNamed(
                                   context,
@@ -458,7 +459,7 @@ class _HomeTapState extends State<HomeTap> with AutomaticKeepAliveClientMixin {
                           SizedBox(height: 10.h),
 
                           SectionHeaderWidget(
-                            title: "📖 الاكثر قراءة",
+                            title: appLocalizations.most_read_news,
                             onViewAll: () {
                               Navigator.pushNamed(
                                 context,

@@ -9,13 +9,13 @@ class AppLocalizationsNl extends AppLocalizations {
   AppLocalizationsNl([String locale = 'nl']) : super(locale);
 
   @override
-  String get welcome_title => 'De wereld in nieuws';
+  String get welcome_title => 'De wereld in één nieuwsbericht';
 
   @override
-  String get welcome_back => 'Welkom, log in';
+  String get welcome_back => 'Welkom terug, log in';
 
   @override
-  String get signup => 'Registreren';
+  String get signup => 'Nieuw account aanmaken';
 
   @override
   String get login => 'Inloggen';
@@ -33,7 +33,16 @@ class AppLocalizationsNl extends AppLocalizations {
   String get name_required => 'Voer uw naam in';
 
   @override
-  String get name_min => 'Gebruikersnaam moet minstens 6 tekens bevatten';
+  String get location_required => 'Voer uw locatie in';
+
+  @override
+  String get profile_updated_success => 'Profiel succesvol bijgewerkt';
+
+  @override
+  String get search => 'Zoeken.....';
+
+  @override
+  String get name_min => 'De naam moet minimaal 6 tekens bevatten';
 
   @override
   String get email_required => 'Voer uw e-mailadres in';
@@ -48,40 +57,19 @@ class AppLocalizationsNl extends AppLocalizations {
   String get forgot_password => 'Wachtwoord vergeten?';
 
   @override
-  String get otp_required => 'Voer de volledige 6-cijferige verificatiecode in';
-
-  @override
-  String get passwords_not_match => 'Wachtwoorden komen niet overeen';
-
-  @override
-  String get location_required => 'Voer uw locatie in';
-
-  @override
-  String get profile_updated_success => 'Profiel succesvol bijgewerkt';
-
-  @override
-  String get search => 'Zoeken...';
+  String get verify_account => 'Account verifiëren';
 
   @override
   String get login_success => 'Succesvol ingelogd';
 
   @override
-  String get failed_login => 'Failed to Login.';
+  String get failed_login => 'Inloggen mislukt.';
 
   @override
-  String get verify_account => 'Account verifiëren';
+  String get otp_required => 'Voer de volledige verificatiecode in';
 
   @override
-  String get option => 'Optie';
-
-  @override
-  String get register => 'Registreren';
-
-  @override
-  String get login_simple => 'Inloggen';
-
-  @override
-  String get register_now => 'Nu registreren';
+  String get passwords_not_match => 'Wachtwoorden komen niet overeen';
 
   @override
   String get or_login_with => 'Of log in met';
@@ -93,6 +81,18 @@ class AppLocalizationsNl extends AppLocalizations {
   String get facebook => 'Facebook';
 
   @override
+  String get option => 'Optie';
+
+  @override
+  String get register => 'Registreren';
+
+  @override
+  String get login_simple => 'Inloggen';
+
+  @override
+  String get register_now => 'Registreer nu';
+
+  @override
   String get login_with_email => 'Doorgaan met e-mail';
 
   @override
@@ -102,45 +102,45 @@ class AppLocalizationsNl extends AppLocalizations {
   String get login_with_facebook => 'Inloggen met Facebook';
 
   @override
-  String get no_account => 'Nog geen account?';
+  String get no_account => 'Heeft u geen account?';
 
   @override
   String get create_account => 'Account aanmaken';
 
   @override
-  String get create_account_success => 'Account created successfully';
+  String get create_account_success => 'Account succesvol aangemaakt';
 
   @override
   String get enter_code =>
-      'Voer de 6-cijferige verificatiecode in die naar uw e-mail is gestuurd';
+      'Voer de 6-cijferige verificatiecode in die naar uw e-mail is verzonden';
 
   @override
-  String get resend_code_in => 'Code opnieuw versturen over';
+  String get resend_code_in => 'Code opnieuw verzenden over';
 
   @override
-  String get seconds => 's';
+  String get seconds => 'sec';
 
   @override
-  String get resend_code => 'Code opnieuw versturen';
-
-  @override
-  String get password_rule =>
-      'Minimum: 1 hoofdletter, 1 cijfer, 1 symbool, 8 tekens';
-
-  @override
-  String get password_rule2 =>
-      'Uw wachtwoord moet minstens 8 tekens lang zijn en hoofdletters, kleine letters, cijfers en symbolen (!\$@%) bevatten.';
-
-  @override
-  String get password_changed => 'Wachtwoord succesvol gewijzigd';
+  String get resend_code => 'Code opnieuw verzenden';
 
   @override
   String get reset_password_instruction =>
-      'Voer uw e-mailadres in om uw wachtwoord te resetten.';
+      'Voer uw e-mailadres in om uw wachtwoord opnieuw in te stellen.';
 
   @override
   String get reset_password_note =>
-      'Als dit e-mailadres bij ons geregistreerd is, ontvangt u binnen enkele minuten een bericht om uw wachtwoord te resetten.';
+      'Als dit e-mailadres geregistreerd is, ontvangt u binnen enkele minuten een bericht om uw wachtwoord opnieuw in te stellen.';
+
+  @override
+  String get password_rule =>
+      'Minimaal: 1 hoofdletter, 1 cijfer, 1 symbool, 8 tekens';
+
+  @override
+  String get password_rule2 =>
+      'Uw wachtwoord moet minimaal 8 tekens bevatten en bestaan uit cijfers, letters en speciale tekens (!\$@%)';
+
+  @override
+  String get password_changed => 'Wachtwoord succesvol gewijzigd';
 
   @override
   String get confirm => 'Bevestigen';
@@ -164,22 +164,19 @@ class AppLocalizationsNl extends AppLocalizations {
   String get account_information => 'Accountinformatie';
 
   @override
-  String get security_settings => 'Beveiliging';
+  String get notifications => 'Meldingen';
 
   @override
   String get help_center => 'Helpcentrum';
 
   @override
-  String get about_us => 'Over ons';
+  String get about_us => 'Over Akhbarna';
 
   @override
-  String get lang_english => 'Engels';
+  String get lang_english => 'English';
 
   @override
   String get lang_arabic => 'Arabisch';
-
-  @override
-  String get notifications => 'Meldingen';
 
   @override
   String get light_mode => 'Lichte modus';
@@ -194,16 +191,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get logout => 'Uitloggen';
 
   @override
-  String get edit_profile => 'Profiel bewerken';
-
-  @override
-  String get save_changes => 'Wijzigingen opslaan';
-
-  @override
   String get small => 'Klein';
 
   @override
-  String get medium => 'Middel';
+  String get medium => 'Gemiddeld';
 
   @override
   String get large => 'Groot';
@@ -218,7 +209,16 @@ class AppLocalizationsNl extends AppLocalizations {
   String get auto_simple => 'Automatisch';
 
   @override
-  String get auto_device => 'Automatisch (volgens apparaatinstellingen)';
+  String get auto_device => 'Automatisch (apparaatinstellingen)';
+
+  @override
+  String get edit_profile => 'Profiel bewerken';
+
+  @override
+  String get save_changes => 'Wijzigingen opslaan';
+
+  @override
+  String get security_settings => 'Beveiliging';
 
   @override
   String get onboarding_title1 =>
@@ -226,26 +226,24 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get onboarding_desc1 =>
-      'Ontvang het laatste nieuws van betrouwbare bronnen';
+      'Ontvang het laatste nieuws van betrouwbare bronnen.';
 
   @override
   String get onboarding_title2 =>
-      'Elk nieuws dat u interesseert, bezorgen we snel.';
+      'Al het nieuws dat voor u belangrijk is, snel geleverd.';
 
   @override
   String get onboarding_desc2 => 'Alle details binnen handbereik.';
 
   @override
-  String get onboarding_title3 =>
-      'Ervaar nieuws met een authentieke Arabische touch.';
+  String get onboarding_title3 => 'Beleef authentiek Arabisch nieuws.';
 
   @override
-  String get onboarding_desc3 =>
-      'Nieuws rechtstreeks van de straat, echt en levendig.';
+  String get onboarding_desc3 => 'Echte verhalen rechtstreeks van de straat.';
 
   @override
   String get onboarding_title4 =>
-      'Van kunst tot politiek, alles is te vinden in «Akhbarna».';
+      'Van entertainment tot politiek, alles op Akhbarna.';
 
   @override
   String get onboarding_skip => 'Overslaan';
@@ -254,21 +252,18 @@ class AppLocalizationsNl extends AppLocalizations {
   String get next => 'Volgende';
 
   @override
-  String get choose_language => 'Taal kiezen';
-
-  @override
   String get fav_language =>
-      'Kies hieronder uw voorkeurstaal. Dit helpt ons u beter van dienst te zijn.';
+      'Selecteer hieronder uw voorkeurstaal. Dit helpt ons u beter van dienst te zijn.';
 
   @override
   String get choose_interests => 'Kies uw interesses';
 
   @override
   String get choose_interests_desc =>
-      'Kies de onderwerpen die u interesseren. Akhbarna bezorgt u dan de belangrijkste nieuwsberichten. Kies er minstens 3.';
+      'Kies de onderwerpen die u interesseren en laat Akhbarna u het belangrijkste nieuws bezorgen. Selecteer minimaal 3 interesses.';
 
   @override
-  String get select_min_3_interests => 'Kies minstens 3 interesses';
+  String get select_min_3_interests => 'Selecteer minimaal 3 interesses';
 
   @override
   String get account_ready => 'Uw account is klaar,';
@@ -280,13 +275,13 @@ class AppLocalizationsNl extends AppLocalizations {
   String get agree_to => 'Ik ga akkoord met de';
 
   @override
-  String get terms_and_conditions => 'Algemene Voorwaarden';
+  String get terms_and_conditions => ' Algemene Voorwaarden ';
 
   @override
-  String get privacy_policy_and_pricing => 'en het Privacybeleid en de prijzen';
+  String get privacy_policy_and_pricing => 'en het Privacybeleid';
 
   @override
-  String get discover_news => 'Nieuws ontdekken';
+  String get discover_news => 'Ontdek nieuws';
 
   @override
   String get selected => 'U heeft geselecteerd';
@@ -298,43 +293,46 @@ class AppLocalizationsNl extends AppLocalizations {
   String get step_continue => 'Doorgaan';
 
   @override
+  String get choose_language => 'Kies taal';
+
+  @override
   String get search_country => 'Zoek uw land';
 
   @override
-  String get search_sources => 'Nieuwsbronnen zoeken';
+  String get search_sources => 'Zoek nieuwsbronnen';
 
   @override
-  String get choose_sources => 'Nieuwsbronnen kiezen';
+  String get choose_sources => 'Kies nieuwsbronnen';
 
   @override
-  String get select_min_interests => 'Kies minstens één interesse';
+  String get select_min_interests => 'Selecteer minimaal één interesse';
 
   @override
   String get choose_country => 'Kies uw land';
 
   @override
-  String get please_select_country => 'Selecteer alstublieft uw land';
+  String get please_select_country => 'Selecteer een land';
 
   @override
-  String get terms_1_title => 'Gebruik van de app';
+  String get terms_1_title => 'Gebruik van de applicatie';
 
   @override
   String get terms_1_desc =>
-      'Deze app biedt nieuws- en informatie-inhoud. Door de app te gebruiken, stemt u ermee in deze legaal en zonder misbruik te gebruiken.';
+      'Deze applicatie biedt nieuws- en mediacontent. Door de applicatie te gebruiken stemt u ermee in deze op een legale manier te gebruiken en geen misbruik te maken van de diensten.';
 
   @override
   String get terms_2_title => 'Privacy';
 
   @override
   String get terms_2_desc =>
-      'Wij respecteren uw privacy en verbinden ons tot de bescherming van uw persoonsgegevens. De informatie wordt uitsluitend gebruikt om uw gebruikerservaring te verbeteren.';
+      'Wij respecteren uw privacy en zetten ons in voor de bescherming van uw persoonlijke gegevens. Informatie wordt uitsluitend gebruikt om de gebruikerservaring te verbeteren.';
 
   @override
   String get terms_3_title => 'Persoonlijke gegevens';
 
   @override
   String get terms_3_desc =>
-      'We kunnen beperkte gegevens zoals apparaatgegevens verzamelen om de prestaties te verbeteren. Alle gegevens worden veilig opgeslagen.';
+      'Wij kunnen beperkte gegevens verzamelen, zoals apparaatinformatie, om de prestaties te verbeteren. Alle gegevens worden veilig opgeslagen.';
 
   @override
   String get terms_4_title => 'Inhoud';
@@ -348,20 +346,20 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get terms_5_desc =>
-      'We kunnen deze voorwaarden van tijd tot tijd bijwerken en zullen gebruikers informeren over belangrijke wijzigingen in de app.';
+      'Wij kunnen deze voorwaarden van tijd tot tijd bijwerken. Gebruikers worden binnen de applicatie geïnformeerd over belangrijke wijzigingen.';
 
   @override
-  String get terms_6_title => 'Toestemming';
+  String get terms_6_title => 'Akkoord';
 
   @override
   String get terms_6_desc =>
-      'Door de app te gebruiken, stemt u in met alle bovenstaande voorwaarden.';
+      'Door deze applicatie te gebruiken gaat u akkoord met alle hierboven genoemde voorwaarden.';
 
   @override
   String get logout_confirm_title => 'Weet u zeker dat u wilt uitloggen?';
 
   @override
-  String get logout_confirm_message => 'U zult opnieuw moeten inloggen.';
+  String get logout_confirm_message => 'U moet opnieuw inloggen.';
 
   @override
   String get cancel => 'Annuleren';
@@ -373,35 +371,35 @@ class AppLocalizationsNl extends AppLocalizations {
   String get location => 'Locatie';
 
   @override
-  String get about_app_title => 'Over Akhbarna';
+  String get about_app_title => 'Over de Akhbarna-app';
 
   @override
   String get about_app_description =>
-      'Akhbarna is een moderne nieuwsplatform dat snel, betrouwbaar en gemakkelijk toegankelijk nieuws biedt.';
+      'Akhbarna is een modern nieuwsplatform dat nieuws snel, betrouwbaar en toegankelijk wil aanbieden.';
 
   @override
   String get about_app_coverage =>
-      'We dekken belangrijke lokale en internationale gebeurtenissen op het gebied van politiek, economie, sport en technologie.';
+      'Wij streven ernaar de belangrijkste lokale en internationale gebeurtenissen te verslaan op gebieden zoals politiek, economie, sport en technologie.';
 
   @override
   String get about_app_experience =>
-      'De app biedt een eenvoudige en soepele gebruikerservaring, zodat u altijd en overal op de hoogte kunt blijven met realtime updates.';
+      'De applicatie biedt een eenvoudige en soepele gebruikerservaring waarmee gebruikers altijd en overal nieuws kunnen volgen, met realtime updates.';
 
   @override
   String get our_goal => 'Ons doel';
 
   @override
-  String get goal_1 => 'Nauwkeurige en betrouwbare nieuwscontent bieden';
+  String get goal_1 => 'Nauwkeurige en betrouwbare nieuwsinhoud bieden';
 
   @override
-  String get goal_2 =>
-      'Toegang tot informatie eenvoudig maken voor de gebruiker';
+  String get goal_2 => 'Toegang tot informatie vereenvoudigen';
 
   @override
   String get goal_3 => 'Nieuws overzichtelijk en leesbaar presenteren';
 
   @override
-  String get goal_4 => 'Gebeurtenissen in realtime volgen';
+  String get goal_4 =>
+      'Gebruikers op de hoogte houden van actuele gebeurtenissen';
 
   @override
   String get app_features => 'App-functies';
@@ -413,10 +411,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get feature_2 => 'Diverse nieuwscategorieën';
 
   @override
-  String get feature_3 => 'Eenvoudige en snelle interface';
+  String get feature_3 => 'Eenvoudige en snelle gebruikersinterface';
 
   @override
-  String get feature_4 => 'Nieuws zoekfunctie';
+  String get feature_4 => 'Mogelijkheid om nieuws te zoeken';
 
   @override
   String get feature_5 => 'Comfortabele leeservaring';
@@ -426,8 +424,252 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get vision_description =>
-      'Wij streven ernaar een betrouwbare bron van dagelijks nieuws te zijn en gebruikers te helpen om op een eenvoudige en effectieve manier op de hoogte te blijven van wat er om hen heen gebeurt.';
+      'Wij streven ernaar een betrouwbare bron van dagelijks nieuws te worden en gebruikers te helpen eenvoudig en effectief geïnformeerd te blijven.';
 
   @override
-  String get now => 'Now';
+  String get now => 'Nu';
+
+  @override
+  String get time_minute => 'Minuut';
+
+  @override
+  String get time_hour => 'Uur';
+
+  @override
+  String get time_day => 'Dag';
+
+  @override
+  String get view_all => 'Alles bekijken';
+
+  @override
+  String get message => 'Bericht';
+
+  @override
+  String get failed_register => 'Registratie mislukt';
+
+  @override
+  String get failed_save_token => 'Token opslaan mislukt';
+
+  @override
+  String get failed_get_token => 'Token ophalen mislukt';
+
+  @override
+  String get bookmarks => 'Bladwijzers';
+
+  @override
+  String get no_articles_yet => 'Nog geen artikelen';
+
+  @override
+  String get save_favorite_articles =>
+      'Sla uw favoriete artikelen op en wees\nde eerste die ze op elk moment leest';
+
+  @override
+  String get browse_news_to_save => 'Blader door nieuws om op te slaan';
+
+  @override
+  String get failed_load_matches => 'Wedstrijden laden mislukt';
+
+  @override
+  String get failed_load_category_news => 'Categorienieuws laden mislukt';
+
+  @override
+  String get good_morning_news => 'Goedemorgen\nHier is wat nieuws voor u';
+
+  @override
+  String get no_news_for_category =>
+      'Geen nieuws beschikbaar voor deze categorie';
+
+  @override
+  String get available_news_count => 'Beschikbaar nieuws';
+
+  @override
+  String get sports => 'Sport';
+
+  @override
+  String get technology => 'Technologie';
+
+  @override
+  String get politics => 'Politiek';
+
+  @override
+  String get economy => 'Economie';
+
+  @override
+  String get health => 'Gezondheid';
+
+  @override
+  String get entertainment => 'Entertainment';
+
+  @override
+  String get science => 'Wetenschap';
+
+  @override
+  String get world => 'Wereld';
+
+  @override
+  String get failed_load_weather => 'Weergegevens laden mislukt';
+
+  @override
+  String get error => 'Fout';
+
+  @override
+  String get failed_load_breaking_news => 'Laden van laatste nieuws mislukt';
+
+  @override
+  String get failed_load_most_read_news =>
+      'Laden van meest gelezen nieuws mislukt';
+
+  @override
+  String get failed_load_latest_news => 'Laden van recent nieuws mislukt';
+
+  @override
+  String get failed_load_trending_news => 'Laden van trending nieuws mislukt';
+
+  @override
+  String get failed_search_articles => 'Zoeken naar artikelen mislukt';
+
+  @override
+  String get keyword => 'Trefwoord';
+
+  @override
+  String get top => 'Top';
+
+  @override
+  String get no_notifications => 'Geen meldingen';
+
+  @override
+  String get top_matches => '⚽ Topwedstrijden';
+
+  @override
+  String get trending_news => '🔥 Trending nieuws';
+
+  @override
+  String get latest_news => '🕐 Laatste nieuws';
+
+  @override
+  String get most_read_news => '📖 Meest gelezen';
+
+  @override
+  String get english_short => 'en';
+
+  @override
+  String get read_full_article => 'Lees het volledige artikel';
+
+  @override
+  String get share_article_text => 'Lees dit artikel in de Akhbarna Nieuws-app';
+
+  @override
+  String get international => 'Internationaal';
+
+  @override
+  String get most_read => 'Meest gelezen';
+
+  @override
+  String get most_trending => 'Meest trending';
+
+  @override
+  String get trend => 'Trend';
+
+  @override
+  String get breaking => 'Laatste nieuws';
+
+  @override
+  String get settings => 'Instellingen';
+
+  @override
+  String get sources => 'Bronnen';
+
+  @override
+  String get ago => 'geleden';
+
+  @override
+  String get thousand_short => 't';
+
+  @override
+  String get million_short => 'm';
+
+  @override
+  String get read_more => 'Lees meer...';
+
+  @override
+  String get five_minutes_ago => '5 minuten geleden';
+
+  @override
+  String get clear_notifications_confirm =>
+      'Weet u zeker dat u alle meldingen wilt verwijderen?';
+
+  @override
+  String get notifications_cleared_success => 'Meldingen succesvol verwijderd';
+
+  @override
+  String get no_results_found => 'Geen resultaten gevonden';
+
+  @override
+  String get latest => 'Laatste nieuws';
+
+  @override
+  String get dark => 'Donker';
+
+  @override
+  String get appearance => 'Weergave';
+
+  @override
+  String get theme_mode => 'Modus';
+
+  @override
+  String get choose_theme => 'Kies het app-thema';
+
+  @override
+  String get automatic => 'Automatisch';
+
+  @override
+  String get system_default => 'Volgens apparaatinstellingen';
+
+  @override
+  String get account => 'Account';
+
+  @override
+  String get profile_info => 'Naam, e-mailadres, profielfoto';
+
+  @override
+  String get preferences => 'Voorkeuren';
+
+  @override
+  String get preferences_desc => 'Weergave, lettergrootte, bronnen';
+
+  @override
+  String get support => 'Ondersteuning';
+
+  @override
+  String get faq => 'Veelgestelde vragen';
+
+  @override
+  String get app_version => 'Versie 1.0.0';
+
+  @override
+  String get no_internet_connection => 'Geen internetverbinding';
+
+  @override
+  String get internet_restored => 'Internetverbinding hersteld';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get category => 'Categorieën';
+
+  @override
+  String get bookmark => 'Bladwijzers';
+
+  @override
+  String get profile => 'Profiel';
+
+  @override
+  String get email_already_exists => 'E-mailadres bestaat al';
+
+  @override
+  String get failed_login_message => 'Inloggen mislukt';
+
+  @override
+  String get server_error => 'Serverfout';
 }

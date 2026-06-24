@@ -8,38 +8,19 @@ import '../models/OtpRequest.dart';
 import '../models/OtpResponse.dart';
 
 @Singleton(as: ForgetPasswordRepository)
-class ForgetPasswordRepositoryImpl
-    implements ForgetPasswordRepository {
+class ForgetPasswordRepositoryImpl implements ForgetPasswordRepository {
+  ForgetPasswordRemoteDataSource remoteDataSource;
 
-  ForgetPasswordRemoteDataSource
-  remoteDataSource;
-
-  ForgetPasswordRepositoryImpl({
-    required this.remoteDataSource,
-  });
+  ForgetPasswordRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, OtpResponse>>
-  sendOtp(
-      SendOtpRequest request,
-      ) async {
-
+  Future<Either<Failure, OtpResponse>> sendOtp(SendOtpRequest request) async {
     try {
-
-      final response =
-      await remoteDataSource.sendOtp(
-        request,
-      );
+      final response = await remoteDataSource.sendOtp(request);
 
       return Right(response);
-
     } on AppException catch (exception) {
-
-      return Left(
-        Failure(
-          message: exception.message,
-        ),
-      );
+      return Left(Failure(message: exception.message));
     }
   }
 }

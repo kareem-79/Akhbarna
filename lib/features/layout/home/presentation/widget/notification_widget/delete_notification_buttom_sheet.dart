@@ -55,7 +55,7 @@ class DeleteNotificationBottomSheet extends StatelessWidget {
                     SizedBox(height: 30.h),
                     Center(
                       child: Text(
-                        "هل أنت متأكد من حذف جميع الإشعارات؟",
+                        appLocalizations.clear_notifications_confirm,
                         style: textTheme.bodyMedium?.copyWith(fontSize: 20.sp,color: primaryColor),
                         textAlign: TextAlign.center,
                       ),
@@ -76,7 +76,7 @@ class DeleteNotificationBottomSheet extends StatelessWidget {
                       Navigator.pop(context);
                       UiUtils.showToast(
                         context,
-                        "تم حذف الاشعارات بنجاح",
+                        appLocalizations.notifications_cleared_success,
                         ColorsManagers.lightGray,
                       );
                     },

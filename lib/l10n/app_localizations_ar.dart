@@ -33,6 +33,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get name_required => 'من فضلك أدخل اسمك';
 
   @override
+  String get location_required => 'من فضلك أدخل الموقع';
+
+  @override
+  String get profile_updated_success => 'تم تحديث البروفايل بنجاح';
+
+  @override
+  String get search => 'البحث.....';
+
+  @override
   String get name_min => ' يجب أن يتكون الاسم من 6 أحرف أو أكثر';
 
   @override
@@ -48,19 +57,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get forgot_password => 'هل نسيت كلمة السر؟';
 
   @override
-  String get otp_required => 'من فضلك أدخل كود التحقق بالكامل';
-
-  @override
-  String get passwords_not_match => 'كلمتا المرور غير متطابقتين';
-
-  @override
-  String get location_required => 'من فضلك أدخل الموقع';
-
-  @override
-  String get profile_updated_success => 'تم تحديث البروفايل بنجاح';
-
-  @override
-  String get search => 'البحث.....';
+  String get verify_account => 'التحقق من الحساب';
 
   @override
   String get login_success => 'تم تسجيل الدخول بنجاح';
@@ -69,7 +66,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get failed_login => 'فشل في تسجيل الدخول.';
 
   @override
-  String get verify_account => 'التحقق من الحساب';
+  String get otp_required => 'من فضلك أدخل كود التحقق بالكامل';
+
+  @override
+  String get passwords_not_match => 'كلمتا المرور غير متطابقتين';
+
+  @override
+  String get or_login_with => 'أو ادخل باستخدام';
+
+  @override
+  String get google => 'جوجل';
+
+  @override
+  String get facebook => 'فيسبوك';
 
   @override
   String get option => 'خيار';
@@ -82,15 +91,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get register_now => 'سجّل الآن';
-
-  @override
-  String get or_login_with => 'أو ادخل باستخدام';
-
-  @override
-  String get google => 'جوجل';
-
-  @override
-  String get facebook => 'فيسبوك';
 
   @override
   String get login_with_email => 'متابعة مع البريد الإلكتروني';
@@ -124,6 +124,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get resend_code => 'إعادة إرسال الرمز';
 
   @override
+  String get reset_password_instruction =>
+      'أدخل عنوان بريدك الإلكتروني لإعادة تعيين كلمة المرور.';
+
+  @override
+  String get reset_password_note =>
+      'إذا كان هذا البريد الإلكتروني مسجلاً لدينا، فستصلك رسالة لإعادة تعيين كلمة المرور خلال دقائق.';
+
+  @override
   String get password_rule =>
       'الحد الأدنى: حرف كبير واحد، رقم واحد، رمز واحد، 8 أحرف';
 
@@ -133,14 +141,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get password_changed => 'تم تغيير كلمة المرور';
-
-  @override
-  String get reset_password_instruction =>
-      'أدخل عنوان بريدك الإلكتروني لإعادة تعيين كلمة المرور.';
-
-  @override
-  String get reset_password_note =>
-      'إذا كان هذا البريد الإلكتروني مسجلاً لدينا، فستصلك رسالة لإعادة تعيين كلمة المرور خلال دقائق.';
 
   @override
   String get confirm => 'تأكيد';
@@ -164,7 +164,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get account_information => 'معلومات الحساب';
 
   @override
-  String get security_settings => 'الامان';
+  String get notifications => 'الإشعارات';
 
   @override
   String get help_center => 'المساعدة';
@@ -179,9 +179,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get lang_arabic => 'العربية';
 
   @override
-  String get notifications => 'الإشعارات';
-
-  @override
   String get light_mode => 'الوضع الفاتح';
 
   @override
@@ -192,12 +189,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get logout => 'تسجيل الخروج';
-
-  @override
-  String get edit_profile => 'تعديل الملف الشخصي';
-
-  @override
-  String get save_changes => 'حفظ التعديلات';
 
   @override
   String get small => 'صغير';
@@ -219,6 +210,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get auto_device => 'تلقائي (حسب إعدادات الجهاز)';
+
+  @override
+  String get edit_profile => 'تعديل الملف الشخصي';
+
+  @override
+  String get save_changes => 'حفظ التعديلات';
+
+  @override
+  String get security_settings => 'الامان';
 
   @override
   String get onboarding_title1 => 'ابقَ على اتصال بالعالم من قلب بلدك.';
@@ -246,9 +246,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get next => 'التالي';
-
-  @override
-  String get choose_language => 'اختر اللغة';
 
   @override
   String get fav_language =>
@@ -290,6 +287,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get step_continue => 'متابعة';
+
+  @override
+  String get choose_language => 'اختر اللغة';
 
   @override
   String get search_country => 'ابحث عن دولتك';
@@ -423,4 +423,246 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get now => 'الآن';
+
+  @override
+  String get time_minute => 'دقيقة';
+
+  @override
+  String get time_hour => 'ساعة';
+
+  @override
+  String get time_day => 'يوم';
+
+  @override
+  String get view_all => 'عرض الكل';
+
+  @override
+  String get message => 'رسالة';
+
+  @override
+  String get failed_register => 'فشل في إنشاء الحساب';
+
+  @override
+  String get failed_save_token => 'فشل في حفظ الرمز';
+
+  @override
+  String get failed_get_token => 'فشل في الحصول على الرمز';
+
+  @override
+  String get bookmarks => 'المحفوظات';
+
+  @override
+  String get no_articles_yet => 'لا توجد مقالات بعد';
+
+  @override
+  String get save_favorite_articles =>
+      'احفظ مقالاتك المفضلة وكن\nأول من يقرأها في أي وقت';
+
+  @override
+  String get browse_news_to_save => 'استعرض الأخبار للحفظ';
+
+  @override
+  String get failed_load_matches => 'فشل في تحميل المباريات';
+
+  @override
+  String get failed_load_category_news => 'فشل في تحميل أخبار القسم';
+
+  @override
+  String get good_morning_news => 'صباح الخير\nإليكم بعض الأخبار';
+
+  @override
+  String get no_news_for_category => 'لا توجد أخبار لهذا القسم';
+
+  @override
+  String get available_news_count => 'خبر متاح';
+
+  @override
+  String get sports => 'رياضة';
+
+  @override
+  String get technology => 'تكنولوجيا';
+
+  @override
+  String get politics => 'سياسة';
+
+  @override
+  String get economy => 'اقتصاد';
+
+  @override
+  String get health => 'صحة';
+
+  @override
+  String get entertainment => 'ترفيه';
+
+  @override
+  String get science => 'علوم';
+
+  @override
+  String get world => 'عالمي';
+
+  @override
+  String get failed_load_weather => 'فشل في تحميل الطقس';
+
+  @override
+  String get error => 'خطأ';
+
+  @override
+  String get failed_load_breaking_news => 'فشل في تحميل الأخبار العاجلة';
+
+  @override
+  String get failed_load_most_read_news => 'فشل في تحميل الأخبار الأكثر قراءة';
+
+  @override
+  String get failed_load_latest_news => 'فشل في تحميل آخر الأخبار';
+
+  @override
+  String get failed_load_trending_news => 'فشل في تحميل الأخبار الأكثر تداولاً';
+
+  @override
+  String get failed_search_articles => 'فشل في البحث عن المقالات';
+
+  @override
+  String get keyword => 'كلمة مفتاحية';
+
+  @override
+  String get top => 'الأعلى';
+
+  @override
+  String get no_notifications => 'لا توجد إشعارات';
+
+  @override
+  String get top_matches => '⚽ أبرز المباريات';
+
+  @override
+  String get trending_news => '🔥 الأكثر تداولاً';
+
+  @override
+  String get latest_news => '🕐 آخر الأخبار';
+
+  @override
+  String get most_read_news => '📖 الأكثر قراءة';
+
+  @override
+  String get english_short => 'en';
+
+  @override
+  String get read_full_article => 'اقرأ المقال كاملاً';
+
+  @override
+  String get share_article_text => 'اقرأ هذا المقال على تطبيق أخبارنا';
+
+  @override
+  String get international => 'دولي';
+
+  @override
+  String get most_read => 'الأكثر قراءة';
+
+  @override
+  String get most_trending => 'الأكثر تداولاً';
+
+  @override
+  String get trend => 'تريند';
+
+  @override
+  String get breaking => 'عاجل';
+
+  @override
+  String get settings => 'الإعدادات';
+
+  @override
+  String get sources => 'المصادر';
+
+  @override
+  String get ago => 'منذ';
+
+  @override
+  String get thousand_short => 'ألف';
+
+  @override
+  String get million_short => 'مليون';
+
+  @override
+  String get read_more => 'اقرأ المزيد...';
+
+  @override
+  String get five_minutes_ago => 'منذ 5 دقائق';
+
+  @override
+  String get clear_notifications_confirm =>
+      'هل أنت متأكد من حذف جميع الإشعارات؟';
+
+  @override
+  String get notifications_cleared_success => 'تم حذف الإشعارات بنجاح';
+
+  @override
+  String get no_results_found => 'لا توجد نتائج';
+
+  @override
+  String get latest => 'آخر الأخبار';
+
+  @override
+  String get dark => 'داكن';
+
+  @override
+  String get appearance => 'المظهر';
+
+  @override
+  String get theme_mode => 'الوضع';
+
+  @override
+  String get choose_theme => 'اختر مظهر التطبيق';
+
+  @override
+  String get automatic => 'تلقائي';
+
+  @override
+  String get system_default => 'حسب إعدادات الجهاز';
+
+  @override
+  String get account => 'الحساب';
+
+  @override
+  String get profile_info => 'الاسم، البريد الإلكتروني، الصورة';
+
+  @override
+  String get preferences => 'التفضيلات';
+
+  @override
+  String get preferences_desc => 'المظهر، حجم الخط، المصادر';
+
+  @override
+  String get support => 'الدعم';
+
+  @override
+  String get faq => 'الأسئلة الشائعة';
+
+  @override
+  String get app_version => 'الإصدار 1.0.0';
+
+  @override
+  String get no_internet_connection => 'لا يوجد اتصال بالإنترنت';
+
+  @override
+  String get internet_restored => 'تم استعادة الاتصال بالإنترنت';
+
+  @override
+  String get home => 'الرئيسية';
+
+  @override
+  String get category => 'الأقسام';
+
+  @override
+  String get bookmark => 'المحفوظات';
+
+  @override
+  String get profile => 'الملف الشخصي';
+
+  @override
+  String get email_already_exists => 'البريد الإلكتروني مستخدم بالفعل';
+
+  @override
+  String get failed_login_message => 'فشل تسجيل الدخول';
+
+  @override
+  String get server_error => 'خطأ في الخادم';
 }

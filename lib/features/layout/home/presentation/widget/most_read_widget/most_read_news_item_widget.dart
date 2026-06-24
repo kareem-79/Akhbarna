@@ -1,11 +1,11 @@
 import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/utils/timer_format_helper.dart';
 import 'package:akhbarna/features/layout/home/data/models/ArticleModel.dart';
+import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../core/resources/routes_managers.dart';
 import '../../../../../../core/utils/viewer_format_helper.dart';
@@ -26,6 +26,7 @@ class _MostReadNewsItemWidgetState extends State<MostReadNewsItemWidget> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final Color shadowColor = Theme.of(context).shadowColor;
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return TweenAnimationBuilder(
       duration: Duration(milliseconds: 300 + (widget.news.hashCode % 5) * 100),
       tween: Tween<double>(begin: 40.0, end: 0.0),
@@ -39,7 +40,7 @@ class _MostReadNewsItemWidgetState extends State<MostReadNewsItemWidget> {
         );
       },
       child: GestureDetector(
-        onTap: ()  {
+        onTap: () {
           Navigator.pushNamed(
             context,
             RoutesManager.articleDetails,
@@ -138,7 +139,7 @@ class _MostReadNewsItemWidgetState extends State<MostReadNewsItemWidget> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "منذ ${TimeFormatHelper.formatDate(widget.news.publishedDate)}",
+                              "${appLocalizations.ago} ${TimeFormatHelper.formatDate(context, widget.news.publishedDate)}",
                               style: textTheme.bodySmall?.copyWith(
                                 fontSize: 12.sp,
                                 color: ColorsManagers.gray3,
@@ -164,6 +165,7 @@ class _MostReadNewsItemWidgetState extends State<MostReadNewsItemWidget> {
                                 children: [
                                   Text(
                                     ViewFormatHelper.formatViews(
+                                      context,
                                       widget.news.viewCount,
                                     ),
                                     overflow: TextOverflow.ellipsis,

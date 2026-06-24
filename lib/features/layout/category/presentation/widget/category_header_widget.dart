@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/widget/search_widget.dart';
+import '../../../../../l10n/app_localizations.dart';
 import '../cubit/matches_cubit.dart';
 import '../screens/match_screen.dart';
 
@@ -36,6 +37,7 @@ class _CategoryHeaderWidgetState extends State<CategoryHeaderWidget> {
   Widget build(BuildContext context) {
     final Color shadowColor = Theme.of(context).shadowColor;
     final Color bg = Theme.of(context).scaffoldBackgroundColor;
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Container(
       height: 110.h,
       width: double.infinity,
@@ -61,7 +63,7 @@ class _CategoryHeaderWidgetState extends State<CategoryHeaderWidget> {
 
             SizedBox(width: 12.w),
             Visibility(
-              visible: widget.hintText == "رياضة",
+              visible: widget.hintText == appLocalizations.sports,
               replacement: const SizedBox.shrink(),
               child: Container(
                 width: 50.w,

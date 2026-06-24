@@ -1,4 +1,5 @@
 import 'package:akhbarna/features/layout/home/presentation/widget/notification_widget./notification_item_widget.dart';
+import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -20,7 +21,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     Color shadowColor = Theme.of(context).shadowColor;
-
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
       body: Column(
         children: [
@@ -45,7 +46,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                           color: shadowColor,
                         ),
                         SizedBox(height: 10.h),
-                        Text("لا يوجد اشعارات", style: textTheme.bodyLarge),
+                        Text(appLocalizations.no_notifications, style: textTheme.bodyLarge),
                       ],
                     ),
                   )

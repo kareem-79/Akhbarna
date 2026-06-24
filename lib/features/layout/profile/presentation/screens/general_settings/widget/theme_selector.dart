@@ -1,3 +1,5 @@
+import 'package:akhbarna/core/resources/colors_managers.dart';
+import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,18 +15,10 @@ class ThemeSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color bg = Theme
-        .of(context)
-        .scaffoldBackgroundColor;
-    final Color cardColor = Theme
-        .of(context)
-        .cardColor;
-    final Color shadowColor = Theme
-        .of(context)
-        .shadowColor;
-    final TextTheme textTheme = Theme
-        .of(context)
-        .textTheme;
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    final Color bg = Theme.of(context).scaffoldBackgroundColor;
+    final Color cardColor = Theme.of(context).cardColor;
+    final TextTheme textTheme = Theme.of(context).textTheme;
     return Container(
       width: 150.w,
       height: 50.h,
@@ -37,23 +31,23 @@ class ThemeSelector extends StatelessWidget {
         children: [
           Expanded(
             child: _item(
-              title: 'فاتح',
+              title: appLocalizations.light_mode,
               icon: Icons.wb_sunny_outlined,
               selected: !isDark,
               onTap: () => onChanged(false),
               cardColor: cardColor,
-              shadowColor: shadowColor,
+              color: Colors.yellow,
               textTheme: textTheme,
             ),
           ),
           Expanded(
             child: _item(
-              title: 'داكن',
+              title: appLocalizations.dark,
               icon: Icons.nightlight_round,
               selected: isDark,
               onTap: () => onChanged(true),
               cardColor: cardColor,
-              shadowColor: shadowColor,
+              color: ColorsManagers.blue,
               textTheme: textTheme,
             ),
           ),
@@ -68,7 +62,7 @@ class ThemeSelector extends StatelessWidget {
     required bool selected,
     required VoidCallback onTap,
     required Color cardColor,
-    required Color shadowColor,
+    required Color color,
     required TextTheme textTheme,
   }) {
     return InkWell(
@@ -83,16 +77,9 @@ class ThemeSelector extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              size: 16.sp,
-              color: shadowColor,
-            ),
+            Icon(icon, size: 16.sp, color: color),
             SizedBox(width: 4.w),
-            Text(
-              title,
-              style: textTheme.bodySmall,
-            ),
+            Text(title, style: textTheme.bodySmall),
           ],
         ),
       ),

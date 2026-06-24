@@ -11,6 +11,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../core/resources/constant.dart';
 import '../../../../../core/utils/viewer_format_helper.dart';
+import '../../../../../l10n/app_localizations.dart';
 import '../../../../auth/widget/custom_start_up_elevated_button.dart';
 import '../../data/models/ArticleModel.dart';
 
@@ -31,7 +32,7 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
     final textTheme = Theme.of(context).textTheme;
     final Color shadowColor = Theme.of(context).shadowColor;
     final Color primaryColor = Theme.of(context).primaryColor;
-    final Color canvasColor = Theme.of(context).canvasColor;
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
 
     return Scaffold(
       body: SafeArea(
@@ -242,6 +243,7 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
                           _buildInfoItem(
                             icon: Icons.access_time_outlined,
                             text: TimeFormatHelper.formatDate(
+                              context,
                               article.publishedDate,
                             ),
                             textTheme: textTheme,
@@ -249,6 +251,7 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
                           _buildInfoItem(
                             icon: Icons.remove_red_eye_outlined,
                             text: ViewFormatHelper.formatViews(
+                              context,
                               article.viewCount,
                             ),
                             textTheme: textTheme,
@@ -282,7 +285,7 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
                       },
                       backgroundColor: ColorsManagers.red,
                       foregroundColor: ColorsManagers.white,
-                      text: "اقرأ المقال كاملاً",
+                      text: appLocalizations.read_full_article,
                       path: IconManagers.more,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     ),
@@ -403,7 +406,7 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
             '''
 📰 $title
 
-Read this article on Akhbarna News App
+${AppLocalizations.of(context)!.share_article_text}
 
 $url
 ''',

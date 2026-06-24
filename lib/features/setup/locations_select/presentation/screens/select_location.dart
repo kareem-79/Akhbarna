@@ -79,6 +79,10 @@ class _SelectLocationState extends State<SelectLocation> {
                         });
 
                         await LocationPrefsService.saveSelectedIndex(index);
+
+                        await LocationPrefsService.saveSelectedCountry(
+                          location.name,
+                        );
                       },
                     );
                   },

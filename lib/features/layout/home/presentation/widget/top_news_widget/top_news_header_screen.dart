@@ -1,4 +1,5 @@
 import 'package:akhbarna/core/widget/arrow_back_widget.dart';
+import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/resources/colors_managers.dart';
@@ -16,6 +17,7 @@ class _TopNewsHeaderWidgetState extends State<TopNewsHeaderWidget> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Container(
       height: 140.h,
       width: double.infinity,
@@ -34,7 +36,7 @@ class _TopNewsHeaderWidgetState extends State<TopNewsHeaderWidget> {
             children: [
               ArrowBackWidget(),
               Text(
-                "اخر الاخبار",
+                appLocalizations.latest,
                 style: textTheme.bodyLarge?.copyWith(fontSize: 28.sp),
               ),
             ],

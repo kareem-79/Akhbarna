@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/resources/colors_managers.dart';
+import '../../../../../l10n/app_localizations.dart';
 import '../../../../../model/category_tab_model.dart';
 import '../cubit/category_news_cubit.dart';
 import '../cubit/category_news_state.dart';
@@ -30,6 +31,7 @@ class _CategoryTabState extends State<CategoryTab>
   Widget build(BuildContext context) {
     super.build(context);
     final textTheme = Theme.of(context).textTheme;
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
       body: Column(
         children: [
@@ -48,7 +50,7 @@ class _CategoryTabState extends State<CategoryTab>
               children: [
                 SizedBox(height: 5.h),
                 Text(
-                  "صباح الخير\nإليكم بعض الأخبار",
+                  appLocalizations.good_morning_news,
                   style: textTheme.bodyLarge?.copyWith(fontSize: 28.sp),
                   maxLines: 2,
                 ),
@@ -67,15 +69,17 @@ class _CategoryTabState extends State<CategoryTab>
                 }
 
                 if (state is CategoryNewsSuccess) {
+                  final categories = CategoryTabModel.categories(context);
+
                   return ListView.separated(
                     padding: EdgeInsets.all(16.sp),
-                    itemCount: CategoryTabModel.categories.length,
+                    itemCount: categories.length,
                     separatorBuilder: (_, __) => SizedBox(height: 12.h),
                     itemBuilder: (context, index) {
-                      final categoryModel = CategoryTabModel.categories[index];
+                      final categoryModel = categories[index];
 
                       final matched = state.categoriesResponse.categories.where(
-                        (e) => e.categoryName == categoryModel.id,
+                            (e) => e.categoryName == categoryModel.id,
                       );
 
                       final newsCount = matched.isEmpty

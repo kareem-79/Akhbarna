@@ -60,7 +60,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                   ),
                   SizedBox(height: 50.h),
                   Text(
-                    "المظهر",
+                    appLocalizations.appearance,
                     style: textTheme.bodySmall?.copyWith(color: Colors.grey),
                   ),
                   SizedBox(height: 12.h),
@@ -75,14 +75,14 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "الوضع",
+                                  appLocalizations.theme_mode,
                                   style: textTheme.bodySmall?.copyWith(
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
                                 SizedBox(height: 4.h),
                                 Text(
-                                  "اختر مظهر التطبيق",
+                                  appLocalizations.choose_theme,
                                   maxLines: 1,
                                   style: textTheme.labelSmall?.copyWith(
                                     color: ColorsManagers.gray3,
@@ -107,8 +107,8 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                         color: shadowColor.withOpacity(.1),
                       ),
                       SettingRowWidget(
-                        title: "تلقائي",
-                        subtitle: "حسب إعدادات الجهاز",
+                        title: appLocalizations.automatic,
+                        subtitle: appLocalizations.system_default,
                         value: config.isSystemFont,
                         onChanged: (val) {
                           config.setSystemFont(val);
@@ -126,11 +126,8 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                     padding: EdgeInsets.all(16.sp),
                     children: [
                       TextSizeOptionWidget(size: FontSize.small),
-
                       TextSizeOptionWidget(size: FontSize.medium),
-
                       TextSizeOptionWidget(size: FontSize.large),
-
                       TextSizeOptionWidget(
                         size: FontSize.extraLarge,
                         isLast: true,
@@ -139,7 +136,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                   ),
                   SizedBox(height: 12.h),
                   Text(
-                    "المصادر",
+                    appLocalizations.sources,
                     style: textTheme.bodySmall?.copyWith(color: Colors.grey),
                   ),
                   SizedBox(height: 12.h),

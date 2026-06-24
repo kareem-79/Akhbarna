@@ -1,3 +1,4 @@
+import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,6 +16,7 @@ class SectionHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     TextTheme textTheme = Theme.of(context).textTheme;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 4.w),
@@ -28,7 +30,7 @@ class SectionHeaderWidget extends StatelessWidget {
           GestureDetector(
             onTap: onViewAll,
             child: Text(
-                "عرض الكل",
+                appLocalizations.view_all,
                 style: textTheme.bodySmall?.copyWith(color: ColorsManagers.red)
             ),
           ),
