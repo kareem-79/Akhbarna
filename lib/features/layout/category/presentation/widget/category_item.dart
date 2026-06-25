@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/resources/routes_managers.dart';
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../model/category_argument.dart';
 import '../../../../../model/category_tab_model.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -21,7 +22,7 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isOddIndex = index % 2 != 0;
     final textTheme = Theme.of(context).textTheme;
-    final colors = getCategoryGradient(category.title);
+    final colors = getCategoryGradient(category.id);
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return TweenAnimationBuilder(
       duration: Duration(milliseconds: 400 + (index * 100)),
@@ -39,7 +40,7 @@ class CategoryItem extends StatelessWidget {
         onTap: () => Navigator.pushNamed(
           context,
           RoutesManager.categoryArticle,
-          arguments: category.id,
+          arguments: CategoryArguments(id: category.id, title: category.title),
         ),
         child: Container(
           height: 110.h,
@@ -88,7 +89,7 @@ class CategoryItem extends StatelessWidget {
                     isOddIndex
                         ? Icons.arrow_back_ios_rounded
                         : Icons.arrow_forward_ios_rounded,
-                    color: Colors.white,
+                    color: ColorsManagers.white,
                     size: 28.sp,
                   ),
                 ),
@@ -106,9 +107,7 @@ class CategoryItem extends StatelessWidget {
                       : CrossAxisAlignment.start,
                   children: [
                     Text(category.title, style: textTheme.bodyMedium),
-
                     SizedBox(height: 4.h),
-
                     Text(
                       "$newsCount ${appLocalizations.available_news_count}",
                       style: textTheme.bodySmall?.copyWith(
@@ -148,8 +147,8 @@ class CategoryItem extends StatelessWidget {
     );
   }
 
-  List<Color> getCategoryGradient(String? category) {
-    switch (category?.trim()) {
+  List<Color> getCategoryGradient(String? categoryId) {
+    switch (categoryId?.trim()) {
       case "رياضة":
         return [ColorsManagers.pinkLight, ColorsManagers.pinkDark];
 
@@ -165,13 +164,13 @@ class CategoryItem extends StatelessWidget {
       case "صحة":
         return [ColorsManagers.purpleLight, ColorsManagers.purpleDark];
 
-      case "ترفيه":
+      case "فن":
         return [ColorsManagers.orangeLight, ColorsManagers.orangeDark];
 
       case "علوم":
         return [ColorsManagers.skyBlueLight, ColorsManagers.skyBlueDark];
 
-      case "عالمي":
+      case "دولي":
         return [ColorsManagers.roseLight, ColorsManagers.roseDark];
 
       default:

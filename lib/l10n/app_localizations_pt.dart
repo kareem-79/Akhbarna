@@ -106,6 +106,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get no_account => 'Não tem uma conta?';
 
   @override
+  String get current_password => 'Senha atual';
+
+  @override
   String get create_account => 'Criar conta';
 
   @override
@@ -592,6 +595,18 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get million_short => 'M';
+
+  @override
+  String get all => 'Todos';
+
+  @override
+  String get select_all => 'Selecionar tudo';
+
+  @override
+  String get saved_articles => 'Artigos salvos';
+
+  @override
+  String get delete_all => 'Excluir tudo';
 
   @override
   String get read_more => 'Leia mais...';

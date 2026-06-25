@@ -4,11 +4,15 @@ import 'package:akhbarna/features/layout/home/data/models/ArticleModel.dart';
 import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../../../../core/resources/routes_managers.dart';
+import '../../../../../../core/utils/ui_utils.dart';
 import '../../../../../../core/utils/viewer_format_helper.dart';
+import '../../../../bookMarket/presentation/cubit/save_article_cubit.dart';
+import '../../../../bookMarket/presentation/cubit/save_article_state.dart';
 
 class MostReadNewsItemWidget extends StatefulWidget {
   final ArticleModel news;
@@ -20,8 +24,6 @@ class MostReadNewsItemWidget extends StatefulWidget {
 }
 
 class _MostReadNewsItemWidgetState extends State<MostReadNewsItemWidget> {
-  bool isSelected = false;
-
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -198,32 +200,59 @@ class _MostReadNewsItemWidgetState extends State<MostReadNewsItemWidget> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  InkWell(
-                    borderRadius: BorderRadius.circular(20.r),
-                    onTap: () {
-                      setState(() {
-                        isSelected = !isSelected;
-                      });
+                  BlocConsumer<BookMarketCubit, BookMarketState>(
+                    listener: (context, state) {
+                      if (state is BookMarketError) {
+                        UiUtils.showToast(
+                          context,
+                          state.message,
+                          ColorsManagers.red,
+                        );
+                      }
                     },
-                    child: Container(
-                      padding: EdgeInsets.all(6.sp),
-                      decoration: BoxDecoration(
-                        color: ColorsManagers.dark,
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: getCategoryColor(
-                            widget.news.category,
-                          ).withOpacity(.25),
+                    builder: (context, state) {
+                      final isSaved =
+                          state is BookMarketSuccess &&
+                              state.savedIds.contains(widget.news.id);
+
+                      return InkWell(
+                        borderRadius: BorderRadius.circular(20.r),
+                        onTap: state is BookMarketLoading
+                            ? null
+                            : () {
+                          context
+                              .read<BookMarketCubit>()
+                              .toggleBookmark(widget.news);
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(6.sp),
+                          decoration: BoxDecoration(
+                            color: ColorsManagers.dark,
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: getCategoryColor(
+                                widget.news.category,
+                              ).withOpacity(.25),
+                            ),
+                          ),
+                          child: state is BookMarketLoading
+                              ? SizedBox(
+                            width: 20.w,
+                            height: 20.h,
+                            child: const CircularProgressIndicator(
+                              strokeWidth: 2,
+                            ),
+                          )
+                              : Icon(
+                            isSaved
+                                ? Icons.bookmark_rounded
+                                : Icons.bookmark_border_rounded,
+                            size: 20.sp,
+                            color: getCategoryColor(widget.news.category),
+                          ),
                         ),
-                      ),
-                      child: Icon(
-                        isSelected
-                            ? Icons.bookmark_rounded
-                            : Icons.bookmark_border_rounded,
-                        size: 20.sp,
-                        color: getCategoryColor(widget.news.category),
-                      ),
-                    ),
+                      );
+                    },
                   ),
 
                   SizedBox(width: 8.w),

@@ -6,18 +6,21 @@ import '../resources/colors_managers.dart';
 
 class SectionHeaderWidget extends StatelessWidget {
   final String title;
+  final String? actionText;
   final VoidCallback? onViewAll;
 
   const SectionHeaderWidget({
     super.key,
     required this.title,
+    this.actionText,
     this.onViewAll,
   });
 
   @override
   Widget build(BuildContext context) {
-    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
-    TextTheme textTheme = Theme.of(context).textTheme;
+    final appLocalizations = AppLocalizations.of(context)!;
+    final textTheme = Theme.of(context).textTheme;
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 4.w),
       child: Row(
@@ -25,13 +28,17 @@ class SectionHeaderWidget extends StatelessWidget {
         children: [
           Text(
             title,
-            style: textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold)
+            style: textTheme.bodySmall?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
           ),
           GestureDetector(
             onTap: onViewAll,
             child: Text(
-                appLocalizations.view_all,
-                style: textTheme.bodySmall?.copyWith(color: ColorsManagers.red)
+              actionText ?? appLocalizations.view_all,
+              style: textTheme.bodySmall?.copyWith(
+                color: ColorsManagers.red,
+              ),
             ),
           ),
         ],

@@ -1,8 +1,8 @@
+import 'package:akhbarna/features/layout/category/presentation/cubit/state/matches_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/use_case/get_matches_use_case.dart';
-import 'matches_state.dart';
 
 @lazySingleton
 class MatchesCubit extends Cubit<MatchesState> {

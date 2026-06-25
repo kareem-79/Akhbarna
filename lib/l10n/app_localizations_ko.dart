@@ -105,6 +105,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get no_account => '계정이 없으신가요?';
 
   @override
+  String get current_password => '현재 비밀번호';
+
+  @override
   String get create_account => '계정 만들기';
 
   @override
@@ -573,6 +576,18 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get million_short => '백만';
+
+  @override
+  String get all => '전체';
+
+  @override
+  String get select_all => '모두 선택';
+
+  @override
+  String get saved_articles => '저장된 기사';
+
+  @override
+  String get delete_all => '모두 삭제';
 
   @override
   String get read_more => '더 읽기...';

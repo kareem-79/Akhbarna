@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../cubit/matches_cubit.dart';
-import '../cubit/matches_state.dart';
+import '../cubit/state/matches_state.dart';
 import '../widget/match_card_widget.dart';
 
 class MatchScreen extends StatelessWidget {

@@ -105,6 +105,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get no_account => 'ليس لديك حساب؟';
 
   @override
+  String get current_password => 'كلمة المرور الحالية';
+
+  @override
   String get create_account => 'إنشاء حساب';
 
   @override
@@ -580,6 +583,18 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get million_short => 'مليون';
+
+  @override
+  String get all => 'الكل';
+
+  @override
+  String get select_all => 'تحديد الكل';
+
+  @override
+  String get saved_articles => 'المقالات المحفوظة';
+
+  @override
+  String get delete_all => 'حذف الكل';
 
   @override
   String get read_more => 'اقرأ المزيد...';

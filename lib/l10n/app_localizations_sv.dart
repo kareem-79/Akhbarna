@@ -105,6 +105,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get no_account => 'Har du inget konto?';
 
   @override
+  String get current_password => 'Nuvarande lösenord';
+
+  @override
   String get create_account => 'Skapa konto';
 
   @override
@@ -586,6 +589,18 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get million_short => 'miljon';
+
+  @override
+  String get all => 'Alla';
+
+  @override
+  String get select_all => 'Markera alla';
+
+  @override
+  String get saved_articles => 'Sparade artiklar';
+
+  @override
+  String get delete_all => 'Ta bort alla';
 
   @override
   String get read_more => 'Läs mer...';

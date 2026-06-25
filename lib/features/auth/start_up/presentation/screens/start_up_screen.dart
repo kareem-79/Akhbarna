@@ -67,7 +67,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                           ),
                         ),
                         Text(
-                          appLocalizations.login_simple,
+                          " ${appLocalizations.login_simple}",
                           style: textTheme.bodyMedium?.copyWith(
                             color: ColorsManagers.red,
                           ),

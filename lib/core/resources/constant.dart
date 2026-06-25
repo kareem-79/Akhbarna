@@ -22,6 +22,10 @@ abstract class ApiConstant {
   static const String registerEndpoint = 'auth/register';
   static const String loginEndpoint = 'auth/login';
   static const String forgetPassword = 'auth/forgot-password';
+  static const String changePasswordEndpoint = 'auth/change-password';
+  static const String verifyOtp = 'auth/verify-otp';
+  static const String resetPassword = 'auth/reset-password';
+
 }
 
 abstract class NewsApiConstant {
@@ -38,6 +42,9 @@ abstract class NewsApiConstant {
   static const String matchBaseUrl = "http://akhbarna1.runasp.net/api/";
   static const String match = "matches/important";
   static const String searchArticles = "search";
+  static const String baseUrlSavedArticle = "http://akhbarna1.runasp.net/api/";
+  static const String savedArticle = "saved";
+
 }
 abstract class PlatformConstant {
   static const String facebook = "https://www.facebook.com/sharer/sharer.php?u=";

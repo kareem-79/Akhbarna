@@ -105,6 +105,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get no_account => 'क्या आपके पास खाता नहीं है?';
 
   @override
+  String get current_password => 'वर्तमान पासवर्ड';
+
+  @override
   String get create_account => 'खाता बनाएं';
 
   @override
@@ -586,6 +589,18 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get million_short => 'मिलियन';
+
+  @override
+  String get all => 'सभी';
+
+  @override
+  String get select_all => 'सभी चुनें';
+
+  @override
+  String get saved_articles => 'सहेजे गए लेख';
+
+  @override
+  String get delete_all => 'सभी हटाएँ';
 
   @override
   String get read_more => 'और पढ़ें...';

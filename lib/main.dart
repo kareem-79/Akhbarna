@@ -49,7 +49,9 @@ class Akhbarna extends StatelessWidget {
       builder: (context, child) {
         return Consumer<ConfigProvider>(
           builder: (context, configProvider, _) {
-            Color cardColor = Theme.of(context).cardColor;
+            Color cardColor = Theme
+                .of(context)
+                .cardColor;
             return SkeletonizerConfig(
               data: SkeletonizerConfigData(
                 effect: ShimmerEffect(
@@ -77,7 +79,8 @@ class Akhbarna extends StatelessWidget {
                         data: MediaQuery.of(context).copyWith(
                           textScaler: configProvider.isSystemFont
                               ? MediaQuery.textScalerOf(context)
-                              : TextScaler.linear(configProvider.textScaleFactor),
+                              : TextScaler.linear(
+                              configProvider.textScaleFactor),
                         ),
                         child: child!,
                       );

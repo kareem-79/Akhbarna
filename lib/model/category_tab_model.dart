@@ -29,7 +29,6 @@ class CategoryTabModel {
         imagePath: CategoryTabImageManagers.sport,
         title: l10n.sports,
       ),
-
       CategoryTabModel(
         id: "اقتصاد",
         imagePath: CategoryTabImageManagers.economy,

@@ -26,6 +26,7 @@ import '../../features/layout/home/presentation/screens/article_details_screen.d
 import '../../features/layout/home/presentation/screens/trending_screen.dart';
 import '../../features/layout/home/presentation/widget/search_widget.dart';
 import '../../features/layout/profile/presentation/screens/general_settings/presentation/general_setting.dart';
+import '../../model/category_argument.dart';
 
 class RoutesManager {
   static const String splash = "Splash";
@@ -98,10 +99,10 @@ class RoutesManager {
         return slideRight(const ForgetPassword());
 
       case loginWithOtp:
-        return slideRight(const LoginWithOtp());
+        return slideRight(const LoginWithOtp(), settings: settings);
 
       case changePassword:
-        return slideRight(const ChangePassword());
+        return slideRight(const ChangePassword(), settings: settings);
 
       case selectLocation:
         return slideRight(const SelectLocation());
@@ -144,8 +145,10 @@ class RoutesManager {
       case mostRead:
         return slideRight(const MostReadScreen());
       case categoryArticle:
-        final String categoryName = settings.arguments as String;
-        return slideRight(CategoryArticleScreen(categoryName: categoryName));
+        final CategoryArguments category =
+            settings.arguments as CategoryArguments;
+
+        return slideRight(CategoryArticleScreen(category: category));
       case generalSettings:
         return slideRight(const GeneralSettingsScreen());
       case trendingNews:
@@ -154,7 +157,7 @@ class RoutesManager {
         return slideRight(const ArticleDetailsScreen(), settings: settings);
       case matchScreen:
         return slideRight(const MatchScreen());
-        case search:
+      case search:
         return slideRight(const SearchScreen());
       default:
         return slideRight(

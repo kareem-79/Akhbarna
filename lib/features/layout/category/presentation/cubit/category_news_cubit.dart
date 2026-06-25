@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/use_case/get_category_news_use_case.dart';
-import 'category_news_state.dart';
+import 'state/category_news_state.dart';
 
 @lazySingleton
 class CategoryNewsCubit extends Cubit<CategoryNewsState> {

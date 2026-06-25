@@ -22,6 +22,8 @@ class SearchWidget extends StatelessWidget {
         controller: controller,
         cursorColor: ColorsManagers.red,
         onFieldSubmitted: onSubmitted,
+        maxLines: 1,
+        textAlignVertical: TextAlignVertical.center,
         style: Theme.of(
           context,
         ).textTheme.bodySmall?.copyWith(color: ColorsManagers.darkNavy),
@@ -38,9 +40,11 @@ class SearchWidget extends StatelessWidget {
             size: 24.sp,
           ),
 
-          contentPadding: EdgeInsets.symmetric(
-            horizontal: 20.w,
-            vertical: 14.h,
+          contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 0),
+
+          prefixIconConstraints: BoxConstraints(
+            minWidth: 50.w,
+            minHeight: 50.h,
           ),
 
           enabledBorder: OutlineInputBorder(

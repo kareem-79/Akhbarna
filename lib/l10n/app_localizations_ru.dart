@@ -105,6 +105,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get no_account => 'У вас нет учетной записи?';
 
   @override
+  String get current_password => 'Текущий пароль';
+
+  @override
   String get create_account => 'Создать учетную запись';
 
   @override
@@ -592,6 +595,18 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get million_short => 'млн';
+
+  @override
+  String get all => 'Все';
+
+  @override
+  String get select_all => 'Выбрать всё';
+
+  @override
+  String get saved_articles => 'Сохранённые статьи';
+
+  @override
+  String get delete_all => 'Удалить всё';
 
   @override
   String get read_more => 'Читать далее...';

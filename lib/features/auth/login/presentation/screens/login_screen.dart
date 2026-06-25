@@ -131,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     UiUtils.showToast(
                       context,
                       appLocalizations.login_success,
-                      ColorsManagers.riverBed,
+                      Colors.green
                     );
                     _navigate();
                   }

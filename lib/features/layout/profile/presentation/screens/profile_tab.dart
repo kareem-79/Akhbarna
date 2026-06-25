@@ -4,7 +4,6 @@ import 'package:akhbarna/features/layout/profile/presentation/screens/logout/pre
 import 'package:akhbarna/features/layout/profile/presentation/widget/custom_blur_bottom_sheet.dart';
 import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_launcher_icons/xml_templates.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/prefs_manager/location_prefs_manager.dart';
 import '../../../../../core/prefs_manager/prefs_manager.dart';

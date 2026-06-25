@@ -16,7 +16,8 @@ class TrendingScreen extends StatefulWidget {
   State<TrendingScreen> createState() => _TrendingScreenState();
 }
 
-class _TrendingScreenState extends State<TrendingScreen> {
+class _TrendingScreenState extends State<TrendingScreen>
+    with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
@@ -25,7 +26,10 @@ class _TrendingScreenState extends State<TrendingScreen> {
   }
 
   @override
+  bool get wantKeepAlive => true;
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: Column(
         children: [

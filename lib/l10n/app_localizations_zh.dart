@@ -105,6 +105,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get no_account => '还没有账户？';
 
   @override
+  String get current_password => '当前密码';
+
+  @override
   String get create_account => '创建账户';
 
   @override
@@ -563,6 +566,18 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get million_short => '百万';
+
+  @override
+  String get all => '全部';
+
+  @override
+  String get select_all => '全选';
+
+  @override
+  String get saved_articles => '已保存的文章';
+
+  @override
+  String get delete_all => '全部删除';
 
   @override
   String get read_more => '阅读更多...';

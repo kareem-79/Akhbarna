@@ -105,6 +105,9 @@ class AppLocalizationsNl extends AppLocalizations {
   String get no_account => 'Heeft u geen account?';
 
   @override
+  String get current_password => 'Huidig wachtwoord';
+
+  @override
   String get create_account => 'Account aanmaken';
 
   @override
@@ -587,6 +590,18 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get million_short => 'm';
+
+  @override
+  String get all => 'Alles';
+
+  @override
+  String get select_all => 'Alles selecteren';
+
+  @override
+  String get saved_articles => 'Opgeslagen artikelen';
+
+  @override
+  String get delete_all => 'Alles verwijderen';
 
   @override
   String get read_more => 'Lees meer...';

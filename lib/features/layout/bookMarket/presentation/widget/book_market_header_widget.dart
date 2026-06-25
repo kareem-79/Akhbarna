@@ -2,8 +2,10 @@ import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/resources/colors_managers.dart';
+
 class BookMarketHeaderWidget extends StatefulWidget {
-  const BookMarketHeaderWidget({super.key});
+  final VoidCallback? onDeleteAll;
+  const BookMarketHeaderWidget({super.key, this.onDeleteAll});
 
   @override
   State<BookMarketHeaderWidget> createState() => _BookMarketHeaderWidgetState();
@@ -14,6 +16,7 @@ class _BookMarketHeaderWidgetState extends State<BookMarketHeaderWidget> {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    Color bg = Theme.of(context).scaffoldBackgroundColor;
     return Container(
       height: 140.h,
       width: double.infinity,
@@ -34,12 +37,43 @@ class _BookMarketHeaderWidgetState extends State<BookMarketHeaderWidget> {
                 appLocalizations.bookmarks,
                 style: textTheme.bodyLarge?.copyWith(fontSize: 28.sp),
               ),
-              CircleAvatar(
-                backgroundColor: ColorsManagers.white.withOpacity(.4),
-                child: Icon(
-                  Icons.search_outlined,
-                  size: 30.sp,
-                  color: ColorsManagers.white,
+              PopupMenuButton<String>(
+                offset: Offset(0, 45),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.r),
+                ),
+                color: bg,
+                onSelected: (value) {
+                  if (value == 'delete_all') {
+                   widget.onDeleteAll?.call();
+                  }
+                },
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    value: 'delete_all',
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.delete_outline,
+                          color: ColorsManagers.red,
+                          size: 20.sp,
+                        ),
+                        SizedBox(width: 8.w),
+                        Text(
+                          appLocalizations.delete_all,
+                          style: TextStyle(fontSize: 14.sp, color: ColorsManagers.red),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+                child: CircleAvatar(
+                  backgroundColor: ColorsManagers.white.withOpacity(.4),
+                  child: Icon(
+                    Icons.more_vert,
+                    size: 28.sp,
+                    color: ColorsManagers.white,
+                  ),
                 ),
               ),
             ],

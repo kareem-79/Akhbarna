@@ -105,6 +105,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get no_account => 'Don\'t have an account?';
 
   @override
+  String get current_password => 'Current Password';
+
+  @override
   String get create_account => 'Create Account';
 
   @override
@@ -584,6 +587,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get million_short => 'M';
+
+  @override
+  String get all => 'All';
+
+  @override
+  String get select_all => 'Select All';
+
+  @override
+  String get saved_articles => 'Saved Articles';
+
+  @override
+  String get delete_all => 'Delete All';
 
   @override
   String get read_more => 'Read More...';

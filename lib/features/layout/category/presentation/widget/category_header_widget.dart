@@ -4,14 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/widget/search_widget.dart';
-import '../../../../../l10n/app_localizations.dart';
+import '../cubit/category_search_cubit.dart';
 import '../cubit/matches_cubit.dart';
 import '../screens/match_screen.dart';
 
 class CategoryHeaderWidget extends StatefulWidget {
   final String hintText;
+  final String categoryId;
 
-  const CategoryHeaderWidget({super.key, required this.hintText});
+  const CategoryHeaderWidget({
+    super.key,
+    required this.hintText,
+    required this.categoryId,
+  });
 
   @override
   State<CategoryHeaderWidget> createState() => _CategoryHeaderWidgetState();
@@ -37,7 +42,6 @@ class _CategoryHeaderWidgetState extends State<CategoryHeaderWidget> {
   Widget build(BuildContext context) {
     final Color shadowColor = Theme.of(context).shadowColor;
     final Color bg = Theme.of(context).scaffoldBackgroundColor;
-    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Container(
       height: 110.h,
       width: double.infinity,
@@ -58,12 +62,23 @@ class _CategoryHeaderWidgetState extends State<CategoryHeaderWidget> {
               child: SearchWidget(
                 hintText: widget.hintText,
                 controller: searchController,
+                onSubmitted: (value) {
+                  if (value.trim().isEmpty) {
+                    context.read<CategorySearchCubit>().clearSearch();
+                    return;
+                  }
+
+                  context.read<CategorySearchCubit>().search(
+                    keyword: value,
+                    category: widget.categoryId,
+                  );
+                },
               ),
             ),
 
             SizedBox(width: 12.w),
             Visibility(
-              visible: widget.hintText == appLocalizations.sports,
+              visible: widget.categoryId == "رياضة",
               replacement: const SizedBox.shrink(),
               child: Container(
                 width: 50.w,
@@ -84,12 +99,12 @@ class _CategoryHeaderWidgetState extends State<CategoryHeaderWidget> {
                           child: Container(
                             height: 700.h,
                             width: 350.w,
-                            padding:  EdgeInsets.all(16.sp),
+                            padding: EdgeInsets.all(16.sp),
                             decoration: BoxDecoration(
                               color: bg,
                               borderRadius: BorderRadius.circular(20.r),
                             ),
-                            child:  MatchScreen(),
+                            child: MatchScreen(),
                           ),
                         );
                       },

@@ -2,18 +2,19 @@ import 'package:akhbarna/features/layout/category/presentation/cubit/matches_cub
 import 'package:akhbarna/features/layout/home/presentation/cubit/breaking_news_cubit.dart';
 import 'package:akhbarna/features/layout/home/presentation/cubit/trending_news_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import '../../core/di/service_locator.dart';
+import '../../features/auth/forget_password/presentation/cubit/change_password_cubit.dart';
 import '../../features/auth/login/presentation/cubit/login_cubit.dart';
 import '../../features/auth/register/presentation/cubit/register_cubit.dart';
 import '../../features/auth/forget_password/presentation/cubit/forget_password_cubit.dart';
+import '../../features/layout/bookMarket/presentation/cubit/save_article_cubit.dart';
 import '../../features/layout/category/presentation/cubit/category_news_cubit.dart';
+import '../../features/layout/category/presentation/cubit/category_search_cubit.dart';
 import '../../features/layout/home/presentation/cubit/latest_news_cubit.dart';
 import '../../features/layout/home/presentation/cubit/most_read_news_cubit.dart';
 import '../../features/layout/home/presentation/cubit/search_article_cubit.dart';
 import '../../features/layout/home/presentation/cubit/weather_cubit.dart';
-import '../../provider/book_market_provider.dart';
 
 class AppBlocProviders {
   static List<SingleChildWidget> providers = [
@@ -28,6 +29,8 @@ class AppBlocProviders {
     BlocProvider(create: (_) => serviceLocator.get<WeatherCubit>()),
     BlocProvider(create: (_) => serviceLocator.get<MatchesCubit>()),
     BlocProvider(create: (_) => serviceLocator.get<SearchCubit>()),
-    ChangeNotifierProvider(create: (_) => BookmarkProvider()),
+    BlocProvider(create: (_) => serviceLocator.get<BookMarketCubit>()),
+    BlocProvider(create: (_) => serviceLocator.get<CategorySearchCubit>()),
+    BlocProvider(create: (_) => serviceLocator.get<ChangePasswordCubit>()),
   ];
 }

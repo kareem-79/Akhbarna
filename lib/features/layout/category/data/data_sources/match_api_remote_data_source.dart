@@ -14,7 +14,6 @@ class MatchesApiRemoteDataSource implements MatchesRemoteDataSource {
   Future<List<MatchDayModel>> getMatches() async {
     try {
       final response = await dio.get(NewsApiConstant.match);
-      print(response.data);
       List data = response.data;
 
       return data.map((e) => MatchDayModel.fromJson(e)).toList();

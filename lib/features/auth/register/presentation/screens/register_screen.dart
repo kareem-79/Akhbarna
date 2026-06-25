@@ -129,7 +129,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     UiUtils.showToast(
                       context,
                       state.massage,
-                      ColorsManagers.vividTangerine,
+                      Colors.green
                     );
                   } else if (state is RegisterSuccess) {
                     UiUtils.hideDialog(context);

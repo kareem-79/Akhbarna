@@ -16,8 +16,9 @@ import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../core/services/location_service.dart';
 import '../../../../../core/widget/section_header_widget.dart';
 import '../../../../../model/home_tab_model.dart';
+import '../../../bookMarket/presentation/cubit/save_article_cubit.dart';
 import '../../../category/presentation/cubit/matches_cubit.dart';
-import '../../../category/presentation/cubit/matches_state.dart';
+import '../../../category/presentation/cubit/state/matches_state.dart';
 import '../../../category/presentation/screens/match_screen.dart';
 import '../../../category/presentation/widget/match_card_loading_widget.dart';
 import '../../../category/presentation/widget/match_card_widget.dart';
@@ -44,7 +45,7 @@ class HomeTap extends StatefulWidget {
 
 class _HomeTapState extends State<HomeTap> with AutomaticKeepAliveClientMixin {
   late HomeTabModel selectedHomeTab = HomeTabModel.homeTabList(context)[0];
-
+  int selectedHomeTabIndex = 0;
   final ScrollController scrollController = ScrollController();
   late PageController breakingController;
   late PageController trendingController;
@@ -67,6 +68,9 @@ class _HomeTapState extends State<HomeTap> with AutomaticKeepAliveClientMixin {
     });
     breakingController = PageController(viewportFraction: 0.60);
     trendingController = PageController(viewportFraction: 0.60);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<BookMarketCubit>().loadSavedArticles();
+    });
   }
 
   @override
@@ -84,6 +88,7 @@ class _HomeTapState extends State<HomeTap> with AutomaticKeepAliveClientMixin {
     super.build(context);
     final Color bg = Theme.of(context).scaffoldBackgroundColor;
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    final tabs = HomeTabModel.homeTabList(context);
     return Scaffold(
       body: Column(
         children: [
@@ -143,26 +148,20 @@ class _HomeTapState extends State<HomeTap> with AutomaticKeepAliveClientMixin {
                           SizedBox(height: 10.h),
 
                           HomeTabBar(
-                            homeTabList: HomeTabModel.homeTabList(context),
-                            selectedHomeTabIndex: 0,
+                            homeTabList: tabs,
+                            selectedHomeTabIndex: selectedHomeTabIndex,
                             onHomeTabItemSelected: (homeTabModel) {
                               setState(() {
                                 selectedHomeTab = homeTabModel;
+                                selectedHomeTabIndex = tabs.indexOf(
+                                  homeTabModel,
+                                );
                               });
-                              if (homeTabModel.id == '2') {
+
+                              if (homeTabModel.route != null) {
                                 Navigator.pushNamed(
                                   context,
-                                  RoutesManager.mostRead,
-                                );
-                              } else if (homeTabModel.id == '3') {
-                                Navigator.pushNamed(
-                                  context,
-                                  RoutesManager.topNews,
-                                );
-                              } else if (homeTabModel.id == '4') {
-                                Navigator.pushNamed(
-                                  context,
-                                  RoutesManager.mostRead,
+                                  homeTabModel.route!,
                                 );
                               }
                             },
@@ -519,6 +518,7 @@ class _HomeTapState extends State<HomeTap> with AutomaticKeepAliveClientMixin {
       ),
     );
   }
+
   Future<void> loadWeather() async {
     try {
       final position = await LocationService.getCurrentLocation();

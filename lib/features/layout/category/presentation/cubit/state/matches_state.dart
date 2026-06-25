@@ -1,4 +1,4 @@
-import '../../data/models/MatchDayModel.dart';
+import '../../../data/models/MatchDayModel.dart';
 
 abstract class MatchesState {}
 

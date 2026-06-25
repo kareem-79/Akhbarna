@@ -106,6 +106,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get no_account => 'Haben Sie noch kein Konto?';
 
   @override
+  String get current_password => 'Aktuelles Passwort';
+
+  @override
   String get create_account => 'Konto erstellen';
 
   @override
@@ -595,6 +598,18 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get million_short => 'Mio.';
+
+  @override
+  String get all => 'Alle';
+
+  @override
+  String get select_all => 'Alle auswählen';
+
+  @override
+  String get saved_articles => 'Gespeicherte Artikel';
+
+  @override
+  String get delete_all => 'Alle löschen';
 
   @override
   String get read_more => 'Mehr lesen...';

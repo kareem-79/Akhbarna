@@ -1,4 +1,4 @@
-import '../../data/models/CategoriesResponseModel.dart';
+import '../../../data/models/CategoriesResponseModel.dart';
 
 abstract class CategoryNewsState {}
 

@@ -1,16 +1,41 @@
-# akhbarna
+# Akhbarna
 
-A new Flutter project.
+Akhbarna is a Flutter news app with authentication, onboarding, localization,
+theme customization, article discovery, weather, matches, and saved articles.
 
-## Getting Started
+## Main Features
 
-This project is a starting point for a Flutter application.
+- Email and Google sign-in flows
+- Multi-language localization
+- Light and dark themes with text-size preferences
+- News sections for breaking, latest, trending, most-read, and categories
+- Weather and match widgets
+- Saved articles and profile settings
 
-A few resources to get you started if this is your first Flutter project:
+## Tech Stack
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Flutter and Dart
+- Firebase Auth and Firebase Core
+- Dio for API access
+- Bloc, Provider, GetIt, and Injectable
+- Shared Preferences and Flutter Secure Storage
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Development
+
+Install dependencies:
+
+```bash
+flutter pub get
+```
+
+Run the app:
+
+```bash
+flutter run
+```
+
+Run static analysis:
+
+```bash
+flutter analyze
+```

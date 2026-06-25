@@ -5,7 +5,7 @@ import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../model/category_tab_model.dart';
 import '../cubit/category_news_cubit.dart';
-import '../cubit/category_news_state.dart';
+import '../cubit/state/category_news_state.dart';
 import '../widget/category_item.dart';
 import '../widget/category_loading_widget.dart';
 

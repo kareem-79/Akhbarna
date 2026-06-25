@@ -105,6 +105,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get no_account => 'Hesabınız yok mu?';
 
   @override
+  String get current_password => 'Mevcut Şifre';
+
+  @override
   String get create_account => 'Hesap Oluştur';
 
   @override
@@ -585,6 +588,18 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get million_short => 'milyon';
+
+  @override
+  String get all => 'Tümü';
+
+  @override
+  String get select_all => 'Tümünü Seç';
+
+  @override
+  String get saved_articles => 'Kaydedilen Makaleler';
+
+  @override
+  String get delete_all => 'Tümünü Sil';
 
   @override
   String get read_more => 'Devamını oku...';

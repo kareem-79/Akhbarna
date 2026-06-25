@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/resources/constant.dart';
@@ -14,6 +12,10 @@ import '../core/utils/ui_utils.dart';
 import '../features/auth/login/data/models/LoginResponse.dart';
 
 class FirebaseServices {
+  static String _googleBackendPassword(User user) {
+    return "Google@${user.uid}";
+  }
+
   static Future<LoginResponse?> signInWithGoogle(BuildContext context) async {
     try {
       final GoogleSignIn googleSignIn = GoogleSignIn.instance;
@@ -48,6 +50,8 @@ class FirebaseServices {
         return null;
       }
 
+      final backendPassword = _googleBackendPassword(user);
+
       Dio dio = Dio(
         BaseOptions(
           baseUrl: ApiConstant.baseUrl,
@@ -62,7 +66,7 @@ class FirebaseServices {
         data: {
           "name": user.displayName ?? "Google User",
           "email": user.email ?? "",
-          "password": "Google@123",
+          "password": backendPassword,
         },
       );
 
@@ -87,7 +91,7 @@ class FirebaseServices {
       } else if (response.data["error"] == "Email already exists") {
         final loginResponseApi = await dio.post(
           ApiConstant.loginEndpoint,
-          data: {"email": user.email ?? "", "password": "Google@123"},
+          data: {"email": user.email ?? "", "password": backendPassword},
         );
 
         final loginResponse = LoginResponse.fromJson(loginResponseApi.data);
@@ -119,8 +123,6 @@ class FirebaseServices {
         return null;
       }
     } on DioException catch (e) {
-      log("DIO ERROR => ${e.response?.data}");
-
       UiUtils.hideDialog(context);
 
       UiUtils.showToast(
@@ -130,9 +132,7 @@ class FirebaseServices {
       );
 
       return null;
-    } catch (exception) {
-      log(exception.toString());
-
+    } catch (_) {
       UiUtils.hideDialog(context);
 
       UiUtils.showToast(

@@ -316,6 +316,12 @@ abstract class AppLocalizations {
   /// **'Don\'t have an account?'**
   String get no_account;
 
+  /// No description provided for @current_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Password'**
+  String get current_password;
+
   /// No description provided for @create_account.
   ///
   /// In en, this message translates to:
@@ -1233,6 +1239,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'M'**
   String get million_short;
+
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// No description provided for @select_all.
+  ///
+  /// In en, this message translates to:
+  /// **'Select All'**
+  String get select_all;
+
+  /// No description provided for @saved_articles.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved Articles'**
+  String get saved_articles;
+
+  /// No description provided for @delete_all.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete All'**
+  String get delete_all;
 
   /// No description provided for @read_more.
   ///

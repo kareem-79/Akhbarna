@@ -12,7 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/validation.dart';
 import '../../../../../core/widget/custom_text_form_field.dart';
 import '../cubit/forget_password_cubit.dart';
-import '../cubit/forget_password_state.dart';
+import '../cubit/state/forget_password_state.dart';
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({super.key});
@@ -56,11 +56,10 @@ class _ForgetPasswordState extends State<ForgetPassword> {
           UiUtils.showToast(context, state.message, ColorsManagers.red);
         } else if (state is ForgetPasswordSuccess) {
           UiUtils.hideDialog(context);
-
-          Navigator.pushNamed(
+          UiUtils.showToast(context, state.message, Colors.green);
+          Navigator.pushReplacementNamed(
             context,
             RoutesManager.loginWithOtp,
-
             arguments: emailController.text,
           );
         }
@@ -83,7 +82,6 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
                     Image.asset(
                       ImageManagers.forgetPassword,
-
                       width: 210.w,
                       height: 210.h,
                     ),
@@ -174,7 +172,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
   Future<void> _enterEmail() async {
     if (formKey.currentState?.validate() ?? false) {
-      context.read<ForgetPasswordCubit>().sendOtp(emailController.text);
+      context.read<ForgetPasswordCubit>().sendOtp(emailController.text.trim());
     }
   }
 }
