@@ -16,7 +16,8 @@ class TopNewsScreen extends StatefulWidget {
   State<TopNewsScreen> createState() => _TopNewsScreenState();
 }
 
-class _TopNewsScreenState extends State<TopNewsScreen> {
+class _TopNewsScreenState extends State<TopNewsScreen>
+    with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
@@ -25,7 +26,11 @@ class _TopNewsScreenState extends State<TopNewsScreen> {
   }
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: Column(
         children: [

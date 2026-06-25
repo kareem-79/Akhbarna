@@ -575,6 +575,18 @@ class AppLocalizationsKo extends AppLocalizations {
   String get million_short => '백만';
 
   @override
+  String get all => '전체';
+
+  @override
+  String get select_all => '모두 선택';
+
+  @override
+  String get saved_articles => '저장된 기사';
+
+  @override
+  String get delete_all => '모두 삭제';
+
+  @override
   String get read_more => '더 읽기...';
 
   @override

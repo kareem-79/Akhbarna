@@ -1234,6 +1234,30 @@ abstract class AppLocalizations {
   /// **'M'**
   String get million_short;
 
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// No description provided for @select_all.
+  ///
+  /// In en, this message translates to:
+  /// **'Select All'**
+  String get select_all;
+
+  /// No description provided for @saved_articles.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved Articles'**
+  String get saved_articles;
+
+  /// No description provided for @delete_all.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete All'**
+  String get delete_all;
+
   /// No description provided for @read_more.
   ///
   /// In en, this message translates to:

@@ -32,6 +32,23 @@ class ArticleModel {
       sourceLogoFallbackUrl: json['sourceLogoFallbackUrl'],
     );
   }
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "title": title,
+      "description": description,
+      "imageUrl": imageUrl,
+      "sourceUrl": sourceUrl,
+      "articleUrl": articleUrl,
+      "category": category,
+      "sourceName": sourceName,
+      "publishedDate": publishedDate,
+      "viewCount": viewCount,
+      "isBreaking": isBreaking,
+      "sourceLogoUrl": sourceLogoUrl,
+      "sourceLogoFallbackUrl": sourceLogoFallbackUrl,
+    };
+  }
 
   final String? id;
   final String? title;

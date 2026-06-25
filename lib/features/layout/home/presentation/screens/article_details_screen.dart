@@ -3,6 +3,7 @@ import 'package:akhbarna/core/utils/timer_format_helper.dart';
 import 'package:akhbarna/core/widget/arrow_back_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:share_plus/share_plus.dart';
@@ -10,9 +11,12 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../core/resources/constant.dart';
+import '../../../../../core/utils/ui_utils.dart';
 import '../../../../../core/utils/viewer_format_helper.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../auth/widget/custom_start_up_elevated_button.dart';
+import '../../../bookMarket/presentation/cubit/save_article_cubit.dart';
+import '../../../bookMarket/presentation/cubit/save_article_state.dart';
 import '../../data/models/ArticleModel.dart';
 
 class ArticleDetailsScreen extends StatefulWidget {
@@ -23,7 +27,11 @@ class ArticleDetailsScreen extends StatefulWidget {
 }
 
 class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
-  bool isSelected = false;
+  @override
+  void initState() {
+    super.initState();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,30 +110,59 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
                               ),
                             ),
                             SizedBox(width: 8.w),
-                            Container(
-                              width: 42.w,
-                              height: 42.h,
-                              decoration: BoxDecoration(
-                                color: cardColor,
-                                borderRadius: BorderRadius.circular(12.r),
-                              ),
-                              child: Center(
-                                child: InkWell(
-                                  borderRadius: BorderRadius.circular(20.r),
-                                  onTap: () {
-                                    setState(() {
-                                      isSelected = !isSelected;
-                                    });
-                                  },
-                                  child: Icon(
-                                    isSelected
-                                        ? Icons.bookmark
-                                        : Icons.bookmark_border_outlined,
-                                    size: 30.sp,
-                                    color: shadowColor,
+                            BlocConsumer<BookMarketCubit, BookMarketState>(
+                              listener: (context, state) {
+                                if (state is BookMarketError) {
+                                  UiUtils.showToast(
+                                    context,
+                                    state.message,
+                                    ColorsManagers.red,
+                                  );
+                                }
+                              },
+                              builder: (context, state) {
+                                final bool isSaved =
+                                    state is BookMarketSuccess &&
+                                    state.savedIds.contains(article.id);
+
+                                return Container(
+                                  width: 42.w,
+                                  height: 42.h,
+                                  decoration: BoxDecoration(
+                                    color: cardColor,
+                                    borderRadius: BorderRadius.circular(12.r),
                                   ),
-                                ),
-                              ),
+                                  child: Center(
+                                    child: InkWell(
+                                      borderRadius: BorderRadius.circular(20.r),
+                                      onTap: state is BookMarketLoading
+                                          ? null
+                                          : () {
+                                              context
+                                                  .read<BookMarketCubit>()
+                                                  .toggleBookmark(article);
+                                            },
+                                      child: state is BookMarketLoading
+                                          ? SizedBox(
+                                              width: 20.w,
+                                              height: 20.h,
+                                              child:
+                                                  const CircularProgressIndicator(
+                                                    strokeWidth: 2,
+                                                  ),
+                                            )
+                                          : Icon(
+                                              isSaved
+                                                  ? Icons.bookmark
+                                                  : Icons
+                                                        .bookmark_border_outlined,
+                                              size: 30.sp,
+                                              color: shadowColor,
+                                            ),
+                                    ),
+                                  ),
+                                );
+                              },
                             ),
                           ],
                         ),
@@ -231,9 +268,11 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
                       ),
                       decoration: BoxDecoration(
                         border: Border(
-                          top: BorderSide(color: Colors.grey.withOpacity(.2)),
+                          top: BorderSide(
+                            color: ColorsManagers.gray3.withOpacity(.2),
+                          ),
                           bottom: BorderSide(
-                            color: Colors.grey.withOpacity(.2),
+                            color: ColorsManagers.gray3.withOpacity(.2),
                           ),
                         ),
                       ),

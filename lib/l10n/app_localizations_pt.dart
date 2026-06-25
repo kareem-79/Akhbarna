@@ -594,6 +594,18 @@ class AppLocalizationsPt extends AppLocalizations {
   String get million_short => 'M';
 
   @override
+  String get all => 'Todos';
+
+  @override
+  String get select_all => 'Selecionar tudo';
+
+  @override
+  String get saved_articles => 'Artigos salvos';
+
+  @override
+  String get delete_all => 'Excluir tudo';
+
+  @override
   String get read_more => 'Leia mais...';
 
   @override

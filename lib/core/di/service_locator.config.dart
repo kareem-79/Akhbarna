@@ -49,6 +49,30 @@ import 'package:akhbarna/features/auth/register/domain/use_case/register_use_cas
     as _i794;
 import 'package:akhbarna/features/auth/register/presentation/cubit/register_cubit.dart'
     as _i582;
+import 'package:akhbarna/features/layout/bookMarket/data/data_sources/local/saved_local_data_source.dart'
+    as _i264;
+import 'package:akhbarna/features/layout/bookMarket/data/data_sources/local/saved_local_data_source_impl.dart'
+    as _i720;
+import 'package:akhbarna/features/layout/bookMarket/data/data_sources/remote/book_market_api_data_source.dart'
+    as _i1007;
+import 'package:akhbarna/features/layout/bookMarket/data/data_sources/remote/book_market_remote_data_source.dart'
+    as _i539;
+import 'package:akhbarna/features/layout/bookMarket/data/repositories_impl/book_market_repository_impl.dart'
+    as _i526;
+import 'package:akhbarna/features/layout/bookMarket/domain/repositories/book_market_repository.dart'
+    as _i1062;
+import 'package:akhbarna/features/layout/bookMarket/domain/use_case/get_saved_articles_use_case.dart'
+    as _i98;
+import 'package:akhbarna/features/layout/bookMarket/domain/use_case/is_saved_article_use_case.dart'
+    as _i911;
+import 'package:akhbarna/features/layout/bookMarket/domain/use_case/remove_all_articles_use_case.dart'
+    as _i222;
+import 'package:akhbarna/features/layout/bookMarket/domain/use_case/remove_article_use_case.dart'
+    as _i815;
+import 'package:akhbarna/features/layout/bookMarket/domain/use_case/save_article_use_case.dart'
+    as _i939;
+import 'package:akhbarna/features/layout/bookMarket/presentation/cubit/save_article_cubit.dart'
+    as _i201;
 import 'package:akhbarna/features/layout/category/data/data_sources/category_api_remote_data_source.dart'
     as _i926;
 import 'package:akhbarna/features/layout/category/data/data_sources/category_remote_data_source.dart'
@@ -162,6 +186,16 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i433.CategoryRemoteDataSource>(),
       ),
     );
+    gh.singleton<_i539.SavedRemoteDataSource>(
+      () => _i1007.SavedApiRemoteDataSource(
+        authLocalDataSource: gh<_i1023.AuthLocalDataSource>(),
+      ),
+    );
+    gh.singleton<_i264.SavedLocalDataSource>(
+      () => _i720.SavedLocalDataSourceImpl(
+        authLocalDataSource: gh<_i1023.AuthLocalDataSource>(),
+      ),
+    );
     gh.singleton<_i861.RegisterRepository>(
       () => _i731.RegisterRepositoryImpl(
         registerApiRemoteDataSource: gh<_i512.RegisterRemoteDataSource>(),
@@ -179,6 +213,11 @@ extension GetItInjectableX on _i174.GetIt {
         authLocalDataSource: gh<_i1023.AuthLocalDataSource>(),
       ),
     );
+    gh.factory<_i1062.BookMarketRepository>(
+      () => _i526.BookMarketRepositoryImpl(
+        localDataSource: gh<_i264.SavedLocalDataSource>(),
+      ),
+    );
     gh.singleton<_i1065.MatchesRepository>(
       () => _i753.MatchesRepositoryImpl(
         remoteDataSource: gh<_i505.MatchesRemoteDataSource>(),
@@ -187,6 +226,31 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i629.GetCategoryNewsUseCase>(
       () => _i629.GetCategoryNewsUseCase(
         repository: gh<_i692.CategoryRepository>(),
+      ),
+    );
+    gh.factory<_i98.GetSavedArticlesUseCase>(
+      () => _i98.GetSavedArticlesUseCase(
+        repository: gh<_i1062.BookMarketRepository>(),
+      ),
+    );
+    gh.factory<_i911.IsSavedArticleUseCase>(
+      () => _i911.IsSavedArticleUseCase(
+        repository: gh<_i1062.BookMarketRepository>(),
+      ),
+    );
+    gh.factory<_i222.RemoveAllArticlesUseCase>(
+      () => _i222.RemoveAllArticlesUseCase(
+        repository: gh<_i1062.BookMarketRepository>(),
+      ),
+    );
+    gh.factory<_i815.RemoveArticleUseCase>(
+      () => _i815.RemoveArticleUseCase(
+        repository: gh<_i1062.BookMarketRepository>(),
+      ),
+    );
+    gh.factory<_i939.SaveArticleUseCase>(
+      () => _i939.SaveArticleUseCase(
+        repository: gh<_i1062.BookMarketRepository>(),
       ),
     );
     gh.factory<_i794.RegisterUseCase>(
@@ -265,6 +329,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i739.ForgetPasswordCubit>(
       () =>
           _i739.ForgetPasswordCubit(sendOtpUseCase: gh<_i343.SendOtpUseCase>()),
+    );
+    gh.factory<_i201.BookMarketCubit>(
+      () => _i201.BookMarketCubit(
+        removeAllArticlesUseCase: gh<_i222.RemoveAllArticlesUseCase>(),
+        saveArticleUseCase: gh<_i939.SaveArticleUseCase>(),
+        removeArticleUseCase: gh<_i815.RemoveArticleUseCase>(),
+        getSavedArticlesUseCase: gh<_i98.GetSavedArticlesUseCase>(),
+        isSavedArticleUseCase: gh<_i911.IsSavedArticleUseCase>(),
+      ),
     );
     gh.factory<_i281.LoginCubit>(
       () => _i281.LoginCubit(loginUseCase: gh<_i766.LoginUseCase>()),

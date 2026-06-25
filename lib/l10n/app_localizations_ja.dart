@@ -574,6 +574,18 @@ class AppLocalizationsJa extends AppLocalizations {
   String get million_short => '百万';
 
   @override
+  String get all => 'すべて';
+
+  @override
+  String get select_all => 'すべて選択';
+
+  @override
+  String get saved_articles => '保存済みの記事';
+
+  @override
+  String get delete_all => 'すべて削除';
+
+  @override
   String get read_more => '続きを読む...';
 
   @override

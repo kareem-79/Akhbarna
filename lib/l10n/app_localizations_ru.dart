@@ -594,6 +594,18 @@ class AppLocalizationsRu extends AppLocalizations {
   String get million_short => 'млн';
 
   @override
+  String get all => 'Все';
+
+  @override
+  String get select_all => 'Выбрать всё';
+
+  @override
+  String get saved_articles => 'Сохранённые статьи';
+
+  @override
+  String get delete_all => 'Удалить всё';
+
+  @override
   String get read_more => 'Читать далее...';
 
   @override

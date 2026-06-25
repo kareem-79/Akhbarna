@@ -582,6 +582,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get million_short => 'مليون';
 
   @override
+  String get all => 'الكل';
+
+  @override
+  String get select_all => 'تحديد الكل';
+
+  @override
+  String get saved_articles => 'المقالات المحفوظة';
+
+  @override
+  String get delete_all => 'حذف الكل';
+
+  @override
   String get read_more => 'اقرأ المزيد...';
 
   @override

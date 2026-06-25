@@ -38,6 +38,9 @@ abstract class NewsApiConstant {
   static const String matchBaseUrl = "http://akhbarna1.runasp.net/api/";
   static const String match = "matches/important";
   static const String searchArticles = "search";
+  static const String baseUrlSavedArticle = "http://akhbarna1.runasp.net/api/";
+  static const String savedArticle = "saved";
+
 }
 abstract class PlatformConstant {
   static const String facebook = "https://www.facebook.com/sharer/sharer.php?u=";

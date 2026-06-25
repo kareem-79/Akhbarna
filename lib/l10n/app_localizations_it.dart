@@ -597,6 +597,18 @@ class AppLocalizationsIt extends AppLocalizations {
   String get million_short => 'M';
 
   @override
+  String get all => 'Tutti';
+
+  @override
+  String get select_all => 'Seleziona tutto';
+
+  @override
+  String get saved_articles => 'Articoli salvati';
+
+  @override
+  String get delete_all => 'Elimina tutto';
+
+  @override
   String get read_more => 'Leggi di più...';
 
   @override

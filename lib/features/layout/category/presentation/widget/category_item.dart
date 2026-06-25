@@ -21,7 +21,7 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isOddIndex = index % 2 != 0;
     final textTheme = Theme.of(context).textTheme;
-    final colors = getCategoryGradient(category.title);
+    final colors = getCategoryGradient(category.id);
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return TweenAnimationBuilder(
       duration: Duration(milliseconds: 400 + (index * 100)),
@@ -105,7 +105,7 @@ class CategoryItem extends StatelessWidget {
                       ? CrossAxisAlignment.end
                       : CrossAxisAlignment.start,
                   children: [
-                    Text(category.title, style: textTheme.bodyMedium),
+                    Text(category.id, style: textTheme.bodyMedium),
 
                     SizedBox(height: 4.h),
 
@@ -148,8 +148,8 @@ class CategoryItem extends StatelessWidget {
     );
   }
 
-  List<Color> getCategoryGradient(String? category) {
-    switch (category?.trim()) {
+  List<Color> getCategoryGradient(String? categoryId) {
+    switch (categoryId?.trim()) {
       case "رياضة":
         return [ColorsManagers.pinkLight, ColorsManagers.pinkDark];
 
@@ -165,13 +165,13 @@ class CategoryItem extends StatelessWidget {
       case "صحة":
         return [ColorsManagers.purpleLight, ColorsManagers.purpleDark];
 
-      case "ترفيه":
+      case "فن":
         return [ColorsManagers.orangeLight, ColorsManagers.orangeDark];
 
       case "علوم":
         return [ColorsManagers.skyBlueLight, ColorsManagers.skyBlueDark];
 
-      case "عالمي":
+      case "دولي":
         return [ColorsManagers.roseLight, ColorsManagers.roseDark];
 
       default:

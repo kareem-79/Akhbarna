@@ -16,16 +16,19 @@ class MostReadScreen extends StatefulWidget {
   State<MostReadScreen> createState() => _MostReadScreenState();
 }
 
-class _MostReadScreenState extends State<MostReadScreen> {
+class _MostReadScreenState extends State<MostReadScreen> with AutomaticKeepAliveClientMixin{
   @override
   void initState() {
     super.initState();
 
     context.read<MostReadNewsCubit>().getMostReadNews(top: 50);
   }
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: Column(
         children: [

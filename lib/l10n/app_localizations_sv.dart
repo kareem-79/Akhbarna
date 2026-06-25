@@ -588,6 +588,18 @@ class AppLocalizationsSv extends AppLocalizations {
   String get million_short => 'miljon';
 
   @override
+  String get all => 'Alla';
+
+  @override
+  String get select_all => 'Markera alla';
+
+  @override
+  String get saved_articles => 'Sparade artiklar';
+
+  @override
+  String get delete_all => 'Ta bort alla';
+
+  @override
   String get read_more => 'Läs mer...';
 
   @override

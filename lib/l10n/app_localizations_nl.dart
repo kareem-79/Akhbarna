@@ -589,6 +589,18 @@ class AppLocalizationsNl extends AppLocalizations {
   String get million_short => 'm';
 
   @override
+  String get all => 'Alles';
+
+  @override
+  String get select_all => 'Alles selecteren';
+
+  @override
+  String get saved_articles => 'Opgeslagen artikelen';
+
+  @override
+  String get delete_all => 'Alles verwijderen';
+
+  @override
   String get read_more => 'Lees meer...';
 
   @override

@@ -597,6 +597,18 @@ class AppLocalizationsDe extends AppLocalizations {
   String get million_short => 'Mio.';
 
   @override
+  String get all => 'Alle';
+
+  @override
+  String get select_all => 'Alle auswählen';
+
+  @override
+  String get saved_articles => 'Gespeicherte Artikel';
+
+  @override
+  String get delete_all => 'Alle löschen';
+
+  @override
   String get read_more => 'Mehr lesen...';
 
   @override

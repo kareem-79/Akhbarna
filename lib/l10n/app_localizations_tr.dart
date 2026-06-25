@@ -587,6 +587,18 @@ class AppLocalizationsTr extends AppLocalizations {
   String get million_short => 'milyon';
 
   @override
+  String get all => 'Tümü';
+
+  @override
+  String get select_all => 'Tümünü Seç';
+
+  @override
+  String get saved_articles => 'Kaydedilen Makaleler';
+
+  @override
+  String get delete_all => 'Tümünü Sil';
+
+  @override
   String get read_more => 'Devamını oku...';
 
   @override

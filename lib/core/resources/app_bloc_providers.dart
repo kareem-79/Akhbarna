@@ -8,6 +8,7 @@ import '../../core/di/service_locator.dart';
 import '../../features/auth/login/presentation/cubit/login_cubit.dart';
 import '../../features/auth/register/presentation/cubit/register_cubit.dart';
 import '../../features/auth/forget_password/presentation/cubit/forget_password_cubit.dart';
+import '../../features/layout/bookMarket/presentation/cubit/save_article_cubit.dart';
 import '../../features/layout/category/presentation/cubit/category_news_cubit.dart';
 import '../../features/layout/home/presentation/cubit/latest_news_cubit.dart';
 import '../../features/layout/home/presentation/cubit/most_read_news_cubit.dart';
@@ -28,6 +29,7 @@ class AppBlocProviders {
     BlocProvider(create: (_) => serviceLocator.get<WeatherCubit>()),
     BlocProvider(create: (_) => serviceLocator.get<MatchesCubit>()),
     BlocProvider(create: (_) => serviceLocator.get<SearchCubit>()),
+    BlocProvider(create: (_) => serviceLocator.get<BookMarketCubit>()),
     ChangeNotifierProvider(create: (_) => BookmarkProvider()),
   ];
 }
