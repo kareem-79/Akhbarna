@@ -25,6 +25,7 @@ abstract class ApiConstant {
   static const String changePasswordEndpoint = 'auth/change-password';
   static const String verifyOtp = 'auth/verify-otp';
   static const String resetPassword = 'auth/reset-password';
+  static const String updateProfileEndpoint = 'auth/profile';
 
 }
 

@@ -25,6 +25,7 @@ import '../../features/layout/category/presentation/screens/match_screen.dart';
 import '../../features/layout/home/presentation/screens/article_details_screen.dart';
 import '../../features/layout/home/presentation/screens/trending_screen.dart';
 import '../../features/layout/home/presentation/widget/search_widget.dart';
+import '../../features/layout/profile/data/models/update_profile_response_model.dart';
 import '../../features/layout/profile/presentation/screens/general_settings/presentation/general_setting.dart';
 import '../../model/category_argument.dart';
 
@@ -127,8 +128,12 @@ class RoutesManager {
       case profile:
         return slideRight(const ProfileTab());
 
-      case editProfile:
-        return slideRight(const EditProfile());
+      case RoutesManager.editProfile:
+        final profile = settings.arguments as UpdateProfileResponse;
+
+        return slideRight(
+          EditProfile(profile: profile),
+        );
 
       case security:
         return slideRight(const SecurityScreen());

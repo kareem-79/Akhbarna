@@ -77,13 +77,16 @@ class _BookMarketTabState extends State<BookMarketTab> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       BookMarketHeaderWidget(
+                        hasSelection: selectedIds.isNotEmpty,
                         onDeleteAll: () async {
                           if (selectedIds.isEmpty) return;
+
                           for (final id in selectedIds) {
                             await context.read<BookMarketCubit>().removeArticle(
                               id,
                             );
                           }
+
                           setState(() {
                             selectionMode = false;
                             selectedIds.clear();
@@ -126,7 +129,8 @@ class _BookMarketTabState extends State<BookMarketTab> {
                               setState(() {
                                 selectionMode = true;
 
-                                if (selectedIds.length == filteredBookmarks.length) {
+                                if (selectedIds.length ==
+                                    filteredBookmarks.length) {
                                   selectedIds.clear();
                                   selectionMode = false;
                                 } else {
@@ -215,10 +219,16 @@ class _BookMarketTabState extends State<BookMarketTab> {
                                     },
                                     onSelect: () {
                                       setState(() {
-                                        if (selectedIds.contains(filteredBookmarks[index].id)) {
-                                          selectedIds.remove(filteredBookmarks[index].id);
+                                        if (selectedIds.contains(
+                                          filteredBookmarks[index].id,
+                                        )) {
+                                          selectedIds.remove(
+                                            filteredBookmarks[index].id,
+                                          );
                                         } else {
-                                          selectedIds.add(filteredBookmarks[index].id!);
+                                          selectedIds.add(
+                                            filteredBookmarks[index].id!,
+                                          );
                                         }
 
                                         if (selectedIds.isEmpty) {

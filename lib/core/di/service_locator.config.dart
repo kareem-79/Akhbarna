@@ -157,6 +157,20 @@ import 'package:akhbarna/features/layout/home/presentation/cubit/trending_news_c
     as _i913;
 import 'package:akhbarna/features/layout/home/presentation/cubit/weather_cubit.dart'
     as _i733;
+import 'package:akhbarna/features/layout/profile/data/data_sources/profile_api_remote_data_source.dart'
+    as _i766;
+import 'package:akhbarna/features/layout/profile/data/data_sources/profile_remote_data_source.dart'
+    as _i198;
+import 'package:akhbarna/features/layout/profile/data/repositories_impl/profile_repository_impl.dart'
+    as _i464;
+import 'package:akhbarna/features/layout/profile/domain/repositories/profile_repository.dart.dart'
+    as _i780;
+import 'package:akhbarna/features/layout/profile/domain/use_case/get_profile_use_case.dart'
+    as _i282;
+import 'package:akhbarna/features/layout/profile/domain/use_case/update_profile_use_case.dart'
+    as _i919;
+import 'package:akhbarna/features/layout/profile/presentation/cubit/update_profile_cubit.dart'
+    as _i101;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -208,6 +222,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i539.SavedRemoteDataSource>(
       () => _i1007.SavedApiRemoteDataSource(
+        authLocalDataSource: gh<_i1023.AuthLocalDataSource>(),
+      ),
+    );
+    gh.singleton<_i198.ProfileRemoteDataSource>(
+      () => _i766.ProfileApiRemoteDataSource(
         authLocalDataSource: gh<_i1023.AuthLocalDataSource>(),
       ),
     );
@@ -267,6 +286,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i412.ChangePasswordRepository>(
       () => _i412.ChangePasswordRepositoryImpl(
         remoteDataSource: gh<_i235.ChangePasswordRemoteDataSource>(),
+      ),
+    );
+    gh.singleton<_i780.ProfileRepository>(
+      () => _i464.ProfileRepositoryImpl(
+        remoteDataSource: gh<_i198.ProfileRemoteDataSource>(),
       ),
     );
     gh.factory<_i98.GetSavedArticlesUseCase>(
@@ -378,6 +402,13 @@ extension GetItInjectableX on _i174.GetIt {
         getTrendingNewsUseCase: gh<_i386.GetTrendingNewsUseCase>(),
       ),
     );
+    gh.factory<_i282.GetProfileUseCase>(
+      () => _i282.GetProfileUseCase(repository: gh<_i780.ProfileRepository>()),
+    );
+    gh.factory<_i919.UpdateProfileUseCase>(
+      () =>
+          _i919.UpdateProfileUseCase(repository: gh<_i780.ProfileRepository>()),
+    );
     gh.factory<_i201.BookMarketCubit>(
       () => _i201.BookMarketCubit(
         removeAllArticlesUseCase: gh<_i222.RemoveAllArticlesUseCase>(),
@@ -405,6 +436,12 @@ extension GetItInjectableX on _i174.GetIt {
         resetPasswordUseCase: gh<_i39.ResetPasswordUseCase>(),
         sendOtpUseCase: gh<_i343.SendOtpUseCase>(),
         verifyOtpUseCase: gh<_i56.VerifyOtpUseCase>(),
+      ),
+    );
+    gh.lazySingleton<_i101.UpdateProfileCubit>(
+      () => _i101.UpdateProfileCubit(
+        updateProfileUseCase: gh<_i919.UpdateProfileUseCase>(),
+        getProfileUseCase: gh<_i282.GetProfileUseCase>(),
       ),
     );
     return this;

@@ -4,12 +4,17 @@ import 'package:akhbarna/features/layout/profile/presentation/screens/logout/pre
 import 'package:akhbarna/features/layout/profile/presentation/widget/custom_blur_bottom_sheet.dart';
 import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/prefs_manager/location_prefs_manager.dart';
 import '../../../../../core/prefs_manager/prefs_manager.dart';
 import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../core/resources/routes_managers.dart';
 import '../../../../../model/language_model.dart';
+import '../../data/models/update_profile_response_model.dart';
+import '../cubit/update_profile_cubit.dart';
+import '../cubit/update_profile_state.dart';
 import '../widget/enlargable_profile_avatar.dart';
 import '../widget/settings_divider_widget.dart';
 import '../widget/settings_section_widget.dart';
@@ -23,13 +28,13 @@ class ProfileTab extends StatefulWidget {
 }
 
 class _ProfileTabState extends State<ProfileTab> {
-  String? _profileImagePath;
+  UpdateProfileResponse? profile;
   String _country = "";
 
   @override
   void initState() {
     super.initState();
-    _profileImagePath = PrefsManager.getProfileImage();
+    context.read<UpdateProfileCubit>().getProfile();
     loadCountry();
   }
 
@@ -43,76 +48,98 @@ class _ProfileTabState extends State<ProfileTab> {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final textTheme = Theme
+        .of(context)
+        .textTheme;
     final appLocalizations = AppLocalizations.of(context)!;
     final currentLanguage = AppLanguage.languages.firstWhere(
-      (lang) => lang.code == Localizations.localeOf(context).languageCode,
+          (lang) =>
+      lang.code == Localizations
+          .localeOf(context)
+          .languageCode,
       orElse: () => AppLanguage.languages.first,
     );
-    final Color cardColor = Theme.of(context).cardColor;
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 24.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(height: 16.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [ArrowBackWidget()],
-              ),
-              SizedBox(height: 20.h),
-              Text(appLocalizations.settings, style: textTheme.bodyMedium),
-              SizedBox(height: 24.h),
-              Container(
-                padding: EdgeInsets.all(16.r),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24.r),
-                  color: cardColor,
-                ),
-                child: Row(
+    final Color cardColor = Theme
+        .of(context)
+        .cardColor;
+    return BlocConsumer<UpdateProfileCubit, UpdateProfileState>(
+      listener: (context, state) {
+        if (state is UpdateProfileSuccess) {
+          context.read<UpdateProfileCubit>().getProfile();
+        }
+      },
+      builder: (context, state) {
+        final isLoading = state is UpdateProfileLoading;
+        final profile = state is GetProfileSuccess ? state.profile : null;
+
+        return Skeletonizer(
+          enabled: isLoading,
+          child: Scaffold(
+            body: SafeArea(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    SizedBox(height: 16.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [ArrowBackWidget()],
+                    ),
+                    SizedBox(height: 20.h),
+                    Text(
+                      appLocalizations.settings,
+                      style: textTheme.bodyMedium,
+                    ),
+                    SizedBox(height: 24.h),
                     Container(
-                      width: 52.w,
-                      height: 52.h,
+                      padding: EdgeInsets.all(16.r),
                       decoration: BoxDecoration(
-                        color: ColorsManagers.red,
-                        borderRadius: BorderRadius.circular(16.r),
+                        borderRadius: BorderRadius.circular(24.r),
+                        color: cardColor,
                       ),
-                      child: Icon(
-                        Icons.person_outline,
-                        color: ColorsManagers.white,
-                      ),
-                    ),
-
-                    SizedBox(width: 12.w),
-
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      child: Row(
                         children: [
-                          Text(
-                            PrefsManager.getUserName(),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: textTheme.bodySmall?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 4.h),
-                          Text(
-                            _country,
-                            style: textTheme.bodySmall?.copyWith(
-                              color: ColorsManagers.gray3,
-                            ),
-                          ),
-                        ],
+                        Container(
+                        width: 52.w,
+                        height: 52.h,
+                        decoration: BoxDecoration(
+                          color: ColorsManagers.red,
+                          borderRadius: BorderRadius.circular(16.r),
+                        ),
+                        child: Icon(
+                          Icons.person_outline,
+                          color: ColorsManagers.white,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 12.w),
-                    EnlargableProfileAvatar(
-                      imagePath: _profileImagePath,
+
+                      SizedBox(width: 12.w),
+
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              profile?.name ?? "User Name",
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: textTheme.bodySmall?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 4.h),
+                            Text(
+                              _country,
+                              style: textTheme.bodySmall?.copyWith(
+                                color: ColorsManagers.gray3,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(width: 12.w),
+                      EnlargableProfileAvatar(
+                        imagePath: profile?.profileImageUrl,
                       radius: 28.r,
                       isEditable: false,
                     ),
@@ -141,17 +168,17 @@ class _ProfileTabState extends State<ProfileTab> {
                     iconBackgroundColor: ColorsManagers.azureRadiance
                         .withValues(alpha: .15),
                     onTap: () async {
-                      final result = await Navigator.pushNamed(
-                        context,
-                        RoutesManager.editProfile,
-                        arguments: _profileImagePath,
-                      );
+                      if (state is GetProfileSuccess) {
+                        final result = await Navigator.pushNamed(
+                          context,
+                          RoutesManager.editProfile,
+                          arguments: state.profile,
+                        );
 
-                      if (result != null && result is String) {
-                        await PrefsManager.saveProfileImage(result);
-                        setState(() {
-                          _profileImagePath = result;
-                        });
+                        if (result == true && mounted) {
+                          await loadCountry();
+                          context.read<UpdateProfileCubit>().getProfile();
+                        }
                       }
                     },
                   ),
@@ -167,7 +194,10 @@ class _ProfileTabState extends State<ProfileTab> {
                       alpha: .15,
                     ),
                     onTap: () {
-                      Navigator.pushNamed(context, RoutesManager.security);
+                      Navigator.pushNamed(
+                        context,
+                        RoutesManager.security,
+                      );
                     },
                   ),
                 ],
@@ -191,10 +221,11 @@ class _ProfileTabState extends State<ProfileTab> {
                     icon: Icons.settings_outlined,
                     iconColor: ColorsManagers.yellowDark,
                     iconBackgroundColor: ColorsManagers.yellowLight,
-                    onTap: () => Navigator.pushNamed(
-                      context,
-                      RoutesManager.generalSettings,
-                    ),
+                    onTap: () =>
+                        Navigator.pushNamed(
+                          context,
+                          RoutesManager.generalSettings,
+                        ),
                   ),
 
                   const SettingsDividerWidget(),
@@ -284,10 +315,13 @@ class _ProfileTabState extends State<ProfileTab> {
               ),
 
               SizedBox(height: 30.h),
-            ],
+              ],
+            ),
           ),
-        ),
-      ),
+        ),)
+        ,
+        );
+      },
     );
   }
 

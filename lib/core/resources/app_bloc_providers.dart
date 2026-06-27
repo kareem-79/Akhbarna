@@ -1,6 +1,7 @@
 import 'package:akhbarna/features/layout/category/presentation/cubit/matches_cubit.dart';
 import 'package:akhbarna/features/layout/home/presentation/cubit/breaking_news_cubit.dart';
 import 'package:akhbarna/features/layout/home/presentation/cubit/trending_news_cubit.dart';
+import 'package:akhbarna/features/layout/profile/presentation/cubit/update_profile_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/single_child_widget.dart';
 import '../../core/di/service_locator.dart';
@@ -32,5 +33,6 @@ class AppBlocProviders {
     BlocProvider(create: (_) => serviceLocator.get<BookMarketCubit>()),
     BlocProvider(create: (_) => serviceLocator.get<CategorySearchCubit>()),
     BlocProvider(create: (_) => serviceLocator.get<ChangePasswordCubit>()),
+    BlocProvider(create: (_) => serviceLocator.get<UpdateProfileCubit>()),
   ];
 }

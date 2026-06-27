@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'package:akhbarna/core/resources/assets_managers.dart';
+import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:akhbarna/core/widget/svg_widget.dart';
 import 'package:akhbarna/features/layout/bookMarket/presentation/screens/bookmarket_tab.dart';
 import 'package:akhbarna/features/layout/category/presentation/screens/category_tab.dart';
 import 'package:akhbarna/features/layout/home/presentation/screens/home_tap.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import '../../core/resources/routes_managers.dart';
@@ -19,7 +21,7 @@ class MainLayout extends StatefulWidget {
 
 class _MainLayoutState extends State<MainLayout> {
   int selectedIndex = 0;
-
+  DateTime? _lastBackPressed;
   late final PageController _pageController;
   late StreamSubscription<InternetStatus> internetSubscription;
 
@@ -35,7 +37,6 @@ class _MainLayoutState extends State<MainLayout> {
 
       if (!hasInternet && mounted) {
         isDisconnected = true;
-
         UiUtils.showToast(context, 'لا يوجد اتصال بالإنترنت', Colors.red);
       }
     });
@@ -80,55 +81,78 @@ class _MainLayoutState extends State<MainLayout> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: (index) {
-          setState(() {
-            selectedIndex = index;
-          });
-        },
-        children: tabs,
-      ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.all(8.sp),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(60.r),
-          child: BottomNavigationBar(
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            currentIndex: selectedIndex,
-            onTap: _onTab,
-            items: [
-              BottomNavigationBarItem(
-                icon: SvgWidget(
-                  image: IconManagers.home,
-                  isSelected: selectedIndex == 0,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+
+        if (selectedIndex != 0) {
+          _onTab(0);
+          return;
+        }
+
+        final now = DateTime.now();
+
+        if (_lastBackPressed == null ||
+            now.difference(_lastBackPressed!) > const Duration(seconds: 2)) {
+          _lastBackPressed = now;
+
+          UiUtils.showToast(context, 'اضغط مرة أخرى للخروج', ColorsManagers.riverBed);
+
+          return;
+        }
+        SystemNavigator.pop();
+      },
+      child: Scaffold(
+        body: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() {
+              selectedIndex = index;
+            });
+          },
+          children: tabs,
+        ),
+        bottomNavigationBar: Padding(
+          padding: EdgeInsets.all(8.sp),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(60.r),
+            child: BottomNavigationBar(
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              currentIndex: selectedIndex,
+              onTap: _onTab,
+              items: [
+                BottomNavigationBarItem(
+                  icon: SvgWidget(
+                    image: IconManagers.home,
+                    isSelected: selectedIndex == 0,
+                  ),
+                  label: '',
                 ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: SvgWidget(
-                  image: IconManagers.category,
-                  isSelected: selectedIndex == 1,
+                BottomNavigationBarItem(
+                  icon: SvgWidget(
+                    image: IconManagers.category,
+                    isSelected: selectedIndex == 1,
+                  ),
+                  label: '',
                 ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: SvgWidget(
-                  image: IconManagers.bookmark,
-                  isSelected: selectedIndex == 2,
+                BottomNavigationBarItem(
+                  icon: SvgWidget(
+                    image: IconManagers.bookmark,
+                    isSelected: selectedIndex == 2,
+                  ),
+                  label: '',
                 ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: SvgWidget(
-                  image: IconManagers.profile,
-                  isSelected: selectedIndex == 3,
+                BottomNavigationBarItem(
+                  icon: SvgWidget(
+                    image: IconManagers.profile,
+                    isSelected: selectedIndex == 3,
+                  ),
+                  label: '',
                 ),
-                label: '',
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
