@@ -46,7 +46,6 @@ class _MainLayoutState extends State<MainLayout> {
         case InternetStatus.connected:
           if (isDisconnected) {
             isDisconnected = false;
-
             UiUtils.showToast(
               context,
               'تم استعادة الاتصال بالإنترنت',
@@ -91,12 +90,13 @@ class _MainLayoutState extends State<MainLayout> {
         },
         children: tabs,
       ),
-
       bottomNavigationBar: Padding(
         padding: EdgeInsets.all(8.sp),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(60.r),
           child: BottomNavigationBar(
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
             currentIndex: selectedIndex,
             onTap: _onTab,
             items: [
@@ -105,28 +105,28 @@ class _MainLayoutState extends State<MainLayout> {
                   image: IconManagers.home,
                   isSelected: selectedIndex == 0,
                 ),
-                label: 'Home',
+                label: '',
               ),
               BottomNavigationBarItem(
                 icon: SvgWidget(
                   image: IconManagers.category,
                   isSelected: selectedIndex == 1,
                 ),
-                label: 'Category',
+                label: '',
               ),
               BottomNavigationBarItem(
                 icon: SvgWidget(
                   image: IconManagers.bookmark,
                   isSelected: selectedIndex == 2,
                 ),
-                label: 'Bookmark',
+                label: '',
               ),
               BottomNavigationBarItem(
                 icon: SvgWidget(
                   image: IconManagers.profile,
                   isSelected: selectedIndex == 3,
                 ),
-                label: 'Profile',
+                label: '',
               ),
             ],
           ),

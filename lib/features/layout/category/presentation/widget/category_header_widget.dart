@@ -42,10 +42,17 @@ class _CategoryHeaderWidgetState extends State<CategoryHeaderWidget> {
   Widget build(BuildContext context) {
     final Color shadowColor = Theme.of(context).shadowColor;
     final Color bg = Theme.of(context).scaffoldBackgroundColor;
+    final topPadding = MediaQuery.paddingOf(context).top;
+
     return Container(
-      height: 110.h,
+      height: topPadding + 110.h,
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+      padding: EdgeInsets.only(
+        left: 20.w,
+        right: 20.w,
+        top: topPadding + 16.h,
+        bottom: 16.h,
+      ),
       decoration: BoxDecoration(
         color: ColorsManagers.red,
         borderRadius: BorderRadius.only(
@@ -53,9 +60,8 @@ class _CategoryHeaderWidgetState extends State<CategoryHeaderWidget> {
           bottomRight: Radius.circular(40.r),
         ),
       ),
-      child: SafeArea(
-        child: Row(
-          children: [
+      child: Row(
+        children: [
             ArrowBackWidget(backgroundColor: shadowColor, arrowGroundColor: bg),
             SizedBox(width: 12.w),
             Expanded(
@@ -95,16 +101,24 @@ class _CategoryHeaderWidgetState extends State<CategoryHeaderWidget> {
                       barrierDismissible: true,
                       barrierLabel: '',
                       pageBuilder: (_, __, ___) {
+                        final screenSize = MediaQuery.sizeOf(context);
+
                         return Center(
-                          child: Container(
-                            height: 700.h,
-                            width: 350.w,
-                            padding: EdgeInsets.all(16.sp),
-                            decoration: BoxDecoration(
-                              color: bg,
-                              borderRadius: BorderRadius.circular(20.r),
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              maxWidth: screenSize.width - 32.w,
+                              maxHeight: screenSize.height - 80.h,
                             ),
-                            child: MatchScreen(),
+                            child: Container(
+                              height: 700.h,
+                              width: 350.w,
+                              padding: EdgeInsets.all(16.sp),
+                              decoration: BoxDecoration(
+                                color: bg,
+                                borderRadius: BorderRadius.circular(20.r),
+                              ),
+                              child: MatchScreen(),
+                            ),
                           ),
                         );
                       },
@@ -118,8 +132,7 @@ class _CategoryHeaderWidgetState extends State<CategoryHeaderWidget> {
                 ),
               ),
             ),
-          ],
-        ),
+        ],
       ),
     );
   }

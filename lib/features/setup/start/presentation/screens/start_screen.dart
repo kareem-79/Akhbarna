@@ -26,6 +26,7 @@ class _StartScreenState extends State<StartScreen> {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    Color shadowColor = Theme.of(context).shadowColor;
     return Scaffold(
       body: Stack(
         children: [
@@ -83,6 +84,7 @@ class _StartScreenState extends State<StartScreen> {
                   Row(
                     children: [
                       Checkbox(
+                        side: BorderSide(color: shadowColor),
                         shape: const CircleBorder(),
                         value: isChecked,
                         onChanged: (val) async {

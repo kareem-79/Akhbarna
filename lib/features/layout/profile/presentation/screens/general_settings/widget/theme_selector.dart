@@ -69,6 +69,7 @@ class ThemeSelector extends StatelessWidget {
       borderRadius: BorderRadius.circular(12.r),
       onTap: onTap,
       child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 4.w),
         height: double.infinity,
         decoration: BoxDecoration(
           color: selected ? cardColor : Colors.transparent,
@@ -79,7 +80,14 @@ class ThemeSelector extends StatelessWidget {
           children: [
             Icon(icon, size: 16.sp, color: color),
             SizedBox(width: 4.w),
-            Text(title, style: textTheme.bodySmall),
+            Flexible(
+              child: Text(
+                title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: textTheme.bodySmall?.copyWith(fontSize: 13.sp),
+              ),
+            ),
           ],
         ),
       ),

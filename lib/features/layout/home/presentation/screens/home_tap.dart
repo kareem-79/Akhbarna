@@ -261,18 +261,28 @@ class _HomeTapState extends State<HomeTap> with AutomaticKeepAliveClientMixin {
                                   barrierDismissible: true,
                                   barrierLabel: '',
                                   pageBuilder: (_, __, ___) {
+                                    final screenSize = MediaQuery.sizeOf(
+                                      context,
+                                    );
+
                                     return Center(
-                                      child: Container(
-                                        height: 700.h,
-                                        width: 350.w,
-                                        padding: EdgeInsets.all(16.sp),
-                                        decoration: BoxDecoration(
-                                          color: bg,
-                                          borderRadius: BorderRadius.circular(
-                                            20.r,
-                                          ),
+                                      child: ConstrainedBox(
+                                        constraints: BoxConstraints(
+                                          maxWidth: screenSize.width - 32.w,
+                                          maxHeight: screenSize.height - 80.h,
                                         ),
-                                        child: MatchScreen(),
+                                        child: Container(
+                                          height: 700.h,
+                                          width: 350.w,
+                                          padding: EdgeInsets.all(16.sp),
+                                          decoration: BoxDecoration(
+                                            color: bg,
+                                            borderRadius: BorderRadius.circular(
+                                              20.r,
+                                            ),
+                                          ),
+                                          child: MatchScreen(),
+                                        ),
                                       ),
                                     );
                                   },

@@ -35,8 +35,10 @@ class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
   @override
   Widget build(BuildContext context) {
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    final topPadding = MediaQuery.paddingOf(context).top;
+
     return Container(
-      height: 110.h,
+      height: topPadding + 110.h,
       width: double.infinity,
       decoration: BoxDecoration(
         color: ColorsManagers.red,
@@ -46,46 +48,50 @@ class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
-        child: SafeArea(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              InkWell(
-                onTap: widget.onTap,
-                child: Image.asset(
-                  ImageManagers.akhbarnaIcon,
-                  width: 50.w,
-                  height: 50.h,
-                ),
+        padding: EdgeInsets.only(
+          left: 24.w,
+          right: 24.w,
+          top: topPadding + 20.h,
+          bottom: 20.h,
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            InkWell(
+              onTap: widget.onTap,
+              child: Image.asset(
+                ImageManagers.akhbarnaIcon,
+                width: 50.w,
+                height: 50.h,
               ),
-              SizedBox(width: 30.w),
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, RoutesManager.search);
-                  },
-                  child: IgnorePointer(
-                    child: SearchWidget(
-                      hintText: appLocalizations.search,
-                      controller: searchController,
-                    ),
+            ),
+            SizedBox(width: 30.w),
+            Expanded(
+              child: InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, RoutesManager.search);
+                },
+                child: IgnorePointer(
+                  child: SearchWidget(
+                    hintText: appLocalizations.search,
+                    controller: searchController,
                   ),
                 ),
               ),
-              SizedBox(width: 30.w),
-              InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, RoutesManager.notification);
-                },
-                child: SvgPicture.asset(
-                  IconManagers.notification,
-                  width: 30.w,
-                  height: 30.h,
-                ),
+            ),
+            SizedBox(width: 30.w),
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, RoutesManager.notification);
+              },
+              child: SvgPicture.asset(
+                IconManagers.notification,
+                width: 30.w,
+                height: 30.h,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

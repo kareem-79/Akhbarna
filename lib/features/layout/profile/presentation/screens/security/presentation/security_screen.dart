@@ -111,7 +111,6 @@ class _SecurityScreenState extends State<SecurityScreen> {
                               return null;
                             },
                           ),
-                          SizedBox(height: 10.h),
                           CustomTextFormFiled(
                             label: appLocalizations.new_password,
                             controller: newPasswordController,

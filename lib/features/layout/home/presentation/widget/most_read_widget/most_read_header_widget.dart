@@ -18,8 +18,10 @@ class _MostReadHeaderWidgetState extends State<MostReadHeaderWidget> {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    final topPadding = MediaQuery.paddingOf(context).top;
+
     return Container(
-      height: 140.h,
+      height: topPadding + 140.h,
       width: double.infinity,
       decoration: BoxDecoration(
         color: ColorsManagers.red,
@@ -29,21 +31,23 @@ class _MostReadHeaderWidgetState extends State<MostReadHeaderWidget> {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
-        child: SafeArea(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ArrowBackWidget(),
-              Text(
-                appLocalizations.most_read,
-                style: textTheme.bodyLarge?.copyWith(fontSize: 28.sp),
-              ),
-            ],
-          ),
+        padding: EdgeInsets.only(
+          left: 24.w,
+          right: 24.w,
+          top: topPadding + 20.h,
+          bottom: 20.h,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ArrowBackWidget(),
+            Text(
+              appLocalizations.most_read,
+              style: textTheme.bodyLarge?.copyWith(fontSize: 28.sp),
+            ),
+          ],
         ),
       ),
     );
   }
-  
 }

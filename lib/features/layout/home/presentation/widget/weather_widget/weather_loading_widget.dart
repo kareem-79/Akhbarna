@@ -7,89 +7,84 @@ class WeatherLoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final canvasColor = Theme.of(context).canvasColor;
+    final bgColor = Theme.of(context).scaffoldBackgroundColor;
+
     return Skeletonizer(
       enabled: true,
       child: Container(
-        padding: EdgeInsets.all(12.w),
+        constraints: BoxConstraints(minHeight: 140.h),
+        padding: EdgeInsets.all(14.w),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.r),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [canvasColor, bgColor],
+          ),
+          borderRadius: BorderRadius.circular(24.r),
+          border: Border.all(color: Colors.white.withOpacity(.08)),
         ),
-        child: Stack(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Positioned(
-              left: -15.w,
-              top: -15.h,
-              child: Bone.circle(
-                size: 75.sp,
-              ),
+            /// Header
+            Row(
+              children: [
+                Bone(
+                  width: 50.w,
+                  height: 22.h,
+                  borderRadius: BorderRadius.circular(16.r),
+                ),
+
+                const Spacer(),
+
+                Bone(
+                  width: 120.w,
+                  height: 14.h,
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
+
+                SizedBox(width: 6.w),
+
+                Bone.circle(size: 14.sp),
+              ],
             ),
 
-            Column(
-              mainAxisSize: MainAxisSize.min,
+            SizedBox(height: 10.h),
+
+            /// Temperature + Icon
+            Row(
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Bone.text(
-                    words: 2,
-                    fontSize: 11.sp,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Bone.text(words: 1, fontSize: 38.sp),
+
+                      SizedBox(height: 6.h),
+
+                      Bone.text(words: 2, fontSize: 16.sp),
+                    ],
                   ),
                 ),
 
-                SizedBox(height: 12.h),
-
-                Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Bone.text(
-                          words: 1,
-                          fontSize: 26.sp,
-                        ),
-
-                        SizedBox(height: 6.h),
-
-                        Bone.text(
-                          words: 2,
-                          fontSize: 12.sp,
-                        ),
-                      ],
-                    ),
-
-                    const Spacer(),
-
-                    Bone.circle(
-                      size: 40.sp,
-                    ),
-                  ],
-                ),
-
-                SizedBox(height: 12.h),
-
-                Row(
-                  children: [
-                    Bone.text(
-                      words: 1,
-                      fontSize: 10.sp,
-                    ),
-
-                    SizedBox(width: 12.w),
-
-                    Bone.text(
-                      words: 2,
-                      fontSize: 10.sp,
-                    ),
-
-                    const Spacer(),
-
-                    Bone(
-                      width: 70.w,
-                      height: 24.h,
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                  ],
-                ),
+                Bone.circle(size: 70.sp),
               ],
+            ),
+
+            SizedBox(height: 14.h),
+
+            Wrap(
+              spacing: 6.w,
+              runSpacing: 6.h,
+              children: List.generate(
+                3,
+                (_) => Bone(
+                  width: 70.w,
+                  height: 28.h,
+                  borderRadius: BorderRadius.circular(16.r),
+                ),
+              ),
             ),
           ],
         ),

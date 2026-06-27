@@ -34,7 +34,6 @@ class CategoryItemWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SvgPicture.asset(
                   category.isSelected
@@ -43,11 +42,16 @@ class CategoryItemWidget extends StatelessWidget {
                   width: 20.w,
                   height: 20.h,
                 ),
-                Text(
-                  category.name,
-                  style: textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20.sp,
+                SizedBox(width: 10.w),
+                Expanded(
+                  child: Text(
+                    category.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20.sp,
+                    ),
                   ),
                 ),
               ],
