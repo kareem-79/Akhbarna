@@ -15,6 +15,7 @@ import '../../features/layout/category/presentation/cubit/category_search_cubit.
 import '../../features/layout/home/presentation/cubit/latest_news_cubit.dart';
 import '../../features/layout/home/presentation/cubit/most_read_news_cubit.dart';
 import '../../features/layout/home/presentation/cubit/search_article_cubit.dart';
+import '../../features/layout/home/presentation/cubit/notification_cubit.dart';
 import '../../features/layout/home/presentation/cubit/weather_cubit.dart';
 
 class AppBlocProviders {
@@ -34,5 +35,6 @@ class AppBlocProviders {
     BlocProvider(create: (_) => serviceLocator.get<CategorySearchCubit>()),
     BlocProvider(create: (_) => serviceLocator.get<ChangePasswordCubit>()),
     BlocProvider(create: (_) => serviceLocator.get<UpdateProfileCubit>()),
+    BlocProvider(create: (_) => serviceLocator.get<NotificationCubit>()),
   ];
 }

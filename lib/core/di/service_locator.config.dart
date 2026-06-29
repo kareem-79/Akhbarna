@@ -121,18 +121,30 @@ import 'package:akhbarna/features/layout/home/data/data_sources/remote/home_api_
     as _i130;
 import 'package:akhbarna/features/layout/home/data/data_sources/remote/home_remote_data_source.dart'
     as _i29;
+import 'package:akhbarna/features/layout/home/data/data_sources/remote/notification_api_remote_data_source.dart'
+    as _i435;
+import 'package:akhbarna/features/layout/home/data/data_sources/remote/notification_remote_data_source.dart'
+    as _i1011;
 import 'package:akhbarna/features/layout/home/data/data_sources/remote/weather_api_remote_data_source.dart'
     as _i1054;
 import 'package:akhbarna/features/layout/home/data/data_sources/remote/weather_remote_data_source.dart'
     as _i660;
 import 'package:akhbarna/features/layout/home/data/repositories_impl/home_repository_impl.dart'
     as _i478;
+import 'package:akhbarna/features/layout/home/data/repositories_impl/notification_repository_impl.dart'
+    as _i441;
 import 'package:akhbarna/features/layout/home/data/repositories_impl/weather_repository_impl.dart'
     as _i658;
 import 'package:akhbarna/features/layout/home/domain/repositories/home_repository.dart'
     as _i466;
+import 'package:akhbarna/features/layout/home/domain/repositories/notification_repository.dart'
+    as _i202;
 import 'package:akhbarna/features/layout/home/domain/repositories/weather_repository.dart'
     as _i661;
+import 'package:akhbarna/features/layout/home/domain/use_case/delete_all_notification_use_case.dart'
+    as _i211;
+import 'package:akhbarna/features/layout/home/domain/use_case/delete_notification_use_case.dart'
+    as _i809;
 import 'package:akhbarna/features/layout/home/domain/use_case/get_breaking_news_use_case.dart'
     as _i898;
 import 'package:akhbarna/features/layout/home/domain/use_case/get_current_weather_use_case.dart'
@@ -141,16 +153,22 @@ import 'package:akhbarna/features/layout/home/domain/use_case/get_latest_news_us
     as _i393;
 import 'package:akhbarna/features/layout/home/domain/use_case/get_most_read_news_use_case.dart'
     as _i537;
+import 'package:akhbarna/features/layout/home/domain/use_case/get_notification_use_case.dart'
+    as _i750;
 import 'package:akhbarna/features/layout/home/domain/use_case/get_search_articles_use_case.dart'
     as _i80;
 import 'package:akhbarna/features/layout/home/domain/use_case/get_trending_news_use_case.dart'
     as _i386;
+import 'package:akhbarna/features/layout/home/domain/use_case/mark_notification_as_read_use_case.dart'
+    as _i151;
 import 'package:akhbarna/features/layout/home/presentation/cubit/breaking_news_cubit.dart'
     as _i862;
 import 'package:akhbarna/features/layout/home/presentation/cubit/latest_news_cubit.dart'
     as _i676;
 import 'package:akhbarna/features/layout/home/presentation/cubit/most_read_news_cubit.dart'
     as _i487;
+import 'package:akhbarna/features/layout/home/presentation/cubit/notification_cubit.dart'
+    as _i1051;
 import 'package:akhbarna/features/layout/home/presentation/cubit/search_article_cubit.dart'
     as _i358;
 import 'package:akhbarna/features/layout/home/presentation/cubit/trending_news_cubit.dart'
@@ -209,6 +227,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i512.RegisterRemoteDataSource>(
       () => _i757.RegisterApiRemoteDataSource(),
+    );
+    gh.singleton<_i1011.NotificationRemoteDataSource>(
+      () => _i435.NotificationApiRemoteDataSource(
+        authLocalDataSource: gh<_i1023.AuthLocalDataSource>(),
+      ),
     );
     gh.factory<_i25.GetCurrentWeatherUseCase>(
       () => _i25.GetCurrentWeatherUseCase(
@@ -342,6 +365,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i582.RegisterCubit>(
       () => _i582.RegisterCubit(registerUseCase: gh<_i794.RegisterUseCase>()),
     );
+    gh.singleton<_i202.NotificationRepository>(
+      () => _i441.NotificationRepositoryImpl(
+        remoteDataSource: gh<_i1011.NotificationRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i393.GetLatestNewsUseCase>(
       () => _i393.GetLatestNewsUseCase(repository: gh<_i466.HomeRepository>()),
     );
@@ -426,6 +454,26 @@ extension GetItInjectableX on _i174.GetIt {
         changePasswordUseCase: gh<_i473.ChangePasswordUseCase>(),
       ),
     );
+    gh.factory<_i211.DeleteAllNotificationsUseCase>(
+      () => _i211.DeleteAllNotificationsUseCase(
+        repository: gh<_i202.NotificationRepository>(),
+      ),
+    );
+    gh.factory<_i809.DeleteNotificationUseCase>(
+      () => _i809.DeleteNotificationUseCase(
+        repository: gh<_i202.NotificationRepository>(),
+      ),
+    );
+    gh.factory<_i750.GetNotificationUseCase>(
+      () => _i750.GetNotificationUseCase(
+        repository: gh<_i202.NotificationRepository>(),
+      ),
+    );
+    gh.factory<_i151.MarkNotificationAsReadUseCase>(
+      () => _i151.MarkNotificationAsReadUseCase(
+        repository: gh<_i202.NotificationRepository>(),
+      ),
+    );
     gh.lazySingleton<_i358.SearchCubit>(
       () => _i358.SearchCubit(
         searchArticlesUseCase: gh<_i80.SearchArticlesUseCase>(),
@@ -436,6 +484,16 @@ extension GetItInjectableX on _i174.GetIt {
         resetPasswordUseCase: gh<_i39.ResetPasswordUseCase>(),
         sendOtpUseCase: gh<_i343.SendOtpUseCase>(),
         verifyOtpUseCase: gh<_i56.VerifyOtpUseCase>(),
+      ),
+    );
+    gh.lazySingleton<_i1051.NotificationCubit>(
+      () => _i1051.NotificationCubit(
+        getNotificationUseCase: gh<_i750.GetNotificationUseCase>(),
+        markNotificationAsReadUseCase:
+            gh<_i151.MarkNotificationAsReadUseCase>(),
+        deleteNotificationUseCase: gh<_i809.DeleteNotificationUseCase>(),
+        deleteAllNotificationsUseCase:
+            gh<_i211.DeleteAllNotificationsUseCase>(),
       ),
     );
     gh.lazySingleton<_i101.UpdateProfileCubit>(

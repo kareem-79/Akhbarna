@@ -1,4 +1,3 @@
-import 'package:akhbarna/core/resources/colors_managers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,7 +16,7 @@ class TermsItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-
+    Color primaryColor = Theme.of(context).primaryColor;
     return Padding(
       padding: EdgeInsets.only(bottom: 16.h),
       child: Column(
@@ -27,14 +26,14 @@ class TermsItemWidget extends StatelessWidget {
             "$index. $title",
             style: textTheme.bodyMedium?.copyWith(
               fontWeight: FontWeight.bold,
-              color: ColorsManagers.white,
+              color: primaryColor,
               fontSize: 20.sp,
             ),
           ),
           SizedBox(height: 6.h),
           Text(
             description,
-            style: textTheme.bodySmall?.copyWith(color: ColorsManagers.white),
+            style: textTheme.bodySmall?.copyWith(color: primaryColor),
             softWrap: true,
             overflow: TextOverflow.visible,
           ),

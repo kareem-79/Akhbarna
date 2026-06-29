@@ -61,7 +61,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                   SizedBox(height: 50.h),
                   Text(
                     appLocalizations.appearance,
-                    style: textTheme.bodySmall?.copyWith(color: Colors.grey),
+                    style: textTheme.bodySmall?.copyWith(color: ColorsManagers.gray3),
                   ),
                   SizedBox(height: 12.h),
                   SettingsSectionWidget(
@@ -119,7 +119,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                   SizedBox(height: 12.h),
                   Text(
                     appLocalizations.font_size,
-                    style: textTheme.bodySmall?.copyWith(color: Colors.grey),
+                    style: textTheme.bodySmall?.copyWith(color: ColorsManagers.gray3),
                   ),
                   SizedBox(height: 12.h),
                   SettingsSectionWidget(
@@ -137,7 +137,7 @@ class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
                   SizedBox(height: 12.h),
                   Text(
                     appLocalizations.sources,
-                    style: textTheme.bodySmall?.copyWith(color: Colors.grey),
+                    style: textTheme.bodySmall?.copyWith(color: ColorsManagers.gray3),
                   ),
                   SizedBox(height: 12.h),
                   SettingsSectionWidget(

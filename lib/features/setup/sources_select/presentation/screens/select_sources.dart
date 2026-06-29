@@ -99,7 +99,7 @@ class _SelectSourcesState extends State<SelectSources> {
     if (widget.isFromEdit) {
       Navigator.pop(context);
     } else {
-      Navigator.pushNamed(context, RoutesManager.selectCategory);
+      Navigator.pushNamed(context, RoutesManager.start);
     }
   }
 

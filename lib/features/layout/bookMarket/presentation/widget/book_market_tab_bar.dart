@@ -42,7 +42,7 @@ class _BookMarketTabBarState extends State<BookMarketTabBar> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final primaryColor = Theme.of(context).primaryColor;
-
+    Color cardColor = Theme.of(context).cardColor;
     return SizedBox(
       height: 48.h,
       child: SingleChildScrollView(
@@ -72,7 +72,7 @@ class _BookMarketTabBarState extends State<BookMarketTabBar> {
                   decoration: BoxDecoration(
                     color: isSelected
                         ? ColorsManagers.red
-                        : ColorsManagers.dark,
+                        : cardColor,
                     borderRadius: BorderRadius.circular(25.r),
                   ),
                   child: Row(

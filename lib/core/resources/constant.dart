@@ -26,7 +26,8 @@ abstract class ApiConstant {
   static const String verifyOtp = 'auth/verify-otp';
   static const String resetPassword = 'auth/reset-password';
   static const String updateProfileEndpoint = 'auth/profile';
-
+  static const String notificationsEndpoint = 'notifications';
+  static const String deleteAllNotifications = 'notifications/all';
 }
 
 abstract class NewsApiConstant {

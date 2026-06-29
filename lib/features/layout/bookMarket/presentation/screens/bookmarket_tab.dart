@@ -86,7 +86,6 @@ class _BookMarketTabState extends State<BookMarketTab> {
                               id,
                             );
                           }
-
                           setState(() {
                             selectionMode = false;
                             selectedIds.clear();
@@ -243,7 +242,6 @@ class _BookMarketTabState extends State<BookMarketTab> {
                     ],
                   );
                 }
-
                 return const SizedBox();
               },
             ),

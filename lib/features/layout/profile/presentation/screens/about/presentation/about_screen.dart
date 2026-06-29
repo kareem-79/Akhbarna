@@ -16,7 +16,7 @@ class AboutUsScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            AboutHeaderWidget(),
+            const AboutHeaderWidget(),
             SizedBox(height: 30.h),
             Expanded(
               child: Padding(
@@ -24,24 +24,48 @@ class AboutUsScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      _card(textTheme, appLocalizations.about_app_description),
-                      _card(textTheme, appLocalizations.about_app_coverage),
-                      _card(textTheme, appLocalizations.about_app_experience),
-                      _section(textTheme, appLocalizations.our_goal),
-                      _card(textTheme, appLocalizations.goal_1),
-                      _card(textTheme, appLocalizations.goal_2),
-                      _card(textTheme, appLocalizations.goal_3),
-                      _card(textTheme, appLocalizations.goal_4),
+                      _card(
+                        context,
+                        textTheme,
+                        appLocalizations.about_app_description,
+                      ),
+                      _card(
+                        context,
+                        textTheme,
+                        appLocalizations.about_app_coverage,
+                      ),
+                      _card(
+                        context,
+                        textTheme,
+                        appLocalizations.about_app_experience,
+                      ),
 
-                      _section(textTheme, appLocalizations.app_features),
-                      _card(textTheme, appLocalizations.feature_1),
-                      _card(textTheme, appLocalizations.feature_2),
-                      _card(textTheme, appLocalizations.feature_3),
-                      _card(textTheme, appLocalizations.feature_4),
-                      _card(textTheme, appLocalizations.feature_5),
+                      _section(context, textTheme, appLocalizations.our_goal),
 
-                      _section(textTheme, appLocalizations.our_vision),
-                      _card(textTheme, appLocalizations.vision_description),
+                      _card(context, textTheme, appLocalizations.goal_1),
+                      _card(context, textTheme, appLocalizations.goal_2),
+                      _card(context, textTheme, appLocalizations.goal_3),
+                      _card(context, textTheme, appLocalizations.goal_4),
+
+                      _section(
+                        context,
+                        textTheme,
+                        appLocalizations.app_features,
+                      ),
+
+                      _card(context, textTheme, appLocalizations.feature_1),
+                      _card(context, textTheme, appLocalizations.feature_2),
+                      _card(context, textTheme, appLocalizations.feature_3),
+                      _card(context, textTheme, appLocalizations.feature_4),
+                      _card(context, textTheme, appLocalizations.feature_5),
+
+                      _section(context, textTheme, appLocalizations.our_vision),
+
+                      _card(
+                        context,
+                        textTheme,
+                        appLocalizations.vision_description,
+                      ),
 
                       SizedBox(height: 20.h),
                     ],
@@ -55,38 +79,33 @@ class AboutUsScreen extends StatelessWidget {
     );
   }
 
-  Widget _card(TextTheme textTheme, String text) {
+  Widget _card(BuildContext context, TextTheme textTheme, String text) {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(bottom: 12.h),
       padding: EdgeInsets.all(14.w),
       decoration: BoxDecoration(
-        color: ColorsManagers.darkNavy,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(12.r),
         border: Border.all(color: ColorsManagers.dark),
       ),
-      child: Text(
-        text,
-        style: textTheme.bodyMedium,
-      ),
+      child: Text(text, style: textTheme.bodyMedium?.copyWith(fontSize: 20.sp)),
     );
   }
 
-  Widget _section(TextTheme textTheme, String text) {
+  Widget _section(BuildContext context, TextTheme textTheme, String text) {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.symmetric(vertical: 12.h),
       padding: EdgeInsets.all(14.w),
       decoration: BoxDecoration(
-        color: ColorsManagers.darkNavy,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(12.r),
         border: Border.all(color: ColorsManagers.vividTangerine),
       ),
       child: Text(
         text,
-        style: textTheme.bodySmall?.copyWith(
-          fontWeight: FontWeight.bold,
-        ),
+        style: textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold,color: ColorsManagers.red),
       ),
     );
   }

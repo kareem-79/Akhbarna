@@ -29,7 +29,6 @@ class SettingRowWidget extends StatelessWidget {
             children: [
               Text(
                 title,
-                textAlign: TextAlign.right,
                 style: textTheme.bodySmall?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
@@ -38,7 +37,6 @@ class SettingRowWidget extends StatelessWidget {
                 SizedBox(height: 4.h),
                 Text(
                   subtitle!,
-                  textAlign: TextAlign.right,
                   style: textTheme.labelSmall?.copyWith(
                     color: ColorsManagers.gray3,
                   ),

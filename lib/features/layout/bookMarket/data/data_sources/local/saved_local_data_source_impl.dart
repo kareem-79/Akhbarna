@@ -15,8 +15,8 @@ class SavedLocalDataSourceImpl implements SavedLocalDataSource {
   SavedLocalDataSourceImpl({required this.authLocalDataSource});
 
   Future<String> _getKey() async {
-    final token = await authLocalDataSource.getToken();
-    return "bookmarks_$token";
+    final userId = await authLocalDataSource.getUserId();
+    return "bookmarks_$userId";
   }
 
   @override

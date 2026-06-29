@@ -1,5 +1,6 @@
 import 'package:akhbarna/core/widget/arrow_back_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -7,8 +8,9 @@ import '../../../../../../core/resources/assets_managers.dart';
 import '../../../../../../core/resources/colors_managers.dart';
 import '../../../../../../l10n/app_localizations.dart';
 import '../../../../profile/presentation/widget/custom_blur_bottom_sheet.dart';
+import '../../cubit/notification_cubit.dart';
+import '../../cubit/state/notification_state.dart';
 import '../notification_widget/delete_notification_buttom_sheet.dart';
-
 
 class NotificationHeaderWidget extends StatefulWidget {
   final VoidCallback onDeleteAll;
@@ -46,13 +48,32 @@ class _NotificationHeaderWidgetState extends State<NotificationHeaderWidget> {
                 appLocalizations.notifications,
                 style: textTheme.bodyLarge?.copyWith(fontSize: 28.sp),
               ),
-              InkWell(
-                onTap: () => _showDeleteNotificationBottomSheet(context),
-                child: SvgPicture.asset(
-                  IconManagers.delete,
-                  width: 50.w,
-                  height: 50.h,
-                ),
+              BlocBuilder<NotificationCubit, NotificationState>(
+                builder: (context, state) {
+                  final hasNotifications =
+                      state is NotificationSuccess &&
+                      state.notifications.isNotEmpty;
+
+                  return AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 250),
+                    child: hasNotifications
+                        ? InkWell(
+                            key: const ValueKey("delete"),
+                            onTap: () =>
+                                _showDeleteNotificationBottomSheet(context),
+                            child: SvgPicture.asset(
+                              IconManagers.delete,
+                              width: 50.w,
+                              height: 50.h,
+                            ),
+                          )
+                        : SizedBox(
+                            key: const ValueKey("empty"),
+                            width: 50.w,
+                            height: 50.h,
+                          ),
+                  );
+                },
               ),
             ],
           ),
@@ -64,7 +85,11 @@ class _NotificationHeaderWidgetState extends State<NotificationHeaderWidget> {
   void _showDeleteNotificationBottomSheet(BuildContext context) {
     showBlurBottomSheet(
       context,
-      child: DeleteNotificationBottomSheet(onDelete: widget.onDeleteAll),
+      child: DeleteNotificationBottomSheet(
+        onDelete: () {
+          context.read<NotificationCubit>().deleteAllNotifications();
+        },
+      ),
     );
   }
 

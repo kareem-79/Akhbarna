@@ -107,11 +107,11 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    Color bgColor = Theme.of(context).scaffoldBackgroundColor;
     return Scaffold(
       body: Stack(
         children: [
-          Container(color: const Color(0xff06112C)),
-
+          Container(color: bgColor),
           AnimatedBuilder(
             animation: _linesController,
             builder: (context, child) {

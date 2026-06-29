@@ -21,6 +21,7 @@ class _LogoutBottomSheetState extends State<LogoutBottomSheet> {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    Color primaryColor = Theme.of(context).primaryColor;
     return Container(
       height: MediaQuery.of(context).size.height * 0.4.h,
       decoration: BoxDecoration(
@@ -62,7 +63,7 @@ class _LogoutBottomSheetState extends State<LogoutBottomSheet> {
                     Center(
                       child: Text(
                         appLocalizations.logout_confirm_title,
-                        style: textTheme.bodyMedium?.copyWith(fontSize: 20.sp),
+                        style: textTheme.bodyMedium?.copyWith(fontSize: 20.sp,color: primaryColor),
                         textAlign: TextAlign.center,
                       ),
                     ),

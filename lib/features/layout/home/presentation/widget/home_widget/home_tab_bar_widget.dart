@@ -20,7 +20,7 @@ class HomeTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final Color primaryColor = Theme.of(context).primaryColor;
-
+    Color cardColor = Theme.of(context).cardColor;
     return SizedBox(
       height: 48.h,
       child: SingleChildScrollView(
@@ -34,7 +34,6 @@ class HomeTabBar extends StatelessWidget {
             children: List.generate(homeTabList.length, (index) {
               final tab = homeTabList[index];
               final isSelected = selectedHomeTabIndex == index;
-
               return Padding(
                 padding: EdgeInsets.symmetric(horizontal: 3.w),
                 child: GestureDetector(
@@ -49,7 +48,7 @@ class HomeTabBar extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: isSelected
                           ? ColorsManagers.red
-                          : ColorsManagers.dark,
+                          : cardColor,
                       borderRadius: BorderRadius.circular(25.r),
                     ),
                     child: Row(

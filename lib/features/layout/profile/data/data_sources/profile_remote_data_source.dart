@@ -5,6 +5,5 @@ abstract class ProfileRemoteDataSource {
   Future<UpdateProfileResponse> updateProfile({
     required UpdateProfileRequest request,
   });
-
   Future<UpdateProfileResponse> getProfile();
 }

@@ -8,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/prefs_manager/location_prefs_manager.dart';
-import '../../../../../core/prefs_manager/prefs_manager.dart';
 import '../../../../../core/resources/colors_managers.dart';
 import '../../../../../core/resources/routes_managers.dart';
 import '../../../../../model/language_model.dart';

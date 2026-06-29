@@ -69,7 +69,6 @@ class HomeRepositoryImpl implements HomeRepository {
   }) async {
     try {
       final response = await remoteDataSource.searchArticles(keyword: keyword);
-
       return Right(response);
     } on AppException catch (exception) {
       return Left(Failure(message: exception.message));
