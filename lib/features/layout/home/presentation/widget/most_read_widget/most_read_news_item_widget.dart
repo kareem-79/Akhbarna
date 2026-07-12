@@ -29,6 +29,7 @@ class _MostReadNewsItemWidgetState extends State<MostReadNewsItemWidget> {
     final textTheme = Theme.of(context).textTheme;
     final Color shadowColor = Theme.of(context).shadowColor;
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    final Color cardColor = Theme.of(context).cardColor;
     return TweenAnimationBuilder(
       duration: Duration(milliseconds: 300 + (widget.news.hashCode % 5) * 100),
       tween: Tween<double>(begin: 40.0, end: 0.0),
@@ -227,7 +228,7 @@ class _MostReadNewsItemWidgetState extends State<MostReadNewsItemWidget> {
                         child: Container(
                           padding: EdgeInsets.all(6.sp),
                           decoration: BoxDecoration(
-                            color: ColorsManagers.dark,
+                            color: cardColor,
                             shape: BoxShape.circle,
                             border: Border.all(
                               color: getCategoryColor(
@@ -254,9 +255,7 @@ class _MostReadNewsItemWidgetState extends State<MostReadNewsItemWidget> {
                       );
                     },
                   ),
-
-                  SizedBox(width: 8.w),
-
+                  SizedBox(width: 4.w),
                   InkWell(
                     borderRadius: BorderRadius.circular(20.r),
                     onTap: () {
@@ -267,7 +266,7 @@ class _MostReadNewsItemWidgetState extends State<MostReadNewsItemWidget> {
                     child: Container(
                       padding: EdgeInsets.all(6.sp),
                       decoration: BoxDecoration(
-                        color: ColorsManagers.dark,
+                        color: cardColor,
                         shape: BoxShape.circle,
                         border: Border.all(
                           color: getCategoryColor(

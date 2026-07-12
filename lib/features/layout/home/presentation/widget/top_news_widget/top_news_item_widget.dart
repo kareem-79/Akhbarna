@@ -29,6 +29,7 @@ class _TopNewsItemWidgetState extends State<TopNewsItemWidget> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    final Color cardColor = Theme.of(context).cardColor;
     return TweenAnimationBuilder(
       duration: Duration(milliseconds: 300 + (widget.news.hashCode % 5) * 100),
       tween: Tween<double>(begin: 40.0, end: 0.0),
@@ -176,7 +177,7 @@ class _TopNewsItemWidgetState extends State<TopNewsItemWidget> {
                 child: Container(
                   padding: EdgeInsets.all(6.sp),
                   decoration: BoxDecoration(
-                    color: ColorsManagers.dark,
+                    color: cardColor,
                     shape: BoxShape.circle,
                   ),
                   child: Icon(
@@ -217,7 +218,7 @@ class _TopNewsItemWidgetState extends State<TopNewsItemWidget> {
                     child: Container(
                       padding: EdgeInsets.all(6.sp),
                       decoration: BoxDecoration(
-                        color: ColorsManagers.dark,
+                        color: cardColor,
                         shape: BoxShape.circle,
                         border: Border.all(
                           color: getCategoryTextColor(

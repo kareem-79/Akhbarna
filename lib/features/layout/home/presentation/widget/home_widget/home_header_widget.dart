@@ -38,7 +38,7 @@ class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
     final topPadding = MediaQuery.paddingOf(context).top;
 
     return Container(
-      height: topPadding + 110.h,
+      height: topPadding + 100.h,
       width: double.infinity,
       decoration: BoxDecoration(
         color: ColorsManagers.red,

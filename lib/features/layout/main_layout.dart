@@ -104,6 +104,7 @@ class _MainLayoutState extends State<MainLayout> {
         SystemNavigator.pop();
       },
       child: Scaffold(
+        extendBody: true,
         body: PageView(
           controller: _pageController,
           onPageChanged: (index) {

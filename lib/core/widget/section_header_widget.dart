@@ -1,7 +1,6 @@
 import 'package:akhbarna/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../resources/colors_managers.dart';
 
 class SectionHeaderWidget extends StatelessWidget {
@@ -25,6 +24,7 @@ class SectionHeaderWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 4.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             title,
@@ -34,13 +34,20 @@ class SectionHeaderWidget extends StatelessWidget {
           ),
           GestureDetector(
             onTap: onViewAll,
-            child: Text(
-              actionText ?? appLocalizations.view_all,
-              style: textTheme.bodySmall?.copyWith(
-                color: ColorsManagers.red,
-              ),
+            child: Row(
+              children: [
+                Text(
+                  actionText ?? appLocalizations.view_all,
+                  style: textTheme.bodySmall?.copyWith(
+                    color: ColorsManagers.red,
+                  ),
+                ),
+                SizedBox(width: 4.w,),
+                Icon(Icons.arrow_forward_ios,color: ColorsManagers.red,size: 12.sp,)
+              ],
             ),
           ),
+          
         ],
       ),
     );

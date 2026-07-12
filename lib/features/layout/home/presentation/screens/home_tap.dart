@@ -90,6 +90,7 @@ class _HomeTapState extends State<HomeTap> with AutomaticKeepAliveClientMixin {
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     final tabs = HomeTabModel.homeTabList(context);
     return Scaffold(
+      extendBody: true,
       body: Column(
         children: [
           HomeHeaderWidget(
@@ -108,7 +109,7 @@ class _HomeTapState extends State<HomeTap> with AutomaticKeepAliveClientMixin {
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.all(16.sp),
+              padding: EdgeInsets.symmetric(horizontal:  16.sp),
               child: RefreshIndicator(
                 color: ColorsManagers.red,
                 onRefresh: () async {
@@ -127,6 +128,7 @@ class _HomeTapState extends State<HomeTap> with AutomaticKeepAliveClientMixin {
                     SliverToBoxAdapter(
                       child: Column(
                         children: [
+                          SizedBox(height: 4.h,),
                           BlocBuilder<TrendingNewsCubit, TrendingNewsState>(
                             builder: (context, state) {
                               if (state is TrendingNewsLoading) {

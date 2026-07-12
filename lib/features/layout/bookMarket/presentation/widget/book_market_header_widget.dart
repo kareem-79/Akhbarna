@@ -26,7 +26,7 @@ class _BookMarketHeaderWidgetState extends State<BookMarketHeaderWidget> {
     final topPadding = MediaQuery.paddingOf(context).top;
 
     return Container(
-      height: topPadding + 140.h,
+      height: topPadding + 100.h,
       width: double.infinity,
       decoration: BoxDecoration(
         color: ColorsManagers.red,
