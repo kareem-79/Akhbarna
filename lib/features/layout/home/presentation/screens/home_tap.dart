@@ -305,11 +305,19 @@ class _HomeTapState extends State<HomeTap> with AutomaticKeepAliveClientMixin {
                         }
 
                         if (state is MatchesError) {
-                          return SliverToBoxAdapter(
+                          return const SliverToBoxAdapter(
                             child: MatchCardLoadingWidget(),
                           );
                         }
+
                         if (state is MatchesSuccess) {
+                          if (state.matches.isEmpty ||
+                              state.matches.first.matches.isEmpty) {
+                            return const SliverToBoxAdapter(
+                              child: SizedBox.shrink(),
+                            );
+                          }
+
                           final firstMatch = state.matches.first.matches.first;
 
                           return SliverToBoxAdapter(
@@ -317,7 +325,9 @@ class _HomeTapState extends State<HomeTap> with AutomaticKeepAliveClientMixin {
                           );
                         }
 
-                        return const SliverToBoxAdapter(child: SizedBox());
+                        return const SliverToBoxAdapter(
+                          child: SizedBox.shrink(),
+                        );
                       },
                     ),
                     //trendNews
